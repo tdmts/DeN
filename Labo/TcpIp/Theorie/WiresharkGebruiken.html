@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireshark gebruiken</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Wireshark gebruiken</h1>
+
+        <p>Wireshark leest mee wat er over je netwerkkaart passeert en toont elk pakket apart, met zijn afzender, zijn
+            bestemming en zijn inhoud. Daarmee zie je wat je computer werkelijk over de lijn stuurt in plaats van wat
+            een programma erover zegt.</p>
+
+        <h2>De juiste netwerkkaart kiezen</h2>
+
+        <p>Een computer heeft meestal meer dan een netwerkkaart: een bekabelde, een draadloze, en een aantal virtuele
+            kaarten van programma's zoals VirtualBox of een VPN-client. Wireshark vangt het verkeer van een kaart
+            tegelijk op, dus je kiest eerst de kaart waarover je verkeer echt loopt.</p>
+
+        <p>Welke dat is, zoek je op met het commando <code>ipconfig</code> in een cmd-venster. De adapter waar ook een
+            default gateway bij staat, is de adapter die met het netwerk verbonden is. Wireshark kort de naam in, dus
+            <code>Wireless LAN adapter Wi-Fi</code> staat er als <code>Wi-Fi</code>.</p>
+
+        <figure class="figure-zoom">
+            <img src="../../../img/wireshark-capture-options-adapter-kiezen.png" class="img-fluid"
+                alt="Het venster Capture Options van Wireshark met een lijst van netwerkadapters, elk met een grafiekje van het verkeer erop">
+            <figcaption class="figure-caption">In Capture &gt; Options kies je de adapter waarvan je het verkeer
+                opvangt</figcaption>
+        </figure>
+
+        <h2>Opnemen en stoppen</h2>
+
+        <p>Een opname start je met <strong>Capture &gt; Start</strong> en stop je met <strong>Capture &gt;
+                Stop</strong>. Zolang de opname loopt, komen er pakketten bij en schuift de lijst door. Stop ze voor
+            je begint te lezen, dan blijft het beeld staan.</p>
+
+        <h2>Display filters</h2>
+
+        <p>Een opname van een paar seconden levert al snel duizenden pakketten op. Met een <strong>display
+                filter</strong> toon je daarvan alleen wat je zoekt. Je typt de naam van het protocol in kleine
+            letters in het veld bovenaan het venster: <code>icmp</code>, <code>dns</code>, <code>dhcp</code> of
+            <code>modbus</code>.</p>
+
+        <figure class="figure-zoom">
+            <img src="../../../img/wireshark-display-filter-veld.png" class="img-fluid"
+                alt="Het filterveld bovenaan het Wireshark-venster met de tekst Apply a display filter erin">
+            <figcaption class="figure-caption">Het filterveld staat bovenaan, boven de lijst met pakketten
+            </figcaption>
+        </figure>
+
+        <p>Het veld kleurt groen zodra Wireshark het filter begrijpt, en rood bij een tikfout. Druk op enter om het
+            toe te passen. De lijst wordt dan meestal leeg, tot er verkeer langskomt dat aan het filter voldoet.</p>
+
+        <div class="info-box remark">
+            <div class="info-title remark">Wireshark blijft alles opvangen</div>
+            <p>Wireshark blijft alles opvangen zolang de opname loopt. Het filter bepaalt alleen wat je te zien
+                krijgt. Wis je het filter, dan staat de rest van het verkeer er nog, en je kan dus achteraf van filter
+                wisselen zonder opnieuw op te nemen.</p>
+        </div>
+
+        <h2>Exporteren naar een pcapng-bestand</h2>
+
+        <p>Een opname bewaar je met <strong>File &gt; Export Specified Packets</strong>. Kies daar
+            <strong>All packets</strong> en <strong>Displayed</strong>, want dan komen alleen de pakketten in het
+            bestand die je filter toont. Het aantal staat in het venster, zodat je kan controleren of het klopt met
+            wat je verwacht.</p>
+
+        <p>Zo'n bestand krijgt de extensie <code>.pcapng</code>, en je opent het later opnieuw in Wireshark met
+            hetzelfde beeld als op het moment van de opname.</p>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

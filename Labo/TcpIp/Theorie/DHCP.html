@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DHCP</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>DHCP</h1>
+
+        <p>Sluit je een toestel aan op een netwerk, dan krijgt het vanzelf een IP-adres en de instellingen die het
+            nodig heeft om verkeer te versturen. Dat regelt het <strong>Dynamic Host Configuration Protocol</strong>.
+            De DHCP-server, in een thuisnetwerk de router, houdt een voorraad adressen bij en deelt er een uit voor
+            een bepaalde tijd.</p>
+
+        <h2>De vier stappen van een DHCP-cyclus</h2>
+
+        <p>Het toestel en de server wisselen vier berichten uit, en die vier zie je in Wireshark na elkaar
+            voorbijkomen:</p>
+
+        <ol>
+            <li><strong>Discover</strong>: het toestel roept over het hele netwerk of er een DHCP-server is. Het heeft
+                op dat moment nog geen adres, dus het bericht gaat naar iedereen.</li>
+            <li><strong>Offer</strong>: een server antwoordt met een adres dat hij voor dit toestel opzij zet.</li>
+            <li><strong>Request</strong>: het toestel vraagt dat aangeboden adres officieel aan. Zijn er meerdere
+                servers die iets aanbieden, dan kiest het toestel er hier een.</li>
+            <li><strong>Acknowledge</strong>: de server bevestigt, en vanaf dan is het adres in gebruik.</li>
+        </ol>
+
+        <figure class="figure-zoom">
+            <img src="../../../img/wireshark-dhcp-discover-offer-request-ack.png" class="img-fluid"
+                alt="Wireshark met het filter dhcp, met achtereenvolgens de pakketten DHCP Discover, DHCP Offer, DHCP Request en DHCP ACK">
+            <figcaption class="figure-caption">Discover, Offer, Request en Acknowledge, in die volgorde
+            </figcaption>
+        </figure>
+
+        <h2>Wat je meekrijgt</h2>
+
+        <p>De server stuurt meer mee dan het adres alleen. In het Acknowledge-pakket zitten ook het subnetmasker, de
+            default gateway, de DNS-servers die je toestel mag gebruiken, en de <strong>lease time</strong>: de tijd
+            waarvoor het adres van jou is. Loopt die af, dan vraagt je toestel vanzelf een verlenging aan.</p>
+
+        <p>Dezelfde gegevens vind je in een cmd-venster terug met het commando <code>ipconfig /all</code>, dat alles
+            toont wat je netwerkadapters weten. De syllabus bij de theorie legt de betekenis van elk veld in detail
+            uit.</p>
+
+        <h2>Een adres teruggeven en opnieuw aanvragen</h2>
+
+        <p>Met twee commando's dwing je de cyclus zelf af:</p>
+
+        <ul>
+            <li><code>ipconfig /release</code> geeft je huidige adres terug aan de server en verbreekt je verbinding.
+            </li>
+            <li><code>ipconfig /renew</code> vraagt een nieuw adres aan en herstelt de verbinding.</li>
+        </ul>
+
+        <div class="info-box warning">
+            <div class="info-title warning">Tussen release en renew ligt je verbinding stil</div>
+            <p>Zolang je toestel geen adres heeft, komt er geen verkeer door. Dat duurt hoogstens een minuut, maar
+                start in die tijd geen download of videogesprek.</p>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

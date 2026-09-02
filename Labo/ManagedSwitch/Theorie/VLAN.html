@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VLAN</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>VLAN</h1>
+
+        <h2>Het probleem zonder VLAN's</h2>
+
+        <p>In een gewoon LAN hangt alles aan elkaar via gewone switches. Studenten, docenten, de boekhouding, de
+            IT-afdeling, gasten en servers delen hetzelfde netwerk, zonder scheiding.</p>
+
+        <p>Dat levert een beveiligingsrisico op: een student kan de servers van de boekhouding bereiken.
+            Toegangsrechten vormen een eerste barrière, maar op netwerkniveau is er niets afgeschermd.</p>
+
+        <p>Je zou per gebruikersgroep een fysiek gescheiden netwerk kunnen aanleggen. Dat is duur en arbeidsintensief,
+            en het wordt onwerkbaar zodra een groep over meerdere locaties verspreid zit.</p>
+
+        <h2>De oplossing: VLAN's</h2>
+
+        <p>VLAN staat voor <strong>Virtual Local Area Network</strong>. Een VLAN maakt een logisch gescheiden netwerk
+            op dezelfde fysieke infrastructuur. Toestellen in verschillende VLAN's bereiken elkaar niet, ook al zitten
+            ze op dezelfde switch.</p>
+
+        <figure class="figure-zoom">
+            <img src="../../../img/vlan-poorten-op-een-switch.png" class="img-fluid"
+                alt="Een switch met 48 poorten waarbij een deel van de poorten is aangeduid als VLAN 100 en een ander deel als VLAN X">
+            <figcaption class="figure-caption">Op dezelfde switch horen de ene poorten bij het ene VLAN en de andere
+                bij het andere</figcaption>
+        </figure>
+
+        <p>Stel je twee aparte switches voor, een voor de studenten en een voor de docenten. Beide groepen zijn dan
+            volledig van elkaar gescheiden. Met VLAN's bereik je hetzelfde op één switch, door poorten aan
+            verschillende VLAN's toe te wijzen: VLAN 100 voor de docenten, VLAN 200 voor de studenten, VLAN 300 voor
+            gasten.</p>
+
+        <h2>Voordelen van VLAN's</h2>
+
+        <ul>
+            <li><strong>Beveiliging</strong>: het verkeer blijft gescheiden per VLAN, op dezelfde bekabeling.</li>
+            <li><strong>Prestaties</strong>: er is minder broadcastverkeer, dus minder onnodige belasting.</li>
+            <li><strong>Flexibiliteit</strong>: gebruikers in verschillende gebouwen of op verschillende verdiepingen
+                kunnen tot hetzelfde logische netwerk horen.</li>
+            <li><strong>Prioriteit</strong>: je kan een VLAN combineren met QoS voor tijdskritische toepassingen.</li>
+        </ul>
+
+        <h2>Typische VLAN-indeling</h2>
+
+        <p>Hoe je indeelt hangt af van de organisatie. Dit kom je vaak tegen:</p>
+
+        <ul>
+            <li><strong>Gebruikers-VLAN</strong>: werkstations van medewerkers of studenten</li>
+            <li><strong>Server-VLAN</strong>: applicatie- en bestandsservers</li>
+            <li><strong>Voice/video-VLAN</strong>: VoIP-telefonie en videoconferencing, met hoge prioriteit</li>
+            <li><strong>Printer-VLAN</strong>: netwerkprinters en scanners</li>
+            <li><strong>Gast-VLAN</strong>: bezoekers met beperkte toegang</li>
+            <li><strong>Management-VLAN</strong>: het beheer van de netwerkapparatuur zelf</li>
+            <li><strong>OT/productie-VLAN</strong>: industriële automatisering, met PLC's en machines</li>
+        </ul>
+
+        <div class="video-container">
+            <div class="ratio ratio-16x9">
+                <iframe src="https://www.youtube.com/embed/jC6MJTh9fRE" title="VLAN uitleg"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

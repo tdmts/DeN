@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serieel vs parallel communiceren</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Serieel vs parallel communiceren</h1>
+
+        <p>Stel: je moet 12 bits overdragen van zender naar ontvanger.</p>
+
+        <h2>Parallelle communicatie</h2>
+
+        <p>Je gebruikt <strong>12 datalijnen</strong> (plus 1 gemeenschappelijke massa). Alle bits worden
+            <strong>tegelijk</strong> verstuurd.</p>
+
+        <figure class="figure-zoom">
+            <img src="../../../img/parallelle-communicatie-twaalf-lijnen.png" class="img-fluid"
+                alt="Schema van parallelle communicatie: dezelfde single ended verbinding twaalf keer naast elkaar, elk met een eigen datalijn en een gedeelde massa">
+            <figcaption class="figure-caption">Twaalf bits, twaalf datalijnen</figcaption>
+        </figure>
+
+        <div class="info-box">
+            <div class="info-title">Voordeel</div>
+            <p>Snel: alle bits komen tegelijk aan.</p>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title warning">Nadelen</div>
+            <ol>
+                <li><strong>Crosstalk</strong>: signalen beïnvloeden elkaar</li>
+                <li><strong>Timingproblemen</strong>: bits moeten exact gelijk aankomen</li>
+                <li><strong>Duur</strong>: veel kabels nodig, zeker over lange afstanden</li>
+            </ol>
+        </div>
+
+        <h2>Seriële communicatie</h2>
+
+        <p>Je gebruikt <strong>1 datalijn</strong> (plus referentielijn). Bits worden <strong>één voor één</strong>
+            verstuurd.</p>
+
+        <figure class="figure-zoom">
+            <img src="../../../img/TODO-seriele-communicatie-schema.png" class="img-fluid"
+                alt="Schema van seriële communicatie: één datalijn waarover de twaalf bits na elkaar verstuurd worden">
+            <figcaption class="figure-caption">Twaalf bits, één datalijn</figcaption>
+        </figure>
+
+        <div class="info-box">
+            <div class="info-title">Voordelen</div>
+            <ol>
+                <li>Minder kabels, dus goedkoper en compacter</li>
+                <li>Minder crosstalk</li>
+                <li>Geschikt voor lange afstanden</li>
+                <li>Hogere snelheden mogelijk door betere signaalintegriteit</li>
+            </ol>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title warning">Nadeel</div>
+            <p>Trager dan parallel, al wordt dat gecompenseerd door hogere kloksnelheden.</p>
+        </div>
+
+        <h2>De praktijk</h2>
+
+        <p>Vroeger was parallel populair, maar <strong>moderne systemen zijn bijna allemaal serieel</strong>: USB,
+            Ethernet, SATA, PCIe, en ook RS-485.</p>
+
+        <div class="info-box">
+            <div class="info-title remark">Belangrijke conclusie</div>
+            <p>Door hogere klokfrequenties en efficiënte protocollen haalt seriële communicatie in de praktijk
+                meer doorvoer dan parallel, met minder kans op fouten.</p>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verkeer tussen twee andere toestellen</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Verkeer tussen twee andere toestellen</h1>
+
+        <p>Wireshark vangt op wat over de netwerkkaart van je eigen computer passeert. Zolang jij een van de twee
+            partijen bent, volstaat dat. Wil je zien wat twee andere toestellen tegen elkaar zeggen, bijvoorbeeld een
+            PLC en een bedieningspaneel, dan moet je dat verkeer eerst naar je eigen kaart brengen.</p>
+
+        <div class="info-box warning">
+            <div class="info-title warning">Onderschep alleen verkeer op een netwerk waarvoor je toestemming hebt</div>
+            <p>Meeluisteren op andermans netwerk is strafbaar. In het labo en op je eigen netwerk mag het, elders
+                vraag je het eerst.</p>
+        </div>
+
+        <h2>Methode 1: mirror port</h2>
+
+        <p>Een managed switch kan het verkeer van een poort kopiëren naar een andere poort. Die tweede poort heet de
+            <strong>mirror port</strong>, en daar sluit je de computer met Wireshark op aan. Je ziet dan alles wat
+            over de gespiegelde poorten gaat, terwijl de twee toestellen gewoon met elkaar blijven praten.</p>
+
+        <p>Een opstelling ziet er bijvoorbeeld zo uit:</p>
+
+        <ul>
+            <li>Poort 1: de PLC</li>
+            <li>Poort 2: het bedieningspaneel of de computer die via Modbus TCP met de PLC praat</li>
+            <li>Poort 3: jouw laptop met Wireshark, met poort 1 en poort 2 naar deze poort gespiegeld</li>
+        </ul>
+
+        <h2>Methode 2: laptop als bridge</h2>
+
+        <p>Heb je geen managed switch, dan gebruik je een machine met twee netwerkkaarten, bijvoorbeeld de ingebouwde
+            kaart van een laptop en een tweede via een USB-adapter. Je laptop staat dan fysiek tussen de twee
+            toestellen in, en al hun verkeer passeert erdoor.</p>
+
+        <p>In Windows stel je de twee kaarten samen in als een <strong>bridge</strong>, zodat ze het verkeer aan
+            elkaar doorgeven. In Wireshark neem je vervolgens op van een van de twee kaarten.</p>
+
+        <ul>
+            <li>Adapter 1: de PLC</li>
+            <li>Adapter 2: het bedieningspaneel of de computer die via Modbus TCP met de PLC praat</li>
+            <li>Adapter 1 en 2 in Windows als bridge ingesteld, en Wireshark luistert op adapter 1</li>
+        </ul>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trunk port vs access port</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Trunk port vs access port</h1>
+
+        <p>Zodra je met VLAN's werkt, moet je weten hoe een switch omgaat met verkeer dat bij verschillende VLAN's
+            hoort. Vier begrippen spelen daarbij een rol: <strong>access port</strong>, <strong>trunk port</strong>,
+            <strong>tagged</strong> en <strong>untagged</strong>.</p>
+
+        <h2>Access port</h2>
+
+        <p>Een access port is een poort waarop je een eindtoestel aansluit: een computer, een laptop, een server. Zo'n
+            toestel weet niet dat VLAN's bestaan en stuurt gewone ethernetframes zonder VLAN-informatie.</p>
+
+        <p>De switch voegt die VLAN-informatie daarom zelf toe zodra het frame binnenkomt. Dat gebeurt omdat de poort
+            als <strong>untagged</strong> is ingesteld voor één bepaald VLAN. Untagged betekent dat het binnenkomende
+            frame geen VLAN-tag heeft, waarna de switch de juiste tag toevoegt. Een access port hoort bij precies één
+            VLAN, want een eindtoestel zit normaal ook maar in één netwerk.</p>
+
+        <h2>Trunk port</h2>
+
+        <p>Moet er verkeer van meerdere VLAN's over één fysieke verbinding, bijvoorbeeld tussen twee switches, dan heb
+            je een <strong>trunk port</strong> nodig. Die verwerkt frames van verschillende VLAN's. Om dat mogelijk te
+            maken krijgen de frames VLAN-informatie mee, ze worden <strong>tagged</strong>. Aan die tag ziet de
+            ontvangende switch bij welk VLAN een frame hoort.</p>
+
+        <h2>Tagged en untagged</h2>
+
+        <ul>
+            <li><strong>Tagged</strong>: het frame bevat VLAN-informatie. Dat is nodig op een trunk, waar meerdere
+                VLAN's over dezelfde kabel gaan.</li>
+            <li><strong>Untagged</strong>: het frame bevat geen VLAN-informatie. Dat is het geval op een access port,
+                naar een eindtoestel toe.</li>
+        </ul>
+
+        <div class="info-box">
+            <div class="info-title remark">De HP ProCurve gebruikt deze woorden letterlijk</div>
+            <p>Op de ProCurve stel je een poort in met de commando's <code>untagged</code> en <code>tagged</code>
+                binnen de context van een VLAN. Een access port maak je dus door de poort <code>untagged</code> te
+                zetten in dat ene VLAN, en een trunk door hem <code>tagged</code> te zetten in elk VLAN dat er
+                overheen moet.</p>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

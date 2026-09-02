@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test jezelf</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Test jezelf</h1>
+
+        <p>Beantwoord elke vraag eerst zelf en klap daarna pas het antwoord open. Bij elk antwoord staat op welke
+            theoriepagina het uitgelegd wordt, dus lees die opnieuw wanneer je ernaast zat. Er wordt niets
+            bijgehouden en er staat geen punt op.</p>
+
+        <h2 id="vragen">Vragen</h2>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>1. Waar staat de afkorting LAN voor?</strong></p>
+                <ol type="a">
+                    <li>Large Area Network: alle vestigingen van een bedrijf samen</li>
+                    <li>Local Area Network: een netwerk binnen een beperkt gebied, zoals een gebouw of een campus</li>
+                    <li>Logical Area Network: een netwerk dat je met VLAN's logisch opsplitst</li>
+                    <li>Local Access Node: het toestel waarmee je op het netwerk komt</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> De grens is geografisch: een gebouw, een campus of een productiesite.
+                    Zodra je twee van die netwerken met elkaar wil verbinden, heb je een router nodig. Zie <a
+                    href="LAN.html">LAN</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>2. Wat is het verschil tussen een switch en een router?</strong></p>
+                <ol type="a">
+                    <li>Een switch verbindt toestellen binnen hetzelfde netwerk, een router verbindt verschillende
+                        netwerken met elkaar</li>
+                    <li>Een switch verbindt netwerken met elkaar, een router verbindt de toestellen</li>
+                    <li>Het is hetzelfde toestel, router is de naam die in de industrie gebruikt wordt</li>
+                    <li>Je hebt een router nodig om twee computers in hetzelfde LAN met elkaar te laten praten</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord a.</strong> De switch is het centrale toestel binnen het LAN. De router zit op de
+                    grens ervan, bijvoorbeeld tussen het LAN en het internet of tussen twee bedrijfslocaties. Zie <a
+                    href="LAN.html">LAN</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>3. Op welke laag werkt een unmanaged switch, en waarmee?</strong></p>
+                <ol type="a">
+                    <li>Layer 1, met bits</li>
+                    <li>Layer 2, met frames</li>
+                    <li>Layer 3, met IP-pakketten</li>
+                    <li>Layer 4, met poortnummers</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Een frame is een gestructureerd datapakket met adresinformatie over de
+                    zender en de ontvanger, en met de data zelf. Werken met IP-adressen is het werk van een router.
+                    Zie <a href="UnmanagedSwitch.html">Unmanaged switch</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>4. Je hebt een unmanaged switch met acht poorten. Wat kan je erop instellen?</strong></p>
+                <ol type="a">
+                    <li>VLAN's, maar geen prioriteit en geen redundante paden</li>
+                    <li>Prioriteit voor VoIP, maar geen VLAN's</li>
+                    <li>Redundante paden, maar alleen via een consolekabel</li>
+                    <li>Niets van dat alles: op een unmanaged switch valt er niets in te stellen</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord d.</strong> Je steekt de kabels erin en hij werkt. Precies daarom vind je dit
+                    soort switch vooral in kleine netwerken en thuisomgevingen. Zie <a
+                    href="UnmanagedSwitch.html">Unmanaged switch</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>5. Je neemt een managed switch uit de kast. Waarom raak je er op dat moment nog niet aan
+                        via de webinterface?</strong></p>
+                <ol type="a">
+                    <li>De webinterface moet je eerst met een licentie vrijschakelen</li>
+                    <li>De switch heeft nog geen IP-adres, dus er is nog geen adres om naartoe te surfen</li>
+                    <li>Een webinterface bestaat alleen op unmanaged switches</li>
+                    <li>De webinterface werkt pas zodra er een VLAN aangemaakt is</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Daarom begin je in het labo met de seriële console: die heeft geen
+                    netwerkverbinding nodig, want je hangt met een consolekabel rechtstreeks aan de switch. Zie <a
+                    href="ManagedSwitch.html">Managed switch</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>6. Waarom is de CLI in een professionele omgeving de gewoonte?</strong></p>
+                <ol type="a">
+                    <li>Omdat het de enige manier is waarop je een VLAN kan aanmaken</li>
+                    <li>Omdat de webinterface van een switch geen VLAN's toont</li>
+                    <li>Omdat het sneller werkt en je het kan scripten</li>
+                    <li>Omdat je er geen consolekabel voor nodig hebt</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord c.</strong> Dezelfde configuratie op twintig switches zetten doe je niet met de
+                    muis. De webinterface is de toegankelijkste van de drie manieren, niet de snelste. Zie <a
+                    href="ManagedSwitch.html">Managed switch</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>7. Wat doet een VLAN?</strong></p>
+                <ol type="a">
+                    <li>Het splitst een netwerk fysiek op, zodat elke groep zijn eigen bekabeling krijgt</li>
+                    <li>Het maakt logisch gescheiden netwerken op dezelfde fysieke bekabeling, waarbij toestellen in
+                        verschillende VLAN's elkaar niet bereiken</li>
+                    <li>Het geeft dringend verkeer voorrang op de rest</li>
+                    <li>Het verbindt twee netwerken met elkaar, zoals een router dat doet</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Twee toestellen op dezelfde switch bereiken elkaar niet als hun
+                    poorten in een ander VLAN zitten. Het netwerk uit antwoord a kan je aanleggen, maar dat is duur en
+                    arbeidsintensief, en het wordt onwerkbaar zodra een groep over meerdere locaties verspreid zit.
+                    Zie <a href="VLAN.html">VLAN</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>8. Naast beveiliging leveren VLAN's ook betere prestaties op. Hoe komt dat?</strong></p>
+                <ol type="a">
+                    <li>De frames van een VLAN krijgen een hogere snelheid mee</li>
+                    <li>De switch schakelt binnen een VLAN over op layer 3</li>
+                    <li>Er is minder broadcastverkeer, dus minder onnodige belasting</li>
+                    <li>Elk VLAN krijgt een eigen kabel tussen de switches</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord c.</strong> Een broadcast blijft binnen zijn eigen VLAN, dus de toestellen in de
+                    andere VLAN's krijgen hem niet te verwerken. Zie <a href="VLAN.html">VLAN</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>9. Je sluit de pc van een medewerker aan op de switch. Hoe stel je die poort in?</strong>
+                </p>
+                <ol type="a">
+                    <li>Als access port, untagged in één VLAN</li>
+                    <li>Als access port, tagged in één VLAN</li>
+                    <li>Als trunk port, tagged in elk VLAN waar die medewerker bij hoort</li>
+                    <li>Als trunk port, untagged in elk VLAN</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord a.</strong> Een eindtoestel weet niet dat VLAN's bestaan en stuurt gewone
+                    ethernetframes zonder VLAN-informatie. De switch voegt de tag zelf toe zodra het frame
+                    binnenkomt, en dat is precies wat untagged op die poort betekent. Zie <a
+                    href="TrunkPortVsAccessPort.html">Trunk port vs access port</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>10. Twee switches dragen allebei VLAN 100 en VLAN 200. Hoe stel je de poorten in van de
+                        kabel tussen die twee switches?</strong></p>
+                <ol type="a">
+                    <li>Als access port in VLAN 100, want een poort hoort bij precies één VLAN</li>
+                    <li>Als trunk port, untagged in beide VLAN's</li>
+                    <li>Als trunk port, tagged in beide VLAN's</li>
+                    <li>Dat hoef je niet in te stellen: verkeer tussen twee switches draagt zijn VLAN altijd mee</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord c.</strong> Aan die tag ziet de ontvangende switch bij welk VLAN een frame hoort.
+                    Zonder tag weet ze dat niet, en dan komt het verkeer van het ene VLAN in het andere terecht. Dat
+                    een poort bij precies één VLAN hoort, geldt voor een access port. Zie <a
+                    href="TrunkPortVsAccessPort.html">Trunk port vs access port</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>11. Je verbindt drie switches in een ring en Spanning Tree staat uit. Wat gebeurt
+                        er?</strong></p>
+                <ol type="a">
+                    <li>Niets bijzonders, het verkeer verdeelt zich over de twee paden</li>
+                    <li>Frames blijven eindeloos rondcirkelen en het netwerk wordt onbruikbaar</li>
+                    <li>De derde switch valt uit tot je hem herstart</li>
+                    <li>De ring werkt, maar de verbindingen zakken terug naar half duplex</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Dat heet een broadcast storm. Het netwerk van Disney's Yacht en Beach
+                    Club Resorts lag er een tijd uit door precies zo'n loop. Zie <a
+                    href="SpanningTreeProtocol.html">Spanning Tree Protocol</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>12. Wat doet STP met een redundante verbinding?</strong></p>
+                <ol type="a">
+                    <li>Het verdeelt het verkeer over beide paden, zodat je meer bandbreedte hebt</li>
+                    <li>Het blokkeert een of meer poorten zodat er één actief pad overblijft, en zet een geblokkeerde
+                        poort terug open als de actieve link wegvalt</li>
+                    <li>Het schakelt de tweede verbinding definitief uit, dus bij een storing zet je ze zelf weer
+                        aan</li>
+                    <li>Het laat beide paden open en gooit dubbele frames achteraf weg</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> De reserveverbinding ligt er dus wel, maar draagt in normale
+                    omstandigheden geen verkeer. Je wint er betrouwbaarheid mee, geen bandbreedte. Zie <a
+                    href="SpanningTreeProtocol.html">Spanning Tree Protocol</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>13. Je zet alle telefonie in een apart VLAN en geeft dat VLAN met QoS een hogere
+                        prioriteit. Wat heb je daarmee bereikt?</strong></p>
+                <ol type="a">
+                    <li>Elk telefoniepakket komt gegarandeerd binnen een vaste tijd aan</li>
+                    <li>Telefonie krijgt voorrang op bijvoorbeeld een grote download, maar een vaste aankomsttijd is
+                        niet gegarandeerd</li>
+                    <li>De telefoons krijgen een snellere verbinding dan de kabel aankan</li>
+                    <li>Het andere verkeer ligt stil zolang er getelefoneerd wordt</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> VLAN's en QoS werken allebei best effort: het is een voorrangsregel,
+                    geen garantie. Wil je die garantie wel, dan heb je een real-time protocol nodig, zoals je bij het
+                    labo Industrieel netwerk ziet. Zie <a href="QualityOfService.html">Quality of Service (QoS)</a>.
+                </p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>14. Op hetzelfde netwerk zitten een noodstop en gewoon fabrieksverkeer. Welk QoS-niveau
+                        geef je de noodstop?</strong></p>
+                <ol type="a">
+                    <li>0, want het laagste getal is het dringendst</li>
+                    <li>1, net boven het gewone verkeer</li>
+                    <li>7, het hoogste van de acht niveaus</li>
+                    <li>8, het hoogste van de negen niveaus</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord c.</strong> De niveaus lopen van 0 tot 7, en hoger is dringender. Niveau 0 is
+                    gewoon fabrieksnetwerk, niveau 7 zijn de noodstop en de veiligheidssystemen. Zie <a
+                    href="QualityOfService.html">Quality of Service (QoS)</a>.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

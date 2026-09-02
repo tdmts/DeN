@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beveiliging van een draadloos netwerk</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Beveiliging van een draadloos netwerk</h1>
+
+        <p>Een router die je net gereset hebt, zendt een <strong>onbeveiligd</strong> netwerk uit. Iedereen die het
+            SSID ziet staan kan verbinding maken. Bij een bekabeld netwerk moet iemand eerst binnen geraken en een
+            kabel insteken; bij een draadloos netwerk stopt het signaal niet aan de muur.</p>
+
+        <h2>De security mode</h2>
+
+        <p>Bij de wireless security mode kies je hoe het verkeer versleuteld wordt. Welke opties je krijgt, hangt af
+            van de <a href="WirelessMode.html" target="_self">wireless mode</a> die je hebt ingesteld.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-striped table-bordered align-middle">
+                <caption class="table-caption">Wat je kan kiezen, per band en per generatie</caption>
+                <thead class="table-header-custom">
+                    <tr>
+                        <th>Band</th>
+                        <th>Wireless mode</th>
+                        <th>Mogelijke encryptie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2,4 GHz</td>
+                        <td>b en g</td>
+                        <td>WEP, WPA, WPA2</td>
+                    </tr>
+                    <tr>
+                        <td>2,4 GHz</td>
+                        <td>n</td>
+                        <td>WPA, WPA2, op sommige routers ook WPA3</td>
+                    </tr>
+                    <tr>
+                        <td>5 GHz</td>
+                        <td>a, n, ac</td>
+                        <td>WPA, WPA2, WPA3</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Op b en g staat WEP nog in de lijst, maar WEP is gebroken en een netwerk dat erop draait is in de
+            praktijk onbeveiligd. Waarom dat zo is, en hoe WPA en WPA2 daarop volgden, staat in het artikel
+            <em>Van WEP tot WPA</em> bij het studiemateriaal van dit labo.</p>
+
+        <h2>TKIP en AES</h2>
+
+        <p>Naast de generatie kies je ook het versleutelingsalgoritme. <strong>TKIP</strong> is het oudere, gemaakt
+            om op bestaande WEP-hardware te kunnen draaien. <strong>AES</strong> is het nieuwere en het sterkere.
+            Veel routers bieden daarnaast <em>TKIP + AES</em> aan, waarbij allebei toegelaten worden zodat oudere
+            toestellen nog binnen kunnen.</p>
+
+        <div class="info-box remark">
+            <div class="info-title remark">TKIP toelaten kost snelheid</div>
+            <p>Zodra TKIP in de instelling staat, valt je netwerk terug op wat de oudste toegelaten toestellen
+                aankunnen. De hoge snelheden van n en ac krijg je alleen wanneer je enkel AES toelaat.</p>
+        </div>
+
+        <h2>PSK</h2>
+
+        <p>De afkorting <strong>PSK</strong> staat voor Pre-Shared Key: de sleutel die vooraf gedeeld is, oftewel het
+            wachtwoord dat iedereen op het netwerk intypt. Iedereen gebruikt dezelfde, en ze verandert niet vanzelf,
+            dus wie ze ooit gekregen heeft blijft binnen geraken tot je ze wijzigt.</p>
+
+        <p>Dat maakt de keuze van die sleutel belangrijk. Kies ze lang, niet raadbaar en niet af te lezen van iets in
+            de buurt. De sleutel die van de fabriek op de sticker onderaan de router staat, is bekend bij iedereen die
+            even onder dat toestel kijkt.</p>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

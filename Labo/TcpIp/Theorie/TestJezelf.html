@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test jezelf</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Test jezelf</h1>
+
+        <p>Beantwoord elke vraag eerst zelf en klap daarna pas het antwoord open. Bij elk antwoord staat op welke
+            theoriepagina het uitgelegd wordt, dus lees die opnieuw wanneer je ernaast zat. Er wordt niets
+            bijgehouden en er staat geen punt op.</p>
+
+        <h2 id="vragen">Vragen</h2>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>1. In <code>ipconfig</code> staan vier adapters met een IP-adres. Welke is de adapter
+                        waarmee je met het netwerk verbonden bent?</strong></p>
+                <ol type="a">
+                    <li>De adapter die als eerste in de lijst staat</li>
+                    <li>De adapter waar ook een default gateway bij ingevuld staat</li>
+                    <li>De adapter met het hoogste IP-adres</li>
+                    <li>De adapter met subnetmasker <code>255.255.255.0</code></li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> De andere adapters zijn meestal virtuele kaarten van software zoals
+                    VirtualBox of een VPN-client. Die hebben wel een adres, maar geen weg naar buiten. Zie
+                    <a href="IPAdressering.html">IPv4 en IPv6</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>2. Je typt <code>icmp</code> in het filterveld en de lijst wordt leeg. Wat is er
+                        gebeurd?</strong></p>
+                <ol type="a">
+                    <li>Wireshark vangt vanaf nu alleen nog ICMP-pakketten op</li>
+                    <li>De opname is gestopt omdat het filter gewijzigd is</li>
+                    <li>Wireshark blijft alles opvangen en toont alleen de ICMP-pakketten</li>
+                    <li>De pakketten die al opgevangen waren, zijn gewist</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord c.</strong> Een display filter bepaalt wat je ziet. Wis je het filter, dan staat
+                    de rest van het verkeer er nog, en je kan dus achteraf van filter wisselen zonder opnieuw op te
+                    nemen. Zie <a href="WiresharkGebruiken.html">Wireshark gebruiken</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>3. Je exporteert je opname met File &gt; Export Specified Packets. Waarom kies je daar
+                        <em>Displayed</em> en geen <em>Captured</em>?</strong></p>
+                <ol type="a">
+                    <li>Anders komen alle opgevangen pakketten in het bestand terecht, ook die buiten je filter</li>
+                    <li>Anders wordt het bestand in een ander formaat opgeslagen</li>
+                    <li>Anders kan je het bestand later opnieuw openen in Wireshark</li>
+                    <li>Dat maakt geen verschil, de twee opties doen hetzelfde</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord a.</strong> <em>Captured</em> is alles wat Wireshark opgevangen heeft,
+                    <em>Displayed</em> is wat je filter toont. Het aantal staat in het venster, zodat je kan
+                    controleren of het klopt met wat je verwacht. Zie
+                    <a href="WiresharkGebruiken.html">Wireshark gebruiken</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>4. Je pingt een host vier keer. Hoeveel pakketten toont Wireshark met het filter
+                        <code>icmp</code>?</strong></p>
+                <ol type="a">
+                    <li>Vier, een per ping</li>
+                    <li>Acht, per ping een request en een reply</li>
+                    <li>Twee, een voor de heenweg en een voor de terugweg</li>
+                    <li>Dat hangt af van de response time</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Bij elke ping stuurt je computer een echo request en stuurt de host
+                    een echo reply terug. In de kolommen source en destination zie je je eigen adres afwisselend links
+                    en rechts staan. Zie <a href="ICMP.html">ICMP en ping</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>5. Je pingt een server, je krijgt een IP-adres te zien maar geen enkele reply. Wat besluit
+                        je daaruit?</strong></p>
+                <ol type="a">
+                    <li>De server is offline</li>
+                    <li>Het IP-adres klopt niet</li>
+                    <li>De server kan online zijn en ICMP blokkeren</li>
+                    <li>Je hebt het verkeerde filter ingesteld</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord c.</strong> Hosts en firewalls blokkeren ICMP dikwijls bewust, zodat ze moeilijker
+                    te vinden zijn voor wie een netwerk afzoekt. Het IP-adres komt van DNS en zegt op zich niets over
+                    de bereikbaarheid. Zie <a href="ICMP.html">ICMP en ping</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>6. Waarvoor dient de data in een ping-pakket, het alfabet dat Windows meestuurt?</strong>
+                </p>
+                <ol type="a">
+                    <li>Om het pakket op te vullen tot minstens 32 bytes</li>
+                    <li>Om de ontvanger te laten controleren of er bits verloren gingen</li>
+                    <li>Om de naam van de zender door te geven</li>
+                    <li>Om de response time te berekenen</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord a.</strong> Het doel van ping is te testen of een host bereikbaar is, en de data
+                    die meegaat heeft verder geen betekenis. Zie <a href="ICMP.html">ICMP en ping</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>7. Je voert <code>nslookup google.be 8.8.8.8</code> uit. Wat is
+                        <code>8.8.8.8</code>?</strong></p>
+                <ol type="a">
+                    <li>Het adres van google.be</li>
+                    <li>Het adres van de DNS-server aan wie je het vraagt</li>
+                    <li>Je eigen IP-adres</li>
+                    <li>De default gateway van je netwerk</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Dat is een publieke DNS-server van Google. Laat je dat deel weg, dan
+                    gebruikt je computer de server die hij van het netwerk gekregen heeft. Zie
+                    <a href="DNS.html">DNS</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>8. Op <code>google.be</code> komen twee antwoorden terug. Waarom twee?</strong></p>
+                <ol type="a">
+                    <li>Een van de DNS-server en een van de webserver zelf</li>
+                    <li>Een voor de heenweg en een voor de terugweg</li>
+                    <li>Een IPv4-adres en een IPv6-adres van dezelfde dienst</li>
+                    <li>Een voor de naam met www en een voor de naam zonder www</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord c.</strong> De overstap van IPv4 naar IPv6 gebeurt geleidelijk, dus veel servers
+                    zijn op allebei de manieren bereikbaar. Zie <a href="IPAdressering.html">IPv4 en IPv6</a> en
+                    <a href="DNS.html">DNS</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>9. Welk van deze adressen is een IPv6-adres?</strong></p>
+                <ol type="a">
+                    <li><code>142.251.142.195</code></li>
+                    <li><code>2a00:1450:400e:806::2003</code></li>
+                    <li><code>78:98:E8:3C:F8:B6</code></li>
+                    <li><code>255.255.255.0</code></li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Acht groepen van vier hexadecimale cijfers, met de nulgroepen
+                    ingekort tot <code>::</code>. Antwoord a is IPv4, c is een MAC-adres met zes groepen van twee
+                    cijfers, en d is een subnetmasker. Zie <a href="IPAdressering.html">IPv4 en IPv6</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>10. In welke volgorde komen de vier DHCP-berichten voorbij?</strong></p>
+                <ol type="a">
+                    <li>Request, Offer, Discover, Acknowledge</li>
+                    <li>Discover, Request, Offer, Acknowledge</li>
+                    <li>Discover, Offer, Request, Acknowledge</li>
+                    <li>Offer, Discover, Acknowledge, Request</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord c.</strong> Je toestel roept eerst of er een server is, de server biedt een adres
+                    aan, je toestel vraagt dat adres officieel aan, en de server bevestigt. Zie
+                    <a href="DHCP.html">DHCP</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>11. Naast een IP-adres krijgt je toestel van de DHCP-server nog meer mee. Wat hoort daar
+                        zeker bij?</strong></p>
+                <ol type="a">
+                    <li>Het MAC-adres van je netwerkkaart</li>
+                    <li>Het subnetmasker, de default gateway, de DNS-servers en de lease time</li>
+                    <li>Het wachtwoord van het netwerk</li>
+                    <li>De naam van je netwerkadapter</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Daardoor moet je zelf verder niets instellen. Het MAC-adres ligt in de
+                    hardware vast en komt van de fabrikant. Zie <a href="DHCP.html">DHCP</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>12. Op welke poort loopt Modbus TCP, en wie begint het gesprek?</strong></p>
+                <ol type="a">
+                    <li>Poort 502, en de master vraagt of schrijft</li>
+                    <li>Poort 502, en de slave meldt zich uit zichzelf</li>
+                    <li>Poort 80, en de master vraagt of schrijft</li>
+                    <li>Poort 22, en master en slave beginnen allebei</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord a.</strong> Modbus TCP volgt een client-servermodel: de master vraagt data op of
+                    schrijft ze weg, de slave antwoordt en begint zelf nooit. Zie
+                    <a href="ModbusTCP.html">Modbus TCP</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>13. Je laat diagslave en modpoll op je eigen computer draaien, met het filter
+                        <code>modbus</code>, en Wireshark toont geen enkel pakket. Wat is de oorzaak?</strong></p>
+                <ol type="a">
+                    <li>Modbus TCP valt met Wireshark onmogelijk op te vangen</li>
+                    <li>Je hebt een gewone netwerkadapter gekozen in plaats van de loopback-adapter</li>
+                    <li>De twee programma's moeten op poort 80 draaien</li>
+                    <li>Het filter moet <code>tcp</code> zijn</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Verkeer naar <code>127.0.0.1</code> verlaat je computer nooit, dus een
+                    gewone adapter ziet het niet. Kies <em>Adapter for loopback traffic capture</em>. Zie
+                    <a href="ModbusTCP.html">Modbus TCP</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>14. Je wil zien wat een PLC en een bedieningspaneel tegen elkaar zeggen, zonder zelf een
+                        van de twee te zijn. Wat gebruik je?</strong></p>
+                <ol type="a">
+                    <li>Een unmanaged switch tussen de twee toestellen</li>
+                    <li>Een mirror port op een managed switch, of je laptop als bridge</li>
+                    <li>Het commando <code>ipconfig /all</code> op de PLC</li>
+                    <li>Het display filter <code>modbus</code> op je eigen adapter</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Wireshark vangt alleen op wat over je eigen netwerkkaart passeert, dus
+                    je brengt het verkeer eerst daarheen. Zie
+                    <a href="VerkeerOnderscheppen.html">Verkeer tussen twee andere toestellen</a>.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

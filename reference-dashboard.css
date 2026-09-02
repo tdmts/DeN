@@ -1,0 +1,104 @@
+/* ============================================================
+   Shared styling for the per-lab reference hubs.
+   Included by LaboN/Reference/index.html via a relative link.
+   Scoped under .ms-ref-hub -- deliberately lighter-weight than
+   dashboard.css (no XP/badge/confetti treatment; a theory page is not
+   something you "complete"). The one piece of state it does show is a
+   check on a topic that has been read, plus the link that clears them.
+   ============================================================ */
+
+.ms-ref-hub {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.ms-ref-category {
+    margin-bottom: 2rem;
+}
+
+.ms-ref-category:last-child {
+    margin-bottom: 0;
+}
+
+.ms-ref-category-title {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #6b7280;
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.ms-ref-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.85rem;
+}
+
+.ms-ref-card {
+    display: block;
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.ms-ref-card:hover,
+.ms-ref-card:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(17, 24, 39, 0.1);
+    border-color: #c7d2fe;
+    outline: none;
+}
+
+.ms-ref-card-title {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.3rem;
+}
+
+/* Pushed to the end of the title row, so a long title wraps against it
+   instead of shifting it out of the card. Same green as the tick in the
+   lab menu (.ms-lab-mark--done in back-link.js). */
+.ms-ref-card-check {
+    margin-left: auto;
+    flex: 0 0 auto;
+    color: #16a34a;
+    font-size: 0.9rem;
+}
+
+.ms-ref-card-blurb {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #6b7280;
+}
+
+/* --- Reset button --- */
+
+/* Deliberately identical to .ms-reset-btn in dashboard.css: the two hubs
+   sit one click apart, so their reset links have to look the same. Copied
+   rather than shared, because the two stylesheets are never loaded
+   together and a third file for ten lines costs more than it saves. */
+.ms-ref-reset-btn {
+    display: block;
+    margin: 2rem auto 0;
+    background: none;
+    border: none;
+    color: #9ca3af;
+    font-size: 0.8rem;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.ms-ref-reset-btn:hover {
+    color: #6b7280;
+}

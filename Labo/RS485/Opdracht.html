@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opdracht RS485</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Opdracht RS485</h1>
+
+        <p class="lead">Zeven schakelingen die op elkaar voortbouwen. Je vertrekt van de datasheet, tekent een schema,
+            en breidt daarna stap voor stap uit tot drie transceivers elkaar geadresseerde boodschappen sturen. Na elke
+            schakeling laat je je werk controleren.</p>
+
+        <div class="download-container">
+            <a href="../../downloads/Labo-RS485-verslag.docx">Opdracht downloaden</a>
+            <ul>
+                <li>De volledige opdracht staat in dit document, met ruimte voor je antwoorden en je screenshots.</li>
+                <li>Download het voor je begint.</li>
+                <li>Je dient het in via de opdracht op Orion.</li>
+            </ul>
+        </div>
+
+        <div class="info-box warning">
+            <div class="info-title warning">Sluit niets aan voor je schema gecontroleerd is</div>
+            <p>Je tekent eerst je schema op papier en laat het nakijken. Pas daarna bouw je de schakeling op.</p>
+        </div>
+
+        <!-- AUTEURSNOTITIES, geen student-inhoud.
+             1. De accoladestijl in de codeblokken hieronder is bewust Allman (SCHRIJFSTIJL.md).
+                Niet naar K en R omzetten; scripts/check-content.py regel 5 bewaakt dit.
+             2. De code bij "Schakeling deel 3" bevat TWEE OPZETTELIJKE COMPILEERFOUTEN
+                (pinLED tegenover pinLed). Die zijn de opdracht. Niet repareren. -->
+
+        <!-- verslag
+        De volledige opdracht staat hieronder en komt via scripts/export-verslag.py in het
+        verslagsjabloon terecht. Ze staat bewust niet op de pagina: de student werkt in het
+        document, en dezelfde opdracht op twee plaatsen laat hem twijfelen waar hij moet
+        antwoorden. Wijzig hier, draai daarna het script, en commit de docx mee.
+
+        <div class="info-box warning">
+            <div class="info-title warning">Sluit niets aan voor je schema gecontroleerd is</div>
+            <p>Je tekent eerst je schema op papier en laat het nakijken. Pas daarna bouw je de schakeling op.</p>
+        </div>
+
+        <h2>Interpretatie datasheet</h2>
+
+        <p>Open de datasheet van de SN75176A, die je bij het studiemateriaal van dit labo vindt, en los onderstaande
+            vragen op.</p>
+
+        <ol class="vragen">
+            <li class="screenshot">Zoek de <em>pin configuration and functions</em> op, neem een screenshot en plak
+                die hieronder.
+                <div class="accordion-container">
+                    <div class="accordion-item">
+                        <div class="title">Ik vind de pin configuration niet in de datasheet.</div>
+                        <p>Ze staat vooraan, meestal op de eerste of tweede bladzijde, onder een kop met het woord
+                            <em>pin</em> erin. Zoek naar de tekening van het IC met acht aansluitingen en de namen
+                            ernaast. De tabel eronder zegt per pin of het een in- of uitgang is.</p>
+                    </div>
+                </div>
+            </li>
+            <li>Welke pinnen zijn voeding, input, output, of allebei? Zet een kruisje in de juiste kolom.
+                <table class="verslag-tabel">
+                    <thead>
+                        <tr>
+                            <th>Pin</th>
+                            <th>Voeding</th>
+                            <th>Input</th>
+                            <th>Output</th>
+                            <th>In- en uitgang</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>R</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>/RE</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>DE</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>D</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>GND</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>A</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>B</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>VCC</td><td></td><td></td><td></td><td></td></tr>
+                    </tbody>
+                </table>
+            </li>
+            <li>Welke pinnen zijn bedoeld voor differential signaling?</li>
+            <li>Wat betekenen <em>active low</em> en <em>active high</em>? Leg het uit in je eigen woorden.</li>
+            <li>Is de input /RE active low of active high?</li>
+            <li>Welke spanning verwacht het IC op zijn voedingspinnen?</li>
+            <li class="screenshot">In de meeste datasheets staat een <em>typical application</em>, een
+                voorbeeldschakeling waarop je je kan baseren. De datasheet van de 75176 is daar geen uitzondering op.
+                Zoek ze op, neem een screenshot en plak die hieronder.
+                <div class="accordion-container">
+                    <div class="accordion-item">
+                        <div class="title">Wat is een typical application?</div>
+                        <p>Een schema dat de fabrikant zelf meegeeft om te tonen hoe het IC bedoeld is. Het is geen
+                            verplichting, maar het is wel het vertrekpunt waarop je je eigen schema baseert. Bij een
+                            transceiver zie je er doorgaans twee IC's op, verbonden door twee datalijnen.</p>
+                    </div>
+                </div>
+            </li>
+            <li>Hoe schakel je de datalijnen van twee of meer IC's aan elkaar: A naar A en B naar B, of A naar B en B
+                naar A?</li>
+            <li>Wat is de betekenis van Rt?</li>
+            <li>Moet elke transceiver een Rt hebben? Zo niet, welke dan wel?</li>
+        </ol>
+
+        <h2>Schema</h2>
+
+        <p>Maak een schema op papier en laat het controleren. Je tekent de twee IC's die je met elkaar gaat verbinden
+            in bovenaanzicht.</p>
+
+        <ul>
+            <li>De voedingsspanning en de massa komen van de Arduino</li>
+            <li>Zet het linkse IC in send mode, het rechtse in receive mode</li>
+            <li>Op de D-lijn van de zender komt ofwel 0 V of 5 V</li>
+            <li>Op de R-lijn van de ontvanger komt een led</li>
+            <li>Denk na over de verbinding tussen de datalijnen: hoe verbind je A en B met elkaar?</li>
+            <li>Vergeet Rt niet</li>
+        </ul>
+
+        <p>Sluit niets aan voor je schema gecontroleerd is. Is het goedgekeurd, neem er dan een foto van.</p>
+
+        <div class="verslag-kader" data-verslag="Foto van je goedgekeurde schema"></div>
+
+        <h2>Schakeling deel 1</h2>
+
+        <p>Nu je schema gecontroleerd is, bouw je de schakeling op en sluit je aan.</p>
+
+        <ol class="vragen">
+            <li>Wat kan je met de geleiders doen om zoveel mogelijk transmissieproblemen te vermijden?</li>
+        </ol>
+
+        <p>Controleer je schakeling:</p>
+
+        <ul>
+            <li>De led hoort te branden als je de D-lijn van de zender hoog zet</li>
+            <li>De led hoort te doven als je de D-lijn van de zender laag zet</li>
+        </ul>
+
+        <p><strong>Laat je oefening controleren.</strong></p>
+
+        <h2>Schakeling deel 2</h2>
+
+        <p>Vertrek van je vorige schakeling, maar hang aan de D-lijn van de zender nu een digitale uitgang van een
+            Arduino.</p>
+
+        <figure class="figure-zoom">
+            <img src="../../img/rs485-schakeling-deel2-arduino-zender.png" class="img-fluid"
+                alt="Schema van schakeling 2: een Arduino stuurt met een digitale uitgang de D-lijn van het zendende 75176-IC aan, dat over twee datalijnen verbonden is met een tweede IC waarop een led hangt">
+            <figcaption class="figure-caption">Schakeling 2: de Arduino stuurt de D-lijn aan</figcaption>
+        </figure>
+
+        <p>Bekijk onderstaand programma.</p>
+
+        <pre class="code-wrapper language-arduino linenumbers show-language">
+int pinSend = 2;
+
+void setup()
+{
+    pinMode(pinSend, OUTPUT);
+}
+
+void loop()
+{
+    digitalWrite(pinSend, HIGH);
+    delay(1000);
+    digitalWrite(pinSend, LOW);
+    delay(1000);
+}
+        </pre>
+
+        <p>Kan je onderstaande vragen oplossen?</p>
+
+        <ol class="vragen">
+            <li>Waarom is <code>pinSend</code> gelijk aan 2?</li>
+            <li>Wat doet <code>digitalWrite(pinSend, HIGH)</code> of <code>digitalWrite(pinSend, LOW)</code>?</li>
+            <li>Wat is de frequentie van dit signaal?
+                <div class="accordion-container">
+                    <div class="accordion-item">
+                        <div class="title">Tip bij de frequentie.</div>
+                        <p>Teken een blokgolf. Hoe lang duurt één volledige periode, dus hoog én laag samen? De
+                            frequentie is het omgekeerde van die periode.</p>
+                    </div>
+                </div>
+            </li>
+        </ol>
+
+        <p>Laad dit programma op naar de Arduino.</p>
+
+        <p><strong>Laat je oefening controleren.</strong></p>
+
+        <h2>Schakeling deel 3</h2>
+
+        <p>Vanaf deze oefening werk je <strong>per twee</strong>. De ene is zender, de andere ontvanger. Spreek af wie
+            wat doet.</p>
+
+        <p>De schakeling van de <strong>zender</strong> verandert niet ten opzichte van schakeling 2. De schakeling
+            van de <strong>ontvanger</strong> is nieuw:</p>
+
+        <ul>
+            <li>Verbind de R-lijn van het ontvangende IC met een <strong>digitale input</strong> van de ontvangende
+                Arduino</li>
+            <li>Verbind een <strong>digitale output</strong> van de ontvangende Arduino met een led</li>
+        </ul>
+
+        <figure class="figure-zoom">
+            <img src="../../img/rs485-schakeling-deel3-zender-en-ontvanger.png" class="img-fluid"
+                alt="Schema van schakeling 3: aan beide kanten van de bus een Arduino, links op de D-lijn van de zender, rechts op de R-lijn van de ontvanger, met een led op een digitale uitgang van de ontvangende Arduino">
+            <figcaption class="figure-caption">Schakeling 3: een Arduino aan elke kant van de bus</figcaption>
+        </figure>
+
+        <p>De bedoeling is dat de ontvangende Arduino de led aanstuurt.</p>
+
+        <pre class="code-wrapper language-arduino linenumbers show-language">
+int pinReceive = 2;
+int pinLed = 3;
+
+void setup()
+{
+    pinMode(pinReceive, INPUT);
+    pinMode(pinLed, OUTPUT);
+}
+
+void loop()
+{
+    int value = digitalRead(pinReceive);
+
+    if (value == HIGH)
+    {
+        digitalWrite(pinLED, HIGH);
+    }
+    else
+    {
+        digitalWrite(pinLED, LOW);
+    }
+}
+        </pre>
+
+        <p>Bekijk de code en laad ze op naar de ontvangende Arduino. De code van de zendende Arduino blijft
+            ongewijzigd. In bovenstaande code zitten nog twee kleine compileerfouten. Haal ze er samen uit.</p>
+
+        <p><strong>Laat je oefening controleren.</strong></p>
+
+        <h2>Schakeling deel 4</h2>
+
+        <p>Breid de vorige schakeling uit aan de ontvangerkant en gebruik nu twee leds.</p>
+
+        <p>De ene led gaat aan en de andere uit als de zender een 1 stuurt. Stuurt de zender een 0, dan gebeurt het
+            omgekeerde. Pas de code aan.</p>
+
+        <p><strong>Laat je oefening controleren.</strong></p>
+
+        <h2>Schakeling deel 5</h2>
+
+        <p>Wil je nog meer leds aansturen, dan heb je meer toestanden nodig. Maar je kan op dit moment maar één
+            toestand tegelijk doorsturen: een 1 of een 0.</p>
+
+        <p>Er zijn meerdere oplossingen mogelijk:</p>
+
+        <ul>
+            <li><strong>Parallelle communicatie.</strong> Dat maakt het complex, want je moet niet alleen je code
+                aanpassen maar ook je schakeling.</li>
+            <li><strong>Seriële communicatie met individuele bits.</strong> Die weg werken we verder uit.</li>
+        </ul>
+
+        <p>Bekijk onderstaande code.</p>
+
+        <pre class="code-wrapper language-arduino linenumbers show-language">
+void loop()
+{
+    digitalWrite(pinSend, LOW);
+    digitalWrite(pinSend, LOW);
+    delay(1000);
+
+    digitalWrite(pinSend, LOW);
+    digitalWrite(pinSend, HIGH);
+    delay(1000);
+
+    digitalWrite(pinSend, HIGH);
+    digitalWrite(pinSend, LOW);
+    delay(1000);
+
+    digitalWrite(pinSend, HIGH);
+    digitalWrite(pinSend, HIGH);
+    delay(1000);
+}
+        </pre>
+
+        <p>Je ziet dat we nu vier situaties hebben en dus vier verschillende leds zouden kunnen aansturen. Maar dan
+            moet je die snelle toestandsverandering ook kunnen opvangen aan de kant van de ontvanger, en dat
+            betrouwbaar laten werken is niet eenvoudig. Probeer het gerust eens uit.</p>
+
+        <p>De oplossing is om in plaats van losse bits meer betekenisvolle commando's door te sturen, bijvoorbeeld
+            LED1, LED2, MOTOR_START of ALARM_OFF. Dat lijkt moeilijker, maar in plaats van alles zelf te programmeren
+            gebruiken we een bestaande standaard: seriële communicatie.</p>
+
+        <p>In onderstaand voorbeeld gebruiken we de bibliotheek SoftwareSerial om boodschappen te sturen en te
+            ontvangen.</p>
+
+        <h3>Zender</h3>
+
+        <p>Schakeling: de Tx-lijn van de Arduino (pin 11) naar de D-lijn van de zendende 75176.</p>
+
+        <pre class="code-wrapper language-arduino linenumbers show-language">
+#include &lt;SoftwareSerial.h&gt;
+
+SoftwareSerial mySerial(10, 11); // RX, TX
+
+void setup()
+{
+    mySerial.begin(9600);
+}
+
+void loop()
+{
+    mySerial.println("LED1");
+    delay(1000);
+    mySerial.println("LED2");
+    delay(1000);
+    mySerial.println("LED3");
+    delay(1000);
+}
+        </pre>
+
+        <h3>Ontvanger</h3>
+
+        <p>Schakeling: schakel een derde led bij, en verbind de Rx-lijn van de Arduino met de R-lijn van de
+            ontvangende 75176.</p>
+
+        <pre class="code-wrapper language-arduino linenumbers show-language">
+#include &lt;SoftwareSerial.h&gt;
+
+SoftwareSerial mySerial(10, 11); // RX, TX
+
+int pinLED1 = 3;
+int pinLED2 = 4;
+int pinLED3 = 5;
+
+void setup()
+{
+    mySerial.begin(9600);
+    pinMode(pinLED1, OUTPUT);
+    pinMode(pinLED2, OUTPUT);
+    pinMode(pinLED3, OUTPUT);
+}
+
+void loop()
+{
+    if (mySerial.available())
+    {
+        String boodschap = mySerial.readStringUntil('\n');
+        boodschap.trim();
+
+        if (boodschap.equals("LED1"))
+        {
+            digitalWrite(pinLED1, HIGH);
+            digitalWrite(pinLED2, LOW);
+            digitalWrite(pinLED3, LOW);
+        }
+        else if (boodschap.equals("LED2"))
+        {
+            digitalWrite(pinLED1, LOW);
+            digitalWrite(pinLED2, HIGH);
+            digitalWrite(pinLED3, LOW);
+        }
+        else if (boodschap.equals("LED3"))
+        {
+            digitalWrite(pinLED1, LOW);
+            digitalWrite(pinLED2, LOW);
+            digitalWrite(pinLED3, HIGH);
+        }
+    }
+}
+        </pre>
+
+        <p><strong>Laat je oefening controleren.</strong></p>
+
+        <h2>Redeneervragen</h2>
+
+        <p>Denk na en los onderstaande vragen op voor je aan schakeling 6 begint. Je antwoord bepaalt mee hoe je die
+            aanpakt.</p>
+
+        <ol class="vragen">
+            <li>Wat heb je tot nu toe gemaakt: simplex of duplex communicatie? Verklaar je antwoord.</li>
+            <li>Om van alle partijen transceivers te maken moeten ze zowel kunnen zenden als ontvangen. Wat zou je
+                moeten veranderen aan de <strong>schakeling</strong>?</li>
+            <li>En wat zou je moeten veranderen aan de <strong>code</strong>?</li>
+        </ol>
+
+        <h2>Schakeling deel 6</h2>
+
+        <p>In deze oefening maak je van de simplexcommunicatie half duplex. Dat betekent dat je nu <strong>twee
+                transceivers</strong> hebt. Ze kunnen allebei zenden en ontvangen, maar omdat je maar twee datalijnen
+            hebt kunnen ze dat niet tegelijk. Kon dat wel, dan spraken we over full duplex, en dan had je vier
+            datalijnen nodig. Ons IC ondersteunt dat niet.</p>
+
+        <p>Pas je schakeling en je code aan:</p>
+
+        <ul>
+            <li>Voeg een <strong>drukknop</strong> toe aan de schakeling van beide transceivers, bijvoorbeeld op pin 7
+                van de Arduino's. Vergeet de pull-up of pull-down weerstand niet.</li>
+            <li>Wordt er op de knop gedrukt, dan zet de Arduino de 75176 in send mode, stuurt hij een boodschap die een
+                led op de andere Arduino doet branden of doven, en zet hij de 75176 daarna terug in receive mode.</li>
+            <li>Gebruik een pin van de Arduino om RE en DE aan te sturen. Vergeet niet om van die pin een OUTPUT te
+                maken.</li>
+        </ul>
+
+        <p>Je programma kan je als volgt opbouwen:</p>
+
+        <ol>
+            <li>Toestand van de drukknop inlezen</li>
+            <li>Is die hoog, dan send mode:
+                <ol>
+                    <li>De Arduino zet de 75176 in send mode door RE en DE aan te sturen</li>
+                    <li>Boodschap sturen</li>
+                    <li>De Arduino zet de 75176 terug in receive mode</li>
+                </ol>
+            </li>
+            <li>Is die laag, dan receive mode:
+                <ol>
+                    <li>Boodschappen inlezen</li>
+                    <li>Is er een boodschap, interpreteer ze en zet de led aan of uit</li>
+                </ol>
+            </li>
+        </ol>
+
+        <p><strong>Laat je oefening controleren.</strong></p>
+
+        <h2>Schakeling deel 7</h2>
+
+        <p>Deze keer zijn er geen twee maar <strong>drie</strong> transceivers. Pas de schakeling en de code aan.</p>
+
+        <ul>
+            <li>Iedere transceiver heeft twee drukknoppen</li>
+            <li>In de code ga je moeten adresseren</li>
+        </ul>
+
+        <p><strong>Laat je oefening controleren.</strong></p>
+        -->
+    </div>
+
+    <script src="../../reference.js"></script>
+    <script src="../../back-link.js"></script>
+</body>
+
+</html>

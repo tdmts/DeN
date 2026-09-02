@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opdracht TCP/IP met Wireshark</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Opdracht TCP/IP met Wireshark</h1>
+
+        <p class="lead">Je onderschept met Wireshark vier soorten verkeer van je eigen computer: een ping, een
+            DNS-vraag, de aanvraag van een IP-adres en een industrieel Modbus TCP-commando. Van elk deel bewaar je de
+            opgevangen pakketten in een apart bestand, en onderweg lees je uit de pakketten af welke adressen en
+            welke waarden erin staan.</p>
+
+        <div class="download-container">
+            <a href="../../downloads/Labo-TcpIp-verslag.docx">Opdracht downloaden</a>
+            <ul>
+                <li>De volledige opdracht staat in dit document, met ruimte voor je antwoorden en je screenshots.</li>
+                <li>Download het voor je begint.</li>
+                <li>Je dient het samen met je vier opnames in via de opdracht op Orion.</li>
+            </ul>
+        </div>
+
+        <!-- AUTEURSNOTITIES, geen student-inhoud.
+             1. De uitleg over Wireshark, ICMP, DNS, IPv4/IPv6, DHCP en Modbus TCP stond in de
+                bron-docx verweven met de stappen. Ze staat nu op zeven theoriepagina's en de
+                opdracht verwijst ernaar bij naam, zonder link: de student leest dit in Word.
+                Zet ze hier niet opnieuw bij, dan staat hetzelfde op twee plaatsen.
+             2. Het slot van de bron-docx over mirror port en bridge is theorie zonder stap, en
+                staat nu op VerkeerOnderscheppen.html. Het komt terug in de zelftest.
+             3. De letter-naar-getaltabel uit de bron-docx (A=1 tot Z=26) is de plaats van de
+                letter in het alfabet. Ze staat hier als regel en niet als tabel: een gewone
+                tabel buiten een <li> wordt door export-verslag.py stil overgeslagen.
+             4. De vier bestandsnamen zijn afgesproken met de naam van de student erin, zodat
+                inzendingen uit elkaar te houden zijn. Veralgemeen ze niet naar een voorbeeld.
+             5. De screenshots komen van een Windows-machine met een Nederlandstalige verkenner
+                en een Engelstalige Wireshark. Daarom staan de menupaden in het Engels. -->
+
+        <!-- verslag
+        De volledige opdracht staat hieronder en komt via scripts/export-verslag.py in het
+        verslagsjabloon terecht. Ze staat bewust niet op de pagina: de student werkt in het
+        document, en dezelfde opdracht op twee plaatsen laat hem twijfelen waar hij moet
+        antwoorden. Wijzig hier, draai daarna het script, en commit de docx mee.
+
+        <div class="info-box tip">
+            <div class="info-title tip">Vul dit document in terwijl je bezig bent</div>
+            <p>Je verslag telt niet mee voor je punten, maar de test op het einde gaat over wat je hier hebt
+                genoteerd. Vul het in terwijl je bezig bent, want een opname die je gesloten hebt, krijg je niet
+                zomaar terug.</p>
+        </div>
+
+        <h2>Voor je begint</h2>
+
+        <p>Zorg dat je bekabeld of draadloos met het netwerk verbonden bent, maar op een van de twee manieren. Zet
+            dus je wifi uit of trek je netwerkkabel uit. Werkt je computer over twee adapters tegelijk, dan weet je
+            niet over welke van de twee je verkeer loopt.</p>
+
+        <p>Klik op start, typ <code>cmd.exe</code> en druk op enter. Voer daarin het commando <code>ipconfig</code>
+            uit. Je ziet dan iets als dit:</p>
+
+        <figure>
+            <img src="../../img/ipconfig-uitvoer-met-default-gateway.png"
+                alt="De uitvoer van ipconfig in een cmd-venster, met per netwerkadapter het IPv4-adres, het subnetmasker en de default gateway">
+            <figcaption>De uitvoer van ipconfig, met per adapter de adressen die erop staan</figcaption>
+        </figure>
+
+        <p>Er staan mogelijk meerdere adapters met een adres in de lijst. De adapter waar ook een default gateway bij
+            genoteerd staat, is de adapter waarmee je met het netwerk verbonden bent, en het IPv4-adres daarvan is het
+            jouwe. Meer daarover staat op de theoriepagina IPv4 en IPv6.</p>
+
+        <ol class="vragen">
+            <li>Wat is jouw IPv4-adres?</li>
+            <li>Hoe heet de netwerkadapter waar dat adres op staat? In het voorbeeld hierboven was dat
+                <code>Wireless LAN adapter Wi-Fi</code>. Bij jou is dat waarschijnlijk iets anders.</li>
+        </ol>
+
+        <h2>ICMP-verkeer onderscheppen</h2>
+
+        <p>Het ping-commando gebruikt ICMP om te testen of een host bereikbaar is, wat zijn IP-adres is en hoeveel
+            tijd er tussen zender en ontvanger zit. De theoriepagina ICMP en ping legt uit wat je straks ziet.</p>
+
+        <h3>Stap 1: Wireshark opstarten en de netwerkinterface selecteren</h3>
+
+        <ol>
+            <li>Open Wireshark.</li>
+            <li>Klik in het menu Capture op Options.</li>
+            <li>Selecteer de netwerkadapter die je zopas genoteerd hebt. Wireshark kort de naam in, dus
+                <code>Wireless LAN adapter Wi-Fi</code> staat er als <code>Wi-Fi</code>.</li>
+            <li>Klik op Sluiten of klik op Start.</li>
+        </ol>
+
+        <figure>
+            <img src="../../img/wireshark-capture-options-adapter-kiezen.png"
+                alt="Het venster Capture Options van Wireshark met de lijst van netwerkadapters, elk met een grafiekje van het verkeer erop">
+            <figcaption>Kies in Capture &gt; Options de adapter die je genoteerd hebt</figcaption>
+        </figure>
+
+        <h3>Stap 2: de capture starten</h3>
+
+        <p>Heb je zopas al op Start geklikt, dan mag je deze stap overslaan.</p>
+
+        <ol>
+            <li>Klik in het menu Capture op Start.</li>
+            <li>Wireshark vangt nu al het netwerkverkeer op dat over die adapter passeert.</li>
+        </ol>
+
+        <h3>Stap 3: het filter toepassen</h3>
+
+        <ol>
+            <li>Klik in het filterveld bovenaan het venster, waar <code>Apply a display filter</code> staat.</li>
+            <li>Typ <code>icmp</code>. De achtergrond van het veld wordt groen zodra Wireshark het filter
+                begrijpt.</li>
+            <li>Druk op enter of klik op de pijl rechts.</li>
+            <li>Het scherm wordt leeg. Dat hoort zo: er worden vanaf nu alleen nog ICMP-pakketten getoond.</li>
+        </ol>
+
+        <figure>
+            <img src="../../img/wireshark-display-filter-veld.png"
+                alt="Het filterveld bovenaan het Wireshark-venster met de tekst Apply a display filter erin">
+            <figcaption>Het filterveld staat boven de lijst met pakketten</figcaption>
+        </figure>
+
+        <h3>Stap 4: het ping-commando uitvoeren</h3>
+
+        <ol>
+            <li>Klik in Windows op start.</li>
+            <li>Typ <code>cmd.exe</code> en druk op enter.</li>
+            <li>Typ <code>ping -4 google.be</code> en druk op enter.</li>
+        </ol>
+
+        <figure>
+            <img src="../../img/ping-google-be-in-cmd.png"
+                alt="Een cmd-venster met de uitvoer van ping -4 google.be, met vier antwoorden en per antwoord de tijd in milliseconden">
+            <figcaption>Het antwoord van google.be in het cmd-venster</figcaption>
+        </figure>
+
+        <p>In Wireshark zie je ondertussen ongeveer dit:</p>
+
+        <figure>
+            <img src="../../img/wireshark-icmp-request-en-reply.png"
+                alt="Wireshark met het filter icmp, met acht pakketten die afwisselend Echo ping request en Echo ping reply heten">
+            <figcaption>Vier requests en vier replies</figcaption>
+        </figure>
+
+        <p>Klik daarna in het menu Capture op Stop.</p>
+
+        <h3>Stap 5: het verkeer analyseren</h3>
+
+        <p>In totaal zie je acht pakketten: telkens een request van jouw computer naar google.be en een reply van
+            google.be naar jouw computer. Let op de kolommen source en destination. Je eigen IP-adres komt daar
+            afwisselend links en rechts terug, en het andere adres is dat van google.be. Dat adres hoort overeen te
+            komen met wat er in je cmd-venster staat.</p>
+
+        <ol class="vragen">
+            <li>Welk IP-adres hoort bij google.be?</li>
+        </ol>
+
+        <p>Selecteer nu een reply-pakket en bekijk de response time en de data die erin zit. Wat die betekenen, staat
+            op de theoriepagina ICMP en ping.</p>
+
+        <h3>Stap 6: de opname opslaan</h3>
+
+        <ol>
+            <li>Stop de capture als je dat nog niet gedaan hebt.</li>
+            <li>Controleer het filter nog eens: dat hoort <code>icmp</code> te zijn.</li>
+            <li>Er horen acht pakketten zichtbaar te zijn.</li>
+            <li>Klik op File &gt; Export Specified Packets.</li>
+            <li>Kies bij de opties All packets en Displayed. Samen zijn dat er acht.</li>
+            <li>Sla op als <code>ping_jouwVoornaam_jouwFamilienaam.pcapng</code>, bijvoorbeeld
+                <code>ping_Tom_Demets.pcapng</code>. Je dient dit bestand op het einde in.</li>
+        </ol>
+
+        <figure>
+            <img src="../../img/wireshark-export-specified-packets.png"
+                alt="Het venster Export Specified Packets van Wireshark met de keuze tussen Captured en Displayed en het aantal pakketten per rij">
+            <figcaption>Kies All packets en Displayed, en controleer het aantal</figcaption>
+        </figure>
+
+        <h2>DNS-verkeer onderscheppen</h2>
+
+        <p>DNS vertaalt een naam als google.be naar een IP-adres. Hoe een query en een response eruitzien, staat op de
+            theoriepagina DNS.</p>
+
+        <h3>Stappenplan</h3>
+
+        <ol>
+            <li>Stel het filter in op <code>dns</code>.</li>
+            <li>Start een nieuwe capture.</li>
+            <li>Open een cmd-venster en geef het commando <code>nslookup google.be 8.8.8.8</code>. Daarmee vraag je
+                aan de DNS-server <code>8.8.8.8</code> welk adres bij google.be hoort.</li>
+        </ol>
+
+        <p>In het cmd-venster zie je dan iets als dit:</p>
+
+        <figure>
+            <img src="../../img/nslookup-google-be-in-cmd.png"
+                alt="Een cmd-venster met de uitvoer van nslookup google.be 8.8.8.8, met onder Addresses een IPv6-adres en een IPv4-adres">
+            <figcaption>Twee antwoorden voor een naam: een IPv6-adres en een IPv4-adres</figcaption>
+        </figure>
+
+        <p>Stop daarna de capture om het overzichtelijk te houden. In Wireshark zie je twee standard query responses,
+            waarin diezelfde twee adressen terugkomen.</p>
+
+        <figure>
+            <img src="../../img/wireshark-dns-query-responses.png"
+                alt="Wireshark met het filter dns, met standard query- en standard query response-pakketten waarin de opgevraagde naam staat">
+            <figcaption>De queries en de responses van je nslookup-commando</figcaption>
+        </figure>
+
+        <div class="info-box tip">
+            <div class="info-title tip">Er loopt altijd DNS-verkeer op de achtergrond</div>
+            <p>Programma's die op de achtergrond draaien, zoals Windows Update en je antivirus, stellen zelf ook
+                DNS-vragen. Er staat dus mogelijk al verkeer in je opname voor je zelf iets typt. Sluit zoveel
+                mogelijk programma's af en start je capture vlak voor je het commando geeft.</p>
+        </div>
+
+        <ol class="vragen">
+            <li class="screenshot">Plak hier een screenshot van het cmd-venster met de uitvoer van je
+                nslookup-commando.</li>
+            <li class="screenshot">Plak hier een screenshot van Wireshark, met de twee responses erin.</li>
+            <li>Vul de adressen in die jij gevonden hebt.
+                <table class="verslag-tabel">
+                    <thead>
+                        <tr>
+                            <th>Soort adres</th>
+                            <th>Het adres van google.be</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>IPv4</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>IPv6</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+        </ol>
+
+        <p>Sla de opname op als <code>dns_jouwVoornaam_jouwFamilienaam.pcapng</code>, bijvoorbeeld
+            <code>dns_Tom_Demets.pcapng</code>. Exporteer alleen de relevante DNS-pakketten.</p>
+
+        <h2>DHCP-verkeer onderscheppen</h2>
+
+        <p>DHCP deelt automatisch IP-adressen en netwerkinstellingen uit. De vier stappen van een cyclus staan op de
+            theoriepagina DHCP.</p>
+
+        <div class="info-box warning">
+            <div class="info-title warning">Je verbinding valt tijdens deze oefening even weg</div>
+            <p>Tussen het teruggeven en het opnieuw aanvragen van je adres heb je hoogstens een minuut geen
+                netwerkverbinding. Start in die tijd geen download of videogesprek.</p>
+        </div>
+
+        <h3>Stappenplan</h3>
+
+        <ol>
+            <li>Stel het filter in op <code>dhcp</code>.</li>
+            <li>Start een nieuwe capture.</li>
+            <li>Open een cmd-venster en geef het commando <code>ipconfig /release</code>. Daarmee geef je je huidige
+                adres terug aan de DHCP-server en verbreek je je verbinding.</li>
+            <li>Geef het commando <code>ipconfig /renew</code>. Daarmee vraag je een nieuw adres aan en herstel je de
+                verbinding.</li>
+            <li>Stop de capture.</li>
+            <li>Geef het commando <code>ipconfig /all</code>. Dat toont alle beschikbare informatie over al je
+                netwerkadapters.</li>
+        </ol>
+
+        <p>In het cmd-venster zie je dan iets als dit:</p>
+
+        <figure>
+            <img src="../../img/ipconfig-all-uitvoer.png"
+                alt="De uitvoer van ipconfig /all met onder meer het physical address, het IPv4-adres, het subnetmasker, de lease-tijden, de default gateway en de DNS-servers">
+            <figcaption>Het MAC-adres, het IPv4-adres, het subnetmasker, de lease time, de default gateway en de
+                DNS-servers</figcaption>
+        </figure>
+
+        <p>Diezelfde velden komen terug in Wireshark:</p>
+
+        <figure>
+            <img src="../../img/wireshark-dhcp-discover-offer-request-ack.png"
+                alt="Wireshark met het filter dhcp, met achtereenvolgens de pakketten DHCP Discover, DHCP Offer, DHCP Request en DHCP ACK">
+            <figcaption>De vier stappen van een DHCP-cyclus, in volgorde</figcaption>
+        </figure>
+
+        <p>Sla de opname op als <code>dhcp_jouwVoornaam_jouwFamilienaam.pcapng</code>, bijvoorbeeld
+            <code>dhcp_Tom_Demets.pcapng</code>. Exporteer alleen de relevante DHCP-pakketten.</p>
+
+        <h2>Modbus TCP-verkeer onderscheppen</h2>
+
+        <p>Modbus TCP is een industrieel protocol waarmee toestellen zoals PLC's data uitwisselen over een gewoon
+            netwerk. Hoe een master, een slave en een holding register samenhangen, staat op de theoriepagina Modbus
+            TCP.</p>
+
+        <h3>Stappenplan</h3>
+
+        <ol>
+            <li>Download diagslave en modpoll bij het studiemateriaal van dit labo.</li>
+            <li>Pak allebei de bestanden uit in een eigen map.</li>
+            <li>Open de Windows-verkenner en ga naar de map waar je diagslave uitgepakt hebt. In de map
+                <code>win</code> staat een <code>.exe</code>-bestand.</li>
+            <li>Open een eerste cmd-venster.</li>
+            <li>Sleep het <code>.exe</code>-bestand naar dat venster. Het volledige pad wordt aangevuld en je hoeft
+                verder geen parameters toe te voegen. Druk op enter om het programma te starten, en laat dit venster
+                openstaan.</li>
+        </ol>
+
+        <figure>
+            <img src="../../img/diagslave-gestart-in-cmd.png"
+                alt="Een cmd-venster waarin diagslave draait en meldt dat het naar Modbus TCP-verbindingen luistert">
+            <figcaption>diagslave draait en wacht op een master</figcaption>
+        </figure>
+
+        <ol>
+            <li>Open een tweede cmd-venster.</li>
+            <li>Sleep daar <code>modpoll.exe</code> naartoe, zodat het volledige pad wordt aangevuld.</li>
+            <li>Voeg de parameters <code>-r 1 127.0.0.1 3</code> toe, zodat het volledige commando
+                <code>modpoll.exe -r 1 127.0.0.1 3</code> wordt, en druk op enter.</li>
+        </ol>
+
+        <p>Wat die parameters betekenen:</p>
+
+        <ul>
+            <li><code>-r 1</code> is het adres van het holding register.</li>
+            <li><code>127.0.0.1</code> is localhost, dus je eigen computer, waar diagslave draait.</li>
+            <li><code>3</code> is de waarde die in dat register komt te staan.</li>
+        </ul>
+
+        <figure>
+            <img src="../../img/modpoll-schrijft-waarde-naar-register.png"
+                alt="Een cmd-venster met het commando modpoll.exe -r 1 127.0.0.1 3 en de bevestiging dat er naar het register geschreven is">
+            <figcaption>modpoll schrijft de waarde 3 naar register 1</figcaption>
+        </figure>
+
+        <p>In het venster van diagslave zie je de bevestiging van de schrijfoperatie:</p>
+
+        <figure>
+            <img src="../../img/diagslave-bevestigt-schrijfoperatie.png"
+                alt="Het cmd-venster van diagslave met een regel die de ontvangen schrijfoperatie bevestigt">
+            <figcaption>De slave bevestigt wat de master geschreven heeft</figcaption>
+        </figure>
+
+        <ol>
+            <li>Open in Wireshark de Options in het menu Capture.</li>
+            <li>Kies Adapter for loopback traffic capture. Master en slave draaien allebei op deze machine, dus het
+                verkeer verlaat je computer nooit en een gewone adapter ziet het niet.</li>
+        </ol>
+
+        <figure>
+            <img src="../../img/wireshark-adapter-for-loopback-traffic-capture.png"
+                alt="Het venster Capture Options van Wireshark met de regel Adapter for loopback traffic capture geselecteerd">
+            <figcaption>Voor verkeer naar localhost kies je de loopback-adapter</figcaption>
+        </figure>
+
+        <ol>
+            <li>Start een nieuwe capture in Wireshark.</li>
+            <li>Stel het filter in op <code>modbus</code>.</li>
+            <li>Ga naar het venster van modpoll en voer <code>modpoll.exe -r 1 127.0.0.1</code> uit. Zonder waarde op
+                het einde leest dit commando register 1 periodiek uit. Laat het een paar keer lopen en druk dan
+                CTRL en C samen in om te stoppen.</li>
+        </ol>
+
+        <figure>
+            <img src="../../img/modpoll-leest-register-periodiek-uit.png"
+                alt="Een cmd-venster waarin modpoll register 1 herhaaldelijk uitleest en telkens dezelfde waarde toont">
+            <figcaption>modpoll leest het register uit tot je het stopt</figcaption>
+        </figure>
+
+        <p>In Wireshark zie je dan iets als dit: telkens een query en een response. Zoek daarin de waarde terug die je
+            geschreven hebt.</p>
+
+        <figure>
+            <img src="../../img/wireshark-modbus-query-en-response.png"
+                alt="Wireshark met het filter modbus, met afwisselend Query- en Response-pakketten waarin de functiecode en de registerwaarde staan">
+            <figcaption>Een query van de master en een response van de slave</figcaption>
+        </figure>
+
+        <h3>Jouw waarde en jouw adres</h3>
+
+        <p>Nu schrijf je zelf een bepaalde waarde naar een bepaald adres en lees je die weer uit. Welke waarde en welk
+            adres dat zijn, hangt af van de eerste letter van je voornaam en van je familienaam. Neem daarvoor de
+            plaats van de letter in het alfabet: A is 1, B is 2, en zo verder tot Z is 26.</p>
+
+        <ul>
+            <li>De eerste letter van je <strong>voornaam</strong> geeft de <strong>waarde</strong>.</li>
+            <li>De eerste letter van je <strong>familienaam</strong> geeft het <strong>adres</strong>.</li>
+        </ul>
+
+        <p>Voor Tom Demets wordt dat T, dus waarde 20, en D, dus adres 4.</p>
+
+        <ol class="vragen">
+            <li>Zoek jouw waarde en jouw adres op.
+                <table class="verslag-tabel">
+                    <thead>
+                        <tr>
+                            <th>Wat je opzoekt</th>
+                            <th>Letter</th>
+                            <th>Getal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Waarde, uit je voornaam</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Adres, uit je familienaam</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+        </ol>
+
+        <ol>
+            <li>Start een nieuwe capture met het juiste filter.</li>
+            <li>Schrijf jouw waarde naar jouw adres.</li>
+            <li>Lees minstens een keer de waarde uit dat adres.</li>
+        </ol>
+
+        <ol class="vragen">
+            <li class="screenshot">Plak hier een screenshot van Wireshark waarop duidelijk te zien is dat de juiste
+                waarde naar het juiste adres geschreven werd. Let op de notatie: Wireshark toont een waarde soms
+                hexadecimaal, dus 20 staat er mogelijk als <code>0x0014</code>.</li>
+        </ol>
+
+        <p>Sla de opname op als <code>modbus_jouwVoornaam_jouwFamilienaam.pcapng</code>, bijvoorbeeld
+            <code>modbus_Tom_Demets.pcapng</code>. Exporteer alleen de relevante Modbus-pakketten.</p>
+
+        <h2>Indienen</h2>
+
+        <p>Dien via de opdracht op Orion vijf bestanden in:</p>
+
+        <ol>
+            <li><code>ping_jouwVoornaam_jouwFamilienaam.pcapng</code></li>
+            <li><code>dns_jouwVoornaam_jouwFamilienaam.pcapng</code></li>
+            <li><code>dhcp_jouwVoornaam_jouwFamilienaam.pcapng</code></li>
+            <li><code>modbus_jouwVoornaam_jouwFamilienaam.pcapng</code></li>
+            <li>Dit ingevulde document</li>
+        </ol>
+        -->
+    </div>
+
+    <script src="../../reference.js"></script>
+    <script src="../../back-link.js"></script>
+</body>
+
+</html>

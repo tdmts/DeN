@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labo RS485</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Labo RS485</h1>
+
+        <p class="lead">Je bouwt een verbinding tussen twee Arduino's die niet over een gewone draad loopt, maar over
+            een RS-485-bus: twee geleiders, differentiële spanningen en een afsluitweerstand aan elk uiteinde. Je
+            houdt zo een signaal overeind over honderden meters en langs draaiende motoren, en dat is waarom je hem
+            in een machinehal terugvindt en een gewone draad niet.</p>
+
+        <h2 id="studiemateriaal">Studiemateriaal</h2>
+
+        <ul>
+            <li><strong>Arduino starterkit</strong>: breadboard, USB-kabel, leds, jumperdraden, drukknoppen en de
+                overige componenten</li>
+            <li><strong>Arduino IDE</strong>, te downloaden via <a
+                    href="https://portal.academicsoftware.com/software" target="_blank"
+                    rel="noopener">AcademicSoftware</a></li>
+            <li><strong>RS-485-transceiver 75176</strong>, die krijg je in het labo</li>
+            <li><a href="../../datasheets/sn75176a.pdf" target="_blank" rel="noopener">Datasheet SN75176A</a>, die heb
+                je nodig vanaf de eerste vraag</li>
+        </ul>
+
+        <h2 id="theorie">Theorie</h2>
+
+        <p>De theorie bij dit labo staat bij <strong>Theorie</strong>. Ze bouwt op elkaar voort, dus lees ze in
+            volgorde voor je aan de opdracht begint.</p>
+
+        <h2 id="opdracht">Opdracht</h2>
+
+        <p>Wat je in het labo bouwt, staat bij <strong>Opdracht</strong>. Daar download je het verslagdocument
+            waarin je werkt: je vult het in terwijl je bezig bent en je dient het achteraf in.</p>
+
+        <h2 id="doelstellingen">Doelstellingen</h2>
+
+        <p>Op het einde van dit labo kan je:</p>
+
+        <ol>
+            <li>Uit een datasheet halen welke pin een in- of uitgang is, wat active low betekent en hoe de typical
+                application in elkaar zit</li>
+            <li>Uitleggen waarom differential signaling minder gevoelig is voor ruis dan single ended signaling</li>
+            <li>Een RS-485-bus tekenen en opbouwen met twee of meer 75176-transceivers, inclusief de afsluitweerstand
+            </li>
+            <li>Een Arduino een boodschap laten sturen over de bus en een tweede Arduino daarop laten reageren</li>
+            <li>Het verschil tussen simplex, half duplex en full duplex uitleggen aan de hand van je eigen schakeling
+            </li>
+            <li>De zendrichting op een bus omschakelen door RE en DE aan te sturen</li>
+        </ol>
+
+        <h2 id="evaluatie">Evaluatie</h2>
+
+        <div class="info-box evaluation">
+            <div class="info-title evaluation">Hoe dit labo meetelt</div>
+            <p>Je oefeningen en een test, gesloten boek, met giscorrectie bij MC- en MA-vragen, bepalen samen je punt
+                voor dit labo. Met welk gewicht, en hoe dit
+                labo meetelt voor je eindcijfer, staat op de <a href="../../Algemeen/Evaluatie.html" target="_blank" rel="noopener">evaluatiepagina</a>. Wanneer het doorgaat en hoeveel sessies je
+                ervoor hebt, staat in de <a href="../../Algemeen/Planning.html" target="_blank" rel="noopener">planning</a>.</p>
+            <p>Je laat elke schakeling ter plaatse controleren, dus zorg dat je klaar bent voor het einde van een
+                sessie.</p>
+        </div>
+    </div>
+
+    <script src="../../reference.js"></script>
+    <script src="../../back-link.js"></script>
+</body>
+
+</html>

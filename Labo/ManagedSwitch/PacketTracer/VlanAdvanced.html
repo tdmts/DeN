@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VLAN over 2 switches</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>VLAN over 2 switches</h1>
+
+        <p>In de vorige oefening maakte je VLAN's op één switch. Zodra je netwerk uit meerdere switches bestaat, heb
+            je <strong>access ports</strong> en <strong>trunk ports</strong> nodig. Die staan uitgelegd bij
+            <a href="../Theorie/TrunkPortVsAccessPort.html" target="_blank"
+                rel="noopener">Trunk port vs access port</a>. Kort
+            samengevat: een access port draagt één VLAN naar een eindtoestel, een trunk port draagt meerdere VLAN's
+            tussen twee switches.</p>
+
+        <p><a href="../../../downloads/Labo-ManagedSwitch-VlanAdvanced.pka" target="_blank" rel="noopener">Download het
+                startbestand</a> en open het in Cisco Packet Tracer.</p>
+
+        <figure class="figure-zoom">
+            <img src="../../../img/packet-tracer-vlan-advanced-topologie.png" class="img-fluid"
+                alt="Packet Tracer met twee 2960-switches die via Gig0/1 met elkaar verbonden zijn, met aan elke switch een pc en een server">
+            <figcaption class="figure-caption">Twee switches, verbonden door een trunk die VLAN 10 en VLAN 20 draagt
+            </figcaption>
+        </figure>
+
+        <h2>Wat je configureert</h2>
+
+        <p>Stel switch0 en switch1 allebei als volgt in.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-striped table-bordered align-middle">
+                <thead class="table-header-custom">
+                    <tr>
+                        <th>VLAN</th>
+                        <th>Naam</th>
+                        <th>Poort</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10</td>
+                        <td>clients</td>
+                        <td>fa0/1</td>
+                        <td>access port</td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td>servers</td>
+                        <td>fa0/2</td>
+                        <td>access port</td>
+                    </tr>
+                    <tr>
+                        <td>10 en 20</td>
+                        <td></td>
+                        <td>gig0/1</td>
+                        <td>trunk port</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Controleren</h2>
+
+        <p>Ben je klaar, klik dan op <strong>Check Results</strong> in het venster van de oefening.</p>
+
+        <div class="video-container">
+            <div class="ratio ratio-16x9">
+                <iframe src="https://www.youtube.com/embed/dhnmseZXwQI" title="VLAN over twee switches in Packet Tracer"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

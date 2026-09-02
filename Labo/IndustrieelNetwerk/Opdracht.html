@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opdracht Industrieel netwerk</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Opdracht Industrieel netwerk</h1>
+
+        <p class="lead">Je bouwt een I/O-eiland op een DIN-rail, je bekabelt een knop en een signaaltoren op 24 V,
+            en je verbindt het geheel over EtherCAT met je Raspberry Pi, die de rol van PLC opneemt. Daarna schrijf
+            je in CODESYS het programma dat de knop uitleest en de lampen aanstuurt, en breid je het uit met een
+            visualisatie. Onderweg teken je je schema, noteer je de adressen van je Pi en laat je elke oefening ter
+            plaatse controleren.</p>
+
+        <div class="download-container">
+            <a href="../../downloads/Labo-IndustrieelNetwerk-verslag.docx">Opdracht downloaden</a>
+            <ul>
+                <li>De volledige opdracht staat in dit document, met ruimte voor je antwoorden en je screenshots.
+                </li>
+                <li>Download het voor je begint.</li>
+                <li>Je dient het in via de opdracht op Orion.</li>
+            </ul>
+        </div>
+
+        <div class="info-box warning">
+            <div class="info-title warning">Sluit de netspanning niet aan voor je schema gecontroleerd is</div>
+            <p>Je tekent eerst je schema op papier en laat het nakijken. Pas daarna bouw je de schakeling op en zet
+                je er spanning op.</p>
+        </div>
+
+        <!-- AUTEURSNOTITIES, geen student-inhoud.
+             1. De screenshots komen uit de bron-docx en zijn genomen op een Nederlandstalige Windows
+                met een Engelstalige CODESYS. De menupaden staan daarom in het Engels.
+             2. De stap "Raspberry Pi als PLC" wordt hier niet uitgelegd. Ze hoort bij het labo
+                Embedded systems van het vak ICEES en de student heeft daar zijn SD-kaart van. Er
+                staat geen link bij: er is geen stabiele URL naar dat vak.
+             3. iotroam.hogent.be krijgt wel een link. De student moet die pagina echt openen om
+                zijn eigen passphrase te halen.
+             4. De drie oefeningen worden ter plaatse gecontroleerd. De vragen in het verslag zijn
+                er om de controle voor te bereiden en om na te lezen bij het studeren; er staat geen
+                punt op het document zelf.
+             5. Klemnummers van de signaaltoren staan bewust niet ingevuld in de tabel van vraag 11.
+                Welke kleur op welk nummer zit, hangt af van hoe de toren gestapeld is. -->
+
+        <!-- verslag
+        De volledige opdracht staat hieronder en komt via scripts/export-verslag.py in het
+        verslagsjabloon terecht. Ze staat bewust niet op de pagina: de student werkt in het
+        document, en dezelfde opdracht op twee plaatsen laat hem twijfelen waar hij moet
+        antwoorden. Wijzig hier, draai daarna het script, en commit de docx mee.
+
+        <div class="info-box tip">
+            <div class="info-title tip">Vul dit document in terwijl je bezig bent</div>
+            <p>Noteer je antwoorden en plak je screenshots terwijl je aan het werk bent. Achteraf reconstrueren
+                kost je meer tijd dan het invullen zelf.</p>
+        </div>
+
+        <div class="info-box warning">
+            <div class="info-title warning">Sluit de netspanning niet aan voor je schema gecontroleerd is</div>
+            <p>Je werkt met een voeding van 24 V op klemmen die je zelf bedraadt. Een omgekeerde voeding of een
+                sluiting tussen plus en massa beschadigt de klemmen. Teken eerst je schema, laat het nakijken, en
+                zet daarna pas spanning op je opstelling.</p>
+        </div>
+
+        <h2>Wat er voor je klaarligt</h2>
+
+        <figure>
+            <img src="../../img/opstelling-industrieel-netwerk-onderdelen.png"
+                alt="Het materiaal van het labo op tafel: een voeding van 24 V, een EK1100 met een EL1004 en een EL2004, een schroevendraaier, een striptang, een kniptang en een multimeter, met bovenaan een stuk DIN-rail">
+            <figcaption>Van links naar rechts: de voeding van 24 V, de EtherCAT-coupler EK1100, de ingangsklem
+                EL1004, de uitgangsklem EL2004, een platte schroevendraaier, een striptang, een kniptang en een
+                multimeter. Bovenaan ligt een stuk DIN-rail.</figcaption>
+        </figure>
+
+        <p>Daarnaast breng je zelf je Raspberry Pi mee, met SD-kaart, voeding, HDMI-kabel en een toetsenbord, en je
+            laptop met CODESYS erop.</p>
+
+        <h2>De DIN-rail</h2>
+
+        <p>Klik de voeding en de modules op de DIN-rail. Wees voorzichtig: duw ze recht van boven op de rail tot ze
+            vastklikken, en forceer niets.</p>
+
+        <p>Een module haal je er weer af door aan de oranje hendel te trekken en de module naar je toe te
+            kantelen.</p>
+
+        <figure>
+            <img src="../../img/din-rail-modules-oranje-hendels.png"
+                alt="De EK1100 met de twee klemmen op de DIN-rail, met de oranje hendels aan de onderkant van elke module">
+            <figcaption>De oranje hendels waarmee je een module weer van de rail haalt</figcaption>
+        </figure>
+
+        <h2>Je schema</h2>
+
+        <p>Maak op papier een schema in bovenaanzicht waarin je de aansluitingen van de voeding, de EK1100, de
+            EL1004 en de EL2004 overtekent, samen met de knop en de signaaltoren.</p>
+
+        <p>Zorg ervoor dat uit je schema duidelijk blijkt:</p>
+
+        <ul>
+            <li>hoe de modules van spanning voorzien worden;</li>
+            <li>met welke module je de knop verbindt, en hoe je die schakelt;</li>
+            <li>met welke module je de signaaltoren verbindt, en hoe je die schakelt.</li>
+        </ul>
+
+        <ol class="vragen">
+            <li class="screenshot">Plak hier een foto van je schema.</li>
+        </ol>
+
+        <div class="info-box evaluation">
+            <div class="info-title evaluation">Laat je schema controleren</div>
+            <p>Toon je schema aan de lector voor je iets aansluit. Pas daarna sluit je de netspanning aan.</p>
+        </div>
+
+        <h2>De ESI-bestanden installeren</h2>
+
+        <p>Om met de hardware te kunnen werken, moet CODESYS weten wat de EK1100, de EL1004 en de EL2004 kunnen.
+            Die beschrijving zit in de ESI-bestanden. Je vindt ze op de site van de fabrikant, maar voor deze
+            oefening gebruik je de versie die op de overzichtspagina van dit labo staat.</p>
+
+        <p>Download het zipbestand met de EtherCAT XML als je dat nog niet gedaan hebt. Rechtsklik erop en kies
+            Alles uitpakken.</p>
+
+        <ol>
+            <li>Ga in CODESYS naar Tools en klik op Device Repository.
+                <figure>
+                    <img src="../../img/codesys-tools-device-repository.png"
+                        alt="Het menu Tools in CODESYS met de optie Device Repository">
+                    <figcaption>Tools &gt; Device Repository</figcaption>
+                </figure>
+            </li>
+            <li>Klik op Install.
+                <figure>
+                    <img src="../../img/codesys-device-repository-install.png"
+                        alt="Het venster Device Repository met de knop Install aan de rechterkant">
+                    <figcaption>De knop Install in de Device Repository</figcaption>
+                </figure>
+            </li>
+            <li>Ga naar de uitgepakte map en kies EK11XX.xml. Herhaal dat voor EL1XXXX.xml en EL2XXXX.xml.
+                <figure>
+                    <img src="../../img/codesys-esi-bestanden-kiezen.png"
+                        alt="Het bestandsvenster met de uitgepakte XML-bestanden, waarin EK11XX.xml geselecteerd is">
+                    <figcaption>De drie bestanden die je nodig hebt</figcaption>
+                </figure>
+            </li>
+            <li>De bestanden worden geïnstalleerd.
+                <figure>
+                    <img src="../../img/codesys-esi-bestanden-geinstalleerd.png"
+                        alt="De lijst in de Device Repository met de geïnstalleerde toestellen">
+                    <figcaption>De toestellen staan nu in de repository</figcaption>
+                </figure>
+            </li>
+            <li>Sluit de Device Repository zodra de drie bestanden geïnstalleerd zijn.</li>
+        </ol>
+
+        <h2>Je Raspberry Pi als PLC</h2>
+
+        <p>Op je Raspberry Pi staat de CODESYS-runtime. Die installatie heb je gedaan in het labo Embedded systems
+            van het vak Industriële computers en embedded systems. Heb je die SD-kaart nog, dan gebruik je ze
+            gewoon opnieuw en sla je deze stap over. Heb je ze niet meer, dan maak je die oefening eerst.</p>
+
+        <h2>Je Raspberry Pi op wifi</h2>
+
+        <p>Je Pi heeft twee netwerkverbindingen nodig: de bekabelde poort gaat straks naar de EK1100, dus voor het
+            gewone netwerk gebruik je wifi.</p>
+
+        <ol>
+            <li>Surf met je computer naar <a href="https://iotroam.hogent.be" target="_blank"
+                    rel="noopener">iotroam.hogent.be</a>. Je krijgt daar een passphrase, ook PSK of Pre Shared Key
+                genoemd.</li>
+            <li>Verbind je Pi met een netwerkkabel met iotroam, zet hem aan en laat hem opstarten.</li>
+            <li>Sluit een scherm en een toetsenbord aan en meld je aan met je gebruikersnaam en wachtwoord.</li>
+            <li>Voer het configuratieprogramma uit:
+                <pre class="code-wrapper language-plaintext">
+sudo raspi-config
+                </pre>
+            </li>
+            <li>Kies optie 8, Update. Laat je Pi eerst over de kabel verbinding maken met het internet, zijn datum
+                en tijd juist zetten en een basisupdate doen.</li>
+            <li>Kies daarna optie 1, System Options, en vervolgens S1, Wireless LAN. Vul in:
+                <ul>
+                    <li>land: BE, Belgium</li>
+                    <li>SSID: iotroam</li>
+                    <li>passphrase: de PSK die je hierboven genoteerd hebt</li>
+                </ul>
+            </li>
+            <li>Sluit de wizard af met de TAB-toets.</li>
+            <li>Vraag de adressen op van je Pi:
+                <pre class="code-wrapper language-plaintext">
+ip a
+                </pre>
+            </li>
+        </ol>
+
+        <ol class="vragen">
+            <li>Noteer de passphrase die je van iotroam gekregen hebt. Je hebt ze straks nodig.</li>
+            <li>Noteer de IP-adressen van je Raspberry Pi.
+                <table class="verslag-tabel">
+                    <thead>
+                        <tr>
+                            <th>Interface</th>
+                            <th>IP-adres</th>
+                            <th>Waarvoor je ze gebruikt</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>eth0</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>wlan0</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+        </ol>
+
+        <h2>Je Raspberry Pi als EtherCAT-master</h2>
+
+        <p>Verbind je laptop met het iotroam-netwerk, draadloos of bekabeld. Haal daarna de netwerkkabel van je Pi
+            uit iotroam en steek hem in de EK1100.</p>
+
+        <p>Controleer met PuTTY of je over SSH een verbinding kan maken met je Pi. Gebruik het wlan0-adres van
+            hierboven en poort 22. Lukt dat niet, ga dan niet verder: zonder die verbinding krijg je je programma
+            niet op de PLC.</p>
+
+        <ol>
+            <li>Maak in CODESYS een nieuw standaardproject en geef het een naam.
+                <figure>
+                    <img src="../../img/codesys-nieuw-standard-project.png"
+                        alt="Het venster New Project in CODESYS met Standard project geselecteerd">
+                    <figcaption>Een nieuw standaardproject</figcaption>
+                </figure>
+            </li>
+            <li>Kies het juiste device type en je programmeertaal.
+                <figure>
+                    <img src="../../img/codesys-device-type-en-programmeertaal.png"
+                        alt="Het venster Standard Project waarin het device en de programmeertaal gekozen worden">
+                    <figcaption>Kies hier ook Function Block Diagram als taal</figcaption>
+                </figure>
+            </li>
+            <li>Dubbelklik op Device, vul het wlan0-adres van je Pi in en druk op ENTER.
+                <figure>
+                    <img src="../../img/codesys-ip-adres-van-de-raspberry-pi.png"
+                        alt="Het tabblad Communication Settings met het IP-adres van de Raspberry Pi ingevuld">
+                    <figcaption>De verbinding met je PLC</figcaption>
+                </figure>
+            </li>
+            <li>Rechtsklik op Device en kies Add Device. Kies EtherCAT master.
+                <figure>
+                    <img src="../../img/codesys-add-device-ethercat-master.png"
+                        alt="Het venster Add Device met EtherCAT Master in de lijst">
+                    <figcaption>De EtherCAT master onder je device</figcaption>
+                </figure>
+            </li>
+            <li>Dubbelklik op de EtherCAT master en klik op SELECT. Kies de netwerkkaart waarmee je Pi met de
+                EK1100 verbonden is.
+                <figure>
+                    <img src="../../img/codesys-netwerkkaart-kiezen.png"
+                        alt="Het venster waarin de netwerkkaart voor de EtherCAT master gekozen wordt">
+                    <figcaption>De netwerkkaart van het EtherCAT-segment</figcaption>
+                </figure>
+            </li>
+        </ol>
+
+        <ol class="vragen">
+            <li>Welke netwerkkaart heb je bij SELECT gekozen, en waarom die en niet de andere?</li>
+        </ol>
+
+        <h2>De EtherCAT-slaves inlezen</h2>
+
+        <ol>
+            <li>Klik op LOGIN.
+                <figure>
+                    <img src="../../img/codesys-login-knop.png" alt="De werkbalk van CODESYS met de knop Login">
+                    <figcaption>Login maakt de verbinding met je PLC</figcaption>
+                </figure>
+            </li>
+            <li>Download je programma naar de PLC.
+                <figure>
+                    <img src="../../img/codesys-download-naar-de-plc.png"
+                        alt="Het venster waarin CODESYS vraagt om het programma naar de PLC te downloaden">
+                    <figcaption>Het programma gaat naar de PLC</figcaption>
+                </figure>
+            </li>
+            <li>Start het programma.
+                <figure>
+                    <img src="../../img/codesys-programma-starten.png"
+                        alt="De werkbalk van CODESYS met de knop Start">
+                    <figcaption>Start laat de cyclus lopen</figcaption>
+                </figure>
+            </li>
+            <li>Alles staat nu groen in de boomstructuur.
+                <figure>
+                    <img src="../../img/codesys-alles-is-groen.png"
+                        alt="De boomstructuur van het project met groene symbolen bij het device en de EtherCAT master">
+                    <figcaption>Groen betekent dat de verbinding staat</figcaption>
+                </figure>
+            </li>
+            <li>Rechtsklik op de EtherCAT master en kies Scan for devices. De coupler en de klemmen worden gevonden.
+                Klik op Copy All Devices to Project.
+                <figure>
+                    <img src="../../img/codesys-scan-for-devices-resultaat.png"
+                        alt="Het venster Scan Devices met de gevonden EK1100, EL1004 en EL2004">
+                    <figcaption>Wat de scan op je EtherCAT-segment gevonden heeft</figcaption>
+                </figure>
+            </li>
+        </ol>
+
+        <ol class="vragen">
+            <li class="screenshot">Plak hier een screenshot van het resultaat van je scan.</li>
+            <li>In welke volgorde staan de toestellen in de lijst, en waar komt die volgorde vandaan?</li>
+        </ol>
+
+        <h2>Het PLC-programma</h2>
+
+        <p>Je maakt eerst het eenvoudigste programma dat er is: een NOT-poort tussen een ingang en een uitgang.</p>
+
+        <ol>
+            <li>Open het PLC-programma.
+                <figure>
+                    <img src="../../img/codesys-plc-programma-openen.png"
+                        alt="De boomstructuur met PLC_PRG onder Application">
+                    <figcaption>PLC_PRG is je programma</figcaption>
+                </figure>
+            </li>
+            <li>Sleep een Box naar het netwerk.
+                <figure>
+                    <img src="../../img/codesys-box-naar-het-netwerk-slepen.png"
+                        alt="De toolbox van CODESYS waaruit een Box naar het lege netwerk gesleept wordt">
+                    <figcaption>Een Box uit de toolbox</figcaption>
+                </figure>
+            </li>
+            <li>Maak er een NOT-poort van.
+                <figure>
+                    <img src="../../img/codesys-box-als-not-poort.png"
+                        alt="De box in het netwerk waarin NOT getypt is">
+                    <figcaption>Typ NOT in de box</figcaption>
+                </figure>
+            </li>
+            <li>Zet bij de ingang in1.
+                <figure>
+                    <img src="../../img/codesys-input-in1-kiezen.png"
+                        alt="Het venster Input Assistant waarin de variabele in1 gekozen wordt">
+                    <figcaption>De ingang van je EL1004</figcaption>
+                </figure>
+            </li>
+            <li>Sleep een Assignment naar de uitgang van de box.
+                <figure>
+                    <img src="../../img/codesys-assignment-aan-de-output.png"
+                        alt="De toolbox waaruit een Assignment naar de uitgang van de box gesleept wordt">
+                    <figcaption>Zonder assignment komt het resultaat nergens terecht</figcaption>
+                </figure>
+            </li>
+            <li>Het resultaat ziet er dan zo uit.
+                <figure>
+                    <img src="../../img/codesys-netwerk-met-not-en-assignment.png"
+                        alt="Het netwerk met de NOT-box en een assignment die nog geen variabele heeft">
+                    <figcaption>De assignment moet nog een variabele krijgen</figcaption>
+                </figure>
+            </li>
+            <li>Verander de assignment naar out1.
+                <figure>
+                    <img src="../../img/codesys-assignment-out1-kiezen.png"
+                        alt="Het venster Input Assistant waarin de variabele out1 gekozen wordt">
+                    <figcaption>De uitgang van je EL2004</figcaption>
+                </figure>
+            </li>
+            <li>Nu ziet je netwerk er zo uit.
+                <figure>
+                    <img src="../../img/codesys-netwerk-not-in1-naar-out1.png"
+                        alt="Het afgewerkte netwerk: in1 gaat door een NOT-box naar out1">
+                    <figcaption>in1 door een NOT-poort naar out1</figcaption>
+                </figure>
+            </li>
+        </ol>
+
+        <h2>Het programma uitvoeren</h2>
+
+        <ol>
+            <li>Sla je project op.</li>
+            <li>Doe een Build &gt; Clean all.
+                <figure>
+                    <img src="../../img/codesys-build-clean-all.png"
+                        alt="Het menu Build met de optie Clean all">
+                    <figcaption>Build &gt; Clean all</figcaption>
+                </figure>
+            </li>
+            <li>Klik op Online &gt; Login.
+                <figure>
+                    <img src="../../img/codesys-online-login.png" alt="Het menu Online met de optie Login">
+                    <figcaption>Online &gt; Login</figcaption>
+                </figure>
+            </li>
+            <li>De EtherCAT-bus is nog niet gestart.
+                <figure>
+                    <img src="../../img/codesys-ethercat-bus-nog-niet-gestart.png"
+                        alt="De boomstructuur waarin de EtherCAT master nog niet actief is">
+                    <figcaption>De bus staat stil</figcaption>
+                </figure>
+            </li>
+            <li>Klik op Start.
+                <figure>
+                    <img src="../../img/codesys-start-in-de-werkbalk.png"
+                        alt="De werkbalk van CODESYS met de knop Start">
+                    <figcaption>Start</figcaption>
+                </figure>
+            </li>
+            <li>De bus draait nu.
+                <figure>
+                    <img src="../../img/codesys-ethercat-bus-gestart.png"
+                        alt="De boomstructuur waarin de EtherCAT master en de slaves groen zijn">
+                    <figcaption>De bus loopt</figcaption>
+                </figure>
+            </li>
+            <li>in1 is laag, dus out1 is hoog.
+                <figure>
+                    <img src="../../img/codesys-in1-laag-out1-hoog.png"
+                        alt="De I/O-mapping waarin in1 op FALSE staat en out1 op TRUE">
+                    <figcaption>Het gevolg van de NOT-poort</figcaption>
+                </figure>
+            </li>
+        </ol>
+
+        <h2>I/O forceren</h2>
+
+        <p>Er hangt nog geen knop aan in1. Je kan de toestand van in1 toch veranderen door de ingang te forceren.
+            Volg de screenshot.</p>
+
+        <figure>
+            <img src="../../img/codesys-io-forceren.png"
+                alt="De I/O-mapping waarin bij in1 een waarde ingevuld wordt om te forceren">
+            <figcaption>Vul een waarde in bij Prepared value en forceer ze</figcaption>
+        </figure>
+
+        <p>out1 wordt door de NOT-poort het omgekeerde van in1.</p>
+
+        <figure>
+            <img src="../../img/codesys-geforceerde-in1-en-out1.png"
+                alt="De I/O-mapping met een rood symbool bij in1 en out1 die omgekeerd meeloopt">
+            <figcaption>Het rode symbool toont dat de waarde geforceerd is</figcaption>
+        </figure>
+
+        <ol class="vragen">
+            <li class="screenshot">Plak hier een screenshot waarop je in1 geforceerd hebt en out1 het omgekeerde
+                toont.</li>
+            <li>Geef de waarde van in1 en out1 weer voor de twee toestanden.
+                <table class="verslag-tabel">
+                    <thead>
+                        <tr>
+                            <th>Toestand</th>
+                            <th>in1</th>
+                            <th>out1</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Niet geforceerd</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>in1 geforceerd op TRUE</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+        </ol>
+
+        <div class="info-box warning">
+            <div class="info-title warning">Geef je geforceerde waarden weer vrij</div>
+            <p>Een geforceerde waarde blijft staan tot je ze vrijgeeft. Doe je dat niet, dan reageert je programma
+                straks niet op de echte knop en lijkt je bedrading stuk.</p>
+        </div>
+
+        <h2>Oefening 1: de knop op een ingang</h2>
+
+        <p>Schakel de knop zo dat in1 hoog wordt wanneer je erop drukt. out1 hoort dan laag te worden, door de
+            NOT-poort.</p>
+
+        <p>Controleer of alles verloopt zoals je verwacht, en kijk in CODESYS mee of je de toestanden van de in- en
+            uitgangen ziet veranderen terwijl je drukt.</p>
+
+        <ol class="vragen">
+            <li class="screenshot">Plak hier een foto van je knop, aangesloten op de EL1004.</li>
+            <li>Op welk klempunt van de EL1004 komt de knop, en waar komt de andere draad van de knop terecht?</li>
+            <li>Wat lees je in CODESYS af bij in1 en bij out1 terwijl je de knop ingedrukt houdt?</li>
+        </ol>
+
+        <div class="info-box evaluation">
+            <div class="info-title evaluation">Laat oefening 1 controleren</div>
+            <p>Vraag de lector om je oefening te controleren voor je verdergaat.</p>
+        </div>
+
+        <h2>Oefening 2: de signaaltoren op twee uitgangen</h2>
+
+        <p>Schakel twee lampen van de signaaltoren, met out1 en out2. out2 moet je nog als variabele toevoegen en
+            aan een kanaal van de EL2004 koppelen.</p>
+
+        <p>Pas je programma aan zodat:</p>
+
+        <ul>
+            <li>out1 laag is en out2 hoog wanneer in1 laag is;</li>
+            <li>out1 hoog is en out2 laag wanneer in1 hoog is.</li>
+        </ul>
+
+        <p>Met andere woorden: druk je niet, dan is lamp 1 uit en lamp 2 aan. Druk je wel, dan is lamp 1 aan en
+            lamp 2 uit.</p>
+
+        <ol class="vragen">
+            <li class="screenshot">Plak hier een screenshot van je aangepaste netwerk in CODESYS.</li>
+            <li>Vul in waar je uitgangen op uitkomen.
+                <table class="verslag-tabel">
+                    <thead>
+                        <tr>
+                            <th>Variabele</th>
+                            <th>Kanaal op de EL2004</th>
+                            <th>Klemnummer op de signaaltoren</th>
+                            <th>Kleur van de lamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>out1</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>out2</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+            <li class="screenshot">Plak hier een foto van je signaaltoren terwijl de knop ingedrukt is.</li>
+        </ol>
+
+        <div class="info-box evaluation">
+            <div class="info-title evaluation">Laat oefening 2 controleren</div>
+            <p>Vraag de lector om je oefening te controleren voor je verdergaat.</p>
+        </div>
+
+        <h2>Oefening 3: een visualisatie</h2>
+
+        <p>Je maakt nu een scherm waarop je de toestand van je in- en uitgangen ziet, met een virtuele knop erbij.
+        </p>
+
+        <ol>
+            <li>Rechtsklik op de Application en kies Add Object &gt; Visualisation. Wordt er gevraagd om de
+                bibliotheek met visu symbols te installeren, dan hoeft dat niet.
+                <figure>
+                    <img src="../../img/codesys-add-object-visualisation.png"
+                        alt="Het menu Add Object met de optie Visualisation">
+                    <figcaption>Add Object &gt; Visualisation</figcaption>
+                </figure>
+            </li>
+            <li>Visualiseer in1, out1 en out2 met een lamp, en voeg een push switch toe. Die switch wordt straks je
+                virtuele knop.
+                <figure>
+                    <img src="../../img/codesys-visualisatie-lampen-en-push-switch.png"
+                        alt="De editor van de visualisatie met drie lampen en een push switch erop">
+                    <figcaption>Drie lampen en een schakelaar</figcaption>
+                </figure>
+            </li>
+            <li>Selecteer de lamp die bij in1 hoort en klik bij Variable op de drie puntjes.
+                <figure>
+                    <img src="../../img/codesys-lamp-variabele-koppelen.png"
+                        alt="De eigenschappen van de lamp met het veld Variable">
+                    <figcaption>Elk element krijgt zijn eigen variabele</figcaption>
+                </figure>
+            </li>
+            <li>Kies in1 in de lijst. Koppel out1 en out2 op dezelfde manier aan hun lamp.
+                <figure>
+                    <img src="../../img/codesys-variabele-in1-kiezen.png"
+                        alt="Het venster Input Assistant waarin in1 gekozen wordt voor de lamp">
+                    <figcaption>De variabele van de eerste lamp</figcaption>
+                </figure>
+            </li>
+            <li>Maak in je PLC-programma een nieuwe variabele vin1 van het type BOOL.
+                <figure>
+                    <img src="../../img/codesys-variabele-vin1-bool.png"
+                        alt="Het declaratiedeel van PLC_PRG met vin1 van het type BOOL">
+                    <figcaption>vin1 hangt aan geen enkel kanaal, ze bestaat alleen in je programma</figcaption>
+                </figure>
+            </li>
+            <li>Koppel die variabele aan de schakelaar en stel de schakelaar in op image_tapper.
+                <figure>
+                    <img src="../../img/codesys-push-switch-image-tapper.png"
+                        alt="De eigenschappen van de push switch met vin1 als variabele en image_tapper ingesteld">
+                    <figcaption>De schakelaar schrijft naar vin1</figcaption>
+                </figure>
+            </li>
+        </ol>
+
+        <p>Pas ten slotte je netwerk aan zodat:</p>
+
+        <ul>
+            <li>out1 actief wordt als in1 of vin1 actief is;</li>
+            <li>out2 actief wordt als in1 en vin1 allebei actief zijn.</li>
+        </ul>
+
+        <ol class="vragen">
+            <li class="screenshot">Plak hier een screenshot van je visualisatie terwijl het programma draait.</li>
+            <li class="screenshot">Plak hier een screenshot van je aangepaste netwerk, met de twee bewerkingen
+                erin.</li>
+            <li>Welke bewerking gebruik je voor out1 en welke voor out2, en waarom?</li>
+            <li>vin1 is niet aan een kanaal van de EL1004 gekoppeld. Wat zou er gebeuren als je dat wel deed?</li>
+        </ol>
+
+        <div class="info-box evaluation">
+            <div class="info-title evaluation">Laat oefening 3 controleren</div>
+            <p>Vraag de lector om je oefening te controleren.</p>
+        </div>
+
+        <h2>Opruimen</h2>
+
+        <p>Geef geforceerde waarden vrij, log uit, en haal je opstelling weer uit elkaar. Draai de modules van de
+            signaaltoren los in plaats van ze uit elkaar te trekken, en haal de klemmen van de rail met de oranje
+            hendels.</p>
+        -->
+    </div>
+
+    <script src="../../reference.js"></script>
+    <script src="../../back-link.js"></script>
+</body>
+
+</html>

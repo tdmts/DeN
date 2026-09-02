@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test jezelf</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Test jezelf</h1>
+
+        <p>Beantwoord elke vraag eerst zelf en klap daarna pas het antwoord open. Bij elk antwoord staat op welke
+            theoriepagina het uitgelegd wordt, dus lees die opnieuw wanneer je ernaast zat. Er wordt niets
+            bijgehouden en er staat geen punt op.</p>
+
+        <h2 id="vragen">Vragen</h2>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>1. Je netwerkkaart staat op <code>192.168.0.12</code> met subnetmasker
+                        <code>255.255.255.0</code>. Wat zegt dat masker?</strong></p>
+                <ol type="a">
+                    <li>Dat er maximaal 255 toestellen op het netwerk mogen</li>
+                    <li>Dat de eerste drie getallen het netwerk aanduiden en het laatste het toestel</li>
+                    <li>Dat het netwerk zijn adressen via DHCP uitdeelt</li>
+                    <li>Dat de default gateway op <code>255.255.255.0</code> staat</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Met dit masker horen alle adressen van <code>192.168.0.1</code> tot
+                    <code>192.168.0.254</code> bij hetzelfde netwerk. Hoeveel toestellen er effectief op staan en hoe
+                    ze hun adres krijgen, zegt het masker niet. Zie <a href="IPAdresEnDHCP.html">IP-adres en DHCP</a>.
+                </p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>2. Je zet je netwerkkaart op automatisch. Wat krijgt je toestel van de
+                        DHCP-server?</strong></p>
+                <ol type="a">
+                    <li>Alleen een IP-adres</li>
+                    <li>Alleen een IP-adres en een subnetmasker</li>
+                    <li>Een IP-adres, een subnetmasker en een default gateway, voor een bepaalde tijd</li>
+                    <li>Een adres dat in de hardware vastligt en dat mee verhuist naar elk netwerk</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord c.</strong> Je krijgt de drie instellingen samen, dus je moet verder niets zelf
+                    intypen. Antwoord d beschrijft het MAC-adres, dat je van de fabrikant krijgt en niet van de
+                    DHCP-server. Zie <a href="IPAdresEnDHCP.html">IP-adres en DHCP</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>3. Op de campus zenden verschillende accesspoints allemaal het SSID <code>eduroam</code>
+                        uit. Waaraan houd je die accesspoints uit elkaar?</strong></p>
+                <ol type="a">
+                    <li>Aan het kanaal waarop ze zenden</li>
+                    <li>Aan de wireless mode die ze gebruiken</li>
+                    <li>Dat kan niet: een SSID hoort uniek te zijn</li>
+                    <li>Aan het MAC-adres van het accesspoint</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord d.</strong> Dezelfde naam op alle accesspoints is hier net de bedoeling, zodat je
+                    toestel overschakelt terwijl je rondloopt. Het kanaal en de mode mogen verschillen, maar ze moeten
+                    niet, dus daaraan kan je ze niet herkennen. In inSSIDer staat het MAC-adres van elk accesspoint in
+                    de lijst. Zie <a href="SSID.html">SSID</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>4. Waarom is het een risico dat iedereen zelf zijn SSID mag kiezen?</strong></p>
+                <ol type="a">
+                    <li>Iemand kan een eigen accesspoint uitzenden onder de naam van een netwerk dat jij vertrouwt
+                    </li>
+                    <li>Twee netwerken met dezelfde naam blokkeren elkaar op hetzelfde kanaal</li>
+                    <li>Je router weigert te starten zolang de naam al in gebruik is</li>
+                    <li>Het SSID op de sticker onder de router klopt dan niet meer</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord a.</strong> Zo'n netwerk heet een <strong>evil twin</strong>. Je toestel ziet een
+                    vertrouwde naam en maakt verbinding, terwijl het verkeer via iemand anders loopt. Zie <a
+                    href="SSID.html">SSID</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>5. Welke generaties van 802.11 draagt de 2,4 GHz-band?</strong></p>
+                <ol type="a">
+                    <li>a, n en ac</li>
+                    <li>b, g en ac</li>
+                    <li>b, g en n</li>
+                    <li>n, ac en ax</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord c.</strong> De 5 GHz-band draagt a, n en ac. Dat n op allebei de banden
+                    voorkomt, is de reden dat je die letter in twee lijstjes terugvindt. Zie <a
+                    href="WirelessMode.html">Wireless mode</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>6. Je router staat op de 2,4 GHz-band in mixed b, g en n. Wat is daarvan het
+                        gevolg?</strong></p>
+                <ol type="a">
+                    <li>Alleen toestellen die n ondersteunen krijgen verbinding</li>
+                    <li>Ook oude toestellen krijgen verbinding, en dat kost snelheid voor iedereen</li>
+                    <li>De router zendt drie SSID's uit, een per generatie</li>
+                    <li>De instelling verandert niets: mixed haalt dezelfde snelheid als n alleen</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Zolang een toestel op b mag aansluiten, moet het netwerk daar rekening
+                    mee houden. De mode bepaalt bovendien welke beveiliging je kan kiezen: met b en g staat WEP nog in
+                    de lijst. Zie <a href="WirelessMode.html">Wireless mode</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>7. Waarvoor zijn de 2,4 GHz-band en de 5 GHz-band opgedeeld in kanalen?</strong></p>
+                <ol type="a">
+                    <li>Om per kanaal een andere beveiliging te kunnen instellen</li>
+                    <li>Om de snelheid van elk netwerk te begrenzen</li>
+                    <li>Om per kanaal een apart SSID te kunnen uitzenden</li>
+                    <li>Om meerdere netwerken naast elkaar te laten bestaan zonder dat de zenders elkaar storen</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord d.</strong> Ideaal heeft elk netwerk een kanaal dat niet overlapt met dat van de
+                    buren. In de praktijk zijn er vaak zoveel netwerken dat ze elkaar toch overlappen. Zie <a
+                    href="WirelessChannels.html">Wireless channels</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>8. In inSSIDer overlapt je netwerk met verschillende andere. Waarnaar kijk je om een beter
+                        kanaal te kiezen?</strong></p>
+                <ol type="a">
+                    <li>Naar het aantal netwerken per kanaal, en je neemt het kanaal met de minste</li>
+                    <li>Naar de beveiliging van de netwerken rond je</li>
+                    <li>Naar de hoogte van de bogen: overlappen met een zwak signaal kost je minder dan overlappen met
+                        een sterk</li>
+                    <li>Naar de wireless mode van de netwerken rond je</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord c.</strong> Volledig vrij zit je zelden, dus kies met wie je overlapt. Een zwak
+                    netwerk ver weg hindert je minder dan een sterk netwerk vlak naast je, ook al tel je op dat kanaal
+                    meer buren. Zie <a href="WirelessChannels.html">Wireless channels</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>9. In welke modes kan een router aan channel bonding doen, en wat gebeurt er met de
+                        bandbreedte?</strong></p>
+                <ol type="a">
+                    <li>In b en g; de bandbreedte zakt naar 10 MHz</li>
+                    <li>In n en ac; de bandbreedte verdubbelt tot ongeveer 40 MHz, en in ac kan ze tot 160 MHz gaan
+                    </li>
+                    <li>In elke mode; de bandbreedte blijft 20 MHz en alleen de snelheid stijgt</li>
+                    <li>Alleen in ac; de bandbreedte springt meteen naar 160 MHz</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> De router legt twee kanalen die tegen elkaar aan liggen samen, en in
+                    ac gaan sommige routers tot acht kanalen. In de router zelf heet de instelling <em>Channel
+                        Width</em>. Zie <a href="ChannelBonding.html">Channel bonding</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>10. Wanneer zet je channel bonding beter uit?</strong></p>
+                <ol type="a">
+                    <li>Op de 2,4 GHz-band, waar weinig ruimte is en een breed kanaal met meer netwerken tegelijk
+                        overlapt</li>
+                    <li>Op de 5 GHz-band, waar de kanalen te ver uit elkaar liggen om samen te leggen</li>
+                    <li>Zodra je router in n-modus staat</li>
+                    <li>Zodra je WPA2 met AES gebruikt</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord a.</strong> Een kanaal van 40 MHz neemt twee keer zoveel plaats in, en die plaats
+                    deel je met je buren. Op een drukke 2,4 GHz-band levert een kanaal van 20 MHz in de praktijk meer
+                    op. Zie <a href="ChannelBonding.html">Channel bonding</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>11. Je stelt bij de encryptie <em>TKIP + AES</em> in. Wat is het gevolg voor de snelheid
+                        van je netwerk?</strong></p>
+                <ol type="a">
+                    <li>Niets: allebei de algoritmes halen dezelfde snelheid</li>
+                    <li>Het netwerk wordt sneller, want er zijn twee algoritmes beschikbaar</li>
+                    <li>Je netwerk valt terug op wat de oudste toegelaten toestellen aankunnen, dus de hoge snelheden
+                        van n en ac haal je niet</li>
+                    <li>De snelheid hangt alleen van het kanaal af, niet van de encryptie</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord c.</strong> TKIP is gemaakt om op bestaande WEP-hardware te draaien. Zodra het in
+                    de instelling staat, geldt die grens voor je hele netwerk, ook voor de toestellen die AES
+                    aankunnen. Zie <a href="Beveiliging.html">Beveiliging van een draadloos netwerk</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>12. Waarvoor staat PSK, en wat volgt daaruit?</strong></p>
+                <ol type="a">
+                    <li>Private Security Key: elk toestel krijgt van de router een eigen sleutel</li>
+                    <li>Protected Session Key: de sleutel wordt bij elke verbinding vernieuwd</li>
+                    <li>Pre-Shared Key: de router wijzigt de sleutel automatisch na een bepaalde tijd</li>
+                    <li>Pre-Shared Key: iedereen op het netwerk gebruikt dezelfde sleutel, en wie ze ooit kreeg
+                        geraakt binnen tot je ze wijzigt</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord d.</strong> Daarom kies je ze lang, niet raadbaar en niet af te lezen van iets in
+                    de buurt. De sleutel die van de fabriek op de sticker staat, is bekend bij iedereen die even onder
+                    de router kijkt. Zie <a href="Beveiliging.html">Beveiliging van een draadloos netwerk</a>.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

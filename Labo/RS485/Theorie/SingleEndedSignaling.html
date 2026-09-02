@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single ended signaling</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Single ended signaling</h1>
+
+        <p>De eenvoudigste transmissiemethode gebruikt <strong>twee geleiders</strong>:</p>
+
+        <ol>
+            <li><strong>Datalijn</strong>: draagt het informatiesignaal</li>
+            <li><strong>Nullijn (massa of ground)</strong>: gemeenschappelijke referentie op 0 V</li>
+        </ol>
+
+        <figure class="figure-zoom">
+            <img src="../../../img/single-ended-signaling-schema.png" class="img-fluid"
+                alt="Handgetekend schema van single ended signaling: links een signaalbron met een zendversterker, daarnaast één datalijn naar een ontvangversterker rechts, met onder beide een gemeenschappelijke massalijn en een belastingsweerstand aan de uitgang van de ontvanger">
+            <figcaption class="figure-caption">Single ended signaling met een datalijn en een nullijn</figcaption>
+        </figure>
+
+        <p>Het <strong>spanningsverschil</strong> tussen beide lijnen bepaalt welke data verstuurd wordt.
+            Bijvoorbeeld:</p>
+
+        <ol>
+            <li>Digitale '0' = tussen 0 V en +0,8 V</li>
+            <li>Digitale '1' = tussen +2 V en +5 V</li>
+            <li>Tussen 0,8 V en 2 V = <strong>verboden zone</strong> (ongedefinieerd)</li>
+        </ol>
+
+        <div class="info-box">
+            <div class="info-title remark">Cruciaal</div>
+            <p>Zender en ontvanger moeten dezelfde massa delen, anders kloppen de spanningsverschillen niet meer. We
+                spreken van een <strong>gemeenschappelijke massa</strong> of <strong>common ground</strong>.</p>
+        </div>
+
+        <h2>Beperkingen</h2>
+
+        <p>Single ended signaling kent enkele belangrijke beperkingen:</p>
+
+        <ol>
+            <li><strong>Afstand</strong>: hoe langer de kabel, hoe meer <strong>attenuatie</strong> (signaaldemping)
+            </li>
+            <li><strong>Storing</strong>: externe ruis koppelt anders in op de datalijn dan op de massalijn, en telt
+                zo mee in het spanningsverschil dat de ontvanger meet</li>
+            <li><strong>Massaverschillen</strong>: over grote afstanden kunnen de twee massa's een verschillende
+                potentiaal krijgen</li>
+        </ol>
+
+        <div class="info-box">
+            <div class="info-title tip">Alternatief: differential signaling</div>
+            <p>Voor grotere afstanden of storingsgevoelige omgevingen gebruik je <strong>differential
+                    signaling</strong> (RS-485, CANbus&hellip;). Daar worden twee datalijnen gebruikt die tegengestelde
+                signalen voeren, waardoor ruis automatisch gecompenseerd wordt. Dat is de volgende pagina.</p>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

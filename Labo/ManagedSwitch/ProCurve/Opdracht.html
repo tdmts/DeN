@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opdracht ProCurve</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Opdracht HP ProCurve</h1>
+
+        <p class="lead">Je configureert een HP ProCurve via de seriële console. Je begint bij de consolekabel en het
+            commando <code>?</code>, en eindigt bij twee switches die met een trunk verbonden zijn, redundant
+            bekabeld en met prioriteit op de machinepoorten. Na elke oefening laat je je werk controleren.</p>
+
+        <div class="download-container">
+            <a href="../../../downloads/Labo-ManagedSwitch-ProCurve-verslag.docx">Opdracht downloaden</a>
+            <ul>
+                <li>De volledige opdracht staat in dit document, met ruimte voor je antwoorden en je screenshots.</li>
+                <li>Download het voor je begint.</li>
+                <li>Je dient het in via de opdracht op Orion.</li>
+            </ul>
+        </div>
+
+        <div class="info-box warning">
+            <div class="info-title warning">Kijk nooit in het uiteinde van een aangesloten glasvezelkabel</div>
+            <p>Bij de oefening met de trunkpoort werk je met glasvezel en met SFP-modules. Steek een SFP alleen in een
+                switch die uitstaat, raak de uiteinden van de kabel niet aan, en kijk er niet in.</p>
+        </div>
+
+        <!-- AUTEURSNOTITIES, geen student-inhoud.
+             1. De terminaluitvoer en de commando's hieronder komen letterlijk van de switch
+                (SCHRIJFSTIJL.md, "Toestelinvoer en toestelantwoord blijven letterlijk").
+                Regel 5 van scripts/check-content.py laat Cisco/ProCurve-CLI bewust met rust:
+                niet herformatteren, ook niet als de spelling raar oogt.
+             2. "erase startup config" bij de reset staat zonder koppelteken in de bron van de
+                Packet Tracer-oefening en met koppelteken bij de ProCurve. Dat verschil is echt:
+                de ProCurve verwacht "erase startup-config" en niet "erase startup-configuration",
+                en het document waarschuwt daar expliciet voor. Niet gelijktrekken.
+             3. Poortnummers (27, 28) zijn die van de switch van de auteur. De tekst zegt er
+                telkens bij dat de student zijn eigen nummer moet nemen. Niet vastpinnen. -->
+
+        <!-- verslag
+        De volledige opdracht staat hieronder en komt via scripts/export-verslag.py in het
+        verslagsjabloon terecht. Ze staat bewust niet op de pagina: de student werkt in het
+        document, en dezelfde opdracht op twee plaatsen laat hem twijfelen waar hij moet
+        antwoorden. Wijzig hier, draai daarna het script, en commit de docx mee.
+
+        <div class="info-box warning">
+            <div class="info-title warning">Kijk nooit in het uiteinde van een aangesloten glasvezelkabel</div>
+            <p>Bij de oefening met de trunkpoort werk je met glasvezel en met SFP-modules. Steek een SFP alleen in een
+                switch die uitstaat, raak de uiteinden van de kabel niet aan, en kijk er niet in. Sla je configuratie
+                op voor je de switch uitzet.</p>
+        </div>
+
+        <h2>Console poort</h2>
+
+        <p>Om de switch te configureren heb je een consolekabel nodig: langs de ene kant USB, langs de andere kant
+            RJ-45.</p>
+
+        <figure>
+            <img src="../../../img/procurve-consolekabel-usb-naar-rj45.jpg"
+                alt="Een consolekabel met aan de ene kant een USB-stekker en aan de andere kant een RJ-45-stekker">
+            <figcaption>De consolekabel</figcaption>
+        </figure>
+
+        <p>Je verbindt de kabel langs de ene kant met de consolepoort op de switch, en langs de andere kant met een
+            USB-poort op je computer.</p>
+
+        <figure>
+            <img src="../../../img/procurve-consolekabel-in-de-switch.jpg"
+                alt="Een HP ProCurve 2610-48 switch met de consolekabel in de consolepoort links naast de statusleds">
+            <figcaption>De kabel in de consolepoort van de switch</figcaption>
+        </figure>
+
+        <h2>Aanmelden op de console</h2>
+
+        <ol>
+            <li>Zet de switch aan.</li>
+            <li>Verbind de consolekabel met je computer en met de switch.</li>
+            <li>Open apparaatbeheer.</li>
+        </ol>
+
+        <figure>
+            <img src="../../../img/apparaatbeheer-openen.png"
+                alt="Het startmenu van Windows met apparaatbeheer ingetypt in het zoekvak">
+            <figcaption>Apparaatbeheer openen</figcaption>
+        </figure>
+
+        <p>Zoek je COM-poortnummer onder de sectie Poorten (COM &amp; LPT). In het voorbeeld hieronder is dat COM14.
+            Bij jou is dat waarschijnlijk een ander nummer.</p>
+
+        <figure>
+            <img src="../../../img/apparaatbeheer-com-poorten.png"
+                alt="Apparaatbeheer met de sectie Poorten opengeklapt en Prolific USB-to-Serial Comm Port COM14 geselecteerd">
+            <figcaption>De COM-poort van de consolekabel</figcaption>
+        </figure>
+
+        <p>Je hebt een programma nodig dat serieel kan communiceren met de switch. Er zijn verschillende
+            mogelijkheden, maar PuTTY wordt veel gebruikt. Installeer PuTTY via AcademicSoftware en open het.</p>
+
+        <p>Klik eerst Serial aan, vul je COM-poort in en klik op Open.</p>
+
+        <figure>
+            <img src="../../../img/putty-serial-com-poort-instellen.png"
+                alt="Het configuratievenster van PuTTY met connection type Serial aangevinkt, serial line COM14 en speed 9600">
+            <figcaption>PuTTY instellen op de seriële poort</figcaption>
+        </figure>
+
+        <p>Krijg je een zwart scherm, druk dan een paar keer op ENTER, tot je dit krijgt:</p>
+
+        <figure>
+            <img src="../../../img/putty-procurve-prompt.png"
+                alt="Een PuTTY-venster met onderaan de prompt ProCurve Switch 2610-24#">
+            <figcaption>De prompt van de switch</figcaption>
+        </figure>
+
+        <ul>
+            <li><code>#</code> wijst erop dat je root bent, dus administrator</li>
+            <li><code>2610</code> is het type van de switch</li>
+            <li><code>-24</code> is het aantal poorten, bij jou is dat misschien 48</li>
+            <li><code>PoE</code> staat voor Power over Ethernet</li>
+        </ul>
+
+        <h2>Werken met ?</h2>
+
+        <p>Wil je weten wat je allemaal met de switch kan doen, dan typ je het commando <code>?</code> in. Je krijgt
+            een overzicht van de mogelijke commando's.</p>
+
+        <figure>
+            <img src="../../../img/procurve-vraagteken-commandolijst.png"
+                alt="Terminalvenster met de lijst van beschikbare commando's die de switch toont na het commando vraagteken">
+            <figcaption>De commandolijst van de switch</figcaption>
+        </figure>
+
+        <p>Zoek in die lijst naar het commando <code>chassislocate</code>.</p>
+
+        <figure>
+            <img src="../../../img/procurve-chassislocate-in-de-lijst.png"
+                alt="Terminalvenster met het commando chassislocate en de omschrijving ervan in de commandolijst">
+            <figcaption>chassislocate in de lijst</figcaption>
+        </figure>
+
+        <p>Heb je het gevonden, dan druk je op CTRL+C om de rest van de oplijsting te stoppen. Typ nu het commando
+            <code>chassislocate</code> in en druk op ENTER. Je krijgt een foutmelding:</p>
+
+        <pre class="code-wrapper language-plaintext">
+incomplete input chassislocate
+        </pre>
+
+        <figure>
+            <img src="../../../img/procurve-chassislocate-incomplete-input.png"
+                alt="Terminalvenster met de foutmelding incomplete input chassislocate">
+            <figcaption>Het commando alleen is niet genoeg</figcaption>
+        </figure>
+
+        <p>Met een <code>?</code> na het commando kom je te weten hoe je het moet gebruiken. Dit zijn de
+            mogelijkheden:</p>
+
+        <pre class="code-wrapper language-plaintext">
+chassislocate blink
+chassislocate off
+chassislocate on
+        </pre>
+
+        <figure>
+            <img src="../../../img/procurve-chassislocate-opties.png"
+                alt="Terminalvenster met de drie opties blink, off en on achter het commando chassislocate">
+            <figcaption>De opties achter chassislocate</figcaption>
+        </figure>
+
+        <p>Probeer ze uit en kijk wat er gebeurt op de voorkant van de switch. Standaard duren <code>blink</code> en
+            <code>on</code> dertig minuten.</p>
+
+        <ol class="vragen">
+            <li>Waarvoor zou dit commando handig kunnen zijn? Tip: bij een groot bedrijf staan er meerdere switches
+                naast elkaar.</li>
+            <li>Laat de chassislocate-led één minuut blinken. Welk commando heb je gebruikt?</li>
+        </ol>
+
+        <h2>Reset factory settings</h2>
+
+        <p>Voor je aan het labo begint, zet je de configuratie van de switch terug op de fabrieksinstellingen. Zo
+            vertrek je van een blanco configuratie en zijn de instellingen van wie voor jou aan de beurt was
+            gewist.</p>
+
+        <p>In de handleiding van de ProCurve 2810 zie je op bladzijde 397 dat er twee manieren zijn: via de command
+            line en via de resetknop. In dit labo gebruik je alleen de command line.</p>
+
+        <pre class="code-wrapper language-plaintext">
+erase startup-config
+        </pre>
+
+        <div class="info-box warning">
+            <div class="info-title warning">Het commando is erase startup-config</div>
+            <p>Dus niet <code>erase startup-configuration</code>. Typ na <code>erase</code> een <code>?</code> als je
+                alle mogelijke combinaties wil zien.</p>
+        </div>
+
+        <figure>
+            <img src="../../../img/procurve-erase-vraagteken.png"
+                alt="Terminalvenster met de mogelijke aanvullingen achter het commando erase">
+            <figcaption>De opties achter erase</figcaption>
+        </figure>
+
+        <p>Reset de switch naar de fabrieksinstellingen als je dat nog niet gedaan hebt.</p>
+
+        <p><strong>Laat je oefening controleren.</strong></p>
+
+        <h2>Een VLAN maken</h2>
+
+        <p>Ga uit van een eenvoudig netwerk met twee types gebruikers: studenten en docenten. Je wil het verkeer van
+            die twee groepen van elkaar scheiden met twee afzonderlijke VLAN's.</p>
+
+        <ul>
+            <li>VLAN 100: Docent (rood)</li>
+            <li>VLAN 200: Student (blauw)</li>
+        </ul>
+
+        <figure>
+            <img src="../../../img/procurve-poorten-docent-en-student-vlan.png"
+                alt="De voorkant van de switch waarbij poort 1 en 2 rood omkaderd zijn en poort 5 en 7 blauw">
+            <figcaption>Rood wordt het docenten-VLAN, blauw het studenten-VLAN</figcaption>
+        </figure>
+
+        <p>Vraag eerst de huidige VLAN-configuratie op.</p>
+
+        <pre class="code-wrapper language-plaintext">
+show vlan
+        </pre>
+
+        <figure>
+            <img src="../../../img/procurve-show-vlan-standaard.png"
+                alt="Terminalvenster met de uitvoer van show vlan, met alleen DEFAULT_VLAN met id 1 in de lijst">
+            <figcaption>De VLAN-configuratie van een pas gereset switch</figcaption>
+        </figure>
+
+        <p>Ziet jouw uitvoer er anders uit, dan heb je de switch nog niet goed gereset. Er is nu één standaard-VLAN
+            met de naam DEFAULT_VLAN, en alle poorten zitten erin. Er is dus geen scheiding: op dit moment gedraagt
+            de managed switch zich als een gewone switch.</p>
+
+        <p>Elk VLAN heeft ook een id. Dat van DEFAULT_VLAN is 1. Het docenten-VLAN krijgt id 100, het
+            studenten-VLAN id 200.</p>
+
+        <p>Om een nieuw VLAN te maken moet je de switch configureren. Kijk met <code>?</code> wat je mogelijkheden
+            zijn. Het commando <code>configure</code> ziet er veelbelovend uit.</p>
+
+        <figure>
+            <img src="../../../img/procurve-configure-in-de-lijst.png"
+                alt="Terminalvenster met het commando configure in de commandolijst van de switch">
+            <figcaption>configure in de commandolijst</figcaption>
+        </figure>
+
+        <pre class="code-wrapper language-plaintext">
+configure
+        </pre>
+
+        <figure>
+            <img src="../../../img/procurve-commando-configure.png"
+                alt="Terminalvenster waarin het commando configure is ingetypt">
+            <figcaption>Het commando configure</figcaption>
+        </figure>
+
+        <p>De commandline is veranderd, want de switch staat nu in de configuratiecontext.</p>
+
+        <figure>
+            <img src="../../../img/procurve-configuratiecontext.png"
+                alt="Terminalvenster met de gewijzigde prompt die aangeeft dat de switch in de configuratiecontext staat">
+            <figcaption>De prompt in de configuratiecontext</figcaption>
+        </figure>
+
+        <p>Geef je nu <code>?</code> in, dan krijg je de commando's die je in die context kan uitvoeren. Een ervan is
+            <code>vlan</code>.</p>
+
+        <figure>
+            <img src="../../../img/procurve-vlan-in-de-lijst.png"
+                alt="Terminalvenster met het commando vlan in de lijst van de configuratiecontext">
+            <figcaption>vlan in de configuratiecontext</figcaption>
+        </figure>
+
+        <p>Alleen <code>vlan</code> ingeven is niet genoeg. Gebruik <code>vlan ?</code> om te zien wat wel kan.</p>
+
+        <figure>
+            <img src="../../../img/procurve-vlan-vraagteken.png"
+                alt="Terminalvenster met de uitvoer van vlan gevolgd door een vraagteken, waaruit blijkt dat het commando een id verwacht">
+            <figcaption>Het commando verwacht een id</figcaption>
+        </figure>
+
+        <pre class="code-wrapper language-plaintext">
+vlan 100
+        </pre>
+
+        <figure>
+            <img src="../../../img/procurve-vlan-100-context.png"
+                alt="Terminalvenster met de prompt die aangeeft dat de switch in de context van vlan 100 staat">
+            <figcaption>De context van VLAN 100</figcaption>
+        </figure>
+
+        <p>De context is opnieuw veranderd: alle commando's hebben nu betrekking op VLAN 100. Gebruik weer
+            <code>?</code> om te zien welke acties je in deze context kan ondernemen.</p>
+
+        <figure>
+            <img src="../../../img/procurve-vlan-context-vraagteken.png"
+                alt="Terminalvenster met de commando's die beschikbaar zijn binnen de context van een vlan">
+            <figcaption>De commando's binnen een VLAN-context</figcaption>
+        </figure>
+
+        <div class="info-box remark">
+            <div class="info-title remark">Untagged betekent hier: maakt deel uit van</div>
+            <p>Dat is misschien tegen de intuïtie in. <code>tagged</code> betekent het omgekeerde. Waarom die woorden
+                zo gekozen zijn, staat op de theoriepagina Trunk port vs access port.</p>
+        </div>
+
+        <p>Wil je poort 1 en 2 in VLAN 100 stoppen, dan moet je ze markeren als untagged. Geef
+            <code>untagged ?</code> in.</p>
+
+        <figure>
+            <img src="../../../img/procurve-untagged-vraagteken.png"
+                alt="Terminalvenster met de uitvoer van untagged gevolgd door een vraagteken, waaruit blijkt dat het commando een lijst van poorten verwacht">
+            <figcaption>Het commando verwacht een lijst van poorten</figcaption>
+        </figure>
+
+        <p>Dat zijn de cijfers die overeenkomen met de poorten op de voorkant van de switch, in dit geval 1 en 2. Dat
+            mogen twee aparte commando's zijn:</p>
+
+        <pre class="code-wrapper language-plaintext">
+untagged 1
+untagged 2
+        </pre>
+
+        <p>Maar je kan de poortnummers ook scheiden met een komma:</p>
+
+        <pre class="code-wrapper language-plaintext">
+untagged 1,2
+        </pre>
+
+        <p>Zijn het er veel, dan schrijf je een bereik: <code>untagged 1-8</code>. Verlaat daarna de context van VLAN
+            100 met <code>exit</code>.</p>
+
+        <ol class="vragen">
+            <li>Configureer nu zelf het studenten-VLAN, met id 200 en poort 5 en 7. Welke commando's heb je
+                gebruikt?</li>
+        </ol>
+
+        <p>Controleer de status van allebei de VLAN's.</p>
+
+        <pre class="code-wrapper language-plaintext">
+show vlan 100
+show vlan 200
+        </pre>
+
+        <figure>
+            <img src="../../../img/procurve-show-vlan-100.png"
+                alt="Terminalvenster met de uitvoer van show vlan 100 en de poorten die erin zitten">
+            <figcaption>show vlan 100</figcaption>
+        </figure>
+
+        <figure>
+            <img src="../../../img/procurve-show-vlan-200.png"
+                alt="Terminalvenster met de uitvoer van show vlan 200 en de poorten die erin zitten">
+            <figcaption>show vlan 200</figcaption>
+        </figure>
+
+        <p>Met <code>show vlan</code> heb je gezien dat de naam van de VLAN's cryptisch is.</p>
+
+        <figure>
+            <img src="../../../img/procurve-show-vlan-cryptische-namen.png"
+                alt="Terminalvenster met de uitvoer van show vlan waarin de twee nieuwe VLAN's een automatisch gegenereerde naam hebben">
+            <figcaption>De automatisch gegeven namen</figcaption>
+        </figure>
+
+        <ol class="vragen">
+            <li class="screenshot">Pas de namen zelf aan naar Docent en Student, en controleer met
+                <code>show vlan</code>. Plak een screenshot van het resultaat hieronder.</li>
+        </ol>
+
+        <figure>
+            <img src="../../../img/procurve-vlan-100-naam-docent.png"
+                alt="Terminalvenster waarin VLAN 100 de naam Docent heeft gekregen">
+            <figcaption>VLAN 100 heet nu Docent</figcaption>
+        </figure>
+
+        <figure>
+            <img src="../../../img/procurve-vlan-200-naam-student.png"
+                alt="Terminalvenster waarin VLAN 200 de naam Student heeft gekregen">
+            <figcaption>VLAN 200 heet nu Student</figcaption>
+        </figure>
+
+        <h2>Save settings</h2>
+
+        <p>Wat je tot nu toe hebt aangepast staat alleen in het werkgeheugen. Zet je de switch uit of start je hem
+            opnieuw op, dan is het weg.</p>
+
+        <p>Ga met <code>exit</code> terug tot je aan de begincontext <code>#</code> komt en voer
+            <code>write memory</code> uit. Heb je te veel <code>exit</code> gedaan en staat er <code>&gt;</code>, dan
+            kom je met <code>enable</code> terug bij <code>#</code>.</p>
+
+        <pre class="code-wrapper language-plaintext">
+write memory
+        </pre>
+
+        <p>Voer daarna <code>boot</code> uit. De switch start opnieuw op. Is hij opgestart, voer dan
+            <code>write terminal</code> uit. De huidige configuratie verschijnt in het terminalvenster, en als alles
+            goed is gegaan staan je twee VLAN's er nog.</p>
+
+        <figure>
+            <img src="../../../img/procurve-write-terminal-na-herstart.png"
+                alt="Terminalvenster met de uitvoer van write terminal, waarin de twee VLAN's na de herstart nog aanwezig zijn">
+            <figcaption>De configuratie na een herstart</figcaption>
+        </figure>
+
+        <h2>VLAN op 1 switch</h2>
+
+        <p>Neem een router uit de kast en zet die terug op de fabrieksinstellingen:</p>
+
+        <ol>
+            <li>Zet de router aan.</li>
+            <li>Laat hem volledig opstarten, tot het lampje 5 GHz oplicht.</li>
+            <li>Houd de resetknop tien seconden ingedrukt.</li>
+            <li>Alle lampjes gaan uit, de router start opnieuw op.</li>
+            <li>Laat hem opnieuw volledig opstarten, tot het lampje 5 GHz oplicht.</li>
+        </ol>
+
+        <figure>
+            <img src="../../../img/router-lan-en-wan-poorten.png"
+                alt="De achterkant van een router met vier LAN-poorten links en een gele WAN-poort rechts">
+            <figcaption>De LAN-poorten en de WAN-poort van de router</figcaption>
+        </figure>
+
+        <p>Verbind de router met een kabel vanaf een LAN-poort naar switchpoort 1, het docenten-VLAN. Verbind je
+            computer met een kabel naar switchpoort 2, ook het docenten-VLAN. Router en computer zitten nu allebei in
+            VLAN 100.</p>
+
+        <p>Controleer of je naar de configuratiepagina van de router kan surfen. Het IP-adres staat op de onderkant
+            van de router. Weet je niet hoe dat moet, vraag het dan tijdens het labo.</p>
+
+        <p>Test daarna de drie scenario's hieronder.</p>
+
+        <ol class="vragen">
+            <li><strong>Scenario 1.</strong> De router hangt aan switchpoort 1, je computer aan switchpoort 2. Ze
+                zitten dus in hetzelfde VLAN. Raak je aan de configuratiepagina van de router?</li>
+            <li><strong>Scenario 2.</strong> Verbind je computer met een andere poort, bijvoorbeeld poort 3 voor het
+                DEFAULT_VLAN of poort 5 voor het studenten-VLAN. Router en computer zitten nu in een verschillend
+                VLAN. Raak je aan de configuratiepagina? Verklaar je antwoord.</li>
+            <li><strong>Scenario 3.</strong> De router hangt aan switchpoort 5, je computer aan switchpoort 7. Ze
+                zitten weer in hetzelfde VLAN. Raak je aan de configuratiepagina?</li>
+        </ol>
+
+        <p>Leveren de drie scenario's het verwachte resultaat op, bekabel dan volgens scenario 2 en
+            <strong>laat je oefening controleren.</strong></p>
+
+        <h2>VLAN op 2 switches</h2>
+
+        <p>In de vorige oefening heb je een VLAN gemaakt en gebruikt. Dat werkt voor één switch, maar wat als je er
+            meerdere hebt? Dan moet het verkeer van de verschillende VLAN's tussen de switches uitgewisseld worden.
+            Een poort hoort toch bij één VLAN? Hoe raakt verkeer van een ander VLAN daar dan overheen?</p>
+
+        <p>Lees eerst de theoriepagina Trunk port vs access port van dit labo.</p>
+
+        <p>In de vorige oefening waren poort 1, 2, 5 en 7 access ports. Je hebt toen een computer aangesloten op
+            access port 2, waarop VLAN 100 geconfigureerd was. De computer weet niet dat VLAN's bestaan, en daarom
+            voegt de switch zelf informatie toe binnenin het frame dat de computer verstuurt. Access port 2 is immers
+            gemarkeerd als untagged, wat zoveel betekent als: hier komt een frame binnen zonder VLAN-informatie, geef
+            het de juiste mee. In dit geval die van VLAN 100.</p>
+
+        <figure>
+            <img src="../../../img/ethernetframe-met-802-1q-tag.png"
+                alt="Twee ethernetframes onder elkaar: bovenaan zonder VLAN-tag, onderaan met een 802.1Q-veld tussen het bron-MAC-adres en het EtherType">
+            <figcaption>De 802.1Q-tag die de switch in het frame invoegt</figcaption>
+        </figure>
+
+        <p>Een access port kan maar voor één untagged VLAN geconfigureerd zijn. Dat is logisch, want een toestel hoort
+            maar tot één netwerk. Maar zodra verkeer van verschillende VLAN's over verschillende switches heen moet,
+            volstaan access ports niet. Stel dat je poort 21 op allebei de switches als link zou gebruiken, dan kan
+            daar maar één VLAN untagged zijn, Docent of Student.</p>
+
+        <p>In dat geval heb je een trunk port nodig: een poort waarop je een toestel aansluit dat wel overweg kan met
+            meerdere VLAN's, meestal een andere switch. Daar markeer je de verschillende VLAN's als tagged. Er komen
+            immers frames binnen met VLAN-informatie, en de switch gebruikt die informatie om ze naar de juiste
+            poorten te sturen.</p>
+
+        <p>In deze oefening configureer je een trunkpoort, deze keer op een poort met glasvezelaansluiting. Bij de
+            switch van het voorbeeld is dat poort 27 of 28. Bij jou is dat misschien een ander nummer. Vraag twee
+            SFP's en een glasvezelkabel aan je lector.</p>
+
+        <div class="info-box warning">
+            <div class="info-title warning">Voor deze oefening krijg je geen hulp</div>
+            <p>Ze is volledig zelfstandig uit te voeren. Kijk nooit in de uiteindes van een aangesloten
+                glasvezelkabel. Draag zorg voor de SFP's, ze zijn niet goedkoop, en raak de uiteinden van een
+                glasvezelkabel niet aan. Steek de SFP's alleen in de switches als die uitstaan, en sla je configuratie
+                op voor je ze uitzet. Hetzelfde geldt als je de SFP's er weer uit wil halen.</p>
+        </div>
+
+        <p>In de configuratiecontext vind je het commando <code>trunk</code> terug. Dat alleen is niet genoeg, je moet
+            ook een poortnummer meegeven.</p>
+
+        <figure>
+            <img src="../../../img/procurve-trunk-vraagteken.png"
+                alt="Terminalvenster met de uitvoer van trunk gevolgd door een vraagteken, waaruit blijkt dat het commando een poortnummer verwacht">
+            <figcaption>Het commando trunk verwacht een poort</figcaption>
+        </figure>
+
+        <p>Zet je er een poortnummer achter, dan verwacht de switch nog een trunk group. Neem gewoon de eerste
+            beschikbare, <code>trk1</code>. Vervang 27 telkens door jouw poortnummer.</p>
+
+        <pre class="code-wrapper language-plaintext">
+trunk 27 trk1
+        </pre>
+
+        <p>Je hebt nu een trunkpoort gemaakt, maar nog niet gezegd welke VLAN's eraan gekoppeld zijn. Voer
+            <code>show interfaces</code> uit. Je poort is lid van trunk group Trk1, en dat wordt straks belangrijk
+            wanneer je die poort in een VLAN wil stoppen.</p>
+
+        <figure>
+            <img src="../../../img/procurve-show-interfaces-trk1.png"
+                alt="Terminalvenster met de uitvoer van show interfaces waarin de poort lid is van trunk group Trk1">
+            <figcaption>De poort zit in trunk group Trk1</figcaption>
+        </figure>
+
+        <p>Open de context van VLAN 100.</p>
+
+        <figure>
+            <img src="../../../img/procurve-vlan-100-context-voor-trunk.png"
+                alt="Terminalvenster met de prompt in de context van vlan 100">
+            <figcaption>Terug in de context van VLAN 100</figcaption>
+        </figure>
+
+        <p>Net als de vorige keer stop je een switchpoort in een VLAN, maar deze keer gebruik je
+            <code>tagged</code>, want het gaat over een trunkpoort.</p>
+
+        <pre class="code-wrapper language-plaintext">
+tagged 27
+        </pre>
+
+        <p>Dat lukt niet. Je krijgt de foutmelding <code>invalid input</code>.</p>
+
+        <figure>
+            <img src="../../../img/procurve-tagged-27-invalid-input.png"
+                alt="Terminalvenster met de foutmelding invalid input na het commando tagged 27">
+            <figcaption>tagged met het poortnummer werkt niet</figcaption>
+        </figure>
+
+        <ol class="vragen">
+            <li>Waarom weigert de switch <code>tagged 27</code>, terwijl <code>untagged 1</code> eerder wel
+                werkte?</li>
+        </ol>
+
+        <p>Het gaat nu immers niet meer over je poort, maar over je trunk group trk1. Pas het commando aan.</p>
+
+        <pre class="code-wrapper language-plaintext">
+tagged trk1
+        </pre>
+
+        <figure>
+            <img src="../../../img/procurve-tagged-trk1.png"
+                alt="Terminalvenster waarin het commando tagged trk1 wel aanvaard wordt">
+            <figcaption>Met de trunk group lukt het wel</figcaption>
+        </figure>
+
+        <p>Ga naar de context van VLAN 200 en doe daar hetzelfde. Controleer wat je gedaan hebt.</p>
+
+        <pre class="code-wrapper language-plaintext">
+show vlan 100
+show vlan 200
+        </pre>
+
+        <figure>
+            <img src="../../../img/procurve-show-vlan-100-met-trunk.png"
+                alt="Terminalvenster met de uitvoer van show vlan 100 waarin Trk1 als tagged poort verschijnt">
+            <figcaption>Trk1 zit tagged in VLAN 100</figcaption>
+        </figure>
+
+        <figure>
+            <img src="../../../img/procurve-show-vlan-200-met-trunk.png"
+                alt="Terminalvenster met de uitvoer van show vlan 200 waarin Trk1 als tagged poort verschijnt">
+            <figcaption>Trk1 zit tagged in VLAN 200</figcaption>
+        </figure>
+
+        <p>Test de vier scenario's hieronder.</p>
+
+        <ol class="vragen">
+            <li><strong>Scenario 1.</strong> Je laptop in het docenten-VLAN van switch 1, de router in het
+                docenten-VLAN van switch 1. Raak je aan de configuratiepagina van de router?</li>
+            <li><strong>Scenario 2.</strong> Je laptop in het docenten-VLAN van switch 1, de router in het
+                studenten-VLAN van switch 1. Je zou nu niet aan de configuratiepagina mogen raken. Klopt dat?</li>
+            <li><strong>Scenario 3.</strong> Je laptop in het docenten-VLAN van switch 1, de router in het
+                docenten-VLAN van switch 2. Hier moet de trunkpoort zijn werk doen. Raak je aan de
+                configuratiepagina?</li>
+            <li><strong>Scenario 4.</strong> Je laptop in het docenten-VLAN van switch 1, de router in het
+                studenten-VLAN van switch 2. Ook hier doet de trunkpoort zijn werk, maar je zit in een verschillend
+                VLAN. Je zou dus niet aan de configuratiepagina mogen raken. Klopt dat?</li>
+        </ol>
+
+        <p>Leveren de vier scenario's het verwachte resultaat op, bekabel dan volgens scenario 3 en <strong>laat je
+                oefening controleren.</strong></p>
+
+        <h2>Redundant bekabelen met Spanning Tree Protocol</h2>
+
+        <p>Verbind de twee switches redundant met elkaar, via ethernet of via glasvezel. Had je daarnet glasvezel,
+            neem dan nu koper, en omgekeerd. Redundant betekent hier: valt er een kabel weg, dan neemt een alternatief
+            pad het over.</p>
+
+        <p>Bekijk de theoriepagina over Spanning Tree Protocol en stel STP in op de switch. Raadpleeg daarvoor de
+            handleiding, gebruik <code>?</code>, of stel je vraag aan een AI.</p>
+
+        <div class="info-box warning">
+            <div class="info-title warning">Voor deze oefening krijg je geen hulp</div>
+            <p>Ze is volledig zelfstandig uit te voeren.</p>
+        </div>
+
+        <ol class="vragen">
+            <li>Met welke commando's heb je Spanning Tree ingesteld?</li>
+            <li>Zet je laptop in het docenten-VLAN van switch 1 en de router in het docenten-VLAN van switch 2, en
+                verbind de twee switches redundant. Trek één van de redundante kabels uit. Kan je nog naar de
+                configuratiepagina surfen?</li>
+            <li>Maak de redundante verbinding opnieuw en trek de andere redundante kabel uit. Kan je nog naar de
+                configuratiepagina surfen?</li>
+        </ol>
+
+        <p>Levert het scenario het verwachte resultaat op, <strong>laat je oefening dan controleren.</strong></p>
+
+        <h2>Prioriteit instellen met Quality of Service</h2>
+
+        <p>Bekijk de theoriepagina over QoS. Maak daarna een nieuw VLAN met de naam Machines en zet poort 10 en 11
+            erin.</p>
+
+        <p>Stel op die poorten het QoS-niveau zo in dat er een poging gedaan wordt om realtime machinebesturing toe
+            te laten. Raadpleeg daarvoor de handleiding, gebruik <code>?</code>, of stel je vraag aan een AI.</p>
+
+        <div class="info-box tip">
+            <div class="info-title tip">De switch heeft minder QoS-niveaus dan de standaard</div>
+            <p>Je vindt er dus niet acht terug. Kies het niveau dat het dichtst aanleunt bij wat je nodig hebt.</p>
+        </div>
+
+        <p>Controleer je instelling.</p>
+
+        <pre class="code-wrapper language-plaintext">
+show qos
+        </pre>
+
+        <div class="info-box warning">
+            <div class="info-title warning">Voor deze oefening krijg je geen hulp</div>
+            <p>Ze is volledig zelfstandig uit te voeren.</p>
+        </div>
+
+        <ol class="vragen">
+            <li>Welk QoS-niveau heb je gekozen, en waarom dat niveau?</li>
+            <li class="screenshot">Plak hieronder een screenshot van de uitvoer van <code>show qos</code>.</li>
+        </ol>
+
+        <p><strong>Laat je oefening controleren.</strong></p>
+        -->
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

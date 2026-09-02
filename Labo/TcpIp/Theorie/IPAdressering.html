@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPv4 en IPv6</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>IPv4 en IPv6</h1>
+
+        <p>Elk toestel op een netwerk heeft een IP-adres, en in de pakketten die je in Wireshark opvangt staat bij
+            elk pakket een <strong>source</strong> en een <strong>destination</strong>. Om die te kunnen lezen moet je
+            de twee schrijfwijzen herkennen die vandaag naast elkaar in gebruik zijn.</p>
+
+        <h2>IPv4</h2>
+
+        <ul>
+            <li>Vier getallen tussen 0 en 255, gescheiden door punten</li>
+            <li>Bijvoorbeeld <code>192.168.1.29</code></li>
+            <li>Een bereik van ongeveer 4 miljard (2<sup>32</sup>) adressen</li>
+        </ul>
+
+        <h2>IPv6</h2>
+
+        <ul>
+            <li>Acht groepen van vier hexadecimale cijfers, gescheiden door dubbele punten</li>
+            <li>Bijvoorbeeld <code>2a00:1450:400e:0806:0000:0000:0000:2003</code></li>
+            <li>Een bereik van 2<sup>128</sup> adressen</li>
+        </ul>
+
+        <p>Groepen die alleen uit nullen bestaan mag je inkorten, en voorloopnullen binnen een groep mag je weglaten.
+            Het adres hierboven staat daarom meestal geschreven als
+            <code>2a00:1450:400e:806::2003</code>. Die dubbele dubbelepunt staat voor de weggelaten nulgroepen en mag
+            maar een keer in een adres voorkomen.</p>
+
+        <h2>Waarom er twee zijn</h2>
+
+        <p>Door de groei van het internet, met smartphones en toestellen die zelf verbinding maken, raakt de voorraad
+            IPv4-adressen op. IPv6 is daarop het antwoord en maakt de adresruimte zoveel groter dat ze in de praktijk
+            onuitputtelijk is. De syllabus bij de theorie behandelt dat in detail.</p>
+
+        <p>De overstap gebeurt geleidelijk, dus veel servers zijn op allebei de manieren bereikbaar. Vraag je het
+            adres van <code>google.be</code> op, dan krijg je daarom twee antwoorden terug: een IPv4-adres en een
+            IPv6-adres van dezelfde server.</p>
+
+        <h2>Je eigen adres opzoeken</h2>
+
+        <p>Het commando <code>ipconfig</code> in een cmd-venster toont de adressen van al je netwerkadapters. Er
+            staan er meestal meerdere in, ook virtuele van programma's die je geïnstalleerd hebt. De adapter waar ook
+            een <strong>default gateway</strong> bij ingevuld staat, is de adapter waarmee je met het netwerk
+            verbonden bent, en het IPv4-adres daarvan is het jouwe.</p>
+
+        <div class="info-box remark">
+            <div class="info-title remark">Het MAC-adres staat naast het IP-adres</div>
+            <p>Naast een IP-adres heeft elke netwerkkaart een <strong>MAC-adres</strong>, dat in de hardware vastligt
+                en hetzelfde blijft als je van netwerk wisselt, bijvoorbeeld <code>78:98:E8:3C:F8:B6</code>. Het
+                IP-adres zegt waar je op dit moment zit, het MAC-adres zegt welk toestel je bent. In
+                <code>ipconfig /all</code> staat het als <em>Physical Address</em>.</p>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

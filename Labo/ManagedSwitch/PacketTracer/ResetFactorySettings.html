@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset factory settings</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Reset factory settings</h1>
+
+        <p>In deze oefening werk je met het commandovenster (de <strong>CLI</strong>) van de Cisco 2960-switch, een
+            switch die je in een bedrijfsomgeving tegenkomt. Je zet hem terug op zijn standaardinstellingen.</p>
+
+        <p><a href="../../../downloads/Labo-ManagedSwitch-ResetFactorySettings.pkt" target="_blank"
+                rel="noopener">Download het startbestand</a> en open het in Cisco Packet Tracer.</p>
+
+        <figure class="figure-zoom">
+            <img src="../../../img/packet-tracer-twee-pcs-op-een-switch.png" class="img-fluid"
+                alt="Packet Tracer met twee pc's die elk op een poort van dezelfde 2960-switch zijn aangesloten">
+            <figcaption class="figure-caption">Twee pc's op dezelfde switch</figcaption>
+        </figure>
+
+        <h2>Het probleem</h2>
+
+        <p>Op het eerste gezicht ziet alles er goed uit, maar de twee computers kunnen elkaar niet pingen. Er staat
+            nog een configuratie op de switch die in de weg zit. Je zet hem terug op fabrieksinstellingen met deze
+            commando's:</p>
+
+        <pre class="code-wrapper language-plaintext">
+erase startup config
+delete flash:vlan.dat
+delete flash:config.text
+reload
+write memory
+        </pre>
+
+        <div class="info-box warning">
+            <div class="info-title warning">Hierna is de configuratie weg</div>
+            <p>Na deze commando's start de switch opnieuw op met de fabrieksinstellingen. Alles wat erop
+                geconfigureerd stond is verdwenen.</p>
+        </div>
+
+        <div class="video-container">
+            <div class="ratio ratio-16x9">
+                <iframe src="https://www.youtube.com/embed/PCb2--6poTE"
+                    title="Reset factory settings in Packet Tracer"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

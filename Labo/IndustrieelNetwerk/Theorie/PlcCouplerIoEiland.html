@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLC, coupler en I/O-eiland</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>PLC, coupler en I/O-eiland</h1>
+
+        <p>In een fabriek staat de besturing van een machine op een <strong>PLC</strong>, en de knoppen, sensoren,
+            lampen en motoren die erbij horen hangen aan <strong>klemmen</strong> die ergens anders in de kast
+            zitten. Tussen die twee ligt een industrieel netwerk. Dit labo bouwt precies die drie delen op: een
+            PLC, een netwerk en een set klemmen.</p>
+
+        <h2>De PLC</h2>
+
+        <p>Een <strong>PLC</strong> (Programmable Logic Controller) is een computer die één programma draait, en dat
+            programma altijd in dezelfde cyclus:</p>
+
+        <ol>
+            <li>Alle ingangen inlezen en hun waarde vastleggen.</li>
+            <li>Het programma één keer volledig uitvoeren met die vastgelegde waarden.</li>
+            <li>Alle uitgangen in één keer wegschrijven.</li>
+        </ol>
+
+        <p>Daarna begint hij opnieuw. Die ronde heet de <strong>cyclustijd</strong> en duurt typisch een paar
+            milliseconden. Omdat de ingangen aan het begin van de cyclus bevroren worden, verandert een knop die je
+            halverwege het programma indrukt niets meer aan die ronde. Dat is bewust zo: het maakt het gedrag van
+            de machine voorspelbaar en herhaalbaar.</p>
+
+        <p>Je programmeert een PLC niet in C of Python, maar in een van de talen van de norm
+            <strong>IEC 61131-3</strong>. In dit labo gebruik je <strong>FBD</strong>, Function Block Diagram, waarin
+            je logische blokken tekent en met lijnen verbindt.</p>
+
+        <p>De PLC in dit labo is een Raspberry Pi met de CODESYS-runtime erop. Die runtime maakt van een gewone
+            computer een PLC: ze draait de cyclus hierboven en praat met het netwerk.</p>
+
+        <h2>De coupler</h2>
+
+        <p>Een <strong>coupler</strong> is het toestel dat het industriële netwerk aan de klemmen koppelt. De
+            <strong>EK1100</strong> die je in dit labo gebruikt, heeft aan de linkerkant twee RJ45-poorten voor de
+            netwerkkabel en aan de rechterkant een contact waarop je klemmen aanschuift. Wat over het netwerk
+            binnenkomt, zet hij om naar de interne bus tussen de klemmen, en omgekeerd.</p>
+
+        <p>De coupler heeft <strong>geen eigen programma</strong>. Hij beslist niets, hij rekent niet, hij geeft
+            alleen door. De logica zit in de PLC. Een coupler die je van het netwerk haalt, doet dus niets meer,
+            ook al staat er nog spanning op.</p>
+
+        <h2>Het I/O-eiland</h2>
+
+        <p>Een <strong>I/O-eiland</strong> is een coupler met zijn klemmen samen, op één plaats in de kast
+            gemonteerd. Het woord eiland slaat op die plaats: de PLC staat elders, en op deze plek in de machine
+            komen alle draden van de sensoren en de actuatoren toe.</p>
+
+        <p>De klemmen die je aanschuift, bepalen wat het eiland kan:</p>
+
+        <ul>
+            <li><strong>EL1004</strong>: vier digitale ingangen. Hier hang je knoppen en sensoren aan.</li>
+            <li><strong>EL2004</strong>: vier digitale uitgangen. Hier hang je lampen en andere stuurbare
+                verbruikers aan.</li>
+        </ul>
+
+        <p>Je kan er meer aanschuiven dan deze twee, en in elke volgorde. De coupler nummert ze van links naar
+            rechts, en die volgorde bepaalt hoe ze in je programma verschijnen. Verwissel je twee klemmen van
+            plaats, dan wisselen ook hun adressen.</p>
+
+        <div class="info-box remark">
+            <div class="info-title remark">De klemmen zijn dom, en dat is de bedoeling</div>
+            <p>Een EL1004 weet niet wat er aan zijn ingang hangt en een EL2004 weet niet wat hij aanschakelt. Ze
+                melden of er spanning staat, en ze zetten spanning op een klem als de PLC dat vraagt. Alles wat
+                daarop lijkt op een beslissing, gebeurt in het programma op de PLC.</p>
+        </div>
+
+        <h2>Wat waar zit</h2>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-striped table-bordered align-middle">
+                <caption class="table-caption">De drie delen van de opstelling en hun taak</caption>
+                <thead class="table-header-custom">
+                    <tr>
+                        <th>Deel</th>
+                        <th>In dit labo</th>
+                        <th>Taak</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PLC</td>
+                        <td>Raspberry Pi met CODESYS-runtime</td>
+                        <td>Draait het programma en beslist</td>
+                    </tr>
+                    <tr>
+                        <td>Netwerk</td>
+                        <td>EtherCAT over een gewone netwerkkabel</td>
+                        <td>Brengt de waarden heen en terug</td>
+                    </tr>
+                    <tr>
+                        <td>Coupler</td>
+                        <td>EK1100</td>
+                        <td>Koppelt het netwerk aan de klemmen</td>
+                    </tr>
+                    <tr>
+                        <td>Ingangsklem</td>
+                        <td>EL1004</td>
+                        <td>Leest of er 24 V op een ingang staat</td>
+                    </tr>
+                    <tr>
+                        <td>Uitgangsklem</td>
+                        <td>EL2004</td>
+                        <td>Zet 24 V op een uitgang wanneer de PLC dat vraagt</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

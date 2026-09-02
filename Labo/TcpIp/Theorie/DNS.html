@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNS</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>DNS</h1>
+
+        <p>Netwerkverkeer gaat naar een IP-adres, maar jij typt een naam zoals <code>google.be</code> in je browser.
+            Het <strong>Domain Name System</strong> vertaalt die naam naar het adres. Het is het telefoonboek van het
+            internet: je zoekt een naam op en je krijgt het nummer waarmee je die kan bereiken.</p>
+
+        <h2>Query en response</h2>
+
+        <p>Voor je computer een website kan opvragen, stuurt hij eerst een <strong>query</strong> naar een DNS-server
+            met de vraag welk adres bij de naam hoort. De server antwoordt met een <strong>response</strong>, en pas
+            daarna begint het verkeer naar dat adres.</p>
+
+        <p>Zo'n vraag stel je ook zelf, met het commando <code>nslookup</code>:</p>
+
+        <pre class="code-wrapper language-plaintext">
+nslookup google.be 8.8.8.8
+        </pre>
+
+        <p>Het eerste deel is de naam die je wil opzoeken, het tweede het adres van de DNS-server die je het vraagt.
+            <code>8.8.8.8</code> is een publieke DNS-server van Google. Er zijn er meer, zoals <code>1.1.1.1</code>
+            van Cloudflare en <code>9.9.9.9</code> van Quad9. Laat je het tweede deel weg, dan gebruikt je computer de
+            server die hij van het netwerk gekregen heeft.</p>
+
+        <h2>Twee antwoorden voor een naam</h2>
+
+        <p>Op een naam als <code>google.be</code> komen twee antwoorden terug, want die server is bereikbaar via
+            IPv4 en via IPv6:</p>
+
+        <ul>
+            <li>IPv4-adres: <code>142.251.142.195</code></li>
+            <li>IPv6-adres: <code>2a00:1450:400e:806::2003</code></li>
+        </ul>
+
+        <p>Die adressen verschillen van plaats tot plaats en van moment tot moment, want een grote dienst draait op
+            veel servers tegelijk en de DNS-server geeft je er een in de buurt. De adressen die jij te zien krijgt
+            zijn dus zelden dezelfde als die hierboven.</p>
+
+        <figure class="figure-zoom">
+            <img src="../../../img/wireshark-dns-query-responses.png" class="img-fluid"
+                alt="Wireshark met het filter dns, met standard query en standard query response pakketten waarin de opgevraagde naam en de gevonden adressen staan">
+            <figcaption class="figure-caption">Twee standard query responses, met in elk een van de twee adressen
+            </figcaption>
+        </figure>
+
+        <div class="info-box tip">
+            <div class="info-title tip">Er loopt altijd DNS-verkeer op de achtergrond</div>
+            <p>Programma's die op de achtergrond draaien, zoals Windows Update en je antivirus, stellen zelf ook
+                DNS-vragen. Je opname bevat dus meer dan wat jij zelf hebt gevraagd. Sluit zoveel mogelijk programma's
+                af en start je opname vlak voor je het commando geeft, dan blijft het overzichtelijk.</p>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

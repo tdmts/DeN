@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wat is RS-485?</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Wat is RS-485?</h1>
+
+        <p>RS-485 is een seriële interface die differential signaling gebruikt om informatie over te dragen tussen
+            verschillende zenders en ontvangers. Ze bestaat in twee uitvoeringen:</p>
+
+        <ol>
+            <li><strong>Tweedraads RS-485</strong>, half duplex</li>
+            <li><strong>Vierdraads RS-485</strong>, full duplex</li>
+        </ol>
+
+        <div class="info-box">
+            <div class="info-title remark">Praktijkvoorbeeld</div>
+            <p>In het labo gebruik je een 75176. Dat is een IC dat werkt volgens de tweedraadsversie van RS-485, dus
+                half duplex. In de datasheet lees je dat er maximaal 32 transceivers (transmitter plus receiver)
+                aanwezig kunnen zijn.</p>
+        </div>
+
+        <h2>Technische kenmerken</h2>
+
+        <p>De transceivers worden met elkaar verbonden in een <strong>bustopologie</strong>. Om transmissieproblemen
+            tegen te gaan twisten we de transmissielijnen en gebruiken we differentiële spanningen.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <thead class="table-header-custom">
+                    <tr>
+                        <th>Kenmerk</th>
+                        <th>Waarde</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Spanningsverschil dat de zender op de bus zet</td>
+                        <td>1,5 V tot 5 V</td>
+                    </tr>
+                    <tr>
+                        <td>Spanningsverschil dat de ontvanger nodig heeft</td>
+                        <td>200 mV</td>
+                    </tr>
+                    <tr>
+                        <td>Maximum afstand</td>
+                        <td>1200 meter</td>
+                    </tr>
+                    <tr>
+                        <td>Snelheid op 1200 m</td>
+                        <td>100 kbps</td>
+                    </tr>
+                    <tr>
+                        <td>Snelheid op &lt; 12 m</td>
+                        <td>10 Mbps</td>
+                    </tr>
+                    <tr>
+                        <td>Afsluitweerstand (terminator)</td>
+                        <td>120 &Omega;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Tussen die twee getallen zit de reden dat RS-485 tot 1200 meter haalt. De zender zet minstens
+            1,5 V verschil op de bus, en de ontvanger heeft er nog maar 200 mV van nodig om de bit te herkennen. Er
+            mag onderweg dus bijna negentig procent van dat verschil verdwijnen voor de ontvanger de bit verkeerd
+            leest.</p>
+
+        <div class="info-box">
+            <div class="info-title tip">Om reflecties tegen te gaan hoort er 120 &Omega; aan elk uiteinde</div>
+            <p>Weerkaatst het signaal aan het uiteinde van de lijn, dan stoort het zichzelf en leest de ontvanger
+                bits die de zender nooit gestuurd heeft. Daarom zet je aan beide uiteinden van de bus een
+                afsluitweerstand, een terminator. Die is doorgaans 120 &Omega;, de karakteristieke impedantie van een
+                getwist aderpaar.</p>
+        </div>
+
+        <div class="info-box small">
+            <div class="info-title remark">De 75176A zelf haalt 5 Mbps</div>
+            <p>Die 10 Mbps is wat de standaard toelaat, en dat is iets anders dan wat elk IC haalt. In de datasheet
+                van de 75176A schrijft de fabrikant onder <em>applications</em> dat de chip bedoeld is voor 5 Mbps of
+                minder, en verwijst hij voor 10 Mbps naar de 75176B. In dit labo verstuur je aan 9600 baud, dus je
+                komt daar ruim onder.</p>
+        </div>
+
+        <h2>Wat is het verschil tussen RS-485 en RS-232?</h2>
+
+        <p>RS-232 is een andere, veelgebruikte standaard voor seriële communicatie. De voornaamste verschillen zijn:
+        </p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <thead class="table-header-custom">
+                    <tr>
+                        <th>Aspect</th>
+                        <th>RS-485</th>
+                        <th>RS-232</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Signalering</td>
+                        <td>Differential signaling</td>
+                        <td>Single ended signaling</td>
+                    </tr>
+                    <tr>
+                        <td>Gevoeligheid voor ruis</td>
+                        <td>Laag</td>
+                        <td>Hoog</td>
+                    </tr>
+                    <tr>
+                        <td>Maximum afstand</td>
+                        <td>1200 meter</td>
+                        <td>&plusmn; 15 meter</td>
+                    </tr>
+                    <tr>
+                        <td>Maximum snelheid</td>
+                        <td>10 Mbps (&lt; 12 m)</td>
+                        <td>20 kbps volgens de standaard, in de praktijk halen UARTs 115,2 kbps</td>
+                    </tr>
+                    <tr>
+                        <td>Netwerktopologie</td>
+                        <td>Multipoint, maximaal 32 stations</td>
+                        <td>Point-to-point, maximaal 2 stations</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

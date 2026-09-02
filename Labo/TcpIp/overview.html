@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labo TCP/IP met Wireshark</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Labo TCP/IP met Wireshark</h1>
+
+        <p class="lead">Netwerkverkeer is onzichtbaar zolang alles werkt, en dat maakt het lastig op het moment
+            dat het niet werkt. Met Wireshark leg je het stil en lees je pakket per pakket wat er over de lijn gaat:
+            welke adressen erin staan, wat een toestel vraagt en wat er terugkomt. In dit labo leer je die pakketten
+            lezen op het verkeer van je eigen computer.</p>
+
+        <h2 id="studiemateriaal">Studiemateriaal</h2>
+
+        <h3>Hardware</h3>
+
+        <ul>
+            <li><strong>Laptop</strong> met een netwerkverbinding, bekabeld of draadloos (breng je zelf mee)</li>
+        </ul>
+
+        <h3>Software</h3>
+
+        <div class="download-container">
+            <a href="https://www.wireshark.org/#download" target="_blank" rel="noopener">Wireshark</a>
+            <ul>
+                <li>Een digitale multimeter voor netwerkverkeer</li>
+                <li>Installeer het met alle standaardopties</li>
+            </ul>
+        </div>
+
+        <div class="download-container">
+            <a href="../../datasheets/diagslave-3-5.zip">Modbus slave (diagslave)</a>
+            <ul>
+                <li>Simuleert een Modbus TCP-toestel, bijvoorbeeld een PLC</li>
+                <li>Pak het uit in een eigen map</li>
+            </ul>
+        </div>
+
+        <div class="download-container">
+            <a href="../../datasheets/modpoll-3-16.zip">Modbus master (modpoll)</a>
+            <ul>
+                <li>Stuurt een Modbus TCP-toestel aan</li>
+                <li>Pak het uit in een aparte map</li>
+            </ul>
+        </div>
+
+        <h2 id="theorie">Theorie</h2>
+
+        <p>De theorie bij dit labo staat bij <strong>Theorie</strong>. Elk onderdeel van de opdracht gaat over een
+            protocol dat daar uitgelegd staat, dus lees ze voor je begint.</p>
+
+        <h2 id="opdracht">Opdracht</h2>
+
+        <p>Welk verkeer je onderschept en wat je erin opzoekt, staat bij <strong>Opdracht</strong>. Daar download
+            je het verslagdocument waarin je werkt: je vult het in terwijl je bezig bent en je dient het achteraf
+            in.</p>
+
+        <h2 id="doelstellingen">Doelstellingen</h2>
+
+        <p>Op het einde van dit labo kan je:</p>
+
+        <ol>
+            <li>Netwerkverkeer onderscheppen met Wireshark, het juiste display filter instellen
+                (<code>icmp</code>, <code>dns</code>, <code>dhcp</code>, <code>modbus</code>) en het exporteren naar
+                een <code>.pcapng</code>-bestand</li>
+            <li>ICMP-verkeer analyseren: de request- en reply-pakketten van een ping herkennen en er het IP-adres van
+                de bestemmingshost uit afleiden</li>
+            <li>Een DNS-query uitvoeren met <code>nslookup</code> en het IPv4- en het IPv6-adres uit de responses
+                halen</li>
+            <li>De vier stappen van een DHCP-cyclus (Discover, Offer, Request, Acknowledge) herkennen in het
+                onderschepte verkeer</li>
+            <li>Een Modbus TCP-verbinding opzetten tussen een master en een slave, een waarde naar een holding
+                register schrijven en weer uitlezen, en dat verkeer analyseren</li>
+        </ol>
+
+        <h2 id="evaluatie">Evaluatie</h2>
+
+        <div class="info-box evaluation">
+            <div class="info-title evaluation">Hoe dit labo meetelt</div>
+            <p>Een test, gesloten boek, met giscorrectie bij MC- en MA-vragen bepaalt je punt voor dit labo, met
+                vragen uit de theorie van de syllabus en uit het praktische gedeelte. Hoe het meetelt voor je eindcijfer, staat op de <a href="../../Algemeen/Evaluatie.html" target="_blank" rel="noopener">evaluatiepagina</a>.
+                Wanneer het doorgaat en hoeveel sessies je ervoor hebt, staat in de <a href="../../Algemeen/Planning.html" target="_blank" rel="noopener">planning</a>.</p>
+            <p>Je verslag telt niet mee voor je punten, maar de test gaat over wat je erin hebt genoteerd, dus vul
+                het in terwijl je bezig bent.</p>
+        </div>
+    </div>
+
+    <script src="../../reference.js"></script>
+    <script src="../../back-link.js"></script>
+</body>
+
+</html>

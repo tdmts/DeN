@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CODESYS en de ESI-bestanden</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>CODESYS en de ESI-bestanden</h1>
+
+        <p><strong>CODESYS</strong> is de ontwikkelomgeving waarin je het programma voor de PLC schrijft. Ze is niet
+            van één fabrikant: dezelfde omgeving stuurt toestellen van tientallen merken aan, zolang die de norm
+            <strong>IEC 61131-3</strong> volgen. Je installeert ze op je eigen computer, en het programma dat je
+            maakt stuur je door naar de PLC.</p>
+
+        <h2>De runtime op de Raspberry Pi</h2>
+
+        <p>Op de Raspberry Pi staat de <strong>CODESYS-runtime</strong>. Dat is het stuk software dat van de Pi een
+            PLC maakt: het draait de cyclus van inlezen, rekenen en wegschrijven, en het praat met het
+            EtherCAT-netwerk. Zo'n PLC in software heet een <strong>soft-PLC</strong>.</p>
+
+        <p>De Pi heeft daarvoor twee netwerkverbindingen nodig, en die hebben elk hun eigen taak:</p>
+
+        <ul>
+            <li><strong>wlan0</strong>, de draadloze verbinding met het gewone netwerk. Daarover vindt CODESYS de
+                PLC en stuurt het je programma door, en daarover maak je ook een SSH-verbinding.</li>
+            <li><strong>eth0</strong>, de bekabelde poort. Die gaat rechtstreeks naar de EK1100 en draagt het
+                EtherCAT-verkeer.</li>
+        </ul>
+
+        <p>Verwissel je die twee, dan vindt CODESYS de PLC niet meer of blijft het EtherCAT-netwerk leeg.</p>
+
+        <h2>De ESI-bestanden</h2>
+
+        <p>CODESYS kent de klemmen van Beckhoff niet vanzelf. Voor elk toestel bestaat er een
+            <strong>ESI-bestand</strong>, EtherCAT Slave Information, een XML-bestand van de fabrikant waarin staat
+            wat het toestel kan: hoeveel in- en uitgangen het heeft, welke gegevens het in het frame zet, en welke
+            instellingen het aanvaardt.</p>
+
+        <p>Die bestanden voeg je één keer toe aan de <strong>Device Repository</strong> van CODESYS. Vanaf dan
+            staan de EK1100, de EL1004 en de EL2004 in de lijst met toestellen die je aan een project kan
+            toevoegen. Zonder die bestanden vindt een scan van het netwerk wel iets, maar weet CODESYS niet wat het
+            gevonden heeft, en krijg je de in- en uitgangen niet in je programma.</p>
+
+        <p>De repository hoort bij je installatie van CODESYS en niet bij je project. Je doet dit dus één keer per
+            computer, en niet opnieuw voor elk nieuw project.</p>
+
+        <h2>De boomstructuur van een project</h2>
+
+        <p>Links in CODESYS staat je project als een boom. De belangrijkste takken:</p>
+
+        <ul>
+            <li><strong>Device</strong> is de PLC zelf. Hier vul je in met welk toestel je verbindt, in dit geval
+                het adres van de Raspberry Pi.</li>
+            <li>Onder <strong>Application</strong> zit je programma, standaard <strong>PLC_PRG</strong> genoemd.</li>
+            <li>De <strong>EtherCAT master</strong> hangt onder Device, en daaronder komen de slaves die je
+                toevoegt of die de scan gevonden heeft.</li>
+        </ul>
+
+        <h2>Programmeren in FBD</h2>
+
+        <p>Van de talen uit de norm gebruik je in dit labo <strong>FBD</strong>, Function Block Diagram. Je tekent
+            je logica als blokken met lijnen ertussen, in plaats van ze uit te schrijven. Een FBD-programma bestaat
+            uit <strong>netwerken</strong>, en elk netwerk is één stukje logica dat elke cyclus opnieuw doorlopen
+            wordt.</p>
+
+        <p>De twee bouwstenen die je nodig hebt:</p>
+
+        <ul>
+            <li>Een <strong>Box</strong> is een blok met een bewerking erin. Sleep je er een in het netwerk, dan
+                staat er <code>???</code> in, en typ je zelf welke bewerking het is: <code>NOT</code>,
+                <code>AND</code>, <code>OR</code> en zo verder. Aan de linkerkant komt de ingang, aan de rechterkant
+                het resultaat.</li>
+            <li>Een <strong>Assignment</strong> schrijft dat resultaat naar een variabele. Zonder assignment rekent
+                je netwerk wel iets uit, maar komt het nergens terecht.</li>
+        </ul>
+
+        <h2>Variabelen en de koppeling met de klemmen</h2>
+
+        <p>Een in- of uitgang van een klem wordt in je programma een <strong>variabele van het type BOOL</strong>,
+            een waarde die alleen <code>TRUE</code> of <code>FALSE</code> kan zijn. Die koppeling maak je in het
+            tabblad met de I/O-mapping van de slave: daar staat elk kanaal van de klem, en je geeft het de naam
+            waaronder je het in je programma wil gebruiken.</p>
+
+        <p>Een variabele die aan geen enkel kanaal gekoppeld is, bestaat wel maar volgt geen klem. Dat is nuttig
+            voor een knop op een scherm, en het is een veelgemaakte fout wanneer je een echte ingang bedoelde.</p>
+
+        <h2>Login, download en start</h2>
+
+        <p>Er zijn twee versies van je programma: die op je scherm en die op de PLC. Drie stappen brengen ze samen:</p>
+
+        <ol>
+            <li><strong>Login</strong> maakt de verbinding met de PLC en vergelijkt wat er draait met wat jij open
+                hebt staan.</li>
+            <li><strong>Download</strong> stuurt je programma naar de PLC.</li>
+            <li><strong>Start</strong> laat de PLC de cyclus effectief lopen.</li>
+        </ol>
+
+        <p>Zolang je ingelogd bent, toont CODESYS de waarden van je variabelen terwijl het programma draait. Dat is
+            de snelste manier om te zien of je bedrading klopt: druk op de knop en kijk of de variabele van
+            <code>FALSE</code> naar <code>TRUE</code> springt.</p>
+
+        <div class="info-box tip">
+            <div class="info-title tip">Bewerk je programma en de PLC draait nog het oude</div>
+            <p>Een wijziging die je typt terwijl je ingelogd bent, staat nog niet op de PLC. Log uit, sla op, en
+                doe opnieuw een download. Zie je gedrag dat niet bij je code past, controleer dan eerst of wat
+                draait wel is wat je denkt.</p>
+        </div>
+
+        <h2>I/O forceren</h2>
+
+        <p>Met <strong>forceren</strong> leg je een variabele zelf op <code>TRUE</code> of <code>FALSE</code> vast,
+            en negeert de PLC wat de klem meldt. Zo test je je programma voor je hardware aangesloten is: je
+            forceert een ingang en kijkt of de uitgang doet wat je verwacht.</p>
+
+        <p>Een geforceerde waarde blijft staan tot je ze weer vrijgeeft. CODESYS toont daarom een rood symbool bij
+            elke variabele die geforceerd is. Vergeet je dat vrij te geven, dan reageert je schakeling niet meer op
+            de echte knop en lijkt de bedrading stuk.</p>
+
+        <h2>Visualisatie</h2>
+
+        <p>Een <strong>visualisatie</strong> is een scherm dat je in hetzelfde project tekent en dat op de PLC mee
+            draait. Je sleept er elementen op zoals een lamp of een schakelaar, en je koppelt elk element aan een
+            variabele. De lamp gaat branden wanneer de variabele <code>TRUE</code> is, en een schakelaar zet zelf
+            een variabele om.</p>
+
+        <p>Zo maak je een bedieningspaneel zonder extra hardware. In een echte machine is dat het touchscreen op de
+            kast.</p>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

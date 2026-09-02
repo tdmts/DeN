@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opdracht Draadloos netwerk</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Opdracht Draadloos netwerk</h1>
+
+        <p class="lead">Je reset een router, sluit er bekabeld op aan en stelt daarna stap voor stap je eigen
+            draadloos netwerk in: het SSID, de wireless mode, het kanaal, de kanaalbreedte en de beveiliging. Na elke
+            wijziging scan je met inSSIDer en noteer je wat er veranderd is.</p>
+
+        <div class="download-container">
+            <a href="../../downloads/Labo-DraadloosNetwerk-verslag.docx">Opdracht downloaden</a>
+            <ul>
+                <li>De volledige opdracht staat in dit document, met ruimte voor je antwoorden en je screenshots.</li>
+                <li>Download het voor je begint.</li>
+                <li>Je dient het in via de opdracht op Orion.</li>
+            </ul>
+        </div>
+
+        <!-- AUTEURSNOTITIES, geen student-inhoud.
+             1. De uitleg over SSID, wireless mode, kanalen, channel bonding en beveiliging stond
+                in de bron-docx verweven met de oefeningen. Ze staat nu op zes theoriepagina's en
+                de opdracht verwijst ernaar. Zet ze hier niet opnieuw bij: dan staat hetzelfde op
+                twee plaatsen en drijft het uit elkaar.
+             2. De screenshots komen van een D-Link-router. Een ander model heeft andere menu's,
+                daarom staat er bij elke stap wat je zoekt en niet alleen waar je moet klikken.
+             3. "2AUTO_Initialen" is de afgesproken naamgeving voor de SSID's, zodat in een lokaal
+                vol routers duidelijk is welke van wie is. Niet veralgemenen naar een voorbeeld.
+             4. Het verslag telt niet mee voor de punten, de test wel, en die gaat over wat hier
+                gevraagd wordt. Dat staat op overview.html en hoeft hier niet herhaald. -->
+
+        <!-- verslag
+        De volledige opdracht staat hieronder en komt via scripts/export-verslag.py in het
+        verslagsjabloon terecht. Ze staat bewust niet op de pagina: de student werkt in het
+        document, en dezelfde opdracht op twee plaatsen laat hem twijfelen waar hij moet
+        antwoorden. Wijzig hier, draai daarna het script, en commit de docx mee.
+
+        <div class="info-box tip">
+            <div class="info-title tip">Vul dit document in terwijl je bezig bent</div>
+            <p>Je verslag telt niet mee voor je punten, maar de test op het einde gaat over wat je hier hebt
+                genoteerd. Vul het in terwijl je bezig bent, want achteraf heb je de router niet meer bij de
+                hand.</p>
+        </div>
+
+        <h2>Reset de router</h2>
+
+        <p>De router die je krijgt is waarschijnlijk al gebruikt door iemand anders en staat vol instellingen die
+            niet passen bij wat jij gaat doen. Daarom reset je hem altijd eerst.</p>
+
+        <ol>
+            <li>Voorzie de router van spanning.</li>
+            <li>Verbind nog geen netwerkkabels en maak nog geen draadloze verbinding.</li>
+            <li>Laat de router opstarten. Het aan-lampje, het 2.4G-lampje en het 5G-lampje branden.</li>
+            <li>Houd de resetknop tien seconden ingedrukt en laat los. Het aan-lampje blijft branden, de rest gaat
+                uit.</li>
+            <li>Wacht tot het aan-lampje, het 2.4G-lampje en het 5G-lampje opnieuw branden.</li>
+        </ol>
+
+        <p>Neem nu een foto van de onderkant van de router en plak die hieronder. Omcirkel de SSID's en de
+            bijbehorende wachtwoorden in het rood, en het IP-adres, de gebruikersnaam en het wachtwoord om aan te
+            melden op de router in het blauw. Die gegevens heb je verderop nog nodig.</p>
+
+        <div class="verslag-kader" data-verslag="Foto van de onderkant van de router, met de gegevens omcirkeld">
+        </div>
+
+        <h2>Scannen naar draadloze netwerken</h2>
+
+        <p>Installeer inSSIDer als je dat nog niet gedaan hebt, open het programma en klik op <strong>Networks</strong>.
+        </p>
+
+        <figure>
+            <img src="../../img/inssider-tabblad-networks.png"
+                alt="Het beginscherm van inSSIDer met bovenaan de twee tabbladen Learn en Networks">
+            <figcaption>Klik op Networks</figcaption>
+        </figure>
+
+        <p>Het programma scant naar alle draadloze netwerken die je netwerkadapter kan ontvangen.</p>
+
+        <figure>
+            <img src="../../img/inssider-lijst-met-netwerken.png"
+                alt="Het venster van inSSIDer met een tabel van draadloze netwerken, met per netwerk het SSID, het signaal, het kanaal, de beveiliging, het MAC-adres en de 802.11-modus">
+            <figcaption>Elk netwerk in de buurt, met zijn kanaal en zijn beveiliging</figcaption>
+        </figure>
+
+        <p>Zoek je eigen netwerk in de lijst. Het SSID van je router staat op de sticker onderaan het toestel. Staat
+            het er niet tussen, start inSSIDer dan opnieuw op.</p>
+
+        <ol class="vragen">
+            <li class="screenshot">Plak een screenshot van wat je ziet in inSSIDer, en markeer duidelijk je eigen
+                draadloze netwerk of netwerken.</li>
+            <li>Hoeveel SSID's zendt je router uit? Schrap wat niet past: geen / 1 / 2 / 3.</li>
+            <li>Wat is of zijn de namen van die SSID's? Komt dat overeen met wat je op de onderkant van de router hebt
+                gevonden?</li>
+        </ol>
+
+        <h2>DHCP instellen op je laptop</h2>
+
+        <p>Voor je de router kan configureren, moet je computer klaarstaan om er verbinding mee te maken. Wat een
+            IP-adres, een subnetmasker, een default gateway en DHCP precies zijn, staat op de theoriepagina IP-adres
+            en DHCP.</p>
+
+        <div class="info-box remark">
+            <div class="info-title remark">Configureer via de netwerkkabel</div>
+            <p>Verandert er een draadloze instelling terwijl je draadloos verbonden bent, dan valt je verbinding weg
+                en raak je er misschien niet meer op.</p>
+        </div>
+
+        <p>Open de Windows-netwerkverbindingen. De snelkoppeling ernaartoe hangt af van de taalinstellingen van je
+            computer, dus gebruik het commando dat overal werkt:</p>
+
+        <pre class="code-wrapper language-plaintext">
+Start -> ncpa.cpl
+        </pre>
+
+        <p>Zoek de netwerkadapter waarmee je straks bekabeld verbinding maakt. Twijfel je, vraag het dan aan je
+            lector.</p>
+
+        <figure>
+            <img src="../../img/windows-netwerkverbindingen.png"
+                alt="Het venster Netwerkverbindingen van Windows met de aanwezige netwerkadapters">
+            <figcaption>De netwerkadapters van je computer</figcaption>
+        </figure>
+
+        <p>Rechtsklik op de bedrade adapter, kies Eigenschappen en dubbelklik op IPv4.</p>
+
+        <figure>
+            <img src="../../img/netwerkadapter-eigenschappen-ipv4.png"
+                alt="Het eigenschappenvenster van de netwerkadapter met Internet Protocol versie 4 in de lijst">
+            <figcaption>Ga naar de IPv4-instellingen</figcaption>
+        </figure>
+
+        <p>Zet de instellingen zoals op de screenshot hieronder. De router deelt je computer nu een adres uit via
+            DHCP. Controleer daarna of hetzelfde ingesteld staat voor je draadloze netwerkkaart.</p>
+
+        <figure>
+            <img src="../../img/tcp-ipv4-automatisch-een-ip-adres.png"
+                alt="Het venster met de IPv4-instellingen, waarin automatisch een IP-adres en automatisch een DNS-serveradres aangevinkt staan">
+            <figcaption>Automatisch een IP-adres, dus via DHCP</figcaption>
+        </figure>
+
+        <h2>Je eigen IP-adres en dat van de router</h2>
+
+        <p>Ben je bekabeld verbonden, dan vraag je je eigen IP-adres en de default gateway op. Dat kan via de console
+            met het commando <code>ipconfig</code>:</p>
+
+        <figure>
+            <img src="../../img/ipconfig-uitvoer.png"
+                alt="Een consolevenster met de uitvoer van ipconfig, waarin het IPv4-adres, het subnetmasker en de default gateway staan">
+            <figcaption>ipconfig in de console</figcaption>
+        </figure>
+
+        <p>en het kan ook via de netwerkdetails in Windows zelf:</p>
+
+        <figure>
+            <img src="../../img/windows-netwerkdetails.png"
+                alt="Het venster met netwerkdetails in Windows, met dezelfde gegevens als ipconfig">
+            <figcaption>Dezelfde gegevens, via de GUI</figcaption>
+        </figure>
+
+        <ol class="vragen">
+            <li>Zoek allebei de gegevens op je eigen computer op. Wat is je IP-adres, en wat is de default gateway?
+            </li>
+        </ol>
+
+        <h2>Aanmelden op de router</h2>
+
+        <p>De default gateway is in de meeste gevallen het IP-adres van de router. Surf ernaartoe met Edge, Chrome of
+            Firefox.</p>
+
+        <figure>
+            <img src="../../img/default-gateway-in-de-adresbalk.png"
+                alt="De adresbalk van een browser waarin het IP-adres van de default gateway is ingetypt">
+            <figcaption>Het adres van de router in de adresbalk</figcaption>
+        </figure>
+
+        <figure>
+            <img src="../../img/aanmeldscherm-van-de-router.png"
+                alt="De startpagina van de router in de browser">
+            <figcaption>Je komt op de pagina van de router terecht</figcaption>
+        </figure>
+
+        <p>Klik op Cancel. Er wordt om een gebruikersnaam en een wachtwoord gevraagd. De gebruikersnaam is
+            <code>Admin</code>, het wachtwoord laat je leeg.</p>
+
+        <figure>
+            <img src="../../img/router-vraagt-gebruikersnaam-en-wachtwoord.png"
+                alt="Het aanmeldvenster van de router met een veld voor de gebruikersnaam en een voor het wachtwoord">
+            <figcaption>Aanmelden als Admin, zonder wachtwoord</figcaption>
+        </figure>
+
+        <p>Je gaat het draadloos netwerk configureren, dus klik in het menu links op <strong>Wireless Settings</strong>
+            en daarna op <strong>Manual Wireless Connection Setup</strong>.</p>
+
+        <figure>
+            <img src="../../img/router-menu-wireless-settings.png"
+                alt="Het menu van de router met Wireless Settings aangeklikt en de knop Manual Wireless Connection Setup">
+            <figcaption>Naar de handmatige instellingen</figcaption>
+        </figure>
+
+        <figure>
+            <img src="../../img/router-wireless-setup-pagina.png"
+                alt="De setuppagina van de router met de instellingen voor de 2,4 GHz-band en de 5 GHz-band onder elkaar">
+            <figcaption>Op deze pagina doe je de meeste wijzigingen</figcaption>
+        </figure>
+
+        <p>Blader ook door de andere pagina's van de router.</p>
+
+        <h2>SSID</h2>
+
+        <p>Wat een SSID is en waarom je router er twee uitzendt, staat op de theoriepagina SSID.</p>
+
+        <ol class="vragen">
+            <li>Geef minstens drie plaatsen waar je de SSID's van je router kan terugvinden.</li>
+            <li>Kunnen meerdere draadloze netwerken hetzelfde SSID hebben? Schrap wat niet past: ja / nee.</li>
+            <li>Zoek op wat een <em>evil twin wireless network</em> is. Dit mag je ook achteraf nog aanvullen.</li>
+        </ol>
+
+        <p>Wijzig nu het SSID van je draadloos netwerk naar <code>2AUTO_</code> gevolgd door je initialen. Voor
+            iemand met de initialen TD wordt dat:</p>
+
+        <ul>
+            <li><code>2AUTO_TD</code> voor het netwerk op de 2,4 GHz-band</li>
+            <li><code>2AUTO_TD-5GHz</code> voor het netwerk op de 5 GHz-band</li>
+        </ul>
+
+        <ol class="vragen">
+            <li>Omschrijf duidelijk hoe je dat gedaan hebt, eventueel met een screenshot erbij.</li>
+            <li class="screenshot">Scan opnieuw met inSSIDer en kijk of je wijziging is doorgevoerd. Dat kan een paar
+                minuten duren, en soms moet je het programma opnieuw opstarten. Plak het screenshot hieronder.</li>
+        </ol>
+
+        <h2>Wireless mode</h2>
+
+        <p>Wat de modes b, g, n en ac betekenen en waarom een router standaard op mixed staat, vind je op de
+            theoriepagina Wireless mode.</p>
+
+        <ol class="vragen">
+            <li>Welke is de meest performante mode op de 2,4 GHz-band? Schrap wat niet past: b / g / n.</li>
+            <li>Welke is de meest performante mode op de 5 GHz-band? Schrap wat niet past: a / ac / n.</li>
+            <li class="screenshot">Stel op allebei de banden de meest performante mode in en plak een screenshot
+                hieronder.</li>
+            <li>Zoek de maximale theoretische snelheid van elke generatie op en vul de tabel aan.
+                <table class="verslag-tabel">
+                    <thead>
+                        <tr>
+                            <th>Wireless mode</th>
+                            <th>Max. theoretische snelheid (in Mbps)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>b</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>g</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>n (wifi 4)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>ac (wifi 5)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>ax (wifi 6)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>be (wifi 7)</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+        </ol>
+
+        <h2>Wireless channels</h2>
+
+        <p>Hoe de banden in kanalen zijn opgedeeld en waarom overlapping je snelheid kost, staat op de theoriepagina
+            Wireless channels.</p>
+
+        <p>Hieronder zie je hoe het er bij de lector uitzag. Bij jou wordt dat anders. Het kanaal is hier zo gekozen
+            dat er zo weinig mogelijk overlapping is, op allebei de banden.</p>
+
+        <figure>
+            <img src="../../img/router-kanaalinstelling-24ghz.png"
+                alt="De kanaalinstelling van de router voor de 2,4 GHz-band">
+            <figcaption>2,4 GHz: de instelling in de router</figcaption>
+        </figure>
+
+        <figure>
+            <img src="../../img/inssider-na-kanaalwissel-24ghz.png"
+                alt="Het kanalenoverzicht van inSSIDer voor de 2,4 GHz-band na het wisselen van kanaal">
+            <figcaption>2,4 GHz: het resultaat in inSSIDer</figcaption>
+        </figure>
+
+        <figure>
+            <img src="../../img/router-kanaalinstelling-5ghz.png"
+                alt="De kanaalinstelling van de router voor de 5 GHz-band">
+            <figcaption>5 GHz: de instelling in de router</figcaption>
+        </figure>
+
+        <figure>
+            <img src="../../img/inssider-na-kanaalwissel-5ghz.png"
+                alt="Het kanalenoverzicht van inSSIDer voor de 5 GHz-band na het wisselen van kanaal">
+            <figcaption>5 GHz: het resultaat in inSSIDer</figcaption>
+        </figure>
+
+        <p>Zoek nu zelf in de router waar je het kanaal aanpast, voor allebei de banden. Laat je netwerk zo weinig
+            mogelijk overlappen met andere, en overlapt het toch, laat het dan overlappen met een zwak netwerk.</p>
+
+        <ol class="vragen">
+            <li class="screenshot">2,4 GHz: screenshot van de instelling in de router.</li>
+            <li class="screenshot">2,4 GHz: screenshot van het resultaat in inSSIDer.</li>
+            <li class="screenshot">5 GHz: screenshot van de instelling in de router.</li>
+            <li class="screenshot">5 GHz: screenshot van het resultaat in inSSIDer.</li>
+        </ol>
+
+        <h2>Channel bonding</h2>
+
+        <p>Wat channel bonding doet met je bandbreedte, en wanneer het je net tegenwerkt, staat op de theoriepagina
+            Channel bonding.</p>
+
+        <ol class="vragen">
+            <li class="screenshot">Zoek in inSSIDer een netwerk met channel bonding op de 2,4 GHz-band. De bandbreedte
+                is dubbel zo groot als die van een netwerk zonder. Plak een screenshot en markeer het duidelijk.</li>
+            <li class="screenshot">In de router zet je channel bonding aan of uit bij de instelling
+                <em>Channel Width</em>. Plak er een screenshot van en markeer het duidelijk.</li>
+            <li>In welk geval zou je channel bonding uitzetten? Tip: het heeft te maken met de bandbreedte die
+                verdubbelt.</li>
+            <li>In welke modus is channel bonding mogelijk? Markeer het juiste antwoord: enkel in b / enkel in g /
+                enkel in n / zowel in n als in ac.</li>
+            <li>Moeten de kanalen tegen elkaar aan liggen om aan channel bonding te kunnen doen? Markeer het juiste
+                antwoord: ja, dat is verplicht / nee, dat is niet nodig.</li>
+        </ol>
+
+        <h2>Beveiliging</h2>
+
+        <p>Welke encryptie bij welke mode past, en wat TKIP, AES en PSK betekenen, staat op de theoriepagina
+            Beveiliging. Lees ook het artikel <em>Van WEP tot WPA</em> bij het studiemateriaal, want daar baseer je je
+            keuze op.</p>
+
+        <p>Stel de security mode zo optimaal mogelijk in, dus zo veilig en zo performant als het kan, en beveilig je
+            router.</p>
+
+        <ol class="vragen">
+            <li>Welke combinatie heb je gekozen? Vul aan en markeer het juiste antwoord.
+                <table class="verslag-tabel">
+                    <thead>
+                        <tr>
+                            <th>Instelling</th>
+                            <th>Jouw keuze</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Wireless mode</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Security mode: WEP / WPA / WPA2</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Encryptie: TKIP / TKIP + AES / AES</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>PSK</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+            <li>Wat is het gevolg voor de snelheid van je draadloos netwerk als je voor TKIP of voor TKIP + AES
+                kiest?</li>
+            <li>Waarvoor staat de afkorting PSK?</li>
+            <li>Waarop moet je letten bij het kiezen van een PSK?</li>
+        </ol>
+        -->
+    </div>
+
+    <script src="../../reference.js"></script>
+    <script src="../../back-link.js"></script>
+</body>
+
+</html>

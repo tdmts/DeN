@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VLAN op 1 switch</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>VLAN op 1 switch</h1>
+
+        <p>In deze oefening configureer je één switch met twee gescheiden VLAN's. Alle toestellen hangen aan diezelfde
+            switch.</p>
+
+        <p><a href="../../../downloads/Labo-ManagedSwitch-VlanBasic.pka" target="_blank" rel="noopener">Download het
+                startbestand</a> en open het in Cisco Packet Tracer.</p>
+
+        <figure class="figure-zoom">
+            <img src="../../../img/packet-tracer-vlan-basic-topologie.png" class="img-fluid"
+                alt="Packet Tracer met een 2960-switch waarop twee pc's op poort 1 en 2 en twee servers op poort 3 en 4 zijn aangesloten">
+            <figcaption class="figure-caption">Twee clients en twee servers op dezelfde switch</figcaption>
+        </figure>
+
+        <h2>Stap 1: VLAN's aanmaken en poorten toewijzen</h2>
+
+        <ul>
+            <li><strong>VLAN 10</strong>, voor de clients: poort 1 en poort 2</li>
+            <li><strong>VLAN 20</strong>, voor de servers: poort 3 en poort 4</li>
+        </ul>
+
+        <h2>Stap 2: IP-adressen instellen</h2>
+
+        <p>Geef elk toestel een statisch IP-adres.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-striped table-bordered align-middle">
+                <thead class="table-header-custom">
+                    <tr>
+                        <th>Toestel</th>
+                        <th>IP-adres</th>
+                        <th>Subnetmasker</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Client0</td>
+                        <td>192.168.1.10</td>
+                        <td>255.255.255.0</td>
+                    </tr>
+                    <tr>
+                        <td>Client1</td>
+                        <td>192.168.1.11</td>
+                        <td>255.255.255.0</td>
+                    </tr>
+                    <tr>
+                        <td>Server0</td>
+                        <td>192.168.1.12</td>
+                        <td>255.255.255.0</td>
+                    </tr>
+                    <tr>
+                        <td>Server1</td>
+                        <td>192.168.1.13</td>
+                        <td>255.255.255.0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="info-box remark">
+            <div class="info-title remark">Let op de subnetten</div>
+            <p>De vier toestellen zitten in hetzelfde IP-subnet, maar in twee verschillende VLAN's. Een client kan
+                dus wel de andere client pingen en niet de servers, ook al lijken hun adressen bij elkaar te horen.
+                Het VLAN scheidt op laag 2, los van het IP-adres dat je instelt.</p>
+        </div>
+
+        <h2>Controleren</h2>
+
+        <p>Ben je klaar, klik dan op <strong>Check Results</strong> in het venster van de oefening.</p>
+
+        <figure class="figure-zoom">
+            <img src="../../../img/packet-tracer-check-results-venster.png" class="img-fluid"
+                alt="Het PT Activity-venster van Packet Tracer met onderaan de knoppen Check Results en Reset Activity en een percentage Completion">
+            <figcaption class="figure-caption">Het venster van de oefening, met de knop Check Results</figcaption>
+        </figure>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

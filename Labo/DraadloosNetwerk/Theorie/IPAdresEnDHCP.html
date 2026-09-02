@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP-adres en DHCP</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>IP-adres en DHCP</h1>
+
+        <p>Voor twee toestellen elkaar kunnen bereiken, moeten ze allebei een adres hebben en moeten ze weten waar ze
+            met verkeer naartoe moeten dat niet voor het eigen netwerk bestemd is. Daar horen drie instellingen bij
+            die je bij elke netwerkkaart terugvindt.</p>
+
+        <h2>IP-adres, subnetmasker en default gateway</h2>
+
+        <ul>
+            <li>Het <strong>IP-adres</strong> is het adres van je toestel binnen het netwerk, bijvoorbeeld
+                <code>192.168.0.12</code>.</li>
+            <li>Het <strong>subnetmasker</strong> zegt welk deel van dat adres het netwerk aanduidt en welk deel het
+                toestel. Met <code>255.255.255.0</code> horen alle adressen van <code>192.168.0.1</code> tot
+                <code>192.168.0.254</code> bij hetzelfde netwerk.</li>
+            <li>De <strong>default gateway</strong> is het adres waar je toestel alles naartoe stuurt wat buiten dat
+                netwerk ligt. In een thuisnetwerk is dat de router.</li>
+        </ul>
+
+        <h2>Statisch of dynamisch</h2>
+
+        <p>Een <strong>statisch</strong> IP-adres typ je zelf in en het blijft staan. Dat wil je voor een toestel dat
+            altijd op hetzelfde adres bereikbaar moet zijn, zoals een server of een printer.</p>
+
+        <p>Een <strong>dynamisch</strong> adres krijgt je toestel toegewezen zodra het verbinding maakt. Dat gebeurt
+            met <strong>DHCP</strong>, Dynamic Host Configuration Protocol: je toestel vraagt het netwerk om een
+            adres, en de DHCP-server, in een thuisnetwerk de router, deelt er een uit voor een bepaalde tijd. Meteen
+            daarbij krijgt het toestel ook het subnetmasker en de default gateway mee, zodat je verder niets moet
+            instellen.</p>
+
+        <div class="info-box remark">
+            <div class="info-title remark">Waarom je in dit labo op DHCP zet</div>
+            <p>Je weet vooraf niet welk adres de router uitdeelt, en na een reset kan dat een ander bereik zijn dan
+                daarvoor. Zet je je netwerkkaart op automatisch, dan hoef je dat niet te weten en klopt je
+                configuratie altijd met die van de router.</p>
+        </div>
+
+        <h2>MAC-adres</h2>
+
+        <p>Naast het IP-adres heeft elke netwerkkaart een <strong>MAC-adres</strong>, een adres dat in de hardware
+            vastligt en er niet van verandert als je van netwerk wisselt, bijvoorbeeld
+            <code>78:98:E8:3C:F8:B6</code>. Het IP-adres zegt waar je op dit moment zit, het MAC-adres zegt welk
+            toestel je bent. In inSSIDer zie je van elk draadloos netwerk het MAC-adres van het accesspoint staan, en
+            dat is wat twee netwerken met dezelfde naam uit elkaar houdt.</p>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

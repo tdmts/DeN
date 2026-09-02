@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Differential signaling</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Differential signaling</h1>
+
+        <p>Het probleem bij <strong>single ended signaling</strong> is dat het enkel geschikt is voor <strong>korte
+                afstanden</strong> en <strong>lage snelheden</strong>, door transmissieproblemen zoals ruis en
+            attenuatie. In de theorie komt dat uitgebreid aan bod.</p>
+
+        <p>Om die transmissieproblemen tegen te gaan gebruiken we <strong>differential signaling</strong>.</p>
+
+        <figure class="figure-zoom">
+            <img src="../../../img/differential-signaling-getwiste-paar.png" class="img-fluid"
+                alt="Schema van differential signaling: een zender en een ontvanger verbonden door twee getwiste geleiders, zonder gemeenschappelijke massalijn">
+            <figcaption class="figure-caption">Differential signaling over een getwist aderpaar</figcaption>
+        </figure>
+
+        <p>In de praktijk sturen we over de <strong>ene geleider het geïnverteerde signaal</strong> door, en over de
+            <strong>andere het niet-geïnverteerde signaal</strong>. Het spanningsverschil bij de ontvanger wordt
+            daardoor dubbel zo groot.</p>
+
+        <figure class="figure-zoom">
+            <img src="../../../img/differential-signaling-geinverteerd-signaal.png" class="img-fluid"
+                alt="Twee tegengestelde blokgolven op de A- en B-lijn, met daaronder het verschilsignaal dat de ontvanger meet">
+            <figcaption class="figure-caption">Het geïnverteerde en het niet-geïnverteerde signaal</figcaption>
+        </figure>
+
+        <div class="info-box">
+            <div class="info-title remark">De twee massa's moeten dicht bij elkaar blijven</div>
+            <p>De ontvanger meet het verschil tussen de twee signaaldraden, dus voor de signaaloverdracht zelf doet
+                het spanningsniveau van de massa er niet meer toe. De massa zelf heb je nog altijd nodig: de
+                busingangen van de ontvanger verdragen maar een beperkt verschil tegenover hun eigen massa. Voor de
+                75176 is dat <strong>-7 V tot +12 V</strong>, en dat vind je in de datasheet onder <em>recommended
+                    operating conditions</em>. Loopt het verder uiteen, dan leest de ontvanger de bus verkeerd en kan
+                het IC kapot gaan.</p>
+            <p>Daarom loopt er bij RS-485 over grotere afstanden een derde geleider mee, de <strong>signal
+                    common</strong>, die de twee massa's aan elkaar knoopt. In het labo staan zender en ontvanger in
+                hetzelfde lokaal en hangen ze aan hetzelfde stroomnet, dus liggen hun massa's daar vanzelf dicht bij
+                elkaar. Tussen twee gebouwen op 1200 meter van elkaar is dat een ander verhaal.</p>
+        </div>
+
+        <p>In de eerste figuur heb je gezien dat we de <strong>geleiders twisten</strong>. Dat doen we om
+            transmissieproblemen zoals <strong>EMI</strong> (elektromagnetische interferentie) en
+            <strong>crosstalk</strong> tegen te gaan. Ook dat komt uitgebreider aan bod in de theorie. Maar het is niet omdat geleiders niet getwist zijn dat we daarom
+            niet aan differential signaling doen. Het twisten is optioneel.</p>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

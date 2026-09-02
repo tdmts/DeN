@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanning Tree Protocol</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Spanning Tree Protocol</h1>
+
+        <p>Het <strong>Spanning Tree Protocol</strong> zorgt ervoor dat redundante verbindingen in een netwerk geen
+            problemen veroorzaken.</p>
+
+        <p>Netwerken hebben vaak meerdere verbindingen tussen switches, voor meer snelheid en meer betrouwbaarheid.
+            Zonder STP levert dat een <strong>broadcast storm</strong> op: frames blijven eindeloos rondcirkelen en
+            het netwerk wordt onbruikbaar.</p>
+
+        <h2>Hoe werkt STP?</h2>
+
+        <p>Zodra STP meerdere paden naar hetzelfde netwerksegment ziet, blokkeert het een of meer poorten. Er blijft
+            dan nog één actief pad over tussen twee punten.</p>
+
+        <figure class="figure-zoom">
+            <img src="../../../img/spanning-tree-drie-switches-in-ring.png" class="img-fluid"
+                alt="Drie switches die in een ring met elkaar verbonden zijn, waarbij een van de poorten door STP geblokkeerd is">
+            <figcaption class="figure-caption">Drie switches in een ring: welke verbinding ook wegvalt, alle
+                toestellen blijven bereikbaar</figcaption>
+        </figure>
+
+        <p>Valt een actieve link weg, dan zet STP een geblokkeerde reserveverbinding terug open.</p>
+
+        <div class="info-box">
+            <div class="info-title remark">Dit gebeurt ook buiten het labo</div>
+            <p>Het netwerk van Disney's Yacht &amp; Beach Club Resorts lag er een tijd uit door een loop waar het
+                Spanning Tree Protocol niet op ingesteld stond.</p>
+        </div>
+
+        <div class="video-container">
+            <div class="ratio ratio-16x9">
+                <iframe src="https://www.youtube.com/embed/japdEY1UKe4" title="Spanning Tree Protocol uitleg"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

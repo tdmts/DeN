@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanning Tree in Packet Tracer</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Spanning Tree in Packet Tracer</h1>
+
+        <p>Redundantie betekent dat er meerdere paden tussen switches liggen. Dat is handig als reserve wanneer een
+            verbinding wegvalt, maar zonder <strong>Spanning Tree Protocol</strong> levert het een
+            <strong>broadcast storm</strong> op: berichten blijven eindeloos in een cirkel rondgaan tussen de
+            switches, het netwerk raakt overbelast en valt uit. STP detecteert die redundante verbindingen en
+            blokkeert automatisch bepaalde poorten, zodat er één actief pad overblijft. Meer daarover staat bij
+            <a href="../Theorie/SpanningTreeProtocol.html" target="_blank"
+                rel="noopener">Spanning Tree Protocol</a>.</p>
+
+        <p><a href="../../../downloads/Labo-ManagedSwitch-SpanningTree.pka" target="_blank" rel="noopener">Download het
+                startbestand</a> en open het in Cisco Packet Tracer.</p>
+
+        <figure class="figure-zoom">
+            <img src="../../../img/packet-tracer-spanning-tree-topologie.png" class="img-fluid"
+                alt="Packet Tracer met drie 2960-switches in een ring, verbonden met trunks voor VLAN 10, en aan elke switch een pc op een access poort">
+            <figcaption class="figure-caption">Drie switches in een ring, met trunks voor VLAN 10</figcaption>
+        </figure>
+
+        <div class="info-box warning">
+            <div class="info-title warning">In dit bestand staat STP uit</div>
+            <p>Op VLAN 10, dat van de clients, is Spanning Tree uitgeschakeld. Daardoor ontstaat er een broadcast
+                storm.</p>
+        </div>
+
+        <h2>Wat je doet</h2>
+
+        <p>Zet STP opnieuw aan op VLAN 10, zodat het netwerk weer werkt.</p>
+
+        <div class="video-container">
+            <div class="ratio ratio-16x9">
+                <iframe src="https://www.youtube.com/embed/556H_bBMBqs" title="Spanning Tree in Packet Tracer"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EtherCAT</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>EtherCAT</h1>
+
+        <p><strong>EtherCAT</strong> is een industrieel netwerkprotocol dat over gewone ethernetkabels loopt, net
+            zoals Modbus TCP, Ethernet/IP en Profinet. Het is ontwikkeld door Beckhoff Automation, de Duitse
+            fabrikant van de klemmen die je in dit labo gebruikt, en het is een van de snelste industriële
+            netwerken die er bestaan.</p>
+
+        <h2>Alleen de datalinklaag</h2>
+
+        <p>Een gewoon netwerkpakket zit in laagjes: een ethernetframe met daarin een IP-pakket, daarin een
+            TCP-segment, en pas daarin je data. Elk toestel onderweg moet die laagjes uitpakken, het adres nakijken
+            en alles weer inpakken. Dat kost tijd.</p>
+
+        <p>EtherCAT laat die lagen weg en werkt <strong>enkel op de datalinklaag</strong>. Er worden dus alleen
+            ethernetframes verstuurd, geen IP-pakketten. Een EtherCAT-frame heeft daardoor:</p>
+
+        <ul>
+            <li>geen IP-adres, dus je kan een klem niet pingen en er ook niet naartoe routeren;</li>
+            <li>geen TCP-verbinding die opgezet en bevestigd moet worden;</li>
+            <li>geen poortnummer.</li>
+        </ul>
+
+        <p>Wat overblijft is een frame met een eigen EtherType, waarin de data van alle toestellen samen zit.</p>
+
+        <h2>Eén frame voor het hele netwerk</h2>
+
+        <p>Bij Modbus TCP vraagt de master aan elk toestel apart iets en wacht hij op elk antwoord. Bij EtherCAT
+            stuurt de master <strong>één frame per cyclus</strong> de lijn op, en daar staat een stukje in voor elke
+            slave.</p>
+
+        <p>Dat frame gaat door elk toestel heen. Terwijl het passeert, leest de slave er zijn eigen stukje uit en
+            schrijft hij zijn antwoord op zijn eigen plaats terug, zonder het frame eerst volledig te ontvangen.
+            Dat heet <strong>processing on the fly</strong> en het kost per toestel enkele nanoseconden. De laatste
+            slave in de rij stuurt het frame terug naar de master, die er dan de toestand van het volledige netwerk
+            in vindt.</p>
+
+        <p>Daardoor blijft de cyclustijd laag, ook wanneer er veel klemmen hangen. Een netwerk met honderd
+            in- en uitgangen kost bijna evenveel tijd als een netwerk met tien.</p>
+
+        <h2>De topologie</h2>
+
+        <p>Elke slave heeft een <strong>IN-poort en een OUT-poort</strong>. Je verbindt de master met de IN van de
+            eerste slave, de OUT van de eerste met de IN van de tweede, en zo verder. Zo ontstaat een keten. In de
+            laatste slave zit geen kabel meer in de OUT, en daar keert het frame om.</p>
+
+        <p>De volgorde in die keten is meteen ook het <strong>adres</strong> van een slave. EtherCAT nummert de
+            toestellen op hun plaats in de lijn, en niet op een adres dat jij instelt. Hang je er een klem tussen,
+            dan schuiven de nummers van alles wat erachter zit mee op.</p>
+
+        <div class="info-box remark">
+            <div class="info-title remark">Een EtherCAT-segment gaat niet door een gewone switch</div>
+            <p>De frames dragen geen IP en de slaves gedragen zich niet als gewone netwerkkaarten, dus je hangt er
+                geen switch, router of wifi tussen. De netwerkkaart van de master gaat rechtstreeks naar de eerste
+                slave. Daarom heeft een PLC in de praktijk twee netwerkaansluitingen: één voor het EtherCAT-segment
+                en één voor het gewone netwerk waarlangs jij hem programmeert.</p>
+        </div>
+
+        <h2>Master en slaves</h2>
+
+        <p>Er is altijd precies één <strong>master</strong>, en dat is de PLC. Alleen de master stuurt frames de
+            lijn op; een slave begint nooit uit zichzelf. De master is ook het enige toestel dat een gewone
+            netwerkkaart nodig heeft: het protocol is aan die kant volledig software. De slaves hebben er wel
+            speciale hardware voor, een chip die het frame kan lezen en aanpassen terwijl het passeert.</p>
+
+        <h2>Waarvoor het gebruikt wordt</h2>
+
+        <p>Door de lage en voorspelbare cyclustijd wordt EtherCAT ingezet waar de timing hard is:</p>
+
+        <ol>
+            <li>robotarmen, waar meerdere assen op hetzelfde ogenblik moeten bewegen;</li>
+            <li>CNC-machines, waar het gereedschap een baan volgt die per milliseconde vastligt;</li>
+            <li>productielijnen waar een vertraging een product beschadigt.</li>
+        </ol>
+
+        <p>Voor de knop en de signaaltoren van dit labo is die snelheid niet nodig. Wat je hier leert is hoe zo'n
+            netwerk in elkaar zit, met dezelfde toestellen als in een echte machinekast.</p>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

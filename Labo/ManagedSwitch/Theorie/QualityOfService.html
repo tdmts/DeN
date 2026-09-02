@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality of Service (QoS)</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Quality of Service (QoS)</h1>
+
+        <p>Niet elk frame op je netwerk is even dringend. Sommige data heeft voorrang nodig:</p>
+
+        <ul>
+            <li>telefoon- en videogesprekken over het netwerk (VoIP)</li>
+            <li>aansturingen van machines over het netwerk</li>
+        </ul>
+
+        <h2>Waarom dat uitmaakt</h2>
+
+        <p>Bij dit soort data mag er zo weinig mogelijk vertraging zijn. Anders hapert de aansturing van je machine,
+            of klinkt een gesprek onnatuurlijk.</p>
+
+        <h2>Hoe je het oplost</h2>
+
+        <p>Met VLAN's splits je je netwerk op. Je kan bijvoorbeeld al het telefonieverkeer in een apart VLAN zetten en
+            dat VLAN met QoS een hogere prioriteit geven. Telefonie krijgt dan voorrang op het downloaden van grote
+            bestanden.</p>
+
+        <div class="info-box warning">
+            <div class="info-title warning">QoS is een voorrangsregel, geen garantie</div>
+            <p>VLAN's en QoS werken allebei <em>best effort</em>. Ze doen hun best om belangrijke data voorrang te
+                geven, maar ze garanderen niet dat elk frame binnen een vaste tijd aankomt. Wil je die garantie wel,
+                dan heb je een real-time protocol nodig, zoals je bij het labo Industrieel netwerk ziet.</p>
+        </div>
+
+        <h2>QoS-niveaus</h2>
+
+        <p>De prioriteit stel je in in niveaus, van 0 tot 7.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-striped table-bordered align-middle">
+                <caption class="table-caption">Prioriteitsniveaus zoals ze in een industrieel netwerk gebruikt worden
+                </caption>
+                <thead class="table-header-custom">
+                    <tr>
+                        <th>Priority</th>
+                        <th>Industriële netwerken</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>7</td>
+                        <td>Noodstop en veiligheidssystemen</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Zeer snelle machinebesturing (realtime)</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Robot aansturen, PLC naar sensoren en actuatoren</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Normale PLC-communicatie</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Machineschermen (HMI), monitoring</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Productiegegevens opslaan</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Data voor latere analyse</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>Gewoon fabrieksnetwerk</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

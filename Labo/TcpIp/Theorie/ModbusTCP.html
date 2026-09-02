@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modbus TCP</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Modbus TCP</h1>
+
+        <p><strong>Modbus TCP</strong> is een industrieel communicatieprotocol dat veel gebruikt wordt in
+            automatisering, tussen PLC's, sensoren en actuatoren. Het is het klassieke Modbus-protocol met TCP/IP als
+            transportlaag eronder, waardoor het over een gewoon ethernetnetwerk loopt. Andere protocollen in
+            diezelfde omgeving zijn Profinet, EtherCAT en Ethernet/IP.</p>
+
+        <h2>Hoe het werkt</h2>
+
+        <ul>
+            <li>Het gebruikt <strong>poort 502</strong> over TCP.</li>
+            <li>Het volgt een <strong>client-servermodel</strong>: de client, ook de <strong>master</strong> genoemd,
+                vraagt data op of schrijft ze weg, en de server of <strong>slave</strong> antwoordt. De slave begint
+                zelf nooit een gesprek.</li>
+            <li>Wat er precies gevraagd wordt, staat in een <strong>functiecode</strong>: Read Holding Registers,
+                Write Single Register, Read Input Registers en zo verder.</li>
+        </ul>
+
+        <h2>Registers</h2>
+
+        <p>De data van een Modbus-toestel staat in genummerde geheugenplaatsen die <strong>registers</strong> heten.
+            Een <strong>holding register</strong> is er een die je zowel kan lezen als beschrijven, en dat is het
+            soort dat je in dit labo gebruikt. Je spreekt zo'n register aan met zijn adres, en je schrijft er een
+            getal in of je leest het getal eruit.</p>
+
+        <p>Een master die naar register 1 het getal 3 schrijft, stuurt dus een pakket met de functiecode voor
+            schrijven, het adres 1 en de waarde 3. De slave voert dat uit en bevestigt.</p>
+
+        <h2>Master en slave op je eigen computer</h2>
+
+        <p>Met twee programma's zet je allebei de kanten op je eigen computer op:</p>
+
+        <ul>
+            <li><strong>diagslave</strong> speelt de slave en gedraagt zich als een Modbus-toestel, bijvoorbeeld een
+                PLC. Je start het en je laat het staan.</li>
+            <li><strong>modpoll</strong> speelt de master en stuurt de commando's. Je geeft het per commando mee wat
+                het moet doen.</li>
+        </ul>
+
+        <p>Een commando voor modpoll ziet er zo uit:</p>
+
+        <pre class="code-wrapper language-plaintext">
+modpoll.exe -r 1 127.0.0.1 3
+        </pre>
+
+        <ul>
+            <li><code>-r 1</code> is het adres van het holding register.</li>
+            <li><code>127.0.0.1</code> is het adres van de slave. Dat adres heet <strong>localhost</strong> en wijst
+                naar je eigen computer.</li>
+            <li><code>3</code> is de waarde die in dat register komt te staan. Laat je die weg, dan leest modpoll het
+                register uit in plaats van het te beschrijven.</li>
+        </ul>
+
+        <figure class="figure-zoom">
+            <img src="../../../img/wireshark-modbus-query-en-response.png" class="img-fluid"
+                alt="Wireshark met het filter modbus, met afwisselend Query- en Response-pakketten waarin de functiecode en de registerwaarde staan">
+            <figcaption class="figure-caption">Telkens een query van de master en een response van de slave
+            </figcaption>
+        </figure>
+
+        <div class="info-box tip">
+            <div class="info-title tip">Verkeer naar localhost loopt over de loopback-adapter</div>
+            <p>Draaien master en slave op dezelfde machine, dan verlaat het verkeer je computer nooit en vang je het
+                met een gewone netwerkadapter dus niet op. In Capture &gt; Options kies je daarvoor
+                <strong>Adapter for loopback traffic capture</strong>. Bij twee aparte toestellen kies je wel een
+                gewone adapter.</p>
+        </div>
+
+        <div class="info-box remark">
+            <div class="info-title remark">Waarden staan er soms hexadecimaal</div>
+            <p>Wireshark toont een registerwaarde naargelang het veld in decimale of in hexadecimale notatie. Zoek je
+                de waarde 20 en zie je <code>0x0014</code> staan, dan is dat hetzelfde getal.</p>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save settings</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Save settings</h1>
+
+        <p>Instellingen aanpassen op een switch gaat vlot, maar zodra de stroom eraf gaat zijn die wijzigingen weg.
+            Bij het opstarten laadt de switch de laatst opgeslagen configuratie uit zijn geheugen (nvram), en wat je
+            niet hebt opgeslagen zit daar niet in.</p>
+
+        <h2>Oefening</h2>
+
+        <p><a href="../../../downloads/Labo-ManagedSwitch-SaveSettings.pkt" target="_blank" rel="noopener">Download het
+                startbestand</a> en open het in Cisco Packet Tracer. In deze oefening ga je:</p>
+
+        <ol>
+            <li>de hostname van de switch wijzigen</li>
+            <li>die instelling permanent opslaan</li>
+        </ol>
+
+        <h2>Het commando om op te slaan</h2>
+
+        <pre class="code-wrapper language-plaintext">
+copy running-config startup-config
+        </pre>
+
+        <ul>
+            <li><code>running-config</code>: de configuratie die nu actief is, in het werkgeheugen</li>
+            <li><code>startup-config</code>: de configuratie die bij het opstarten geladen wordt, in het nvram</li>
+        </ul>
+
+        <p>Je kopieert dus je huidige instellingen naar het opstartgeheugen, zodat ze een herstart overleven.</p>
+
+        <div class="video-container">
+            <div class="ratio ratio-16x9">
+                <iframe src="https://www.youtube.com/embed/wvlumb2FLLk" title="Save settings in Packet Tracer"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

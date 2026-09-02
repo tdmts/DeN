@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplex en half / full duplex</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Simplex en half / full duplex</h1>
+
+        <h2>Communicatierichtingen</h2>
+
+        <div class="info-box">
+            <div class="info-title">Simplex</div>
+            <p>Informatie gaat <strong>één richting</strong> uit.</p>
+            <p><strong>Voorbeelden:</strong> een radio-uitzending, een temperatuursensor naar een display.</p>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title">Duplex</div>
+            <p>Informatie kan <strong>beide richtingen</strong> uit tussen station 1 en station 2.</p>
+        </div>
+
+        <h2>Full duplex of half duplex?</h2>
+
+        <p>Bij duplexcommunicatie over <strong>dezelfde transmissielijn</strong> kan er maar één station
+            tegelijk zenden.
+            Dat veroorzaakt een <strong>collision</strong> (botsing) en er gaat data verloren.</p>
+
+        <div class="info-box">
+            <div class="info-title remark">Er zijn twee oplossingen</div>
+            <p>Afhankelijk van de toepassing kies je voor full duplex (snelheid) of half duplex (kostenbesparing).</p>
+        </div>
+
+        <h3>Full duplex</h3>
+
+        <ol>
+            <li><strong>Aparte transmissielijnen</strong> voor elke richting</li>
+            <li>Beide stations kunnen <strong>gelijktijdig</strong> zenden en ontvangen</li>
+            <li>Sneller, maar er zijn meer kabels nodig</li>
+            <li><strong>Voorbeeld:</strong> telefoon, Ethernet met een apart aderpaar voor elke richting</li>
+        </ol>
+
+        <h3>Half duplex</h3>
+
+        <ol>
+            <li><strong>Gedeelde transmissielijn</strong></li>
+            <li>De twee stations zenden <strong>om de beurt</strong></li>
+            <li>Het ene station wacht tot het andere klaar is</li>
+            <li>Goedkoper, maar iets trager</li>
+            <li><strong>Voorbeeld:</strong> walkietalkie, RS-485</li>
+        </ol>
+
+        <div class="info-box">
+            <div class="info-title tip">Je gaat dit zelf bouwen</div>
+            <p>Schakeling 5 van de opdracht is simplex: één zender, één ontvanger. In schakeling 6 maak je er half
+                duplex van, met twee transceivers die om de beurt het woord nemen.</p>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bekabeling op 24 V</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Bekabeling op 24 V</h1>
+
+        <p>Een industriële kast werkt aan de stuurzijde op <strong>24 V gelijkspanning</strong>. Die spanning is
+            laag genoeg om ze aan te raken zonder gevaar, ze is sterk genoeg voor lampen, relais en kleppen, en
+            elke fabrikant van klemmen en sensoren gaat ervan uit dat je ze hebt. De 230 V blijft aan de
+            voedingskant, achter de deur van de kast.</p>
+
+        <h2>De DIN-rail</h2>
+
+        <p>Alles in de kast klikt op een <strong>DIN-rail</strong>, een metalen profiel met een vaste breedte van
+            35 mm. Je duwt een toestel er van boven op tot het vastklikt. Er weer af haal je het door aan de
+            oranje hendel te trekken en het toestel naar je toe te kantelen. Forceer nooit: elk toestel dat op een
+            rail past, gaat er ook zonder geweld weer af.</p>
+
+        <p>De rail zelf is geen geleider voor je schakeling. Hij houdt de toestellen vast en op afstand van
+            elkaar, meer niet.</p>
+
+        <h2>Plus en massa</h2>
+
+        <p>Uit de voeding komen twee draden: <strong>+24 V</strong> en <strong>0 V</strong>. Die tweede heet de
+            <strong>massa</strong>, en dat is het referentiepunt waartegen alle spanningen in je schakeling gemeten
+            worden. Alles wat samen moet werken, hangt aan dezelfde massa. Twee toestellen met elk hun eigen
+            voeding en geen verbinding tussen hun massa's meten elkaars signalen niet correct.</p>
+
+        <p>In de kast is de kleurafspraak <strong>bruin voor +24 V</strong> en <strong>blauw voor 0 V</strong>.
+            Volg die afspraak ook wanneer je met één draadkleur zou toekomen. Wie na jou aan de kast werkt, leest
+            de kleuren voor hij een meting doet.</p>
+
+        <h2>Een digitale ingang</h2>
+
+        <p>Een digitale ingang meet of er spanning op zijn klem staat, en niets anders. Staat er ongeveer 24 V op,
+            dan leest de PLC een <strong>1</strong>, ook geschreven als <em>hoog</em> of <code>TRUE</code>. Staat er
+            0 V op, dan leest hij een <strong>0</strong>.</p>
+
+        <p>Een knop schakelt daarom de <strong>+24 V naar de ingangsklem</strong> door. Zolang je niet drukt, hangt
+            de ingang aan niets en leest de PLC een 0. Druk je, dan komt er 24 V op en leest hij een 1. De sensor
+            of de knop heeft daarnaast ook de massa nodig, want ook zijn spanning wordt gemeten tegenover 0 V.</p>
+
+        <div class="info-box tip">
+            <div class="info-title tip">De drempel ligt niet op 24 V maar een stuk lager</div>
+            <p>Een ingang van dit type ziet alles boven ongeveer 11 V als een 1 en alles onder ongeveer 5 V als een
+                0. Daartussen ligt een zone waar het antwoord niet vastligt. Meet je met de multimeter 3 V op een
+                ingang die 0 hoort te zijn, dan is dat nog in orde; meet je 8 V, dan zit er iets fout in je
+                bedrading.</p>
+        </div>
+
+        <h2>Een digitale uitgang</h2>
+
+        <p>Een digitale uitgang doet het omgekeerde: de PLC zet er een 1 op en de klem schakelt
+            <strong>+24 V naar buiten</strong>. Je verbruiker hangt dus tussen de uitgangsklem en de massa. Zet de
+            PLC de uitgang op 0, dan valt de spanning weg en gaat de lamp uit.</p>
+
+        <p>Elke uitgang heeft een <strong>maximale stroom</strong>, bij de EL2004 een halve ampère per kanaal. Een
+            ledlamp of een signaaltoren blijft daar ruim onder. Een motor of een grote spoel niet, en die schakel
+            je daarom via een relais dat zelf aan de uitgang hangt.</p>
+
+        <h2>De voeding van de klemmen</h2>
+
+        <p>De 24 V gaat naar de <strong>EK1100</strong>, en niet naar elke klem apart. De coupler krijgt twee keer
+            een voeding: één voor de elektronica van de klemmen naast hem, en één voor de veldzijde, dat wil zeggen
+            de spanning die de uitgangen naar buiten schakelen. Vanaf de coupler lopen die door de contacten aan de
+            zijkant door naar elke klem die je ernaast schuift. Welk klempunt wat is, staat in de datasheet van de
+            EK1100 op de overzichtspagina van dit labo.</p>
+
+        <h2>Draden aansluiten</h2>
+
+        <ul>
+            <li>Strip ongeveer 8 tot 9 mm van de isolatie. Te veel gestript koper steekt buiten de klem uit en kan
+                een sluiting maken met de draad ernaast.</li>
+            <li>Duw met een platte schroevendraaier het veertje van de klem open, steek de draad erin en laat het
+                veertje los. Trek daarna aan de draad om te controleren of hij vastzit.</li>
+            <li>Sluit één draad per klempunt aan. Heb je twee draden op hetzelfde punt nodig, gebruik dan een
+                doorverbinding naar een tweede punt.</li>
+        </ul>
+
+        <div class="info-box warning">
+            <div class="info-title warning">Zet pas spanning op je schakeling nadat ze gecontroleerd is</div>
+            <p>Een omgekeerde voeding of een sluiting tussen +24 V en de massa beschadigt de klemmen. Teken je
+                schakeling eerst uit, laat ze ter plaatse controleren, en sluit de netspanning daarna pas aan.</p>
+        </div>
+
+        <h2>Meten met de multimeter</h2>
+
+        <p>Zet de multimeter op gelijkspanning en houd de zwarte meetpen op de massa. Met de rode meetpen ga je dan
+            de punten van je schakeling af:</p>
+
+        <ul>
+            <li>Op de +24 V van de voeding hoort ongeveer 24 V te staan. Staat er niets, dan is de voeding zelf het
+                probleem en niet je bedrading.</li>
+            <li>Op een ingangsklem hoort 0 V te staan zolang de knop niet ingedrukt is, en 24 V terwijl je drukt.
+                Zo controleer je de knop zonder dat de PLC al draait.</li>
+            <li>Op een uitgangsklem hoort 24 V te staan wanneer de PLC de uitgang aanstuurt.</li>
+        </ul>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test jezelf</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Test jezelf</h1>
+
+        <p>Beantwoord elke vraag eerst zelf en klap daarna pas het antwoord open. Bij elk antwoord staat op welke
+            theoriepagina het uitgelegd wordt, dus lees die opnieuw wanneer je ernaast zat. Er wordt niets
+            bijgehouden en er staat geen punt op.</p>
+
+        <h2 id="vragen">Vragen</h2>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>1. Je drukt op een knop op het ogenblik dat de PLC halverwege zijn programma zit. Wat
+                        gebeurt er?</strong></p>
+                <ol type="a">
+                    <li>Het programma springt meteen naar de plaats waar de knop uitgelezen wordt</li>
+                    <li>De PLC merkt de knop pas bij het inlezen aan het begin van de volgende cyclus</li>
+                    <li>De uitgangen worden onmiddellijk aangepast</li>
+                    <li>De knop gaat verloren, want hij viel niet op het juiste moment</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Een PLC leest alle ingangen aan het begin van de cyclus in en werkt
+                    de rest van die ronde met die vastgelegde waarden. Zie
+                    <a href="PlcCouplerIoEiland.html">PLC, coupler en I/O-eiland</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>2. Wat doet de EK1100 met de gegevens die hij binnenkrijgt?</strong></p>
+                <ol type="a">
+                    <li>Hij voert er zijn eigen programma mee uit en stuurt het resultaat naar de klemmen</li>
+                    <li>Hij bewaart ze tot de PLC ze komt ophalen</li>
+                    <li>Hij zet ze om naar de interne bus tussen de klemmen, zonder zelf iets te beslissen</li>
+                    <li>Hij verdeelt ze over het netwerk naar de andere couplers</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord c.</strong> Een coupler heeft geen eigen programma. Alle logica zit in de PLC.
+                    Zie <a href="PlcCouplerIoEiland.html">PLC, coupler en I/O-eiland</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>3. Je haalt de EL1004 en de EL2004 van de rail en zet ze in omgekeerde volgorde terug.
+                        Wat is het gevolg?</strong></p>
+                <ol type="a">
+                    <li>Niets, elke klem heeft een vast adres dat in de klem zelf zit</li>
+                    <li>De klemmen krijgen andere adressen, want ze worden genummerd op hun plaats in de rij</li>
+                    <li>De coupler weigert op te starten tot je de oorspronkelijke volgorde herstelt</li>
+                    <li>Alleen de uitgangen verschuiven, de ingangen blijven waar ze zaten</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> De volgorde op de rail is de nummering. Zie
+                    <a href="PlcCouplerIoEiland.html">PLC, coupler en I/O-eiland</a> en
+                    <a href="EtherCAT.html">EtherCAT</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>4. Waarom werkt de stuurzijde van een industriële kast op 24 V gelijkspanning?</strong>
+                </p>
+                <ol type="a">
+                    <li>Omdat lampen en relais niet op een hogere spanning bestaan</li>
+                    <li>Omdat de spanning laag genoeg is om er veilig aan te werken en toch genoeg vermogen levert
+                        voor lampen, relais en kleppen</li>
+                    <li>Omdat gelijkspanning minder verlies geeft over de lengte van een kabel dan wisselspanning
+                    </li>
+                    <li>Omdat een PLC geen wisselspanning kan meten</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> De 230 V blijft aan de voedingskant. Zie
+                    <a href="Bekabeling24V.html">Bekabeling op 24 V</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>5. Hoe sluit je een knop aan op een ingang van de EL1004?</strong></p>
+                <ol type="a">
+                    <li>De knop schakelt de +24 V door naar de ingangsklem</li>
+                    <li>De knop schakelt de massa door naar de ingangsklem</li>
+                    <li>De knop komt tussen twee ingangsklemmen van dezelfde klem</li>
+                    <li>De knop krijgt een eigen voeding en gaat rechtstreeks naar de PLC</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord a.</strong> Een digitale ingang leest een 1 wanneer er spanning op zijn klem
+                    staat. Zie <a href="Bekabeling24V.html">Bekabeling op 24 V</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>6. Je meet 8 V op een ingang waarvan je verwacht dat ze laag staat. Wat besluit
+                        je?</strong></p>
+                <ol type="a">
+                    <li>Dat is in orde, alles onder 24 V geldt als laag</li>
+                    <li>De ingang is stuk en de klem moet vervangen worden</li>
+                    <li>De spanning zit in de zone waar het antwoord niet vastligt, dus er zit iets fout in de
+                        bedrading</li>
+                    <li>De voeding staat te laag ingesteld</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord c.</strong> Onder ongeveer 5 V is het een 0, boven ongeveer 11 V een 1, en
+                    daartussen ligt niets vast. Zie <a href="Bekabeling24V.html">Bekabeling op 24 V</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>7. Je wil een motor aansturen die meer stroom trekt dan een uitgang van de EL2004
+                        aankan. Wat doe je?</strong></p>
+                <ol type="a">
+                    <li>Twee uitgangen parallel zetten zodat ze samen de stroom leveren</li>
+                    <li>De uitgang een relais laten schakelen, en de motor aan dat relais hangen</li>
+                    <li>De motor rechtstreeks op de voeding aansluiten en met de uitgang de massa onderbreken</li>
+                    <li>De voedingsspanning verhogen zodat er minder stroom nodig is</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Een uitgang van de EL2004 levert een halve ampère per kanaal. Zie
+                    <a href="Bekabeling24V.html">Bekabeling op 24 V</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>8. Op het klemmenblok van de signaaltoren staan de nummers 0 tot 5. Wat is klem
+                        2?</strong></p>
+                <ol type="a">
+                    <li>De massa van de tweede module</li>
+                    <li>De tweede module vanaf de basis geteld</li>
+                    <li>De tweede kleur van boven geteld</li>
+                    <li>Een reservecontact dat je niet gebruikt</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Klem 0 is de gemeenschappelijke massa, en vanaf 1 loopt de
+                    nummering met de stapel mee van onder naar boven. Zie
+                    <a href="Signaaltoren.html">De signaaltoren</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>9. Je stuurt in CODESYS een lamp van de signaaltoren aan, de variabele springt op
+                        <code>TRUE</code>, en er brandt niets. Wat controleer je eerst?</strong></p>
+                <ol type="a">
+                    <li>Of de module wel vastgedraaid is en dus contact maakt</li>
+                    <li>Of de PLC wel gestart is</li>
+                    <li>Of het ESI-bestand van de EL2004 geïnstalleerd is</li>
+                    <li>Of de kabel naar de EK1100 in de juiste poort zit</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord a.</strong> De variabele die op <code>TRUE</code> springt, toont dat het
+                    programma en het netwerk hun werk doen. Een module die alleen opgezet en niet gedraaid is,
+                    blijft rechtstaan zonder contact te maken. Zie
+                    <a href="Signaaltoren.html">De signaaltoren</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>10. Waarom kan je een EL2004 niet pingen?</strong></p>
+                <ol type="a">
+                    <li>Omdat de klem geen eigen voeding heeft</li>
+                    <li>Omdat EtherCAT alleen op de datalinklaag werkt en de klem dus geen IP-adres heeft</li>
+                    <li>Omdat de PLC het ICMP-verkeer tegenhoudt</li>
+                    <li>Omdat een uitgangsklem alleen ontvangt en nooit antwoordt</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Er worden alleen ethernetframes verstuurd, geen IP-pakketten. Zie
+                    <a href="EtherCAT.html">EtherCAT</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>11. Hoe haalt de master bij EtherCAT de waarden van tien slaves op?</strong></p>
+                <ol type="a">
+                    <li>Met tien vragen na elkaar, en telkens wacht hij op het antwoord</li>
+                    <li>Met één frame dat door alle slaves passeert en waarin elke slave zijn eigen stukje leest
+                        en schrijft</li>
+                    <li>Met een broadcast waarop alle slaves tegelijk antwoorden</li>
+                    <li>Hij haalt niets op, de slaves sturen hun waarden uit zichzelf door</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Dat heet processing on the fly, en daardoor blijft de cyclustijd
+                    laag, ook bij veel klemmen. Zie <a href="EtherCAT.html">EtherCAT</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>12. Mag je een gewone switch zetten tussen de netwerkkaart van de master en de eerste
+                        EtherCAT-slave?</strong></p>
+                <ol type="a">
+                    <li>Ja, een EtherCAT-frame is een gewoon ethernetframe en een switch stuurt het door</li>
+                    <li>Ja, op voorwaarde dat de switch managed is en je er een VLAN op instelt</li>
+                    <li>Nee, de master gaat rechtstreeks naar de eerste slave</li>
+                    <li>Nee, tenzij je aan elke slave eerst een IP-adres geeft</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord c.</strong> De slaves gedragen zich niet als gewone netwerkkaarten, en de keten
+                    werkt doordat het frame van slave naar slave gaat. Zie
+                    <a href="EtherCAT.html">EtherCAT</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>13. Je hebt de ESI-bestanden niet geïnstalleerd en je doet toch een scan van het
+                        netwerk. Wat gebeurt er?</strong></p>
+                <ol type="a">
+                    <li>De scan geeft een foutmelding en stopt</li>
+                    <li>De scan vindt toestellen, maar CODESYS weet niet wat ze kunnen en je krijgt de in- en
+                        uitgangen niet in je programma</li>
+                    <li>De scan vindt niets, want zonder ESI-bestand stuurt de master geen frames</li>
+                    <li>CODESYS haalt de bestanden zelf bij de fabrikant op</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Het ESI-bestand beschrijft wat een toestel kan en welke gegevens
+                    het in het frame zet. Zie <a href="Codesys.html">CODESYS en de ESI-bestanden</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>14. Je hebt in1 geforceerd om te testen, en daarna de knop aangesloten. Drukken doet
+                        niets meer. Waarom?</strong></p>
+                <ol type="a">
+                    <li>De ingang is beschadigd door het forceren</li>
+                    <li>De geforceerde waarde staat er nog, dus de PLC negeert wat de klem meldt</li>
+                    <li>Een geforceerde variabele kan niet meer aan een kanaal gekoppeld worden</li>
+                    <li>De PLC moet opnieuw opstarten voor hij een echte ingang aanvaardt</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Een geforceerde waarde blijft staan tot je ze vrijgeeft. Zie
+                    <a href="Codesys.html">CODESYS en de ESI-bestanden</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

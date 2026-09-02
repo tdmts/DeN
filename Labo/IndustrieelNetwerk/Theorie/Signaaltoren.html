@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De signaaltoren</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>De signaaltoren</h1>
+
+        <p>Een <strong>signaaltoren</strong> staat bovenop een machine en toont van ver in welke toestand ze zit.
+            Groen betekent dat de machine draait, oranje dat er iets aandacht vraagt, rood dat ze stilstaat of in
+            storing is. Sommige torens hebben er nog een zoemer bij. Het is een uitgang zoals een lamp, alleen zit
+            er een afspraak achter de kleur die op elke werkvloer dezelfde is.</p>
+
+        <p>De toren in het labo is opgebouwd uit <strong>losse modules die je op elkaar stapelt</strong>. Onderaan
+            zit de basis met het klemmenblok, daarboven komt module na module, en bovenaan een deksel. Elke module
+            is één kleur en één lamp.</p>
+
+        <h2>De modules op elkaar zetten</h2>
+
+        <p>Twee modules klikken niet in elkaar, je draait ze vast. Op elke module staat aan de ene kant een
+            <strong>streep</strong> en aan de andere kant een <strong>pijl</strong>:</p>
+
+        <ol>
+            <li>Zet de module op de vorige met de streep recht boven de pijl. Alleen in die stand passen de
+                contacten in elkaar.
+                <figure class="figure-zoom">
+                    <img src="../../../img/signaaltoren-streep-en-pijl-uitlijnen.png" class="img-fluid"
+                        alt="De streep op de zwarte ring staat recht boven de pijl op de groene module eronder">
+                    <figcaption class="figure-caption">De streep en de pijl staan boven elkaar</figcaption>
+                </figure>
+            </li>
+            <li>Draai de module een stukje door tot ze vergrendelt. De streep staat dan niet meer boven de pijl.
+                <figure class="figure-zoom">
+                    <img src="../../../img/signaaltoren-module-vastdraaien.png" class="img-fluid"
+                        alt="Dezelfde twee modules na het draaien: de streep staat nu naast de pijl">
+                    <figcaption class="figure-caption">Na het draaien zit de module vast</figcaption>
+                </figure>
+            </li>
+        </ol>
+
+        <p>Een module die niet vergrendeld is, blijft wel rechtstaan maar maakt geen contact. De lamp die je in je
+            programma aanstuurt, blijft dan uit terwijl er niets fout is aan je bedrading.</p>
+
+        <h2>Het klemmenblok en de nummering</h2>
+
+        <p>In de basis zit een ring met genummerde klemmen. Die nummers volgen de <strong>stapel van onder naar
+                boven</strong>:</p>
+
+        <ul>
+            <li><strong>0</strong> is de gemeenschappelijke aansluiting van de hele toren, de massa.</li>
+            <li><strong>1</strong> is de eerste module boven de basis.</li>
+            <li><strong>2</strong> is de tweede module, en zo verder voor elke module die je erbovenop zet.</li>
+        </ul>
+
+        <figure class="figure-zoom">
+            <img src="../../../img/signaaltoren-klemmenblok-nummering.png" class="img-fluid"
+                alt="De onderkant van de signaaltoren met een ring van klemmen genummerd van 5 tot 0, waarop draden vastgeschroefd zijn">
+            <figcaption class="figure-caption">Het klemmenblok in de basis, met klem 0 voor de massa</figcaption>
+        </figure>
+
+        <p>Elke module heeft dus <strong>één eigen draad</strong>, en ze delen allemaal de massa op klem 0. Wil je
+            twee lampen los van elkaar aansturen, dan heb je twee uitgangen van de EL2004 nodig, één per
+            klemnummer. Hang je ze allebei aan dezelfde uitgang, dan gaan ze ook altijd samen aan en uit.</p>
+
+        <p>De modules in het labo werken op dezelfde 24 V als de klemmen. Je verbindt een uitgang van de EL2004
+            met het klemnummer van de module, en klem 0 met de massa van je voeding.</p>
+
+        <div class="info-box remark">
+            <div class="info-title remark">De nummers staan op de basis, de kleuren niet</div>
+            <p>Welke kleur op welk nummer zit, hangt af van de volgorde waarin de toren gestapeld is, en die kan
+                verschillen van opstelling tot opstelling. Tel dus zelf na van onder naar boven in plaats van aan te
+                nemen dat rood altijd op 1 zit.</p>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

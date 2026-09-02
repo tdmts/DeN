@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labo Industrieel netwerk</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Labo Industrieel netwerk</h1>
+
+        <p class="lead">In een machinekast staat de besturing op een PLC en hangen de knoppen en de lampen aan
+            klemmen elders in de kast. Tussen die twee loopt geen bundel aparte draden meer, maar een netwerkkabel:
+            een veldbus die de in- en uitgangen op afstand aan de besturing hangt. In dit labo bouw je zo'n opstelling
+            zelf op, met een Raspberry Pi in de rol van PLC.</p>
+
+        <h2 id="studiemateriaal">Studiemateriaal</h2>
+
+        <h3>Meebrengen naar het labo</h3>
+
+        <ul>
+            <li><strong>Je Raspberry Pi</strong> met SD-kaart, voeding en HDMI-kabel</li>
+            <li><strong>Je laptop</strong> met CODESYS</li>
+            <li>Je eigen multimeter zou handig kunnen zijn</li>
+        </ul>
+
+        <h3>Beschikbaar in het labo</h3>
+
+        <ul>
+            <li>Een voeding van 24 V en een stuk DIN-rail</li>
+            <li>Een Beckhoff EK1100 met een EL1004 en een EL2004</li>
+            <li>Een signaaltoren en een drukknop</li>
+            <li>Kabeldraad, een netwerkkabel cat5e van ongeveer 1 m, en een multimeter</li>
+            <li>Schroevendraaiers, een striptang en een kniptang</li>
+        </ul>
+
+        <h3>Software</h3>
+
+        <div class="download-container">
+            <a href="https://portal.academicsoftware.com/software" target="_blank" rel="noopener">CODESYS</a>
+            <ul>
+                <li>De ontwikkelomgeving waarin je het PLC-programma schrijft</li>
+                <li>Installeer het voor je naar het labo komt</li>
+            </ul>
+        </div>
+
+        <div class="download-container">
+            <a href="../../downloads/Labo-IndustrieelNetwerk-EtherCAT-XML.zip">Beckhoff EtherCAT XML</a>
+            <ul>
+                <li>De ESI-bestanden van de EK1100, de EL1004 en de EL2004</li>
+                <li>Unzip het, je hebt er later drie bestanden uit nodig</li>
+            </ul>
+        </div>
+
+        <h2 id="theorie">Theorie</h2>
+
+        <p>De theorie bij dit labo staat bij <strong>Theorie</strong>. Je hebt ze nodig voor je iets aansluit,
+            want je tekent eerst een schema van je bekabeling. Lees ze dus voor je aan de opdracht begint.</p>
+
+        <h2 id="opdracht">Opdracht</h2>
+
+        <p>Wat je opbouwt en programmeert, staat bij <strong>Opdracht</strong>. Daar download je het
+            verslagdocument waarin je werkt: je vult het in terwijl je bezig bent en je dient het achteraf in.</p>
+
+        <h2 id="doelstellingen">Doelstellingen</h2>
+
+        <p>Op het einde van dit labo kan je:</p>
+
+        <ol>
+            <li>Je Raspberry Pi als PLC gebruiken, met CODESYS als ontwikkelomgeving en de runtime op de Pi</li>
+            <li>In eigen woorden uitleggen wat het verschil is tussen een PLC, een coupler en een I/O-eiland</li>
+            <li>Een I/O-eiland bekabelen: de voeding, een knop op een digitale ingang en een signaaltoren op de
+                digitale uitgangen</li>
+            <li>Een schema tekenen van die bekabeling in bovenaanzicht, en het laten controleren voor je spanning
+                zet</li>
+            <li>De ESI-bestanden van de EtherCAT-toestellen installeren en het netwerk in CODESYS laten scannen</li>
+            <li>Een eenvoudig programma in FBD schrijven dat een signaaltoren aanstuurt en de status van een knop
+                uitleest, en het testen met geforceerde I/O en met een visualisatie</li>
+        </ol>
+
+        <h2 id="evaluatie">Evaluatie</h2>
+
+        <div class="info-box evaluation">
+            <div class="info-title evaluation">Hoe dit labo meetelt</div>
+            <p>Je oefeningen bepalen je punt voor dit labo. Hoe het meetelt voor je eindcijfer, staat op de
+                <a href="../../Algemeen/Evaluatie.html" target="_blank" rel="noopener">evaluatiepagina</a>. Wanneer
+                het doorgaat en hoeveel sessies je ervoor hebt, staat in de
+                <a href="../../Algemeen/Planning.html" target="_blank" rel="noopener">planning</a>.</p>
+            <p>Je laat elke oefening ter plaatse controleren, dus zorg dat je klaar bent voor het einde van een
+                sessie.</p>
+        </div>
+
+    </div>
+
+    <script src="../../reference.js"></script>
+    <script src="../../back-link.js"></script>
+</body>
+
+</html>

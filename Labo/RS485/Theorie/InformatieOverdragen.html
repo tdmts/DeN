@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informatie overdragen</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Informatie overdragen</h1>
+
+        <p>Om informatie (zoals een temperatuurmeting) van punt A naar punt B te versturen, heb je een
+            <strong>transmissiemedium</strong> nodig:</p>
+
+        <ol>
+            <li><strong>Bedraad</strong>: elektromagnetische signalen door een <em>kabel</em></li>
+            <li><strong>Draadloos</strong>: elektromagnetische signalen via de <em>ether</em> (radio, wifi,
+                Bluetooth&hellip;)</li>
+        </ol>
+
+        <h2>Afspraken maken</h2>
+
+        <p>Zender en ontvanger moeten het eens zijn over hoe ze informatie coderen. Anders begrijpen ze elkaar niet.
+            Die afspraken gaan over verschillende eigenschappen van het signaal:</p>
+
+        <div class="info-box">
+            <div class="info-title remark">Signaaleigenschappen</div>
+            <ol>
+                <li><strong>Amplitude</strong> (spanningsniveau)<br>
+                    Bijvoorbeeld: een digitale '1' = spanning tussen -5 V en -15 V, een digitale '0' = spanning tussen
+                    +5 V en +15 V. We werken met <strong>discrete zones</strong> om ruis te onderdrukken.</li>
+                <li><strong>Frequentie</strong><br>
+                    Bijvoorbeeld: een '1' = 10 Hz, een '0' = 20 Hz</li>
+                <li><strong>Fase</strong><br>
+                    Bijvoorbeeld: een '1' = 90&deg; faseverschuiving, een '0' = 45&deg; faseverschuiving</li>
+            </ol>
+        </div>
+
+        <h2>Standaarden</h2>
+
+        <p>In de praktijk worden die afspraken vastgelegd in <strong>communicatiestandaarden</strong>.</p>
+
+        <div class="info-box">
+            <div class="info-title">Voorbeelden van communicatiestandaarden</div>
+            <ul>
+                <li><strong>RS-232 / RS-485</strong>: seriële communicatie voor industriële toepassingen</li>
+                <li><strong>USB</strong>: universele aansluiting voor computers en randapparatuur</li>
+                <li><strong>Ethernet</strong>: bekabelde netwerken</li>
+                <li><strong>Modbus, Profinet, EtherNet/IP, EtherCAT, CANbus</strong>: industriële protocollen</li>
+                <li><strong>MQTT, OPC UA</strong>: moderne IoT-protocollen</li>
+            </ul>
+        </div>
+
+        <p>Dankzij standaarden kunnen apparaten van verschillende fabrikanten met elkaar communiceren.</p>
+
+        <div class="info-box">
+            <div class="info-title tip">Labofocus</div>
+            <p>In dit labo maak je kennis met <strong>RS-485</strong>.</p>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

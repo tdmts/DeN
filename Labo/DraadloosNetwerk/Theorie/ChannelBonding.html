@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channel bonding</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Channel bonding</h1>
+
+        <p>Staat de router in n- of ac-modus, dan kan hij aan <strong>channel bonding</strong> doen. In plaats van
+            één kanaal gebruikt hij er twee die tegen elkaar aan liggen. De beschikbare bandbreedte verdubbelt
+            daardoor tot ongeveer 40 MHz, en de snelheid in theorie ook.</p>
+
+        <p>In ac-modus gaan sommige routers tot acht kanalen samen. De bandbreedte is dan 160 MHz en de snelheid in
+            theorie acht keer die van één kanaal.</p>
+
+        <figure class="figure-zoom">
+            <img src="../../../img/kanaalindeling-5ghz-met-channel-bonding.png" class="img-fluid"
+                alt="Schema van de 5 GHz-band met de kanalen op vier rijen: 20 MHz, 40 MHz, 80 MHz en 160 MHz, waarbij de bredere kanalen telkens twee smallere overspannen">
+            <figcaption class="figure-caption">Dezelfde band, gegroepeerd in kanalen van 20, 40, 80 en 160 MHz
+            </figcaption>
+        </figure>
+
+        <p>In de router vind je dit terug onder de instelling <strong>Channel Width</strong>, waar je het aan- of
+            uitzet.</p>
+
+        <div class="info-box warning">
+            <div class="info-title warning">Wanneer een breed kanaal je tegenwerkt</div>
+            <p>Een kanaal van 40 MHz neemt twee keer zoveel plaats in als een van 20 MHz, en die plaats is gedeeld
+                met je buren. Op de 2,4 GHz-band, waar er weinig ruimte is en veel netwerken zitten, betekent bonding
+                vooral dat je met meer netwerken tegelijk overlapt. Een kanaal van 20 MHz levert daar in de praktijk
+                meer op.</p>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

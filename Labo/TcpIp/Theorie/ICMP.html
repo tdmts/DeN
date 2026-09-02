@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICMP en ping</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>ICMP en ping</h1>
+
+        <p><strong>ICMP</strong>, het Internet Control Message Protocol, draagt de meldingen die netwerktoestellen
+            elkaar over de verbinding zelf sturen: foutmeldingen en berichten waarmee je een verbinding kan testen.
+            Het bekendste gebruik ervan is het commando <code>ping</code>.</p>
+
+        <h2>Wat ping doet</h2>
+
+        <p>Met <code>ping google.be</code> stuurt je computer een <strong>echo request</strong> naar die host, en de
+            host stuurt een <strong>echo reply</strong> terug. Windows stuurt er standaard vier, dus in Wireshark zie
+            je acht pakketten: telkens een request van jou naar de host en een reply van de host naar jou.</p>
+
+        <p>Daarmee weet je drie dingen. Je ziet het IP-adres dat bij de naam hoort, je weet dat de host bereikbaar is,
+            en je ziet hoelang het pakket onderweg was.</p>
+
+        <figure class="figure-zoom">
+            <img src="../../../img/wireshark-icmp-request-en-reply.png" class="img-fluid"
+                alt="Wireshark met het filter icmp, met acht pakketten die afwisselend Echo ping request en Echo ping reply heten, met wisselende source- en destination-adressen">
+            <figcaption class="figure-caption">Vier requests en vier replies, met je eigen adres afwisselend als
+                source en als destination</figcaption>
+        </figure>
+
+        <h2>De response time</h2>
+
+        <p>De <strong>response time</strong> of <strong>round-trip time</strong> is de tijd die een pakket nodig heeft
+            om naar de bestemming te reizen en weer terug te komen, uitgedrukt in milliseconden. Lager is beter. Het
+            cmd-venster toont die tijd per pakket, en in Wireshark vind je ze bij een reply terug.</p>
+
+        <h2>De data in een ping</h2>
+
+        <p>Een ping-pakket draagt data mee die geen betekenis heeft. Het doel van ping is te testen of een host
+            bereikbaar is, en de data dient alleen om het pakket op te vullen tot minstens 32 bytes. Windows gebruikt
+            daarvoor het alfabet: <code>abcdefghijklmnopqrstuvwxyzabcdefghi</code>.</p>
+
+        <div class="info-box warning">
+            <div class="info-title warning">Een host zonder reply kan gewoon online zijn</div>
+            <p>Een reply betekent dat de host actief is op het netwerk. Blijft de reply uit, dan kan de host toch
+                bereikbaar zijn: hosts en firewalls blokkeren ICMP dikwijls bewust, zodat ze moeilijker te vinden zijn
+                voor wie een netwerk afzoekt. Ping je <code>hogent.be</code>, dan krijg je wel het IP-adres te zien
+                maar geen replies.</p>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

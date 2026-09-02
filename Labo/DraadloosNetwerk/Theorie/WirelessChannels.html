@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireless channels</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Wireless channels</h1>
+
+        <p>Om meerdere draadloze netwerken naast elkaar te laten bestaan, zijn de 2,4 GHz-band en de 5 GHz-band
+            onderverdeeld in <strong>kanalen</strong>. Ideaal heeft elk netwerk een eigen kanaal dat niet overlapt met
+            dat van de buren. De zenders storen elkaar dan niet en de communicatie verloopt sneller.</p>
+
+        <p>In de praktijk zijn er vaak zoveel netwerken in de buurt dat ze elkaar toch overlappen. In inSSIDer zie je
+            dat meteen: elk netwerk is een boog, en waar de bogen over elkaar vallen delen ze dezelfde ruimte.</p>
+
+        <figure class="figure-zoom">
+            <img src="../../../img/inssider-overlappende-kanalen-24ghz.png" class="img-fluid"
+                alt="Het kanalenoverzicht van inSSIDer voor de 2,4 GHz-band, met een geel gemarkeerd netwerk dat over de kanalen 1 tot 8 valt en verschillende rode netwerken die er deels onder liggen">
+            <figcaption class="figure-caption">De 2,4 GHz-band in inSSIDer: hoe hoger de boog, hoe sterker het signaal
+            </figcaption>
+        </figure>
+
+        <h2>Een kanaal kiezen</h2>
+
+        <p>In het voorbeeld hierboven zit ons netwerk op de kanalen rond 2 en 6. Op kanaal 8 of 12 is er ook
+            overlapping, maar het netwerk waarmee je daar deelt is zwakker, en een zwak concurrerend signaal hindert
+            je minder.</p>
+
+        <p>Je stelt het kanaal in bij de wireless settings van de router, per band apart.</p>
+
+        <div class="info-box tip">
+            <div class="info-title tip">Kijk ook naar de hoogte van de boog</div>
+            <p>Volledig vrij zit je zelden, dus kies met wie je overlapt. Overlappen met een zwak signaal ver weg
+                kost je minder dan overlappen met een sterk netwerk vlak naast je.</p>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

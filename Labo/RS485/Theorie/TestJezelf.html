@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test jezelf</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Test jezelf</h1>
+
+        <p>Beantwoord elke vraag eerst zelf en klap daarna pas het antwoord open. Bij elk antwoord staat op welke
+            theoriepagina het uitgelegd wordt, dus lees die opnieuw wanneer je ernaast zat. Er wordt niets
+            bijgehouden en er staat geen punt op.</p>
+
+        <h2 id="vragen">Vragen</h2>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>1. Wat is het belangrijkste verschil tussen single ended signaling en differential
+                        signaling?</strong></p>
+                <ol type="a">
+                    <li>Single ended signaling gebruikt altijd een hogere spanning dan differential signaling</li>
+                    <li>Differential signaling is alleen geschikt voor korte afstanden</li>
+                    <li>Differential signaling gebruikt twee complementaire signalen, terwijl single ended signaling
+                        één signaal tegen ground gebruikt en daardoor gevoeliger is voor interferentie</li>
+                    <li>Single ended signaling heeft een betere attenuatie dan differential signaling</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord c.</strong> Bij differential signaling meet de ontvanger het verschil tussen twee
+                    geleiders die tegengestelde signalen dragen. Ruis die op beide draden even hard inwerkt, valt in
+                    dat verschil weg. Single ended signaling meet tegen de massa, en die referentie kan zelf
+                    verschuiven. Let op: ook bij differential signaling hoort er nog een massaverbinding te zijn,
+                    want de twee kanten moeten binnen 7 V van elkaar blijven. Zie <a
+                    href="DifferentialSignaling.html">Differential signaling</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>2. Bij single ended signaling wordt een digitale 1 gerepresenteerd door een
+                        spanning tussen:</strong></p>
+                <ol type="a">
+                    <li>0 V en 0,8 V</li>
+                    <li>2 V en 5 V</li>
+                    <li>0,8 V en 2 V</li>
+                    <li>0 V en 5 V</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Tussen 0 V en 0,8 V ligt de digitale 0, en tussen 0,8 V en 2 V ligt de
+                    verboden zone waar het signaal ongedefinieerd is. Zie <a
+                    href="SingleEndedSignaling.html">Single ended signaling</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>3. Wat is het voordeel van parallelle communicatie ten opzichte van seriële
+                        communicatie?</strong></p>
+                <ol type="a">
+                    <li>Parallelle communicatie gebruikt minder kabels</li>
+                    <li>Parallelle communicatie heeft geen transmissieproblemen</li>
+                    <li>Parallelle communicatie is goedkoper over lange afstanden</li>
+                    <li>Parallelle communicatie kan meer bits tegelijk transporteren</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord d.</strong> Twaalf datalijnen dragen twaalf bits tegelijk. Precies daarom heeft
+                    parallel ook meer kabels nodig en meer last van crosstalk, wat de drie andere antwoorden
+                    uitsluit. Zie <a href="SerieelVsParallel.html">Serieel vs parallel communiceren</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>4. Waarom krijgt seriële communicatie vaak de voorkeur boven parallelle
+                        communicatie?</strong></p>
+                <ol type="a">
+                    <li>Seriële communicatie is altijd sneller dan parallelle communicatie</li>
+                    <li>Seriële communicatie gebruikt meer datalijnen</li>
+                    <li>Seriële communicatie heeft minder transmissieproblemen en is goedkoper over lange afstanden
+                    </li>
+                    <li>Seriële communicatie heeft geen crosstalk</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord c.</strong> Let op het woord "altijd" in a en "geen" in d: seriële communicatie
+                    is per bit trager en heeft minder crosstalk, niet geen. Zie <a
+                    href="SerieelVsParallel.html">Serieel vs parallel communiceren</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>5. Wat gebeurt er bij full duplex communicatie?</strong></p>
+                <ol type="a">
+                    <li>Beide partijen kunnen gelijktijdig zenden en ontvangen via aparte transmissielijnen</li>
+                    <li>Alleen één partij kan tegelijk zenden</li>
+                    <li>Informatie wordt alleen in één richting verstuurd</li>
+                    <li>Er wordt geen extra transmissielijn gebruikt</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord a.</strong> Antwoord b beschrijft half duplex en antwoord c simplex. Zie <a
+                    href="SimplexEnDuplex.html">Simplex en half / full duplex</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>6. Wat is het maximum aantal transceivers dat je kan aansluiten op een
+                        RS-485-netwerk?</strong></p>
+                <ol type="a">
+                    <li>16</li>
+                    <li>64</li>
+                    <li>8</li>
+                    <li>32</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord d.</strong> Dat getal staat ook in de datasheet van de 75176, en je hebt het nodig
+                    bij het eerste deel van de opdracht. Zie <a href="WatIsRS485.html">Wat is RS-485?</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>7. Wat is de maximum afstand voor RS-485-communicatie?</strong></p>
+                <ol type="a">
+                    <li>15 meter</li>
+                    <li>1200 meter</li>
+                    <li>100 meter</li>
+                    <li>500 meter</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Die 1200 meter haal je wel aan 100 kbps, niet aan de 10 Mbps die
+                    onder de 12 meter mogelijk is. De 15 meter uit antwoord a is de grens van RS-232. Zie <a
+                    href="WatIsRS485.html">Wat is RS-485?</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>8. Wat is een belangrijk verschil tussen RS-485 en RS-232?</strong></p>
+                <ol type="a">
+                    <li>RS-232 gebruikt single ended signaling, RS-485 gebruikt differential signaling</li>
+                    <li>RS-232 heeft een grotere maximum afstand dan RS-485</li>
+                    <li>RS-485 is alleen geschikt voor point-to-point communicatie</li>
+                    <li>RS-485 is trager dan RS-232</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord a.</strong> De drie andere antwoorden draaien de zaak net om: RS-485 haalt verder,
+                    is multipoint en is sneller. Zie <a href="WatIsRS485.html">Wat is RS-485?</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>9. Wat is de waarde van de afsluitweerstanden bij RS-485?</strong></p>
+                <ol type="a">
+                    <li>75 &Omega;</li>
+                    <li>50 &Omega;</li>
+                    <li>120 &Omega;</li>
+                    <li>100 &Omega;</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord c.</strong> Die weerstand staat aan beide uiteinden van de bus en gaat reflecties
+                    tegen. In de opdracht heet ze Rt. Zie <a href="WatIsRS485.html">Wat is RS-485?</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>10. Welke topologie gebruik je om RS-485-transceivers met elkaar te verbinden?</strong></p>
+                <ol type="a">
+                    <li>Ringtopologie</li>
+                    <li>Bustopologie</li>
+                    <li>Stertopologie</li>
+                    <li>Meshtopologie</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> Alle transceivers hangen aan dezelfde twee draden. Dat is ook de reden
+                    dat er maar één tegelijk mag zenden. Zie <a href="WatIsRS485.html">Wat is RS-485?</a>.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>
