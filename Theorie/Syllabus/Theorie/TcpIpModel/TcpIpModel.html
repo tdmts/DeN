@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCP/IP model</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>TCP/IP model</h1>
+
+        <p>Het TCP/IP model is de netwerkstandaard die op zo goed als ieder computernetwerk gebruikt wordt.</p>
+
+        <p>Afhankelijk van het handboek dat geraadpleegd wordt zal het TCP/IP model er anders uitzien. Sommige handboeken bekijken TCP/IP als een vier lagen model en andere als een vijf lagen model. De rechtse notatie, met vijf lagen, is degene die we in deze cursus zullen gebruiken.</p>
+
+        <p>Ook over de naam van de tweede laag is er geen consensus. Sommige handboeken verwijzen naar deze laag met de naam Link laag, andere gebruiken dan weer Datalink laag. Voor de eenvoud gebruikt deze cursus de datalink laag benaming naar analogie met het OSI model.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <thead class="table-header-custom">
+                    <tr><th>TCP/IP original</th><th>TCP/IP updated</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Application</td><td>Application</td></tr>
+                    <tr><td>Transport</td><td>Transport</td></tr>
+                    <tr><td>Internet</td><td>Network</td></tr>
+                    <tr><td rowspan="2">Link</td><td>Datalink</td></tr>
+                    <tr><td>Physical</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Daarnaast is het doel van het TCP/IP model en het OSI model hetzelfde: standaardisatie brengen in een computernetwerk. Als we deze twee modellen naast elkaar leggen dan zien we eigenlijk dezelfde functionaliteit. Het verschil zit hem vooral in de applicatie laag die meerdere taken op zich moet nemen.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <thead class="table-header-custom">
+                    <tr><th>OSI</th><th>TCP/IP</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Application</td><td rowspan="3">Application</td></tr>
+                    <tr><td>Presentation</td></tr>
+                    <tr><td>Session</td></tr>
+                    <tr><td>Transport</td><td>Transport</td></tr>
+                    <tr><td>Network</td><td>Network</td></tr>
+                    <tr><td>Datalink</td><td>Datalink</td></tr>
+                    <tr><td>Physical</td><td>Physical</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>In deze cursus bespreken we iedere laag van het TCP/IP model. Je kan de lagen beter onthouden met het ezelsbrugje: Please Do Not Take Anything.</p>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

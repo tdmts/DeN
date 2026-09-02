@@ -129,6 +129,27 @@ Draai dit voor je een inhoudelijke wijziging afsluit. Een groene check hoort bij
    thuishoort (de Pi neemt de rol van PLC op) mag gerust, zolang het er niet
    twee keer hetzelfde staat.
 
+13. De syllabus-PDF is niet ouder dan de pagina's waaruit ze gegenereerd is.
+   Dezelfde regel als 6 voor de verslagsjablonen, en om een scherpere reden: van
+   de hele syllabus is de PDF het enige dat de student te zien krijgt. Een
+   pagina onder Theorie/Syllabus/Theorie/ aanpassen zonder
+   scripts/export-syllabus.py opnieuw te draaien, verandert dus niets aan wat
+   hij leest. Op het scherm klopt alles, en niets anders zou het merken.
+
+14. Elke vraag van een Test jezelf in de syllabus draagt haar antwoord. Een
+   meerkeuzevraag duidt precies een mogelijkheid aan met class="juist", een open
+   vraag draagt <!-- oplossing: ... -->. Uit die markering drukt
+   scripts/export-syllabus.py de sectie Oplossingen achter de Test jezelf, en de
+   letter (a, b, c) wordt daarbij geteld in plaats van overgeschreven, zodat een
+   verwisselde mogelijkheid geen fout antwoord kan opleveren.
+
+   De export is alles of niets: ontbreekt er een antwoord, dan drukt ze voor dat
+   hoofdstuk helemaal geen oplossingen, want een lijst waar vraag 3 uit
+   weggevallen is laat de student denken dat hij vraag 3 goed heeft. Dat is de
+   juiste keuze en tegelijk een stille: op het scherm is er niets aan te zien,
+   en in de uitvoer van de export is het een regel "let op" tussen de andere.
+   Vandaar deze regel, die het meldt voor er gedrukt wordt.
+
 Wat hier NIET in staat, en bewust niet: patroon 18 van SCHRIJFSTIJL.md, dat zegt
 dat een pagina niet mag verwijzen naar de geschiedenis van het materiaal zelf
 ("de theorie blijft wel op de site staan"). De woorden die zoiets verraden komen
@@ -353,12 +374,17 @@ def check_manifest():
                 fout("reference.js",
                      f"{naam}/{tid}: hoofdletters kloppen niet, dit geeft 404 op Pages ({href})")
             elif not DOCUMENT_RE.search(href):
-                vermeld.add(doel.name)
+                vermeld.add(str(doel))
 
-        for pagina in theorie.glob("*.html"):
+        # rglob en niet glob: de syllabus zet een map per hoofdstuk onder
+        # Theorie/, en met glob() bleef alles daarin ongecontroleerd. Vergelijken
+        # gaat op het volledige pad en niet op de bestandsnaam, want zes
+        # hoofdstukken hebben allemaal een Overzicht.html en vijf een
+        # Inleiding.html: op naam zou de ene de andere afdekken.
+        for pagina in theorie.rglob("*.html"):
             if pagina.name == "reference.html":
                 continue
-            if pagina.name not in vermeld:
+            if str(pagina) not in vermeld:
                 fout(pagina.relative_to(REPO),
                      "staat niet in reference.js, dus onbereikbaar via de hub")
     return modules
@@ -777,6 +803,141 @@ def check_dubbele_introductie():
                          "introducties horen elk iets anders te zeggen")
 
 
+def check_syllabus_pdf():
+    """Regel 13: de syllabus-PDF is niet ouder dan de pagina's waar ze uit komt.
+
+    Dezelfde redenering als regel 6 voor de verslagsjablonen. De PDF is afgeleid
+    materiaal dat toch gecommit wordt, want Pages serveert alleen wat in git
+    zit, en de student krijgt niets anders te zien dan die PDF. Een pagina
+    aanpassen zonder scripts/export-syllabus.py opnieuw te draaien, verandert
+    dus niets aan wat hij leest, en niets anders zou dat opmerken.
+    """
+    bron = REPO / "Theorie" / "Syllabus" / "Theorie"
+    pdf = REPO / "downloads" / "Datacommunicatie-en-netwerken-syllabus.pdf"
+    if not bron.is_dir():
+        return
+    paginas = [p for p in bron.rglob("*.html") if p.name != "reference.html"]
+    if not paginas:
+        return
+    if not pdf.exists():
+        fout(pdf.relative_to(REPO),
+             "bestaat niet; draai scripts/export-syllabus.py")
+        return
+    stempel = pdf.stat().st_mtime
+    for pagina in sorted(paginas):
+        if pagina.stat().st_mtime > stempel:
+            fout(pdf.relative_to(REPO),
+                 f"is ouder dan {pagina.relative_to(REPO)}; "
+                 "draai scripts/export-syllabus.py opnieuw")
+            return
+
+
+# ------------------------------------------- 14. elke vraag heeft een antwoord
+
+def _lijstitems(fragment, tag):
+    """De <li> op het eerste niveau van de eerste <tag>, als (openingstag, inhoud).
+
+    Dezelfde telling als in scripts/export-syllabus.py, en om dezelfde reden:
+    de mogelijkheden van een meerkeuzevraag zijn zelf <li>'s binnen het item,
+    dus een reguliere expressie alleen komt er niet uit. De twee scripts staan
+    los van elkaar (deze draait op een kale checkout, zonder pypdf en zonder
+    Chrome), net zoals ze allebei hun eigen lezer van reference.js hebben.
+    """
+    opening = re.search(rf"<{tag}\b[^>]*>", fragment)
+    if not opening:
+        return []
+    rest = fragment[opening.end():]
+    items = []
+    lijstdiepte = lidiepte = 0
+    start = tagtekst = None
+    for m in re.finditer(r"<(/?)(ul|ol|li)\b[^>]*>", rest):
+        sluit, naam = m.group(1) == "/", m.group(2)
+        if naam == "li":
+            if sluit:
+                if lidiepte == 1 and lijstdiepte == 0 and start is not None:
+                    items.append((tagtekst, rest[start:m.start()]))
+                    start = None
+                lidiepte = max(0, lidiepte - 1)
+            else:
+                lidiepte += 1
+                if lidiepte == 1 and lijstdiepte == 0:
+                    start, tagtekst = m.end(), m.group(0)
+        elif sluit:
+            if lijstdiepte == 0:
+                break
+            lijstdiepte -= 1
+        else:
+            lijstdiepte += 1
+    return items
+
+
+def _top_lijsten(fragment):
+    """De <ol>'s op het eerste niveau, elk met het nummer waar hij begint.
+
+    Een Test jezelf is in de Word een doorlopende genummerde lijst, maar een
+    tussenzin of een tabel ertussen splitst hem in HTML in meerdere <ol>'s. Het
+    start-attribuut houdt de nummering dan aan, en hier worden ze weer aan
+    elkaar geregen. Zonder dat leest alleen de eerste <ol> mee: de vragen
+    daarna raken hun antwoord kwijt zonder dat er iets aan te zien is.
+    """
+    uit = []
+    diepte = 0
+    volgende = 1
+    for m in re.finditer(r"<(/?)(ul|ol)\b([^>]*)>", fragment):
+        if m.group(1) == "/":
+            diepte = max(0, diepte - 1)
+            continue
+        if diepte == 0 and m.group(2) == "ol":
+            begin = re.search(r'start="(\d+)"', m.group(3))
+            begin = int(begin.group(1)) if begin else volgende
+            items = _lijstitems(fragment[m.start():], "ol")
+            uit.append((begin, items))
+            volgende = begin + len(items)
+        diepte += 1
+    return uit
+
+
+def _vragen(fragment):
+    """(nummer, openingstag, inhoud) per vraag, over alle <ol>'s van de pagina heen."""
+    return [(begin + i, tag, inhoud)
+            for begin, items in _top_lijsten(fragment)
+            for i, (tag, inhoud) in enumerate(items)]
+
+
+def check_testjezelf():
+    """Regel 14: elke vraag van een Test jezelf draagt haar antwoord.
+
+    Zonder markering laat de export de hele sectie Oplossingen van dat hoofdstuk
+    weg, en dat is aan niets te zien behalve aan een regel in haar uitvoer.
+    """
+    bron = REPO / "Theorie" / "Syllabus" / "Theorie"
+    if not bron.is_dir():
+        return
+    for pagina in sorted(bron.rglob("TestJezelf.html")):
+        tekst = pagina.read_text(encoding="utf-8")
+        vragen = _vragen(tekst)
+        if not vragen:
+            fout(pagina.relative_to(REPO),
+                 "geen genummerde vragen; een Test jezelf is een <ol> met een "
+                 "<li> per vraag")
+            continue
+        for nummer, _, inhoud in vragen:
+            keuzes = _lijstitems(inhoud, "ul")
+            if keuzes:
+                juist = [tag for tag, _ in keuzes
+                         if re.search(r'class="[^"]*\bjuist\b', tag)]
+                if len(juist) != 1:
+                    fout(pagina.relative_to(REPO),
+                         f"vraag {nummer} heeft {len(juist)} mogelijkheden met "
+                         'class="juist"; het moeten er precies een zijn, anders '
+                         "drukt de export voor dit hoofdstuk geen oplossingen")
+            elif not re.search(r"<!--\s*oplossing:\s*\S.*?-->", inhoud, re.S):
+                fout(pagina.relative_to(REPO),
+                     f"vraag {nummer} is een open vraag zonder "
+                     "<!-- oplossing: ... -->; zonder dat antwoord drukt de "
+                     "export voor dit hoofdstuk geen oplossingen")
+
+
 def main():
     tracked = getrackte_bestanden()
     if tracked is None:
@@ -794,6 +955,8 @@ def main():
     check_topicgrenzen()
     check_verslagknop()
     check_dubbele_introductie()
+    check_syllabus_pdf()
+    check_testjezelf()
 
     for w in warnings:
         print(f"  waarschuwing  {w}")

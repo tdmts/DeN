@@ -52,6 +52,127 @@
  * scripts/check-content.py op staat.
  */
 window.LAB_REFERENCE = {
+    /*
+     * De syllabus is de hoorcollegetrack, en ze werkt anders dan een labo: wat
+     * de student krijgt is een PDF, en die wordt uit deze pagina's gegenereerd
+     * door scripts/export-syllabus.py. Het manifest bepaalt daarbij de
+     * volgorde van het gedrukte document, precies zoals het hier de volgorde
+     * van de hub bepaalt, zodat de twee niet uit elkaar kunnen lopen.
+     *
+     * Een categorie is een hoofdstuk en krijgt in de PDF zijn nummer uit haar
+     * plaats in deze lijst, niet uit een veld: een nummer dat hier staat, is
+     * een tweede waarheid naast de volgorde. Het Voorwoord draagt geen nummer
+     * en zegt dat met genummerd: false.
+     */
+    syllabus: {
+        name: 'Syllabus',
+        categories: [
+            {
+                name: 'Voorwoord',
+                reeks: 'theorie',
+                topics: [
+                    {
+                        id: 'voorwoord',
+                        name: 'Voorwoord',
+                        blurb: 'Waarom een computernetwerk afspraken nodig heeft, en welk lagenmodel deze cursus als referentie gebruikt.',
+                        href: 'Voorwoord.html'
+                    }
+                ],
+                genummerd: false
+            },
+            {
+                name: 'TCP/IP model',
+                reeks: 'theorie',
+                topics: [
+                    {
+                        id: 'tcpip-overzicht',
+                        name: 'Kernpunten en studievragen',
+                        blurb: 'Wat je uit dit hoofdstuk moet meenemen, en de vragen waarop je achteraf een antwoord hoort te hebben.',
+                        href: 'TcpIpModel/Overzicht.html'
+                    },
+                    {
+                        id: 'tcpip-osi-model',
+                        name: 'OSI model',
+                        blurb: 'Zeven lagen, ontstaan uit de standaardisatie die een eind maakte aan hardware die alleen met zichzelf praatte.',
+                        href: 'TcpIpModel/OsiModel.html'
+                    },
+                    {
+                        id: 'tcpip-tcpip-model',
+                        name: 'TCP/IP model',
+                        blurb: 'Het model dat in de praktijk gebruikt wordt, in de vijflagenvorm die deze cursus aanhoudt, naast OSI gelegd.',
+                        href: 'TcpIpModel/TcpIpModel.html'
+                    },
+                    {
+                        id: 'tcpip-test-jezelf',
+                        name: 'Test jezelf',
+                        blurb: 'Vijf vragen over de lagen en waar ze voor dienen.',
+                        href: 'TcpIpModel/TestJezelf.html'
+                    }
+                ]
+            },
+            {
+                name: 'Fysieke laag',
+                reeks: 'theorie',
+                topics: [
+                    {
+                        id: 'fysiek-overzicht',
+                        name: 'Kernpunten en studievragen',
+                        blurb: 'Wat je uit dit hoofdstuk moet meenemen, en de vragen waarop je achteraf een antwoord hoort te hebben.',
+                        href: 'FysiekeLaag/Overzicht.html'
+                    },
+                    {
+                        id: 'fysiek-inleiding',
+                        name: 'Inleiding',
+                        blurb: 'Waar de fysieke laag over gaat: het transmissiemedium, de connectoren en de signalen die erop gezet worden.',
+                        href: 'FysiekeLaag/Inleiding.html'
+                    },
+                    {
+                        id: 'fysiek-ethernetkabel',
+                        name: 'Ethernetkabel',
+                        blurb: 'Aderparen, afschermingsgraad en categorie: waarin UTP van SFTP verschilt en wat een cat5e, cat6 of cat7 aankan.',
+                        href: 'FysiekeLaag/Ethernetkabel.html'
+                    },
+                    {
+                        id: 'fysiek-rj45-vs-m12',
+                        name: 'RJ-45 vs M12',
+                        blurb: 'Vragen bij een tekst over de twee connectoren, en waarom de industrie er een nodig heeft die tegen trillingen en stof kan.',
+                        href: 'FysiekeLaag/Rj45VsM12.html'
+                    },
+                    {
+                        id: 'fysiek-glasvezelkabel',
+                        name: 'Glasvezelkabel',
+                        blurb: 'Licht in plaats van stroom. Singlemode of multimode, LC of SC, en welk OM- of OS-type bij welke afstand hoort.',
+                        href: 'FysiekeLaag/Glasvezelkabel.html'
+                    },
+                    {
+                        id: 'fysiek-netwerkkaarten',
+                        name: 'Netwerkkaarten',
+                        blurb: 'Waar de kabel in gaat: een netwerkinterface voor koper via RJ-45, of voor glasvezel via een SFP module.',
+                        href: 'FysiekeLaag/Netwerkkaarten.html'
+                    },
+                    {
+                        id: 'fysiek-oefening-switch-bekabelen',
+                        name: 'Oefening: switch bekabelen',
+                        blurb: 'Kies voor de HP ProCurve uit het labo een koperkabel, een SFP module en een glasvezelkabel, en verklaar je keuze.',
+                        href: 'FysiekeLaag/OefeningSwitchBekabelen.html'
+                    },
+                    {
+                        id: 'fysiek-netwerktopologie',
+                        name: 'Netwerktopologie',
+                        blurb: 'Line, bus, ring, ster en mesh: hoe je hosts aan elkaar knoopt, en wat elke vorm kost aan kabel en aan betrouwbaarheid.',
+                        href: 'FysiekeLaag/Netwerktopologie.html'
+                    },
+                    {
+                        id: 'fysiek-test-jezelf',
+                        name: 'Test jezelf',
+                        blurb: 'Acht vragen over kabels, connectoren en topologieën.',
+                        href: 'FysiekeLaag/TestJezelf.html'
+                    }
+                ]
+            }
+        ]
+    },
+
     rs485: {
         name: 'Labo RS485',
         categories: [

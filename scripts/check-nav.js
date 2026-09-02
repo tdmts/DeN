@@ -243,7 +243,14 @@ function moduleOf(pagina) {
     const LAB_REFERENCE = manifest();
     const alleGroepen = groepen(LAB_REFERENCE);
 
-    const paginas = htmlPages(path.join(REPO, 'Labo'));
+    // Beide tracks, niet alleen Labo/. MODULES en moduleOf() kenden Theorie/ al,
+    // maar hier werd alleen Labo/ doorlopen, en dan wordt elke syllabuspagina
+    // gemeld als "door geen enkele pagina herkend" terwijl ze gewoon nooit
+    // gemeten is. De melding wijst dan naar reference.js in plaats van hierheen.
+    const paginas = ['Labo', 'Theorie']
+        .map((track) => path.join(REPO, track))
+        .filter((dir) => fs.existsSync(dir))
+        .flatMap((dir) => htmlPages(dir));
     const metingen = [];
     for (const p of paginas) metingen.push(await measure(p));
 

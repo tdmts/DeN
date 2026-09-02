@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSI model</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>OSI model</h1>
+
+        <p>Probeer je eens in te beelden wat er zou nodig zijn om verschillende apparaten zoals computers en smartphones met elkaar te laten communiceren over de wereld heen.</p>
+
+        <p>Waarschijnlijk ben je tot de conclusie aan het komen dat ze dezelfde ‘taal’ moeten spreken én er een soort van adresseringssysteem moet zijn. Er zijn, doorheen de jaren en voor het TCP/IP model, verschillende oplossingen uitgewerkt om dat te verwezenlijken.</p>
+
+        <p>In de jaren 1970 - 80, bij de opkomst van de eerste computernetwerken waren het vooral fabrikanten van hardware die systemen uitwerkten om communicatie mogelijk te maken op een netwerk. Die hardware was natuurlijk niet compatibel met de hardware van een andere fabrikant waardoor vendor lock in ontstond.</p>
+
+        <p>Om dat probleem tegen te gaan is men gaan standaardiseren. Dat betekende dat iedere fabrikant zijn hardware zou moeten laten werken volgens een set van afspraken. Dat had niet alleen als voordeel dat er geen vendor lock in meer kon zijn maar ook dat de netwerken groter konden worden dan ooit tevoren.</p>
+
+        <p>Het bespreken van de complete ontstaansgeschiedenis van computernetwerken en de bijhorende standaarden zou ons te ver leiden. Om deze reden hebben we de kernpunten hieronder samengevat:</p>
+
+        <ul>
+            <li>OSI staat voor Open Systems Interconnection.</li>
+            <li>Het OSI model bevat 7 lagen: fysiek, datalink, netwerk, transport, sessie, presentatie en applicatie.</li>
+            <li>Het model werd in de jaren &#x27;70 - &#x27;80 ontwikkeld om de vele verschillende types netwerken met elkaar te laten communiceren.</li>
+            <li>Het model heeft de dag van vandaag enkel nog een academische betekenis. In de praktijk wordt TCP/IP gebruikt.</li>
+            <li>TCP/IP is een vereenvoudigde versie van het OSI model.</li>
+        </ul>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr><td rowspan="3">Upper layers</td><td><strong>Application</strong></td><td>Protocols zoals HTTP en HTTPS die gebruikt worden om data over te dragen.</td></tr>
+                    <tr><td><strong>Presentation</strong></td><td>Omzetten van data naar een bruikbaar formaat zoals bv. ASCII, JPEG en MP3. Eventuele encryptie en compressie van data.</td></tr>
+                    <tr><td><strong>Session</strong></td><td>Openen en sluiten van de communicatie tussen twee apparaten.</td></tr>
+                    <tr><td rowspan="4">Lower layers</td><td><strong>Transport</strong></td><td>Data opsplitsen, (gegarandeerd) bezorgen van data, in volgorde.</td></tr>
+                    <tr><td><strong>Network</strong></td><td>Adressering over verschillende netwerken heen (WAN).</td></tr>
+                    <tr><td><strong>Datalink</strong></td><td>Foutcorrectie en adressering binnen het lokale netwerk (LAN).</td></tr>
+                    <tr><td><strong>Physical</strong></td><td>Afspraken over het type kabel, de connectoren en de signaalniveaus.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Je kan de lagen misschien beter onthouden met behulp van een ezelsbruggetje: <em>Please Do Not Take Something Precious Away</em></p>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

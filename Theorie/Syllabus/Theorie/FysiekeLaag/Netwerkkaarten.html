@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netwerkkaarten</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Netwerkkaarten</h1>
+
+        <p>De netwerkkabel (koper of glasvezel) moet je natuurlijk ergens mee verbinden en dat is uiteraard met een netwerkkaart, ook wel netwerkinterface genoemd.</p>
+
+        <p>De meeste klassieke netwerkkaarten op computers en industriële controllers ondersteunen snelheden van 10/100/1000 Mbps (1 Gbps) via een RJ-45 connector. Maar door de toenemende vraag naar hogere datasnelheden, ook in industriële toepassingen, zien we niet alleen vaker ondersteuning voor hogere snelheden zoals 2.5 Gbps, 5 Gbps en zelfs 10 Gbps maar ook voor glasvezel.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr><td><figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 75.6mm">
+            <img src="../../../../img/syllabus-02-fysieke-laag-11.jpeg" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure></td><td><figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 75.1mm">
+            <img src="../../../../img/syllabus-02-fysieke-laag-12.jpeg" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure></td></tr>
+                    <tr><td>Netwerkkaart voor koper via RJ45</td><td>Netwerkkaart voor glasvezel (of koper) via SFP</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Bij glasvezel komt er echter nog een extra component bij want je kan een glasvezelkabel niet rechtstreeks inpluggen op een netwerkkaart. Hiervoor heb je nog een SFP module nodig.</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 53.1mm">
+            <img src="../../../../img/syllabus-02-fysieke-laag-13.jpeg" class="img-fluid" alt="De SFP (Small Form-factor Pluggable) module fungeert als een brug tussen de netwerkkaart en de kabel.">
+            <figcaption class="figure-caption">De SFP (Small Form-factor Pluggable) module fungeert als een brug tussen de netwerkkaart en de kabel.</figcaption>
+        </figure>
+
+        <p>Hierdoor kun je flexibel kiezen voor verschillende snelheden zoals 1 Gbps of 10 Gbps, en voor verschillende types glasvezelverbindingen zoals singlemode of multimode, met connectoren als LC of SC.</p>
+
+        <p>Zelfs koperkabels worden ondersteund. Op deze manier blijft de netwerkkaart hetzelfde, terwijl je zelf bepaalt hoe je de verbinding tot stand brengt. Omdat er verschillende soorten SFP-modules bestaan, is het belangrijk om bij de aankoop goed te controleren of de module compatibel is met de rest van je netwerkapparatuur.</p>
+
+        <p>Let wel: de werkelijke snelheid van een netwerkverbinding wordt altijd bepaald door de zwakste schakel in de keten. Je kunt bijvoorbeeld een cat8 kabel gebruiken die tot 40 Gbps aankan, maar als je netwerkkaart slechts 1 Gbps ondersteunt, dan blijft dat ook de maximumsnelheid van de verbinding.</p>
+
+        <p>Daarom is het belangrijk dat alle onderdelen in het netwerk, van kabels tot netwerkkaarten, switches en routers, op elkaar afgestemd zijn en dezelfde snelheid ondersteunen.</p>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

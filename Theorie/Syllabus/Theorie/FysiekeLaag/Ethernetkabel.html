@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethernetkabel</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Ethernetkabel</h1>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 50.4mm">
+            <img src="../../../../img/syllabus-02-fysieke-laag-01.jpeg" class="img-fluid" alt="De kans is groot dat je al ooit eens een ethernetkabel gebruikt hebt om je computer aan te sluiten op het netwerk.">
+            <figcaption class="figure-caption">De kans is groot dat je al ooit eens een ethernetkabel gebruikt hebt om je computer aan te sluiten op het netwerk.</figcaption>
+        </figure>
+
+        <p>Langs de uiteinden van de kabel vind je twee RJ-45 connectoren. Als je die connectoren eens van dichtbij zou bekijken dan zou je zien dat een ethernetkabel eigenlijk bestaat uit 8 dunne kabeltjes.</p>
+
+        <p>Sommige ethernetkabels hebben intern maar 4 kabels, bij dit type is de snelheid beperkt tot 100 Mbps in plaats van 1000 Mbps (= 1 Gbps) of zelfs 10000 Mbps (= 10 Gbps). Om die laatste twee snelheden te behalen moeten alle 8 kabels aanwezig zijn.</p>
+
+        <p>Die snelheden worden soms ook uitgedrukt als 10 Base T (= 10Mbps), 100 Base T (= 100 Mbps), 1000 Base T of Gig-T (= 1Gbps), 10G Base T (= 10 Gbps). De T staat telkens voor Twisted pair. Hierover later meer.</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 68.2mm">
+            <img src="../../../../img/syllabus-02-fysieke-laag-02.png" class="img-fluid" alt="In de industrie ga je ook soms de M12 connector terugvinden. In de afbeelding zie je rechts de 4 wire variant die in staat is om snelheden te halen tot 100 Mbps.">
+            <figcaption class="figure-caption">In de industrie ga je ook soms de M12 connector terugvinden. In de afbeelding zie je rechts de 4 wire variant die in staat is om snelheden te halen tot 100 Mbps.</figcaption>
+        </figure>
+
+        <p>Er bestaat natuurlijk ook een 8 wire variant.</p>
+
+        <p>De M12 connector wordt vooral gebruikt in omgevingen waar er trillingen of stof zijn. Het is dus een iets robuustere connector dan de RJ-45 connector.</p>
+
+        <p>Er zijn verschillende soorten ethernetkabels op de markt.</p>
+
+        <p>We onderscheiden eerst en vooral:</p>
+
+        <ol>
+            <li>Unshielded Twisted Pair (UTP)</li>
+            <li>Foiled Twisted Pair (FTP)</li>
+            <li>Shielded (Foiled) Twisted Pair (S(F)TP)</li>
+        </ol>
+
+        <p>Alle type kabels worden getwist rond elkaar en de verschillen zitten hem in hoe de kabels afgeschermd worden van de buitenwereld. In sommige omgevingen is die afscherming meer dan nodig.</p>
+
+        <p>Bij UTP is er geen afscherming. Dit type kabel is niet geschikt om te gebruiken in een industriële omgeving omdat er vaak andere apparaten zijn, zoals motoren, die interferentie veroorzaken. Om de kabels af te schermen van die interferentie wordt er bij FTP een aluminium folie rond alle aders gewikkeld. Als die afscherming niet voldoende is gebruikt men STP kabel. Er wordt dan rond de individuele aderparen een folie gewikkeld. Als zelfs dat nog niet voldoende blijkt kan je een SFTP kabel kopen. Hierbij wordt een folie rond de individuele aderparen gewikkeld én rond alle kabels.</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-02-fysieke-laag-03.jpeg" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <p>Een tweede onderscheid kunnen we maken op basis van de categorie:</p>
+
+        <ul>
+            <li>cat5e</li>
+            <li>cat6 / cat6a</li>
+            <li>cat7</li>
+            <li>cat8</li>
+        </ul>
+
+        <p>Een cat5e kabel kan snelheden aan tot wel 1 Gbps (Gigabit) en lengtes aan tot wel 100 meter aan één stuk voordat er verlies optreedt. Hoewel een cat5e kabel zeker niet slecht is, zijn cat6 of cat7 betere kabels.</p>
+
+        <p>Een cat6 kabel heeft als voordeel ten opzichte van een cat5e dat de maximumsnelheid 10 Gbps bedraagt over afstanden tot ongeveer 50m. Als je genoeg hebt aan 1 Gbps dan is de maximum lengte ook 100m. Een cat6a kabel haalt 10 Gbps over de volledige 100m. Verder hebben cat6 kabels een betere afscherming en betere connectoren dan cat5e kabels. Dit alles maakt dat cat6 een kwalitatief betere kabel is dan cat5e.</p>
+
+        <p>Terwijl een cat6 kabel 10 Gbps ondersteunt over een beperkte afstand, kan een cat7 kabel deze snelheid halen over de volledige 100 meter. Daarnaast biedt cat7 een nog betere afscherming tegen storingen en maakt het gebruik van geavanceerdere connectoren zoals GG45 of TERA, in tegenstelling tot de standaard RJ45-connector bij cat6 kabels.</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-02-fysieke-laag-04.jpeg" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <p>Maar… Hoewel de officiële cat7 standaard connectoren zoals GG45 of TERA vereist, zijn er in de praktijk ook cat7 kabels met RJ45-connectoren verkrijgbaar. Deze ondersteunen snelheden tot 10 Gbps over 100 meter (hetzelfde als cat6a). Technisch gezien voldoen ze echter niet volledig aan de officiële cat7 specificaties. Ze worden vooral verkocht vanwege hun compatibiliteit met bestaande RJ45 netwerkinfrastructuur, waardoor ze populair zijn voor thuis- en kantoorgebruik.</p>
+
+        <p>Cat8 is de nieuwste generatie netwerkkabel en ondersteunt snelheden tot 40 Gbps over afstanden tot 30 meter. De kabel is volledig afgeschermd om storingen te minimaliseren. In tegenstelling tot cat7 maakt cat8 gebruik van de standaard RJ45-connector, wat zorgt voor compatibiliteit met bestaande apparatuur. Cat8 is vooral bedoeld voor datacenters en serveromgevingen, waar zeer hoge snelheid en lage vertraging essentieel zijn.</p>
+
+        <p>Belangrijk is om in te zien dat je in de drie categorieën ook de drie uitvoeringen UTP, FTP en SFTP kan terugvinden. Je kan dus perfect een cat7 SFTP kabel kopen in de winkel. In de industrie wordt meestal cat6, cat6a of cat7 gebruikt.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <thead class="table-header-custom">
+                    <tr><th>Categorie</th><th>Connector</th><th>Max. snelheid</th><th>Max. afstand</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Cat5e</td><td>RJ45</td><td>1 Gbps</td><td>100m</td></tr>
+                    <tr><td>Cat6</td><td>RJ45</td><td>1 Gbps / 10 Gbps</td><td>100m / 50m</td></tr>
+                    <tr><td>Cat6a</td><td>RJ45</td><td>10 Gbps</td><td>100m</td></tr>
+                    <tr><td>Cat7</td><td>GG45 / TERA (soms RJ45)</td><td>10 Gbps</td><td>100m</td></tr>
+                    <tr><td>Cat8</td><td>RJ45</td><td>25-40 Gbps</td><td>30m</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Als laatste kunnen we een onderscheid maken tussen een <em>straight-thru</em> en <em>crossover</em> ethernetkabel. In de meeste gevallen gebruik je een straight-thru kabel. Enkel als je twee computers rechtstreeks aan elkaar wil koppelen gebruik je een crossover kabel. Als je onderstaande afbeelding wat beter bestudeert zie je dat Tx (Transmit) en Rx (Receive) gekruist worden.</p>
+
+        <p>Netwerkkaarten met een AUTO MDI-X functie kunnen detecteren dat ze aan een andere computer zijn gekoppeld in plaats van aan een switch. Als je een straight-thru ethernetkabel gebruikt dan gaat de kaart zelf Tx en Rx omwisselen waardoor het lijkt alsof je toch een crossover kabel gebruikt. In moderne apparatuur is AUTO MDI-X standaard.</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-02-fysieke-laag-05.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-02-fysieke-laag-06.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-02-fysieke-laag-07.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-02-fysieke-laag-08.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

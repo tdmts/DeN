@@ -63,9 +63,12 @@ all**, the way `overview.html` never had one: there is nothing above an Orion en
 may send you to. The way out is the Orion menu.
 
 No build system and no test suite. You edit HTML/CSS/JS directly. `scripts/` holds all the tooling:
-three Python scripts, of which `export-verslag.py` needs `python-docx` and the other two are stdlib
-only, plus one Node script, `check-nav.js`, which needs `jsdom` and is the single reason a
-`node_modules/` may exist here. It is gitignored and nothing else depends on it.
+five Python scripts, of which `check-content.py` and `import-brightspace.py` are stdlib only.
+`export-verslag.py` and `import-syllabus.py` need `python-docx` (and `import-syllabus.py` also
+`pillow`, but only to crop an image the Word crops), and `export-syllabus.py` needs
+`pypdf` and `reportlab` plus a headless Chrome or Edge. There is also one Node script,
+`check-nav.js`, which needs `jsdom` and is the single reason a `node_modules/` may exist here. It is
+gitignored and nothing else depends on it.
 
 ## Relation to tdmts/Microcontrollers
 
@@ -108,10 +111,17 @@ Labo/<Naam>/
     Theorie/
         reference.html the theory hub
         *.html         one page per topic
-Theorie/               the lecture track (hoorcolleges), not built yet
+Theorie/Syllabus/      the lecture track: the source of the syllabus PDF
+    overview.html      the Orion topic "Theorie": one button, "Syllabus downloaden"
+    syllabus.css       the printed document's house style, the only place it lives
+    NOTITIES.md        editorial findings, written by hand
+    IMPORT.md          what the importer had to guess, written by import-syllabus.py
+    Theorie/
+        reference.html the hub
+        <Hoofdstuk>/   one folder per chapter, one page per Heading 2 of the Word
 Algemeen/Planning.html the labo and theory schedule; the single source for session counts
 Algemeen/Evaluatie.html how the course is graded; the single source for every weight
-img/  datasheets/  downloads/  scripts/
+img/  datasheets/  downloads/  handouts/  scripts/
 reference.js           the manifest of every theory page, per module
 back-link.js  reference-dashboard.js  reference-dashboard.css
 ```
@@ -196,7 +206,10 @@ complains.
 - `img/` — self-hosted images, descriptive filenames. Never hotlink Brightspace
   (`/content/enforced/...`): those paths break every academic year.
 - `datasheets/` — self-hosted PDFs a page links to. Same reason: a vendor URL dies mid-semester.
-- `downloads/` — what the student downloads. Three kinds live here, and the difference matters when
+- `handouts/` — the three handout PDFs from the Brightspace export (sessie 1, datalink laag,
+  netwerk laag). Parked: nothing links to them yet and what becomes of them beside the syllabus is
+  still open. They are not datasheets, which is why they do not sit in `datasheets/`.
+- `downloads/` — what the student downloads. Four kinds live here, and the difference matters when
   you edit one. The **verslag templates** are derived: regenerate them in the same commit as a
   change to the `Opdracht.html` they came from, which rule 6 of the check enforces by mtime. The
   **Packet Tracer start files** (`Labo-ManagedSwitch-*.pka`, `*.pkt`) are not derived from anything
@@ -206,7 +219,9 @@ complains.
   needs before it recognises an EK1100. That one is self-hosted for the reason `datasheets/` exists:
   a vendor URL dies mid-semester, and this file is a prerequisite of the assignment rather than
   background reading. It is big, it never changes, and nothing regenerates it.
-  All three are committed, because Pages serves only tracked files.
+  The fourth is the **syllabus PDF**, `Datacommunicatie-en-netwerken-syllabus.pdf`, derived like
+  the verslag templates but from `Theorie/Syllabus/` and by `export-syllabus.py`; rule 13 keeps it
+  in step. All four are committed, because Pages serves only tracked files.
   The `_oplossing.pkt` solutions stay on Brightspace and are deliberately absent.
 
 **The planning owns the session counts, and nothing else may repeat them.**
@@ -398,6 +413,191 @@ A service worker so the *theory* stays readable offline is agreed but not built 
 is that registration fails silently inside the Brightspace iframe, where the site is a third-party
 context; the docx is the fallback that makes that survivable.
 
+## The syllabus is a PDF that comes out of HTML
+
+The lecture track works the other way round from a lab. A lab is a website that happens to produce
+a docx; the syllabus is **a PDF that happens to be authored as HTML**. The student downloads one
+file of a hundred-odd pages and prints it. He is not meant to browse `Theorie/Syllabus/` at all, and
+nothing on the site sends him there: the Orion topic "Theorie" is `Theorie/Syllabus/overview.html`,
+a landing page with one button, exactly the shape of an `Opdracht.html`.
+
+**The Word is the origin of the text, not its source.** `Datacommunicatie en netwerken.docx` on
+OneDrive is where the syllabus was written, and after a chapter is imported it is *archived, not
+edited*. Two sources that are both edited drift apart, and that had already happened when this
+started: the docx was dated 29 November 2025 and the PDF in Brightspace 12 September 2025, so
+students had been reading a version two and a half months behind.
+
+[`scripts/import-syllabus.py`](scripts/import-syllabus.py) does the conversion, one chapter at a
+time (`--hoofdstuk 2`, plus `--voorwoord` for the front matter). **It translates formatting, never
+words**: no typo is fixed, no sentence is rewritten. What it had to guess goes into
+`Theorie/Syllabus/IMPORT.md`, which it rewrites for the chapters of that run and leaves alone for
+the others. Editorial findings go in `NOTITIES.md` beside it, by hand.
+
+Six things it does interpret, and none of them touch a word:
+
+- **A two-row table whose second row spans the width is a captioned box** (Kernpunten,
+  Studievragen) and becomes an `info-box`. The icon in the first cell is dropped, because the
+  component draws its own, and the bold is dropped when the *whole* box is bold, because there the
+  bold is the box's styling and the component supplies that too.
+- **A table with no text in any cell is writing space** and stays an empty table: on paper that is
+  where the student answers. So is a table with **one column empty all the way down**: the
+  definition on the left, the blank the student fills in on the right. Question 3 of chapter 2's
+  Test jezelf is one, and it has to be recognised, because a table that closes the list restarts
+  the numbering behind it.
+- **Merged cells become `rowspan` and `colspan`.** Skip this and every such table silently shifts a
+  column.
+- **A header row is only set when the Word says so.** The giveaway is not bold and not shading:
+  this document's header rows carry no run formatting at all, and are made up by the table style's
+  conditional first-row format. The flag that switches that on is `tblLook firstRow`, and it is the
+  only thing that separates the table that has a header from the one that has not. One-column
+  tables are excluded: those stack layers and their first row is the top layer.
+- **The width of an image comes from the Word,** as `wp:extent`, and is carried across as a
+  `--figuur-breedte` on the `<figure>`. Without it an image falls back to its own pixel size at
+  96 dpi, which says nothing at all: it records how the screenshot happened to be taken. The
+  photograph of an ethernet cable is 550 pixels wide, so it printed at 145mm, all but the full
+  text width, for a cable; the Word puts it at 50.4mm. Nineteen of chapter 2's 34 images were
+  oversized that way and the chapter ran three pages long. The other fifteen are 160mm in the
+  Word, the text width exactly, so a diagram that needs the whole page still gets it.
+- **A cropped image is cropped on the way out.** Word keeps a cropped image whole: the file in
+  the docx is the original and `a:srcRect` says which part of it is shown, in hundred-thousandths.
+  Extract the file and you print back exactly what the author cut away. Eight of chapter 2's
+  images are cropped and two of them badly: `syllabus-02-fysieke-laag-15.png` and `-16.png` show
+  their top half in the Word and were printing their bottom half as well. An uncropped image
+  gets an *empty* `a:srcRect` from Word, so four zeroes count as no crop. This is the one thing
+  in the importer that needs **Pillow**, and only when a crop is actually met; a JPEG is written
+  back with the quantisation tables of the original, so cropping is not a second compression.
+
+Four Word habits shape the reader as well. **A sentence is chopped into runs** the moment it has ever
+been corrected in Word, so eight adjacent runs with identical formatting are welded back into one
+before any `<strong>` is emitted. And **an empty paragraph never closes a list**: Word puts one
+between every question of a Test jezelf, and closing on it restarts the numbering at 1 for every
+single question. For the same reason a bullet list right after a numbered question is that
+question's answer options (Word gives them their own `numId` rather than a second level), and an
+empty table right after one is its answer space; both are nested inside the `<li>`.
+
+**An image inside the paragraph of a list item stays in that item.** The three topology questions of
+chapter 2 each carry their drawing that way, and the drawing is the question: which topology is this?
+The image branch used to run only for a paragraph that was not a list item, so all three files were
+written to `img/` and referenced by nothing, and the questions printed with the picture missing and
+nothing failing. They get no figcaption, because the paragraph's text is the question itself.
+
+**A paragraph in the List Paragraph style that carries no numbering is the explanation under the
+bullet above it**, and goes inside that `<li>`. Word marks it no other way: no indent of its own, no
+second level, only the style. Miss it and a list of six bullets with a sentence under each comes out
+as six lists of one bullet with the sentence beside it, which is what chapter 2's Glasvezelkabel
+did until the rule existed.
+
+**A numbered list broken by an ordinary paragraph keeps counting.** In Word it is one list with one
+`numId` throughout; in HTML that paragraph genuinely closes the `<ol>`, so what follows gets
+`start=`. Chapter 2's Test jezelf is eight questions with a sentence before question 6, and without
+this it printed 1-5 and then 1-3 while the Oplossingen beside it said 6, 7, 8. That sentence belongs
+neither to the question above it nor to the one below, so it stays where the Word puts it and the
+numbering is what has to survive.
+
+**The chapter structure comes from `reference.js`, and the numbering with it.** A category is a
+chapter, a topic is a section, and the chapter number is the category's *place* in the list rather
+than a field, so a number cannot contradict the order. `genummerd: false` marks the Voorwoord, which
+carries none. The first topic of a chapter is `Overzicht.html`, the chapter opening with the
+kernpunten and the studievragen; it takes the chapter title as its heading and does not count as a
+section, so OSI model is 1.1 and not 1.2.
+
+**[`Theorie/Syllabus/syllabus.css`](Theorie/Syllabus/syllabus.css) is the only place that says
+what the document looks like.** The exporter links it and carries no styling of its own; a style
+attribute on a page or a CSS rule in the script is a second source and belongs there instead. The
+one style attribute the pages do carry, `--figuur-breedte`, is not an exception to that but falls
+outside it: it is a measurement read out of the Word, the way a `rowspan` is, and what the printed
+page does with it is decided in the stylesheet like everything else. The
+bundle does **not** load OrionCSS: that is the house style of the *site*, and two stylesheets over
+each other means guessing which one wins at every difference. This is the one stylesheet that
+legitimately lives in this repo rather than in OrionCSS, because it styles a *document* and not a
+page: the HOGENT cover, numbered chapters, a running head and foot, and the black and teal
+Kernpunten and Studievragen bars.
+
+Every measurement in it is **taken off the existing syllabus**, not chosen: each page of
+`DEN Syllabus 20250912.pdf` was rendered and measured in millimetres, which is why the values carry
+a decimal. Changing one is a decision to diverge from that document. The pages under
+`Theorie/Syllabus/` do *not* load it; on screen they stay ordinary site pages with OrionCSS, because
+that is what the nav row hangs on.
+
+The markup stays OrionCSS's (`.info-box`), so the same page still works on the site, and the
+importer adds `data-kader="kernpunten"` to say *which* box it is: the colour and the icon belong to
+the kind of box, not to the OrionCSS class. The two icons are lifted straight out of the Word into
+`img/syllabus-kader-*.png`.
+
+Three things about the printed page are worth knowing before you touch the CSS. The chapter opening
+(title, kernpunten, studievragen) sits **alone on its page**, and that break hangs on the wrapping
+`.hoofdstuk-opening` rather than on the `h1` inside it: within its wrapper that `h1` is the first of
+its type again, so an `h1:first-of-type` exception silently let every chapter run on at the bottom
+of the previous page. Chapter and section numbers sit in a `.kop-nr` span of fixed width, because
+the syllabus puts every title on the same tab stop and `1.1` is wider than `1`. And bullets are
+drawn with `::before` rather than `list-style`, since the browser picks the marker distance itself
+and it does not match.
+
+That last one has a catch worth stating, because it cost a wrong number in a printed test. A
+`::before` needs a counter, and an **own** counter (`counter-reset: item`) restarts at every `<ol>`
+and cannot see the `start` attribute, which is precisely what carries a Test jezelf across the
+paragraph that splits it. So the numbers come from **`counter(list-item)`**, the one the browser
+keeps itself and the only one that honours `start`. The marker is still drawn by hand; only the
+counting is the browser's.
+
+**A Test jezelf carries its own answers, and only the PDF shows them.** The correct option of a
+meerkeuzevraag is marked `class="juist"` on the `<li>` in `TestJezelf.html`; an open question carries
+its model answer in `<!-- oplossing: ... -->`. Both are invisible on the site, so the page there
+stays a test rather than a test with the answers underneath, and `export-syllabus.py` prints a
+section **Oplossingen** straight after the Test jezelf, on its own page.
+
+The reason the answer sits with the question rather than on a page of its own is the **letter**. A
+written solutions page has to repeat it ("2. b"), and the day two options get swapped that letter is
+silently wrong with nothing looking odd on either page. Marked in place, the letter is counted at
+print time and cannot drift. Those letters are also why `syllabus.css` gives the options a, b, c
+instead of bullets: an answer that says "b" needs a "b" to point at. That lettering is scoped to a
+Test jezelf, so an ordinary bullet list stays an ordinary bullet list.
+
+That section is therefore **not in `reference.js`**, and it is the one thing in the printed document
+that is not. The manifest still decides where the Test jezelf goes; the Oplossingen are derived from
+it and follow it, the way the verslag docx is derived from `Opdracht.html`. They take the next
+section number, so Test jezelf is 1.3 and Oplossingen 1.4.
+
+**A Test jezelf is not always one `<ol>`,** and both the export and rule 14 stitch the pieces back
+together on the `start` attribute before they count a question. They each used to read the first
+`<ol>` on the page and stop, which for chapter 2 meant questions 6 to 8 were never looked at: rule
+14 passed without checking them and the export printed five answers for eight questions, and both
+looked exactly like a page in order.
+
+The export is **all or nothing** per chapter: one question without an answer and it prints no
+solutions for that chapter at all, because a list that skips question 3 lets a student believe he
+got question 3 right. That is the right call and a silent one, since it is a "let op" line among the
+others, so rule 14 of the content check says it before anything is printed. The answers themselves
+are not in the Word (nothing is marked there), so every one of them is an editorial decision;
+`NOTITIES.md` records the ones proposed for chapter 1 and what they rest on.
+
+[`scripts/export-syllabus.py`](scripts/export-syllabus.py) bundles that into
+`downloads/Datacommunicatie-en-netwerken-syllabus.pdf`, which **is committed**, because Pages serves
+only tracked files and this PDF is the whole of what the student gets. Rule 13 of the content check
+fails it when it is older than any page under `Theorie/Syllabus/Theorie/`, for a sharper reason than
+rule 6 has: editing a page without re-running the export changes nothing at all about what the
+student reads.
+
+**Why the printing takes three passes.** Chrome cannot make a table of contents with page numbers:
+CSS has `target-counter()` and Chrome does not. So the *content* is printed first and numbered from
+1, `pypdf` reads the text back to find which page each heading landed on, and only then are the
+cover and the table of contents printed with those numbers in them. That works only because the
+cover and the contents do **not** count in the numbering, exactly as in the Word. Number them along
+and the length of the table of contents shifts the very numbers printed inside it, and you are
+iterating until it settles.
+
+The running head and foot are stamped on afterwards with `reportlab`: through the command line
+Chrome will only add *its own* header and footer, with the date and the file URL in them, and there
+is no way to change that. The layout follows the Word: the page number at the top, the chapter title
+at the bottom.
+
+**Both checks needed one change each, and both were failing silently.** Rule 2 walked
+`Theorie/*.html` and compared on filename, which reaches neither a chapter folder nor six different
+`Overzicht.html` files; it now walks recursively and compares full paths.
+[`scripts/check-nav.js`](scripts/check-nav.js) only ever walked `Labo/`, so every syllabus page was
+reported as "recognised by no page" while in truth it had never been measured, and the message
+pointed at `reference.js` instead of at the check.
+
 ## Each lead has one job
 
 A lab has three or four `<p class="lead">` intros, one per Orion menu entry, and they used to
@@ -431,7 +631,8 @@ how the number was picked.
 
 [`scripts/check-content.py`](scripts/check-content.py) is the single "is this repo publishable"
 check. Run it before finishing any content edit; a `Stop` hook in
-[`.claude/settings.json`](.claude/settings.json) also runs it. Its docstring lists the twelve rules.
+[`.claude/settings.json`](.claude/settings.json) also runs it. Its docstring lists the fourteen
+rules.
 Two of them are worth repeating here because they fail *silently* otherwise:
 
 1. **Case.** Windows and macOS are case-insensitive, GitHub Pages is not, so a link to
