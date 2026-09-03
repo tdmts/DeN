@@ -136,12 +136,19 @@ Draai dit voor je een inhoudelijke wijziging afsluit. Een groene check hoort bij
    scripts/export-syllabus.py opnieuw te draaien, verandert dus niets aan wat
    hij leest. Op het scherm klopt alles, en niets anders zou het merken.
 
-14. Elke vraag van een Test jezelf in de syllabus draagt haar antwoord. Een
-   meerkeuzevraag duidt precies een mogelijkheid aan met class="juist", een open
-   vraag draagt <!-- oplossing: ... -->. Uit die markering drukt
-   scripts/export-syllabus.py de sectie Oplossingen achter de Test jezelf, en de
-   letter (a, b, c) wordt daarbij geteld in plaats van overgeschreven, zodat een
-   verwisselde mogelijkheid geen fout antwoord kan opleveren.
+14. Elke vraag in de syllabus draagt haar antwoord. Een vragenlijst is een
+   <ol class="vragen">; een meerkeuzevraag duidt precies een mogelijkheid aan met
+   class="juist", en een open vraag draagt <div class="oplossing">. Uit die
+   markering drukt scripts/export-syllabus.py de sectie Oplossingen achteraan
+   het hoofdstuk en maakt oplossingen.js op de site een uitklap. De letter
+   (a, b, c) wordt daarbij geteld in plaats van overgeschreven, zodat een
+   verwisselde mogelijkheid geen fout antwoord kan opleveren. Een pagina met
+   vragen laadt daarom ook oplossingen.js, anders toont de PDF de antwoorden wel
+   en de site niet.
+
+   Het gaat over elke pagina en niet alleen over TestJezelf.html. Een oefening
+   halverwege een hoofdstuk (2.3 RJ-45 vs M12 was de eerste) stelt dezelfde
+   soort vraag; ze heette alleen anders, en daardoor keek deze regel er langs.
 
    De export is alles of niets: ontbreekt er een antwoord, dan drukt ze voor dat
    hoofdstuk helemaal geen oplossingen, want een lijst waar vraag 3 uit
@@ -149,6 +156,12 @@ Draai dit voor je een inhoudelijke wijziging afsluit. Een groene check hoort bij
    juiste keuze en tegelijk een stille: op het scherm is er niets aan te zien,
    en in de uitvoer van de export is het een regel "let op" tussen de andere.
    Vandaar deze regel, die het meldt voor er gedrukt wordt.
+
+   Wat de klasse zelf openlaat, vangt de regel met een verklikker: een <ol>
+   waar een invulruimte onder hangt maar die geen class="vragen" draagt. Zonder
+   die klasse ziet de export er geen vragen in en gebeurt er niets, en dat is
+   precies wat je bij een volgende hoofdstukimport vergeet. Een oefening die met
+   onderstreepte lijnen werkt in plaats van met een tabel, glipt er nog door.
 
 Wat hier NIET in staat, en bewust niet: patroon 18 van SCHRIJFSTIJL.md, dat zegt
 dat een pagina niet mag verwijzen naar de geschiedenis van het materiaal zelf
@@ -568,11 +581,18 @@ def check_verslagmarkup():
         if onafgesloten:
             continue
 
-        zonder_commentaar = COMMENTAAR_RE.sub("", tekst)
-        m = VERSLAG_MARKUP_RE.search(zonder_commentaar)
-        if m:
-            fout(rel, f"'{m.group(1)}' staat buiten een <!-- verslag --> blok, "
-                      "dus de student ziet de vragen zonder plaats om te antwoorden")
+        # Alleen in de labotrack. Een verslag bestaat waar een Opdracht.html
+        # staat, en nergens anders; de syllabus levert een PDF af en geen docx.
+        # class="vragen" betekent daar dan ook iets anders: een vragenlijst die
+        # juist wel op het scherm hoort, met haar antwoord eronder in een
+        # <div class="oplossing"> (regel 14). Twee mechanismen, hetzelfde woord,
+        # en dit is de enige plaats waar dat verschil uitgesproken moet worden.
+        if "Labo" in rel.parts:
+            zonder_commentaar = COMMENTAAR_RE.sub("", tekst)
+            m = VERSLAG_MARKUP_RE.search(zonder_commentaar)
+            if m:
+                fout(rel, f"'{m.group(1)}' staat buiten een <!-- verslag --> blok, "
+                          "dus de student ziet de vragen zonder plaats om te antwoorden")
 
         for blok in COMMENTAAR_RE.finditer(tekst):
             inhoud = blok.group(1).strip()
@@ -872,13 +892,17 @@ def _lijstitems(fragment, tag):
 
 
 def _top_lijsten(fragment):
-    """De <ol>'s op het eerste niveau, elk met het nummer waar hij begint.
+    """De <ol class="vragen">'s op het eerste niveau, met het nummer waar elk begint.
 
     Een Test jezelf is in de Word een doorlopende genummerde lijst, maar een
     tussenzin of een tabel ertussen splitst hem in HTML in meerdere <ol>'s. Het
     start-attribuut houdt de nummering dan aan, en hier worden ze weer aan
     elkaar geregen. Zonder dat leest alleen de eerste <ol> mee: de vragen
     daarna raken hun antwoord kwijt zonder dat er iets aan te zien is.
+
+    Zelfde afbakening als in scripts/export-syllabus.py: de klasse zegt wat een
+    vragenlijst is. Een theoriepagina somt ook genummerd op en de studievragen
+    vooraan een hoofdstuk zijn een <ol> in een info-box.
     """
     uit = []
     diepte = 0
@@ -887,7 +911,8 @@ def _top_lijsten(fragment):
         if m.group(1) == "/":
             diepte = max(0, diepte - 1)
             continue
-        if diepte == 0 and m.group(2) == "ol":
+        if (diepte == 0 and m.group(2) == "ol"
+                and re.search(r'class="[^"]*\bvragen\b', m.group(3))):
             begin = re.search(r'start="(\d+)"', m.group(3))
             begin = int(begin.group(1)) if begin else volgende
             items = _lijstitems(fragment[m.start():], "ol")
@@ -904,22 +929,25 @@ def _vragen(fragment):
             for i, (tag, inhoud) in enumerate(items)]
 
 
-def check_testjezelf():
-    """Regel 14: elke vraag van een Test jezelf draagt haar antwoord.
+def check_vragen():
+    """Regel 14: elke vraag in de syllabus draagt haar antwoord.
 
     Zonder markering laat de export de hele sectie Oplossingen van dat hoofdstuk
     weg, en dat is aan niets te zien behalve aan een regel in haar uitvoer.
+
+    Er wordt over elke pagina gelopen en niet alleen over TestJezelf.html. Een
+    oefening halverwege een hoofdstuk stelt dezelfde soort vraag en hoort haar
+    antwoord even goed te dragen; ze heette alleen anders, en daardoor keek deze
+    regel er langs.
     """
     bron = REPO / "Theorie" / "Syllabus" / "Theorie"
     if not bron.is_dir():
         return
-    for pagina in sorted(bron.rglob("TestJezelf.html")):
+    for pagina in sorted(bron.rglob("*.html")):
         tekst = pagina.read_text(encoding="utf-8")
         vragen = _vragen(tekst)
         if not vragen:
-            fout(pagina.relative_to(REPO),
-                 "geen genummerde vragen; een Test jezelf is een <ol> met een "
-                 "<li> per vraag")
+            _vergeten_vragenlijst(pagina, tekst)
             continue
         for nummer, _, inhoud in vragen:
             keuzes = _lijstitems(inhoud, "ul")
@@ -931,11 +959,41 @@ def check_testjezelf():
                          f"vraag {nummer} heeft {len(juist)} mogelijkheden met "
                          'class="juist"; het moeten er precies een zijn, anders '
                          "drukt de export voor dit hoofdstuk geen oplossingen")
-            elif not re.search(r"<!--\s*oplossing:\s*\S.*?-->", inhoud, re.S):
+            elif not re.search(r'<div class="oplossing">\s*\S', inhoud):
                 fout(pagina.relative_to(REPO),
                      f"vraag {nummer} is een open vraag zonder "
-                     "<!-- oplossing: ... -->; zonder dat antwoord drukt de "
+                     '<div class="oplossing">; zonder dat antwoord drukt de '
                      "export voor dit hoofdstuk geen oplossingen")
+        if 'oplossingen.js' not in tekst:
+            fout(pagina.relative_to(REPO),
+                 "draagt vragen maar laadt oplossingen.js niet; de PDF toont de "
+                 "antwoorden dan wel en de site niet")
+
+
+def _vergeten_vragenlijst(pagina, tekst):
+    """Ziet een pagina er als vragen uit terwijl class="vragen" ontbreekt?
+
+    Dit is het gat dat de klasse openlaat. Wat een vragenlijst is, staat nergens
+    anders meer, dus vergeet je de klasse bij een nieuw ingevoerd hoofdstuk, dan
+    drukt de export stilzwijgend geen oplossingen en faalt er niets.
+
+    Het signaal is de invulruimte: een lege tabel onder een genummerd item is
+    waar de student op papier antwoordt, en op een theoriepagina komt zoiets
+    niet voor. Het is een verklikker en geen bewijs. Een oefening die met
+    onderstreepte lijnen werkt in plaats van met een tabel, glipt er nog door.
+    """
+    if not re.search(r"<ol\b", tekst):
+        return
+    for m in re.finditer(r"<ol\b([^>]*)>", tekst):
+        if re.search(r'class="[^"]*\bvragen\b', m.group(1)):
+            continue
+        items = _lijstitems(tekst[m.start():], "ol")
+        if any("invulruimte" in inhoud for _, inhoud in items):
+            fout(pagina.relative_to(REPO),
+                 "een <ol> met invulruimte eronder maar zonder class=\"vragen\"; "
+                 "zonder die klasse ziet de export er geen vragen in en drukt ze "
+                 "er geen oplossingen bij")
+            return
 
 
 def main():
@@ -956,7 +1014,7 @@ def main():
     check_verslagknop()
     check_dubbele_introductie()
     check_syllabus_pdf()
-    check_testjezelf()
+    check_vragen()
 
     for w in warnings:
         print(f"  waarschuwing  {w}")

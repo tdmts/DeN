@@ -184,9 +184,13 @@ def lees_module():
 
 
 # Een sectie van het gedrukte document. soort is "pagina" voor een sectie die
-# uit een bronpagina komt, en "oplossingen" voor de sectie die uit de Test
-# jezelf van diezelfde pagina afgeleid wordt.
-Sectie = namedtuple("Sectie", "nummer vaste_titel pagina tid soort")
+# uit een bronpagina komt, en "oplossingen" voor de sectie die achteraan het
+# hoofdstuk uit alle vragenpagina's van dat hoofdstuk afgeleid wordt.
+#
+# bron is daarom een Path voor een gewone sectie, en voor de oplossingen een
+# rij (sectienummer, Path): die sectie hoort bij meer dan een pagina en zet er
+# per pagina een tussenkop boven, met het nummer waar de vragen staan.
+Sectie = namedtuple("Sectie", "nummer vaste_titel bron tid soort")
 
 
 def hoofdstukken(module):
@@ -219,13 +223,25 @@ def hoofdstukken(module):
             sectieteller += 1
             snummer = f"{nummer}.{sectieteller}" if nummer else None
             secties.append(Sectie(snummer, None, pad, topic["id"], "pagina"))
-            # De oplossingen volgen op de Test jezelf waar ze uit komen, als
-            # een sectie op zich: ze staan achter de vragen en niet eronder.
-            if pad.name.lower() == "testjezelf.html" and oplossingen_uit(pad):
-                sectieteller += 1
-                snummer = f"{nummer}.{sectieteller}" if nummer else None
-                secties.append(Sectie(snummer, None, pad,
-                                      topic["id"] + "-oplossingen", "oplossingen"))
+
+        # De oplossingen van het hele hoofdstuk staan achteraan, in een sectie.
+        # Niet achter elke oefening apart: dan draagt een hoofdstuk driemaal een
+        # sectie Oplossingen, en de inhoudstafel zegt driemaal hetzelfde woord
+        # zonder te zeggen waarover. Zo staat er een, en staat het antwoord ook
+        # niet op het blad na de vraag.
+        #
+        # Ook hier alles of niets: ontbreekt er ergens in het hoofdstuk een
+        # antwoord, dan drukt de export voor dit hoofdstuk niets. oplossingen_uit
+        # heeft dan al gezegd om welke vraag het gaat.
+        vragenpaginas = [s for s in secties
+                         if s.soort == "pagina" and draagt_vragen(s.bron)]
+        if vragenpaginas and all(oplossingen_uit(s.bron) for s in vragenpaginas):
+            sectieteller += 1
+            snummer = f"{nummer}.{sectieteller}" if nummer else None
+            secties.append(Sectie(snummer, None,
+                                  tuple((s.nummer, s.bron) for s in vragenpaginas),
+                                  f"oplossingen-{sectie_slug(categorie['name'])}",
+                                  "oplossingen"))
         if secties:
             uit.append((nummer, categorie["name"], secties))
     return uit
@@ -281,27 +297,41 @@ def zonder_scripts(fragment):
 
 # ---------------------------------------------------------- de oplossingen
 
-# HET ANTWOORD STAAT BIJ DE VRAAG, en alleen de export laat het zien.
+# HET ANTWOORD STAAT BIJ DE VRAAG, en zowel de PDF als de site leest het daar.
 #
-# Een meerkeuzevraag duidt de juiste mogelijkheid aan met class="juist", een
-# open vraag draagt haar modelantwoord in <!-- oplossing: ... -->. Allebei
-# blijven ze onzichtbaar op de site, zodat TestJezelf.html daar een toets blijft
-# en niet een toets met de antwoorden eronder.
+# Een vragenlijst is een <ol class="vragen">. Een meerkeuzevraag duidt de juiste
+# mogelijkheid aan met class="juist" op de <li>; elke vraag mag daarnaast een
+# <div class="oplossing"> dragen met het geschreven antwoord of de toelichting.
+# Een open vraag heeft er altijd een, want daar valt niets aan te duiden.
+#
+# Die twee markeringen zijn de hele bron. De PDF drukt er hieronder een sectie
+# Oplossingen uit; oplossingen.js maakt er op de site een uitklap van. Twee
+# weergaven van dezelfde inhoud dus, en niet twee plaatsen waar ze staat.
 #
 # Waarom niet een geschreven oplossingenpagina naast de vragen? Omdat die de
 # letter van de mogelijkheid zou moeten herhalen ("2. b"). Verwissel dan ooit
 # twee mogelijkheden en die letter is stil fout: aan geen van beide pagina's is
 # iets te zien. Door de juiste mogelijkheid zelf te merken, wordt de letter
 # geteld op het ogenblik dat er gedrukt wordt en kan hij niet uit de pas lopen.
+# Dat de site diezelfde letter een tweede keer telt, in JS, is de prijs ervoor;
+# het is een mechanische regel (de hoeveelste <li> draagt juist) en geen inhoud.
 #
-# De sectie staat daarom ook niet in reference.js. Het manifest blijft zeggen
-# waar de Test jezelf staat; de oplossingen zijn eruit afgeleid en volgen erop,
-# zoals het verslagsjabloon uit Opdracht.html volgt.
+# EEN OPLOSSING IS EEN <div>, GEEN COMMENTAAR. Ze heeft in <!-- oplossing: -->
+# gestaan, en dat was inhoud die per constructie maar een renderer kon zien;
+# bovendien vreet een genest --> stil de rest op, zoals het verslagblok in een
+# Opdracht.html laat zien. Alles staat in de HTML, en wat er niet op het scherm
+# hoort, wordt daar weggenomen en niet weggelaten.
+#
+# De sectie staat niet in reference.js, en als enige in het gedrukte document.
+# Het manifest blijft zeggen waar de vragen staan; de oplossingen zijn eruit
+# afgeleid en volgen achteraan het hoofdstuk, zoals het verslagsjabloon uit
+# Opdracht.html volgt.
 #
 # Regel 14 van scripts/check-content.py bewaakt dat elke vraag een antwoord
 # draagt, want hieronder is een vraag zonder antwoord alleen een regel "let op".
 
-OPLOSSING_RE = re.compile(r"<!--\s*oplossing:\s*(.*?)-->", re.S)
+# De inhoud is proza: een genest <div> zou deze niet-gulzige match afbreken.
+OPLOSSING_RE = re.compile(r'<div class="oplossing">(.*?)</div>', re.S)
 
 
 def lijstitems(fragment, tag):
@@ -341,13 +371,18 @@ def lijstitems(fragment, tag):
 
 
 def top_lijsten(fragment):
-    """De <ol>'s op het eerste niveau, elk met het nummer waar hij begint.
+    """De <ol class="vragen">'s op het eerste niveau, met het nummer waar elk begint.
 
     Een Test jezelf is in de Word een doorlopende genummerde lijst, maar een
     tussenzin of een tabel ertussen splitst hem in HTML in meerdere <ol>'s. Het
     start-attribuut houdt de nummering dan aan, en hier worden ze weer aan
     elkaar geregen. Zonder dat leest alleen de eerste <ol> mee: de vragen
     daarna raken hun antwoord kwijt zonder dat er iets aan te zien is.
+
+    De klasse beslist wat een vragenlijst is, en niet de plaats op de pagina.
+    Een theoriepagina somt ook wel eens genummerd op (UTP, FTP, SFTP staan zo in
+    2.2) en de studievragen vooraan een hoofdstuk zijn een <ol> in een info-box;
+    geen van beide is iets waar een antwoord bij hoort.
     """
     uit = []
     diepte = 0
@@ -356,7 +391,8 @@ def top_lijsten(fragment):
         if m.group(1) == "/":
             diepte = max(0, diepte - 1)
             continue
-        if diepte == 0 and m.group(2) == "ol":
+        if (diepte == 0 and m.group(2) == "ol"
+                and re.search(r'class="[^"]*\bvragen\b', m.group(3))):
             begin = re.search(r'start="(\d+)"', m.group(3))
             begin = int(begin.group(1)) if begin else volgende
             items = lijstitems(fragment[m.start():], "ol")
@@ -377,9 +413,15 @@ def inline(fragment):
     return re.sub(r"\s+", " ", fragment).strip()
 
 
+def draagt_vragen(pagina):
+    """Staat er een vragenlijst op deze pagina?"""
+    _, fragment = kop_en_inhoud(pagina)
+    return bool(top_lijsten(fragment))
+
+
 @functools.lru_cache(maxsize=None)
 def oplossingen_uit(pagina):
-    """De oplossingen van een Test jezelf, of None als er een antwoord ontbreekt.
+    """De oplossingen van een vragenpagina, of None als er een antwoord ontbreekt.
 
     Alles of niets, en met opzet. Een lijst waar vraag 3 uit weggevallen is,
     laat de student denken dat hij vraag 3 goed heeft, en dat is erger dan geen
@@ -394,6 +436,8 @@ def oplossingen_uit(pagina):
 
     regels, ontbreekt = [], []
     for nummer, _, inhoud in vragen:
+        geschreven = OPLOSSING_RE.search(inhoud)
+        geschreven = inline(geschreven.group(1)) if geschreven else ""
         keuzes = lijstitems(inhoud, "ul")
         if keuzes:
             juist = [i for i, (tag, _) in enumerate(keuzes)
@@ -402,15 +446,22 @@ def oplossingen_uit(pagina):
                 ontbreekt.append(f"vraag {nummer} heeft {len(juist)} juiste "
                                  "mogelijkheden in plaats van een")
                 continue
+            # De letter wordt hier geteld en staat nergens geschreven. Wat er
+            # eventueel bij staat, is toelichting en niet het antwoord zelf.
             letter = chr(ord("a") + juist[0])
-            regels.append(f'<li><span class="keuze">{letter}</span>'
-                          f"{inline(keuzes[juist[0]][1])}</li>")
+            kern = inline(keuzes[juist[0]][1])
+            if geschreven:
+                # De mogelijkheid is vaak een los woord ("M12"), en dan plakt de
+                # toelichting eraan vast tot er een punt tussen staat.
+                if kern and kern[-1] not in ".?!:;":
+                    kern += "."
+                kern += f" {geschreven}"
+            regels.append(f'<li><span class="keuze">{letter}</span>{kern}</li>')
             continue
-        gemerkt = OPLOSSING_RE.search(inhoud)
-        if not gemerkt:
-            ontbreekt.append(f"vraag {nummer} draagt geen <!-- oplossing: ... -->")
+        if not geschreven:
+            ontbreekt.append(f'vraag {nummer} draagt geen <div class="oplossing">')
             continue
-        regels.append(f"<li>{inline(gemerkt.group(1))}</li>")
+        regels.append(f"<li>{geschreven}</li>")
 
     if ontbreekt:
         for regel in ontbreekt:
@@ -418,7 +469,8 @@ def oplossingen_uit(pagina):
         overgeslagen.append(f"{pagina.name}: geen oplossingen gedrukt zolang niet "
                             "elke vraag er een heeft")
         return None
-    return '<ol class="oplossingen">\n' + "\n".join(regels) + "\n</ol>"
+    return (f'<ol class="oplossingen" start="{vragen[0][0]}">\n'
+            + "\n".join(regels) + "\n</ol>")
 
 
 def zonder_oplossingen(fragment):
@@ -471,15 +523,25 @@ def sectie_slug(bestandsnaam):
 def bouw_inhoud(structuur):
     stukken = []
     for nummer, titel, secties in structuur:
-        for snummer, vaste_titel, pagina, tid, soort in secties:
+        for snummer, vaste_titel, bron, tid, soort in secties:
             if soort == "oplossingen":
                 nr = f'<span class="kop-nr">{snummer}</span>' if snummer else ""
-                fragment = naamruimte_ids(
-                    absolute_paden(oplossingen_uit(pagina), pagina), tid)
+                # Een tussenkop per vragenpagina, met het nummer van de sectie
+                # waar die vragen staan. Een student die hier zijn antwoord
+                # nakijkt, moet weten welke vragen hij aan het nakijken is, en
+                # kan met dat nummer terug.
+                delen = []
+                for vragen_nr, pagina in bron:
+                    kop, _ = kop_en_inhoud(pagina)
+                    label = f"{vragen_nr} {kop}" if vragen_nr else kop
+                    delen.append(f"<h3>{html.escape(label)}</h3>\n"
+                                 + absolute_paden(oplossingen_uit(pagina), pagina))
+                fragment = naamruimte_ids("\n".join(delen), tid)
                 stukken.append('<section data-sectie="oplossingen">\n'
                                f'<h2 id="{tid}">{nr}Oplossingen</h2>\n'
                                + fragment + "\n</section>")
                 continue
+            pagina = bron
             kop, fragment = kop_en_inhoud(pagina)
             fragment = zonder_scripts(fragment)
             fragment = zonder_oplossingen(fragment)
@@ -508,7 +570,11 @@ def bouw_inhoud(structuur):
             else:
                 kopregel = (f'<h2 id="{tid}"><span class="kop-nr">{snummer}</span>'
                             f"{html.escape(kop)}</h2>")
-            stukken.append(f'<section data-sectie="{sectie_slug(pagina.stem)}">\n'
+            # Draagt de sectie vragen, dan staat dat er als data-vragen bij.
+            # Ook dit is een mededeling en geen opmaak: syllabus.css beslist wat
+            # ermee gebeurt, zoals bij data-sectie.
+            merk = ' data-vragen' if draagt_vragen(pagina) else ""
+            stukken.append(f'<section data-sectie="{sectie_slug(pagina.stem)}"{merk}>\n'
                            + kopregel + "\n" + fragment.strip() + "\n</section>")
     return "\n\n".join(stukken)
 
@@ -682,17 +748,17 @@ def main():
     # welke koppen zoeken we terug, en wat komt er in de inhoudstafel
     koppen, tafel = [], []
     for nummer, titel, secties in structuur:
-        for snummer, vaste_titel, pagina, _, soort in secties:
+        for snummer, vaste_titel, bron, _, soort in secties:
             if soort == "oplossingen":
                 koppen.append(f"{snummer} Oplossingen")
                 tafel.append([2, snummer, "Oplossingen", None])
             elif vaste_titel is not None or snummer is None:
-                kop, _ = kop_en_inhoud(pagina)
+                kop, _ = kop_en_inhoud(bron)
                 zichtbaar = f"{nummer} {vaste_titel}" if nummer else kop
                 koppen.append(zichtbaar)
                 tafel.append([1, nummer, vaste_titel or kop, None])
             else:
-                kop, _ = kop_en_inhoud(pagina)
+                kop, _ = kop_en_inhoud(bron)
                 koppen.append(f"{snummer} {kop}")
                 tafel.append([2, snummer, kop, None])
 

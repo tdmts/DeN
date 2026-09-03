@@ -105,6 +105,17 @@ h4, h5, h6 { font-size: 10pt; margin-top: 4.3mm; }
 section[data-sectie="test-jezelf"],
 section[data-sectie="oplossingen"] { page-break-before: always; }
 
+/* Een sectie met vragen sluit de bladzijde af. Anders begint de theorie erna
+   onder de laatste vraag, en dan staat een oefening die de student invult op
+   hetzelfde blad als de uitleg die er niet bij hoort: 2.4 Glasvezelkabel begon
+   halverwege het blad waar 2.3 RJ-45 vs M12 op eindigde.
+
+   Alleen erna, niet ervoor. Waar een vragenreeks begint, is een keuze per soort
+   (een Test jezelf hierboven begint wel op een nieuw blad, een oefening
+   halverwege een hoofdstuk niet), maar waar ze eindigt is dat niet: de vragen
+   houden hun eigen blad tot het einde. */
+section[data-vragen] { page-break-after: always; }
+
 /* Alleen het allereerste blok begint niet op een nieuwe bladzijde; anders staat
    er een lege bladzijde voor het Voorwoord. */
 body > :first-child { page-break-before: avoid; }
@@ -129,17 +140,20 @@ li > ul, li > ol { margin: 0; }
 li > ul > li, li > ol > li { padding-left: 8.4mm; }
 li > ul > li::before, li > ol > li::before { left: 2.1mm; }
 
-/* In een Test jezelf is een opsomming onder een vraag geen opsomming maar de
+/* In een vragenlijst is een opsomming onder een vraag geen opsomming maar de
    antwoordmogelijkheden, en die dragen a, b, c. Een bolletje is daar niet
    alleen minder duidelijk, het maakt de oplossing onuitspreekbaar: die verwijst
    met "2. b" naar de tweede mogelijkheid en heeft dus een letter nodig om naar
-   te wijzen. Waaraan de opmaak dat ziet, is dat de lijst binnen een vraag van
-   een Test jezelf staat; daarbuiten blijft een opsomming een opsomming. */
-[data-sectie="test-jezelf"] ol > li > ul { counter-reset: keuze; }
-[data-sectie="test-jezelf"] ol > li > ul > li { counter-increment: keuze; }
-[data-sectie="test-jezelf"] ol > li > ul > li::before {
-    content: counter(keuze, lower-alpha) ".";
-}
+   te wijzen. Waaraan de opmaak dat ziet, is de klasse vragen op de <ol> zelf;
+   daarbuiten blijft een opsomming een opsomming.
+
+   Dit hing aan [data-sectie="test-jezelf"], en dus aan de bestandsnaam van de
+   bronpagina. Een oefening halverwege een hoofdstuk stelt dezelfde soort vraag
+   en drukte haar mogelijkheden als bolletjes, terwijl de oplossing ernaast wel
+   een letter noemde. De vragenlijst zegt nu zelf wat ze is. */
+ol.vragen > li > ul { counter-reset: keuze; }
+ol.vragen > li > ul > li { counter-increment: keuze; }
+ol.vragen > li > ul > li::before { content: counter(keuze, lower-alpha) "."; }
 
 /* De oplossingen zijn een genummerde lijst die met de vragen meeloopt, dus het
    nummer ervoor is dat van de vraag. De letter erachter is het antwoord. */
@@ -210,6 +224,16 @@ tbody tr:nth-child(odd) td { background-color: var(--grijs-licht); }
 
 /* Een invulkader is er om in te schrijven, dus het krijgt geen bandering. */
 .invulruimte tbody tr td { background-color: transparent; height: 6mm; }
+
+/* Een tabel met een lege kolom is voor de helft invulruimte: links de
+   definitie, rechts wat de student erbij schrijft. Chrome verdeelt een tabel
+   over haar inhoud en houdt voor een lege cel niets over dan haar opvulling,
+   dus die kolom moet haar breedte krijgen. Ze komt uit de Word, als
+   --kolom-breedte op de <col>, en table-layout: fixed is wat haar laat gelden
+   tegenover een kolom vol tekst. */
+.invulkolom { table-layout: fixed; }
+.invulkolom col { width: var(--kolom-breedte); }
+.invulkolom tbody tr td.invulruimte { background-color: transparent; }
 
 /* De table-wrappers van OrionCSS zijn er voor een scrollbalk op het scherm.
    Op papier scrollt er niets. */

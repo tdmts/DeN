@@ -13,7 +13,7 @@
     <div class="container">
         <h1>Oefening: switch bekabelen</h1>
 
-        <p><strong>Gegeven</strong><strong>:</strong></p>
+        <p><strong>Gegeven:</strong></p>
 
         <p>In het labo gebruiken we de HP ProCurve 2610-24 switch. Deze heeft vierentwintig RJ-45 10/100 Base T poorten, twee Gig-T poorten en twee SFP poorten.</p>
 
@@ -21,95 +21,84 @@
             <img src="../../../../img/syllabus-02-fysieke-laag-14.png" class="img-fluid" alt="Afbeelding uit de syllabus">
         </figure>
 
-        <p>Gevraagd:</p>
+        <p><strong>Gevraagd:</strong></p>
 
-        <ul>
-            <li>Omcirkel de meest (kost) geschikte / performante koperkabel om aan te sluiten op een 10/100 Base T poort als je weet dat er altijd minder dan 30 meter overbrugd moet worden.</li>
-        </ul>
-
-        <div class="table-responsive table-spacer">
-            <table class="table table-bordered">
-                <tbody>
-                    <tr><td>cat5e / RJ45</td><td>cat6 / RJ45</td><td>cat6a / RJ45</td><td>cat7 / GG45</td><td>cat8 / RJ45</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <p>Verklaar je keuze:____________________________________________________________</p>
-
-        <p>__________________________________________________________________________</p>
-
-        <ul>
-            <li>Omcirkel de meest (kost) geschikte / performante koperkabel om aan te sluiten op de Gig-T poort als je weet dat 70 meter overbrugd moet worden.</li>
-        </ul>
-
-        <div class="table-responsive table-spacer">
-            <table class="table table-bordered">
-                <tbody>
-                    <tr><td>cat5e / RJ45</td><td>cat6 / RJ45</td><td>cat6a / RJ45</td><td>cat7 / GG45</td><td>cat8 / RJ45</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <p>Verklaar je keuze:____________________________________________________________</p>
-
-        <p>__________________________________________________________________________</p>
-
-        <ul>
-            <li>Omcirkel een geschikte SFP module waarop je een glasvezelkabel kan aansluiten. Je moet minder dan 1km overbruggen.</li>
-        </ul>
-
-        <div class="table-responsive table-spacer">
-            <table class="table table-bordered">
-                <tbody>
-                    <tr><td>J8117C</td><td>J4858C</td><td>J4859C</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <p>Verklaar je keuze:____________________________________________________________</p>
-
-        <p>__________________________________________________________________________</p>
-
-        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
-            <img src="../../../../img/syllabus-02-fysieke-laag-15.png" class="img-fluid" alt="Afbeelding uit de syllabus">
-        </figure>
-
-        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
-            <img src="../../../../img/syllabus-02-fysieke-laag-16.png" class="img-fluid" alt="Afbeelding uit de syllabus">
-        </figure>
-
-        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
-            <img src="../../../../img/syllabus-02-fysieke-laag-17.png" class="img-fluid" alt="Afbeelding uit de syllabus">
-        </figure>
-
-        <ul>
-            <li>Nu je jouw SFP module hebt gekozen kies je een geschikte glasvezelkabel.</li>
-        </ul>
-
-        <div class="table-responsive table-spacer">
-            <table class="table table-bordered">
-                <tbody>
-                    <tr><td>LC OM3</td><td>LC OS2</td><td>SC OM4</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 129.6mm">
-            <img src="../../../../img/syllabus-02-fysieke-laag-18.png" class="img-fluid" alt="Afbeelding uit de syllabus">
-        </figure>
-
-        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 122.8mm">
-            <img src="../../../../img/syllabus-02-fysieke-laag-19.png" class="img-fluid" alt="Afbeelding uit de syllabus">
-        </figure>
-
-        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 127.2mm">
-            <img src="../../../../img/syllabus-02-fysieke-laag-20.png" class="img-fluid" alt="Afbeelding uit de syllabus">
-        </figure>
+        <ol class="vragen">
+            <li>Omcirkel de meest (kost) geschikte / performante koperkabel om aan te sluiten op een 10/100 Base T poort als je weet dat er altijd minder dan 30 meter overbrugd moet worden.
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr><td>cat5e / RJ45</td><td>cat6 / RJ45</td><td>cat6a / RJ45</td><td>cat7 / GG45</td><td>cat8 / RJ45</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>Verklaar je keuze:____________________________________________________________</p>
+                <p>__________________________________________________________________________</p>
+                <div class="oplossing">cat5e / RJ45. Een 10/100 Base T poort haalt hoogstens 100 Mbps, en cat5e doet
+                    1 Gbps over 100 meter. Alles daarboven kost meer en levert op deze poort niets extra op.</div>
+            </li>
+            <li>Omcirkel de meest (kost) geschikte / performante koperkabel om aan te sluiten op de Gig-T poort als je weet dat 70 meter overbrugd moet worden.
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr><td>cat5e / RJ45</td><td>cat6 / RJ45</td><td>cat6a / RJ45</td><td>cat7 / GG45</td><td>cat8 / RJ45</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>Verklaar je keuze:____________________________________________________________</p>
+                <p>__________________________________________________________________________</p>
+                <div class="oplossing">cat6 / RJ45. Een Gig-T poort vraagt 1 Gbps, en cat6 haalt dat over de volle
+                    100 meter met meer marge tegen overspraak dan cat5e. cat6a en hoger zijn pas nodig vanaf 10 Gbps.</div>
+            </li>
+            <li>Omcirkel een geschikte SFP module waarop je een glasvezelkabel kan aansluiten. Je moet minder dan 1km overbruggen.
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr><td>J8117C</td><td>J4858C</td><td>J4859C</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>Verklaar je keuze:____________________________________________________________</p>
+                <p>__________________________________________________________________________</p>
+                <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+                    <img src="../../../../img/syllabus-02-fysieke-laag-15.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+                </figure>
+                <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+                    <img src="../../../../img/syllabus-02-fysieke-laag-16.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+                </figure>
+                <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+                    <img src="../../../../img/syllabus-02-fysieke-laag-17.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+                </figure>
+                <div class="oplossing">J4859C. De eerste module heeft een RJ-45 connector en werkt op koper, dus daar
+                    gaat geen glasvezel in. De tweede haalt 550 meter over multimode en komt dus niet zeker tot bij de
+                    kilometer; de derde doet 10 km over singlemode.</div>
+            </li>
+            <li>Nu je jouw SFP module hebt gekozen kies je een geschikte glasvezelkabel.
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr><td>LC OM3</td><td>LC OS2</td><td>SC OM4</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 129.6mm">
+                    <img src="../../../../img/syllabus-02-fysieke-laag-18.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+                </figure>
+                <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 122.8mm">
+                    <img src="../../../../img/syllabus-02-fysieke-laag-19.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+                </figure>
+                <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 127.2mm">
+                    <img src="../../../../img/syllabus-02-fysieke-laag-20.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+                </figure>
+                <div class="oplossing">LC OS2. De J4859C zendt op 1310 nm over singlemode, en dat is precies wat OS2
+                    is; OM3 en OM4 zijn multimode. De connector moet bovendien LC zijn, wat SC OM4 ook uitsluit.</div>
+            </li>
+        </ol>
     </div>
 
     <script src="../../../../reference.js"></script>
     <script src="../../../../back-link.js"></script>
+    <script src="../../../../oplossingen.js"></script>
 </body>
 
 </html>

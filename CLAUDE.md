@@ -81,7 +81,7 @@ across, in either direction.
 | Module folder | `Labo1/` … `Labo7/`, numbered | `Labo/RS485/`, named |
 | Exercises | ~8 small ones per lab, XP + badges | one large assignment per module |
 | Manifests | `exercises.js` + `reference.js` | `reference.js` only |
-| Engines | 4 | 2 (`back-link.js`, `reference-dashboard.js`) |
+| Engines | 4 | 3 (`back-link.js`, `reference-dashboard.js`, `oplossingen.js`) |
 | Theory folder | `Reference/` | `Theorie/` |
 | Module hub | `Exercises/dashboard.html` | `overview.html` |
 | Student output | a working circuit | a **verslag** (docx) they hand in |
@@ -124,6 +124,7 @@ Algemeen/Evaluatie.html how the course is graded; the single source for every we
 img/  datasheets/  downloads/  handouts/  scripts/
 reference.js           the manifest of every theory page, per module
 back-link.js  reference-dashboard.js  reference-dashboard.css
+oplossingen.js         the reveal that shows an answer, on every page with questions
 ```
 
 **A module with two assignments puts each one in its own folder.** `Labo/ManagedSwitch/` is the
@@ -333,6 +334,13 @@ reason.
   another entry now. A page at the root, or in no reeks at all, gets none of the three and therefore
   no row.
 
+- [oplossingen.js](oplossingen.js) — self-running, no init, syllabus only. Folds the answer of every
+  question on the page into a `spoiler-container`, the same reveal OrionCSS draws for the labo
+  zelftest. It puts down the markup `main.js` expects and lets `main.js` build the button, so it
+  belongs at the end of the `<body>` and not in a `DOMContentLoaded` of its own. Rule 14 asserts the
+  include: without it the PDF shows the answers and the site does not. What it reads is described
+  under the syllabus, below.
+
 Progress is `localStorage` only, no backend, and only one flag exists:
 `msDashboard:{moduleId}:theory:{topicId}` = `'1'`, written by `back-link.js` when it recognises the
 page in the manifest. A theory page has nothing to complete, so "opened" is the only honest thing to
@@ -443,7 +451,12 @@ Six things it does interpret, and none of them touch a word:
   where the student answers. So is a table with **one column empty all the way down**: the
   definition on the left, the blank the student fills in on the right. Question 3 of chapter 2's
   Test jezelf is one, and it has to be recognised, because a table that closes the list restarts
-  the numbering behind it.
+  the numbering behind it. **That column also needs the width the Word gives it,** carried across
+  as a `--kolom-breedte` on a `<col>` the same way `--figuur-breedte` is carried: Chrome sizes a
+  table to its content and gives an empty cell nothing but its padding, so the one column the
+  student has to write in came out a few millimetres wide and the question was unanswerable on
+  paper. The cells get `class="invulruimte"`, the table `invulkolom`, and `syllabus.css` decides
+  what the sheet does with both.
 - **Merged cells become `rowspan` and `colspan`.** Skip this and every such table silently shifts a
   column.
 - **A header row is only set when the Word says so.** The giveaway is not bold and not shading:
@@ -540,25 +553,65 @@ paragraph that splits it. So the numbers come from **`counter(list-item)`**, the
 keeps itself and the only one that honours `start`. The marker is still drawn by hand; only the
 counting is the browser's.
 
-**A Test jezelf carries its own answers, and only the PDF shows them.** The correct option of a
-meerkeuzevraag is marked `class="juist"` on the `<li>` in `TestJezelf.html`; an open question carries
-its model answer in `<!-- oplossing: ... -->`. Both are invisible on the site, so the page there
-stays a test rather than a test with the answers underneath, and `export-syllabus.py` prints a
-section **Oplossingen** straight after the Test jezelf, on its own page.
+**A question carries its own answer, and both the PDF and the site read it there.** A question list
+is an `<ol class="vragen">`. The correct option of a meerkeuzevraag is marked `class="juist"` on the
+`<li>`; any question may carry a `<div class="oplossing">` with the written answer or the reasoning,
+and an open question always has one, because there is nothing to mark. Those two markings are the
+whole source: `export-syllabus.py` prints a section **Oplossingen** from them, and
+[`oplossingen.js`](oplossingen.js) turns them into a reveal on the site, in the `spoiler-container`
+of OrionCSS. Two renderings, one text.
 
 The reason the answer sits with the question rather than on a page of its own is the **letter**. A
 written solutions page has to repeat it ("2. b"), and the day two options get swapped that letter is
 silently wrong with nothing looking odd on either page. Marked in place, the letter is counted at
-print time and cannot drift. Those letters are also why `syllabus.css` gives the options a, b, c
-instead of bullets: an answer that says "b" needs a "b" to point at. That lettering is scoped to a
-Test jezelf, so an ordinary bullet list stays an ordinary bullet list.
+print time and cannot drift. The labo zelftest under `Labo/RS485/` still writes "Antwoord c." by
+hand; that is older than this arrangement, not a pattern to copy. The price paid deliberately is
+that the letter is now counted in two places, Python and JS: that is a mechanical rule (which `<li>`
+carries `juist`) and not content, so there is nothing there to go stale.
 
-That section is therefore **not in `reference.js`**, and it is the one thing in the printed document
-that is not. The manifest still decides where the Test jezelf goes; the Oplossingen are derived from
-it and follow it, the way the verslag docx is derived from `Opdracht.html`. They take the next
-section number, so Test jezelf is 1.3 and Oplossingen 1.4.
+Those letters are also why `syllabus.css` gives the options a, b, c instead of bullets: an answer
+that says "b" needs a "b" to point at. That lettering hangs on `ol.vragen`, so an ordinary bullet
+list stays an ordinary bullet list.
 
-**A Test jezelf is not always one `<ol>`,** and both the export and rule 14 stitch the pieces back
+**An answer is a `<div>`, never a comment.** It lived in `<!-- oplossing: ... -->`, which made it
+content only one renderer could ever see, and a nested `-->` silently eats the rest of the file, the
+way the verslag block in an `Opdracht.html` warns about. Everything is in the HTML; what does not
+belong on screen is taken away there, not left out.
+
+**Not everything with questions is called `TestJezelf.html`.** Section 2.3 RJ-45 vs M12 and 2.6
+Oefening: switch bekabelen ask exactly the same kind of question halfway through a chapter, and for
+a while they carried no answers at all, because the export recognised a question page by its
+*filename*. It now recognises it by `class="vragen"`, which is also what rule 14, the export and
+`syllabus.css` each keyed off separately before. The gap the class leaves is that forgetting it is
+silent, so rule 14 carries a tripwire: an `<ol>` with an `invulruimte` under it but no
+`class="vragen"` fails the check.
+
+That class is the same word the verslag block in an `Opdracht.html` uses for its question list, and
+the two mean different things: there it is markup that must stay inside a comment, here it is a list
+that must be on screen. Rule 7 therefore only looks at pages under `Labo/`, which is the only place
+a verslag exists.
+
+**One Oplossingen per chapter, at the end**, covering every question page of that chapter with a
+subheading per source ("2.3 RJ-45 vs M12"), and taking the next section number. Not one behind each
+exercise: a chapter would then carry three sections called Oplossingen and the table of contents
+would say the word three times without saying what about. It also keeps the answer off the leaf
+right behind the question.
+
+That section is **not in `reference.js`**, and it is the one thing in the printed document that is
+not. The manifest still decides where the questions go; the Oplossingen are derived from them and
+follow at the end of the chapter, the way the verslag docx is derived from `Opdracht.html`.
+
+**A section with questions ends the page.** The export marks such a section `data-vragen` and
+`syllabus.css` gives it `page-break-after`, the same division of labour `data-sectie` already has:
+the script states a fact about the section, the stylesheet decides what the paper does with it.
+Without it 2.4 Glasvezelkabel started halfway down the sheet 2.3 RJ-45 vs M12 ended on, so an
+exercise the student fills in shared a page with theory that has nothing to do with it. Only after,
+never before: where a question list *begins* differs per kind (a Test jezelf gets its own page, an
+exercise halfway through a chapter does not), but where it ends does not. A Test jezelf is followed
+by the Oplossingen, which breaks before as well; the two forced breaks collapse into one and no
+blank page appears between them.
+
+**A question list is not always one `<ol>`,** and both the export and rule 14 stitch the pieces back
 together on the `start` attribute before they count a question. They each used to read the first
 `<ol>` on the page and stop, which for chapter 2 meant questions 6 to 8 were never looked at: rule
 14 passed without checking them and the export printed five answers for eight questions, and both
@@ -569,7 +622,7 @@ solutions for that chapter at all, because a list that skips question 3 lets a s
 got question 3 right. That is the right call and a silent one, since it is a "let op" line among the
 others, so rule 14 of the content check says it before anything is printed. The answers themselves
 are not in the Word (nothing is marked there), so every one of them is an editorial decision;
-`NOTITIES.md` records the ones proposed for chapter 1 and what they rest on.
+`NOTITIES.md` records what each one rests on and which ones still need checking.
 
 [`scripts/export-syllabus.py`](scripts/export-syllabus.py) bundles that into
 `downloads/Datacommunicatie-en-netwerken-syllabus.pdf`, which **is committed**, because Pages serves

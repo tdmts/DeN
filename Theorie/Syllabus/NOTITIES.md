@@ -10,11 +10,11 @@ Wat de omzetting zelf moest raden of liet vallen, staat in
 
 **De antwoorden op Test jezelf: nakijken.** In de Word is bij geen enkele
 meerkeuzevraag een mogelijkheid aangeduid, niet vet, niet gekleurd en niet
-gemarkeerd. De afspraak is nu dat de juiste mogelijkheid in TestJezelf.html
-gemerkt wordt met `class="juist"` en dat de export daaruit een sectie
-Oplossingen drukt achter de Test jezelf. Wat hieronder staat, is dus **niet uit
-de Word overgenomen maar afgeleid uit de theorie van het hoofdstuk**, en het is
-het enige in deze import dat een inhoudelijke keuze is in plaats van een
+gemarkeerd. De afspraak is nu dat de juiste mogelijkheid gemerkt wordt met
+`class="juist"` op de `<li>` en dat de export daaruit een sectie Oplossingen
+drukt achteraan het hoofdstuk. Wat hieronder staat, is dus **niet uit de Word
+overgenomen maar afgeleid uit de theorie van het hoofdstuk**, en het is het
+enige in deze import dat een inhoudelijke keuze is in plaats van een
 opmaakkeuze. Kijk het na voor het gedrukt wordt.
 
 | Vraag | Antwoord | Waarop het steunt |
@@ -26,7 +26,7 @@ opmaakkeuze. Kijk het na voor het gedrukt wordt.
 | 5 Wat omvat de applicatie laag | c, sessie, presentatie, applicatie | 1.2, in diezelfde tabel beslaat Application drie OSI-lagen |
 
 Vraag 1 is een open vraag, dus daar is het antwoord geschreven en niet
-aangeduid. Het staat in `<!-- oplossing: ... -->` bij de vraag. De formulering
+aangeduid. Het staat in `<div class="oplossing">` bij de vraag. De formulering
 is van mij; de inhoud staat in 1.2.
 
 Voor de vijf hoofdstukken die nog komen, geldt hetzelfde: de import brengt de
@@ -89,17 +89,63 @@ beantwoorden: 2.7 Netwerktopologie voert die begrippen in bij bus en ster, met
 "Voorlopig mag je onthouden dat". Als de volgorde van de hoofdstukken ooit
 wijzigt, is dit de plek waar dat pijn doet.
 
-**RJ-45 vs M12 stelt zeven vragen bij een tekst die er niet bij zit.** De vragen
-verwijzen naar de secties Abstract en Introduction van een artikel, en noch de
-Word noch deze pagina zegt welk artikel dat is of waar het staat. Zonder die
-tekst is de oefening onmaakbaar. Er hoort dus een verwijzing bij, en als het
-artikel online staat een link.
+**De tekst achter RJ-45 vs M12 is gevonden.** De vragen verwijzen naar de
+secties Abstract en Introduction van een artikel, en dat artikel staat wel
+degelijk in de syllabus: het is *M12 versus RJ45 Ethernet connection systems*
+van Dietmar Röring (Phoenix Contact), drie bladzijden die als scan achteraan
+Ethernetkabel staan (`syllabus-02-fysieke-laag-06/07/08.png`). Er stond alleen
+nergens dat het een artikel was, laat staan welk. De oefening zegt dat nu in
+haar openingszin. De vierde bladzijde van het artikel (Conclusion) zit niet in
+de syllabus; geen van de vragen heeft ze nodig.
 
-**RJ-45 vs M12 en Oefening: switch bekabelen dragen geen oplossingen.** Alleen
-een pagina die TestJezelf.html heet, krijgt in de PDF een sectie Oplossingen.
-Deze twee zijn ook oefeningen met een juist antwoord, en dat antwoord staat
-nergens. Als je wil dat ze het krijgen, is dat een uitbreiding van
-`export-syllabus.py` en geen tekstwijziging.
+**De antwoorden op RJ-45 vs M12: nakijken.** Zelfde voorbehoud als bij de twee
+Test jezelfs: in de Word is niets aangeduid, dus dit is afgeleid uit het artikel
+en geen overname.
+
+| Vraag | Antwoord | Waarop het steunt |
+|---|---|---|
+| 1 Kleinere RJ-45 variant | RJ-11 | staat er met opzet niet in; de RJ-11 is de connector van een vaste telefoonlijn, zes posities in plaats van acht |
+| 2 Vier problemen | vocht, temperatuurschommelingen, trillingen, schokken | woordelijk de Introduction: "humidity, drastic temperature changes, vibration and shock" |
+| 3 Ander type connector | de RJ-45 push-pull connector | blz. 2, de PNO legde die in 2002 voor Profinet vast |
+| 4 IP67 | c, water- en stofbestendigheid | algemeen bekend, en het artikel gebruikt IP67 en IP20 als beschermingsgraad |
+| 5 EMC | b, M12 | blz. 3, de M12 Quickon sluit 360 graden rond de kabel en is daarom geschikt bij veel EMC |
+| 6 FastEthernet | 100 Mbps | blz. 3, "Fast Ethernet (100Base-T) ... at a transmission rate of 100 Mbps" |
+| 7 Acht pin M12 | 1000 Mbps | blz. 3, acht pinnen zijn er voor Gigabit Ethernet (1000Base-T) |
+
+**Vraag 3 is de wankelste van de zeven.** Ze vraagt naar een connector "behalve
+RJ-45 en M12", en het enige wat het artikel bij Profinet noemt is de RJ-45
+push-pull. Dat is een ander type connector (hij klikt vast en haalt IP67), maar
+hij heet nog altijd RJ-45, dus de vraag spreekt zichzelf half tegen. Kijk na of
+jij iets anders bedoeld hebt.
+
+**Oefening: switch bekabelen is herschreven naar genummerde vragen.** In de Word
+staan de vier opdrachten als bullets met "omcirkel" eronder. Een oplossing kan
+naar een bullet niet wijzen, dus het zijn nu de vier items van een
+`<ol class="vragen">`; de omcirkeltabellen en de invullijnen staan er
+onveranderd onder. Dit is de enige plaats in deze import waar de opmaak van de
+Word bewust niet gevolgd is.
+
+**De antwoorden op Oefening: switch bekabelen: nakijken.**
+
+| Vraag | Antwoord | Waarop het steunt |
+|---|---|---|
+| 1 10/100 Base T, < 30 m | cat5e / RJ45 | de poort haalt 100 Mbps; de tabel in 2.2 geeft cat5e 1 Gbps over 100 m, dus alles erboven kost meer en levert niets |
+| 2 Gig-T, 70 m | cat6 / RJ45 | zie hieronder |
+| 3 SFP module, < 1 km | J4859C | de datasheets bij de vraag: de eerste is koper met RJ-45, de tweede haalt 550 m over multimode, de derde 10 km over singlemode |
+| 4 Glasvezelkabel | LC OS2 | de J4859C is 1310 nm over SMF met duplex LC; OM3 en OM4 zijn multimode en SC is de verkeerde connector |
+
+**Vraag 2 is een keuze en geen gevolgtrekking.** De tabel in 2.2 geeft cat5e
+1 Gbps over 100 meter, en een Gig-T poort vraagt 1 Gbps over 70 meter. Strikt
+genomen volstaat cat5e dus, en dan is vraag 2 hetzelfde antwoord als vraag 1 en
+vraagt ze niets nieuws. cat6 is hier ingevuld omdat "performante" in de
+vraagstelling naar marge wijst en omdat twee vragen anders samenvallen. Beslis
+jij welke van de twee je bedoelt; het is de enige oplossing in dit hoofdstuk die
+niet uit het materiaal volgt.
+
+**De SFP in de tabel heet J8117C en op zijn datasheet J8177C.** Twee cijfers
+omgewisseld, in de Word al. Welke van de twee juist is, maakt voor het antwoord
+niets uit (die module is koper en valt sowieso af), maar een van de twee is een
+typfout.
 
 **De tekeningen bij vraag 6, 7 en 8 dragen geen bijschrift.** Ze zaten in de Word
 in de alinea van de vraag zelf, dus er is geen tekst die erbij hoort, en de

@@ -13,7 +13,7 @@
     <div class="container">
         <h1>Test jezelf</h1>
 
-        <ol>
+        <ol class="vragen">
             <li>Som de vijf lagen in volgorde op van het TCP/IP model. Begin met de fysieke laag.
                 <div class="table-responsive table-spacer">
                     <table class="table table-bordered invulruimte">
@@ -26,7 +26,7 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- oplossing: Fysiek, datalink, netwerk, transport en applicatie. -->
+                <div class="oplossing">Fysiek, datalink, netwerk, transport en applicatie.</div>
             </li>
             <li>Welke omschrijving past het best bij een STP kabel?
                 <ul>
@@ -38,14 +38,18 @@
             </li>
             <li>Noteer de juiste benaming bij de definities
                 <div class="table-responsive table-spacer">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered invulkolom">
+                        <colgroup>
+                            <col style="--kolom-breedte: 109.9mm">
+                            <col style="--kolom-breedte: 49.9mm">
+                        </colgroup>
                         <tbody>
-                            <tr><td>Een frame dat van een zender naar een specifieke ontvanger wordt verzonden</td><td></td></tr>
-                            <tr><td>Een frame dat van een zender naar een alle ontvangers wordt verzonden, zonder specifieke bestemming</td><td></td></tr>
+                            <tr><td>Een frame dat van een zender naar een specifieke ontvanger wordt verzonden</td><td class="invulruimte"></td></tr>
+                            <tr><td>Een frame dat van een zender naar een alle ontvangers wordt verzonden, zonder specifieke bestemming</td><td class="invulruimte"></td></tr>
                         </tbody>
                     </table>
                 </div>
-                <!-- oplossing: Van boven naar onder: unicast en broadcast. -->
+                <div class="oplossing">Van boven naar onder: unicast en broadcast.</div>
             </li>
             <li>Hoe ziet een MAC adres eruit?
                 <ul>
@@ -62,13 +66,13 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- oplossing: 10 Gbps, over de volledige 100 meter. -->
+                <div class="oplossing">10 Gbps, over de volledige 100 meter.</div>
             </li>
         </ol>
 
         <p>Ook in industriële netwerken zoals bijvoorbeeld EtherCAT, PROFIBUS en PROFINET worden apparaten aan elkaar gekoppeld. Probeer eens zelf te achterhalen in welke topologie ze geschakeld zijn.</p>
 
-        <ol start="6">
+        <ol class="vragen" start="6">
             <li>EtherCAT
                 <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 98.2mm">
                     <img src="../../../../img/syllabus-02-fysieke-laag-32.png" class="img-fluid" alt="Afbeelding uit de syllabus">
@@ -110,6 +114,7 @@
 
     <script src="../../../../reference.js"></script>
     <script src="../../../../back-link.js"></script>
+    <script src="../../../../oplossingen.js"></script>
 </body>
 
 </html>

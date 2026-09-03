@@ -13,7 +13,11 @@
     <div class="container">
         <h1>RJ-45 vs M12</h1>
 
-        <ol>
+        <p>De vragen hieronder horen bij het artikel <em>M12 versus RJ45 Ethernet connection systems</em> van Dietmar
+            Röring (Phoenix Contact). Dat staat in deze syllabus afgedrukt achteraan de sectie Ethernetkabel. Lees het
+            eerst; de secties waar de vragen naar verwijzen, staan er met hun titel in.</p>
+
+        <ol class="vragen">
             <li>In ‘Abstract’ wordt gezegd dat de RJ-45 connector origineel enkel bedoeld was om een telefoon aan te sluiten. Dat is niet helemaal waar want die eer gaat naar het kleine broertje van deze connector… Wat is de naam van de kleinere RJ-45 variant (staat niet in de tekst) ?
                 <div class="table-responsive table-spacer">
                     <table class="table table-bordered invulruimte">
@@ -22,6 +26,8 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="oplossing">De RJ-11, de connector die je aan een vaste telefoonlijn vindt. Hij is smaller
+                    dan een RJ-45 en heeft zes posities in plaats van acht.</div>
             </li>
             <li>Welke vier problemen somt men in de sectie Introduction op waarmee connectoren te maken krijgen in een industriële omgeving?
                 <div class="table-responsive table-spacer">
@@ -32,6 +38,7 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="oplossing">Vocht, sterke temperatuurschommelingen, trillingen en schokken.</div>
             </li>
             <li>Welk ander type connector gebruikt het industrieel netwerk Profinet behalve RJ-45 en M12?
                 <div class="table-responsive table-spacer">
@@ -41,19 +48,23 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="oplossing">De RJ-45 push-pull connector. De Profibus User Organization heeft die in 2002
+                    voor Profinet vastgelegd; hij klikt vast in plaats van met een lipje en haalt zo IP67.</div>
             </li>
             <li>In de tekst wordt af en toe gesproken over IP67. Wat betekent dit?
                 <ul>
                     <li>Het definieert de maximum snelheid van de kabel. In dit geval 67 Mbps.</li>
                     <li>Het definieert de afschermingsgraad van de kabel. In dit geval 67 dB.</li>
-                    <li>Het is een classificatie voor water- en stofbestendigheid. In dit geval is de connector stofdicht en mag hij korte tijd ondergedompeld worden in water.</li>
+                    <li class="juist">Het is een classificatie voor water- en stofbestendigheid. In dit geval is de connector stofdicht en mag hij korte tijd ondergedompeld worden in water.</li>
                 </ul>
             </li>
             <li>Welk type connector beschermt het best tegen Electromagnetic Compatibility (EMC)?
                 <ul>
                     <li>RJ-45</li>
-                    <li>M12</li>
+                    <li class="juist">M12</li>
                 </ul>
+                <div class="oplossing">De M12 heeft een metalen behuizing en een afscherming die over de volle 360
+                    graden rond de kabel sluit.</div>
             </li>
             <li>Welke snelheid (uitgedrukt in Mbps) is synoniem voor FastEthernet?
                 <div class="table-responsive table-spacer">
@@ -63,6 +74,8 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="oplossing">100 Mbps. Dat is 100Base-T, met een aderpaar om te zenden en een om te
+                    ontvangen.</div>
             </li>
             <li>Welke snelheid kan je maximaal halen met een 8 pin M12 connector?
                 <div class="table-responsive table-spacer">
@@ -72,12 +85,15 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="oplossing">1000 Mbps. Acht pinnen zijn nodig voor Gigabit Ethernet (1000Base-T), want daar
+                    zenden en ontvangen alle vier de aderparen tegelijk.</div>
             </li>
         </ol>
     </div>
 
     <script src="../../../../reference.js"></script>
     <script src="../../../../back-link.js"></script>
+    <script src="../../../../oplossingen.js"></script>
 </body>
 
 </html>

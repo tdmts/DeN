@@ -36,7 +36,9 @@ WAT HET WEL INTERPRETEERT, en waarom dat geen woorden raakt:
     en blijft een lege tabel: op papier is dat waar hij schrijft. Een tabel met
     een kolom die overal leeg staat, is dat ook: links de definitie, rechts wat
     de student invult. Staat zo'n tabel vlak na een genummerde vraag, dan hoort
-    ze bij die vraag en gaat ze erin.
+    ze bij die vraag en gaat ze erin. Zo'n tabel krijgt de kolombreedtes van
+    de Word mee, want Chrome geeft een lege cel anders niet meer dan haar
+    opvulling en dan is er niets om in te schrijven.
   - Samengevoegde cellen (vMerge, gridSpan) worden rowspan en colspan. Zonder
     dat verschuift de hele tabel een kolom en klopt er niets meer van.
   - Een kopregel wordt alleen gezet als de Word er een aanduidt (tblHeader) of
@@ -376,7 +378,13 @@ class Cel:
 
 
 def rooster(tabel):
-    """Rijen als [tc, rowspan, colspan]; samengevoegde vervolgcellen vallen weg."""
+    """Rijen als [tc, rowspan, colspan, kolom]; vervolgcellen van een merge vallen weg.
+
+    Die laatste is de kolom waar de cel in het rooster begint, en dus niet haar
+    plaats in de rij: door een verticale merge staat de derde cel van een rij
+    even goed in kolom vier. Ze is nodig om te weten welke cel in een lege
+    kolom staat.
+    """
     rijen = []
     start_van_kolom = {}
     for ri, rij in enumerate(tabel.rows):
@@ -400,26 +408,50 @@ def rooster(tabel):
                 continue
             if merge == "restart":
                 start_van_kolom[kolom] = (ri, len(uit))
-            uit.append([tc, 1, span])
+            uit.append([tc, 1, span, kolom])
             kolom += span
         rijen.append(uit)
     return rijen
 
 
-def lege_kolom(tabel):
-    """Staat er een kolom volledig leeg?
+def lege_kolommen(tabel):
+    """Welke kolommen staan volledig leeg?
 
-    Dan is die kolom invulruimte: de vraag staat links, de student schrijft
-    rechts. Zo'n tabel vlak na een genummerde vraag hoort bij die vraag, net
-    als de volledig lege tabel waar de student vrij onder schrijft.
+    Zo'n kolom is invulruimte: de definitie staat links, de student schrijft
+    rechts. Een tabel met zo'n kolom vlak na een genummerde vraag hoort bij die
+    vraag, net als de volledig lege tabel waar de student vrij onder schrijft.
     """
     try:
         kolommen = list(zip(*[[c.text.strip() for c in r.cells] for r in tabel.rows]))
     except TypeError:
-        return False
+        return set()
     if len(kolommen) < 2:
-        return False
-    return any(not any(kolom) for kolom in kolommen)
+        return set()
+    return {i for i, kolom in enumerate(kolommen) if not any(kolom)}
+
+
+def lege_kolom(tabel):
+    return bool(lege_kolommen(tabel))
+
+
+def kolombreedtes(tabel):
+    """De kolombreedtes in mm, zoals de Word ze zet (tblGrid, in twips).
+
+    Chrome verdeelt een tabel zelf over haar inhoud, en een lege cel krijgt
+    dan niet meer dan haar opvulling: precies de kolom waarin geschreven moet
+    worden valt weg. De Word weet wel hoe breed die is, dus die maat wordt
+    overgenomen, zoals de breedte van een figuur.
+    """
+    grid = tabel._tbl.find(qn("w:tblGrid"))
+    if grid is None:
+        return []
+    uit = []
+    for kolom in grid.findall(qn("w:gridCol")):
+        breedte = kolom.get(f"{{{W}}}w")
+        if not breedte or not breedte.isdigit():
+            return []
+        uit.append(round(int(breedte) / 1440 * 25.4, 1))
+    return uit
 
 
 def heeft_kopregel(tabel, rijen):
@@ -438,7 +470,7 @@ def heeft_kopregel(tabel, rijen):
         return True, "de Word duidt de kopregel zelf aan (tblHeader)"
 
     vet = []
-    for tc, _, _ in rijen[0]:
+    for tc, _, _, _ in rijen[0]:
         runs = [r for r in tc.findall(".//" + qn("w:r"))
                 if "".join(t.text or "" for t in r.findall(qn("w:t"))).strip()]
         if not runs:
@@ -506,16 +538,39 @@ def tabel_html(tabel, ctx):
     else:
         noteer(waar, f'tabel "{eerste_cel}" kreeg GEEN kopregel ({reden}), nakijken')
 
+    # Een kolom die overal leeg staat, is invulruimte binnen een tabel die
+    # verder tekst draagt. Ze wordt als zodanig gemerkt en de tabel krijgt de
+    # kolombreedtes van de Word mee, want anders houdt Chrome niets over om in
+    # te schrijven. Wat de bladzijde daarmee doet, beslist syllabus.css.
+    leeg = lege_kolommen(tabel)
+    breedtes = kolombreedtes(tabel) if leeg else []
+    if leeg and len(breedtes) != len(tabel.columns):
+        noteer(waar, f'tabel "{eerste_cel}" heeft een lege kolom, maar de Word '
+                     f"geeft er geen breedtes bij; de invulkolom blijft smal")
+        leeg, breedtes = set(), []
+    elif leeg:
+        kolommen = ", ".join(str(i + 1) for i in sorted(leeg))
+        noteer(waar, f'tabel "{eerste_cel}": kolom {kolommen} staat overal leeg '
+                     f"en werd invulruimte, op de breedte van de Word")
+
     def rij_html(cellen, tag):
         uit = []
-        for tc, rs, cs in cellen:
+        for tc, rs, cs, kolom in cellen:
             attrs = f' rowspan="{rs}"' if rs > 1 else ""
             attrs += f' colspan="{cs}"' if cs > 1 else ""
+            if kolom in leeg:
+                attrs += ' class="invulruimte"'
             uit.append(f"<{tag}{attrs}>{cel_html(tc, ctx)}</{tag}>")
         return "<tr>" + "".join(uit) + "</tr>"
 
+    klassen = "table table-bordered" + (" invulkolom" if leeg else "")
     stukken = ['<div class="table-responsive table-spacer">',
-               '    <table class="table table-bordered">']
+               f'    <table class="{klassen}">']
+    if breedtes:
+        stukken.append("        <colgroup>")
+        for mm in breedtes:
+            stukken.append(f'            <col style="--kolom-breedte: {mm}mm">')
+        stukken.append("        </colgroup>")
     eerste = 0
     if kop:
         stukken += ['        <thead class="table-header-custom">',
