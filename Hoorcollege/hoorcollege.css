@@ -206,6 +206,38 @@ body {
 
 .slide a { color: inherit; }
 
+/* ---------------------------------------------------------------- wooclap */
+
+/* Een peiling waar de klas tijdens de les op antwoordt. In de PowerPoint was
+   dit een invoegtoepassing, en die bestaat alleen in PowerPoint: bij de import
+   viel ze weg en bleven slide 5 en 6 met dezelfde illustratie onder dezelfde
+   titel over. Hier is het het iframe dat Wooclap zelf geeft.
+
+   DE VRAAG STAAT ALS TEKST OP DE SLIDE, niet alleen in de peiling. Op papier
+   is er geen peiling (handout.css laat het iframe weg), en dan is deze zin het
+   enige wat de student te lezen krijgt op de plaats waar hij zijn antwoord
+   schrijft. */
+.slide .vraag {
+    font-size: 20pt;
+    line-height: 1.35;
+    margin: 0;
+}
+
+/* Vult op wat de vraag overlaat, want hoe hoog een peiling is, hangt af van
+   hoeveel antwoorden ze telt en dat weet deze kant niet. */
+.slide > .wooclap {
+    flex: 1 1 auto;
+    min-height: 0;
+    margin-top: 4mm;
+}
+
+.slide .wooclap iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
 /* ------------------------------------------------------------------ tabel */
 
 /* De kolombreedte komt uit de PowerPoint, want een lege cel krijgt van de

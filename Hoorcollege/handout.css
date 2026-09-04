@@ -95,15 +95,29 @@ body {
 /* --------------------------------------------------------------- de slide */
 
 /* Alles hierboven staat in millimeter, dus de slide hoeft alleen verkleind te
-   worden. Ze wordt uit de stroom gehaald en linksboven vastgezet, want een
-   transform verandert niets aan de ruimte die een element inneemt. */
+   worden. Ze blijft daarbij gewoon in de stroom staan: een transform verandert
+   niets aan de ruimte die een element inneemt, dus ze meet binnen het kader nog
+   altijd 254 bij 143mm, en overflow: hidden knipt weg wat naast de 80 bij 45mm
+   valt die ze op papier inneemt.
+
+   ZE MAG GEEN position: absolute KRIJGEN, hoe vanzelfsprekend dat hier ook
+   lijkt. Chrome laat een absoluut geplaatst element vallen zodra het document
+   over meerdere bladen breekt: van elk blad verdween de inhoud van de onderste
+   slide, beeld en tekst samen, en bleef alleen het lege kader met het nummer
+   ernaast staan. Dat is een vijfde van de handout, en er ging niets stuk om het
+   aan te zien. Een deck dat op een blad past, drukt wel correct af, en dat is
+   precies wat het bij het uitproberen verbergt. */
 .kader .slide {
     display: flex;
-    position: absolute;
-    left: 0;
-    top: 0;
+    position: static;
     transform: scale(0.315);
     transform-origin: top left;
 }
 
 .slide .teller, .notities { display: none; }
+
+/* De peiling kan niet mee naar papier: een iframe naar app.wooclap.com drukt
+   af als een leeg vlak, en een peiling waar niemand op kan antwoorden is er
+   geen. De vraag ernaast staat als gewone tekst op de slide en blijft dus wel
+   staan; het antwoord hoort in de schrijfruimte ernaast. */
+.slide .wooclap { display: none; }
