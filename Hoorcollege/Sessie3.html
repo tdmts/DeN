@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sessie3</title>
+<link rel="stylesheet" href="hoorcollege.css">
+</head>
+<body style="--slide-breedte: 254mm; --slide-hoogte: 143mm">
+
+    <section class="slide titel" data-slide="2">
+        <h1>Datacommunicatie en netwerken</h1>
+        <p class="ondertitel">Bachelor in de elektromechanica – automatisering</p>
+        <p class="ondertitel">Tom Demets | Stefan Lievens <br><a href="mailto:tom.demets@hogent.be" target="_blank">tom.demets@hogent.be</a> | <a href="mailto:stefan.lievens@hogent.be" target="_blank">stefan.lievens@hogent.be</a></p>
+        <figure class="achtergrond" style="--figuur-breedte: 123mm; --figuur-hoogte: 140mm"><img src="../img/hoorcollege-sessie-3-01.jpg" alt=""></figure>
+        <figure class="achtergrond" style="--figuur-breedte: 191mm; --figuur-hoogte: 143mm"><img src="../img/hoorcollege-sessie-3-02.png" alt=""></figure>
+    </section>
+
+    <section class="slide sectie" data-slide="3">
+        <h2>TCP/IP model<br>Laag 3: netwerk laag</h2>
+    </section>
+
+    <section class="slide" data-slide="4">
+        <h2>Herhaling datalink laag</h2>
+        <figure style="--figuur-breedte: 115mm"><img src="../img/hoorcollege-sessie-3-03.jpg" alt=""></figure>
+    </section>
+
+    <section class="slide" data-slide="5">
+        <h2>TCP/IP model</h2>
+        <figure style="--figuur-breedte: 97mm"><img src="../img/hoorcollege-sessie-3-04.png" alt=""></figure>
+        <p class="los">In de datalink laag adresseren we binnen een … met …<br>In de netwerk laag adresseren we binnen een … met ...</p>
+        <p class="los">____________</p>
+        <p class="los">____________</p>
+        <p class="los"><em>Please Do Not Take Anything</em></p>
+        <aside class="notities"><p>Over verschillende netwerken heen (WAN) met IP adressen</p><p>___ = router</p><p>___ = switch</p></aside>
+    </section>
+
+    <section class="slide" data-slide="6">
+        <h2>Encapsulatie</h2>
+        <div class="beelden"><figure style="--figuur-breedte: 120mm"><img src="../img/hoorcollege-sessie-3-07.png" alt=""></figure><figure style="--figuur-breedte: 177mm"><img src="../img/hoorcollege-sessie-3-05.png" alt=""></figure><figure style="--figuur-breedte: 74mm"><img src="../img/hoorcollege-sessie-3-06.png" alt=""></figure></div>
+        <p class="los">Data</p>
+        <aside class="notities"><p>Alles samen…</p><p>Het IP pakket wordt verpakt in een ethernet frame = encapsulatie</p><p>Er is nu een source + dest MAC en source + dest IP aanwezig</p><p>Een switch negeert de inhoud van Data in een frame</p><p>Een router opent Data in een frame en kijkt als er een IP pakket in zit</p><p>Een pakket wordt geëncapsuleerd in een frame. </p><p>Het is nog altijd het volledig frame dat verstuurd wordt over het netwerk</p></aside>
+    </section>
+
+    <section class="slide" data-slide="7">
+        <h2>IPv4 header</h2>
+        <figure style="--figuur-breedte: 135mm"><img src="../img/hoorcollege-sessie-3-08.png" alt=""></figure>
+        <p class="los">Frame<br>Pakket</p>
+        <p class="los">!!!</p>
+        <p class="los">Prioriteit in WAN</p>
+        <p class="los">Keuze TCP/UDP</p>
+        <aside class="notities"><p>ECN = explicit congestion notification</p><p>De velden source en destination IP adres vallen meteen op</p><p>We hebben het niet meer over een frame maar wel over een pakket.</p><p>We gaan samen eens de betekenis van de belangrijkste velden overlopen</p></aside>
+    </section>
+
+    <section class="slide" data-slide="8">
+        <h2>IPv4 header</h2>
+        <ul><li>Speciale adressen<ul><li>127.0.0.1 = localhost (iedere adapter heeft altijd dit adres)</li><li>0.0.0.0 = non routable (= ongeldig / onbekend / nog niet toegekend)</li><li>255.255.255.255 = broadcast (naar alle hosts in het netwerk)</li><li>169.254.0.1 tot en met 169.254.255.254 = link local / APIPA (zelf toegekend)</li></ul></li></ul>
+    </section>
+
+    <section class="slide" data-slide="9">
+        <h2>IPv6 header</h2>
+        <ul><li>128 bits adresruimte<ul><li>2^128 combinaties ~= 50 quadriljard IP adressen / persoon</li><li>2001:0db8:85a3:0000:1319:8a2e:0370:7344</li></ul></li></ul>
+        <figure style="--figuur-breedte: 177mm"><img src="../img/hoorcollege-sessie-3-09.png" alt=""></figure>
+        <p class="los">TCP/UDP</p>
+        <aside class="notities"><p>Probleem bij IPv4: te veel apparaten, te weinig adressen</p><p>IPv6: grotere adresruimte, aangepaste header</p><p>Ziet er wat anders uit maar doet hetzelfde als de IPv4 header</p><p>Version: vast op 6</p><p>Traffic Class = DSCP + ECN velden (of PCP veld)</p><p>Next Header = Protocol (TCP / UDP)</p><p>Hop Limit = Time To Live</p></aside>
+    </section>
+
+    <section class="slide" data-slide="10">
+        <h2>IPv6 header – Verkort schrijven van IPv6 adressen (Ter info)</h2>
+        <ul><li>Een blok van nullen kan vervangen worden door ::</li><li>Vier nullen kan je herschrijven naar één 0</li><li>Nullen in het begin mag je weglaten</li></ul>
+        <div class="beelden onder-elkaar"><figure style="--figuur-breedte: 106mm"><img src="../img/hoorcollege-sessie-3-10.png" alt=""></figure><figure style="--figuur-breedte: 72mm"><img src="../img/hoorcollege-sessie-3-11.png" alt=""></figure><figure style="--figuur-breedte: 104mm"><img src="../img/hoorcollege-sessie-3-12.png" alt=""></figure></div>
+    </section>
+
+    <section class="slide" data-slide="11">
+        <h2>Netwerk laag</h2>
+        <ul><li>Hoe krijgt een host een IP adres?</li></ul>
+        <div class="beelden"><figure style="--figuur-breedte: 84mm"><img src="../img/hoorcollege-sessie-3-13.png" alt=""></figure><figure style="--figuur-breedte: 118mm"><img src="../img/hoorcollege-sessie-3-14.png" alt=""></figure></div>
+        <aside class="notities"><p>Zelf instellen (statisch IP)</p><p>	is het adres al ingenomen? Lijst bijhouden</p><p>	telkens opnieuw manueel invullen (ook bij veranderen van netwerk)</p><p>DHCP (automatisch)</p><p>	Er moet een DHCP server aanwezig zijn</p><p>	Houdt zelf de lijst bij</p><p>	Geen twee DHCP servers op hetzelfde netwerk!</p><p>APIPA (geen van beide)</p></aside>
+    </section>
+
+    <section class="slide" data-slide="12">
+        <h2>Automatic Private IP Addressing (APIPA / auto IP)</h2>
+        <ul><li>Wat als er geen DHCP server is en je zelf geen IP adres hebt ingesteld?<ul><li>Sowieso 127.0.0.1 (localhost)</li><li>Windows geeft je een APIPA (link local) adres<ul><li>Random van 169.254.1.0 tot 169.254.255.255</li></ul></li></ul></li></ul>
+        <aside class="notities"><p>Om deel uit te maken van een netwerk MOET je computer een IP adres hebben.</p><p>Als je het niet zelf hebt ingesteld en je krijgt er geen van de DHCP server dan krijg je er één van Windows.</p><p>Met meerdere APIPA hosts op eenzelfde switch = netwerk zonder DHCP</p><p>In de praktijk doen we dit niet.</p></aside>
+    </section>
+
+    <section class="slide" data-slide="13">
+        <h2>Domain Name System (DNS)</h2>
+        <ul><li>Applicaties werken met IP adressen<ul><li>32 of 128 bits -&gt; moeilijk te onthouden…</li></ul></li></ul>
+        <figure style="--figuur-breedte: 181mm"><img src="../img/hoorcollege-sessie-3-15.png" alt=""></figure>
+        <aside class="notities"><p>Ping google.be -&gt; vul IP adres in adresbalk in</p></aside>
+    </section>
+
+    <section class="slide" data-slide="14">
+        <h2>Multicast DNS (ter info)</h2>
+        <ul><li>Probleem<ul><li>Geen DNS server op een LAN</li><li>Een machine terugvinden op het LAN = </li><li>Lokale machines hebben een:<ul><li>IP adres</li><li>geen domeinnaam </li></ul></li></ul></li><li>Oplossing? mDNS!<ul><li>Bv. raspberrypi.local of printer3520.local of ….</li></ul></li></ul>
+        <aside class="notities"><p>Oplossing?</p><p>	OS ondersteunt mDNS</p><p>	domeinnaam = hostname + .local</p><p>	bv: raspberrypi.local , printer3520.local , …</p><p>	ping raspberrypi.local =&gt; mDns lookup</p><p>	MAAR!</p><p>	Domeinnaam moet uniek zijn in het LAN!</p></aside>
+    </section>
+
+    <section class="slide" data-slide="15">
+        <h2>ICMP (ping)</h2>
+        <ul><li>Internet Control Message Protocol<ul><li>ping google.be</li><li>ping 192.168.1.1</li><li>ping -4 raspberrypi.local</li><li>ping -6 raspberrypi.local</li></ul></li></ul>
+        <figure style="--figuur-breedte: 112mm"><img src="../img/hoorcollege-sessie-3-16.png" alt=""></figure>
+        <aside class="notities"><p>Door te pingen kom je drie dingen te weten:</p><p>Eventueel achterliggend IP</p><p>Bereikbaar of niet?</p><p>Performantie</p><p>-4 = ipv4</p></aside>
+    </section>
+
+    <section class="slide" data-slide="16">
+        <h2>Subnetmasker en default gateway</h2>
+        <ul><li>Een IP adres is niet genoeg…</li></ul>
+        <div class="beelden"><figure style="--figuur-breedte: 79mm"><img src="../img/hoorcollege-sessie-3-17.png" alt=""></figure><figure style="--figuur-breedte: 106mm"><img src="../img/hoorcollege-sessie-3-18.png" alt=""></figure></div>
+        <p class="los">Subnetmasker?<br>Default gateway?</p>
+    </section>
+
+    <section class="slide" data-slide="17">
+        <h2>Default gateway</h2>
+        <div class="beelden"><figure style="--figuur-breedte: 173mm"><img src="../img/hoorcollege-sessie-3-19.png" alt=""></figure><figure style="--figuur-breedte: 75mm"><img src="../img/hoorcollege-sessie-3-20.png" alt=""></figure></div>
+        <aside class="notities"><p>Twee lokale netwerken (LANs) aan elkaar gekoppeld met een router</p><p>Router0: DHCP server met IP adres 192.168.0.1 en deelt IP adres en default gateway uit</p><p>Router1: DHCP server met IP adres 192.168.1.1 en deelt IP adres en default gateway uit</p><p>DG: het IP adres naar waar pakketten mogen worden gestuurd als ze niet kunnen afgeleverd worden in het LAN</p><p>Pakket van 192.168.0.2 -&gt; 192.168.0.3 (blijft in hetzelfde netwerk, geen DG nodig -&gt; via ARP)</p><p>Pakket van 192.168.0.2 -&gt; 192.168.1.2 (gaat naar een ander netwerk, DG nodig)</p><p>Rechtsboven: geen DG nodig want ze zitten in hetzelfde netwerk</p></aside>
+    </section>
+
+    <section class="slide" data-slide="18">
+        <h2>Default gateway</h2>
+        <ul><li>Welk apparaat is in je thuisnetwerk de Default gateway?</li><li>En de DHCP server?</li><li>En de DNS server?</li></ul>
+    </section>
+
+    <section class="slide" data-slide="19">
+        <h2>Subnetmasker</h2>
+        <ul><li>IP adres = locatie op het netwerk</li><li>Default gateway = naar waar het pakket moet worden gestuurd als het pakket naar buiten het netwerk moet</li></ul>
+        <p class="los">Maar…<br>Als een pakket van 192.168.0.1 naar 192.168.1.1 moet…<br>Moet dat pakket dan naar buiten het netwerk of niet?</p>
+        <aside class="notities"><p>Het subnetmasker vertelt in eerste instantie hoe groot het netwerk is</p></aside>
+    </section>
+
+    <section class="slide" data-slide="20">
+        <h2>Subnetmasker</h2>
+        <ul><li>ipconfig host 1<ul><li>192.168.0.1</li><li>255.255.255.0</li></ul></li><li>ipconfig host 2<ul><li>192.168.1.1</li><li>255.255.255.0</li></ul></li><li>Beide hosts hebben een verschillend IP maar hetzelfde subnetmasker… Zitten ze in hetzelfde netwerk?</li></ul>
+        <aside class="notities"><p>Ze hebben hetzelfde subnetmasker maar ze zitten niet in hetzelfde netwerk.</p></aside>
+    </section>
+
+    <section class="slide" data-slide="21">
+        <h2>Subnetmasker – Oefening </h2>
+        <figure style="--figuur-breedte: 225mm"><img src="../img/hoorcollege-sessie-3-21.png" alt=""></figure>
+        <p class="los">172 = 1010 1100<br>19  = 0001 0011<br>252 = 1111 1100</p>
+    </section>
+
+    <section class="slide" data-slide="22">
+        <h2>Subnetmasker – Oefening </h2>
+        <p class="los">172	= 1010 1100<br>= 0001 0011<br>2 = 0000 0010<br>12 = 0000 1100   <br>252 = 1111 1100<br>255 = 1111 1111</p>
+        <p class="los"><strong>Je computer zit in het iotroam netwerk met IP: 172.19.2.12 en SNM: 255.255.252.0 </strong><br><strong>Je Raspberry PI zit ‘ergens’ in hetzelfde netwerk</strong><br><strong>Je wil het IP adres van de PI te weten komen via een scan met nmap.</strong><br><strong>Wat is het adres van het netwerk?</strong><br><strong>Wat is de lengte van het subnetmasker?</strong><br><strong>Welk commando ga je in nmap moeten ingeven om het volledig netwerk te scannen?</strong></p>
+    </section>
+
+    <section class="slide" data-slide="23">
+        <h2>Private IP range</h2>
+        <ul><li>Als het subnetmasker bepaalt hoe groot (of klein) je netwerk is…</li><li>Mag je dan zelf je subnetmasker kiezen?</li><li>M.a.w.</li><li>Mag je dan zelf kiezen hoe groot je netwerk is?</li></ul>
+        <aside class="notities"><p>Ja en nee </p><p>Als je een LAN netwerk wil maken mag je niet zomaar een willekeurig IP adres en subnetmasker kiezen.</p><p>Er zijn 3 private IP ranges gemaakt. Voor kleine, middelgrote en zeer grote netwerken.</p><p>Binnen die ranges mag je beperkt kiezen.</p></aside>
+    </section>
+
+    <section class="slide" data-slide="24">
+        <h2>Network Address Translation</h2>
+        <figure style="--figuur-breedte: 94mm"><img src="../img/hoorcollege-sessie-3-22.png" alt=""></figure>
+    </section>
+
+    <section class="slide" data-slide="25">
+        <h2>Netwerkdeel, subnetdeel en hostdeel</h2>
+        <ul><li>Een IP adres bestaat uit:<ul><li>Een netwerkdeel (~= het land en de stad)</li><li>Het subnetdeel (~= eventueel een deelgemeente)</li><li>Het hostdeel (~= de straat en het huisnummer)</li></ul></li></ul>
+    </section>
+
+    <section class="slide" data-slide="26">
+        <h2>Private IP Range</h2>
+        <ul><li>In de volledige IP adresruimte worden drie blokken gereserveerd voor LAN</li></ul>
+        <figure style="--figuur-breedte: 177mm"><img src="../img/hoorcollege-sessie-3-23.png" alt=""></figure>
+        <p class="los">Uit het hoofd<br>kennen!</p>
+        <aside class="notities"><p>A: 10.0.0.1 / 10.255.255.254 / 8 / 255.0.0.0 (/8) / 0 / 2^24 – 2 = +- 17 miljoen</p><p>B: 172.16.0.1 / 172.31.255.254 / 12 / 255.255.0.0 (/16)/ 4 / 2^16 – 2 = +- 65000</p><p>C: 192.168.0.1 / 192.168.255.254 / 16 / 255.255.255.0 (/24)/ 8 / 2^8 - 2 = 254</p><p>Hiermee MOET je het doen in een LAN. Andere IP adressen zijn niet geldig want die zijn mss uitgedeeld op een LAN!</p></aside>
+    </section>
+
+    <section class="slide" data-slide="27">
+        <h2>Private IP Range – /8 privaat LAN (Klasse A)</h2>
+        <ul><li>IP adres in de vorm van 10.X.X.Y<ul><li>Netwerkdeel = ___ bits lang</li><li>Standaard SNM = ___ . ___ . ___ . ___ = ___ bits lang</li><li>Subnetdeel = ___ bits lang = ___ subnets</li><li>Hostdeel = ___ bits lang = __________ hosts</li></ul></li></ul>
+        <figure style="--figuur-breedte: 176mm"><img src="../img/hoorcollege-sessie-3-24.png" alt=""></figure>
+        <aside class="notities"><p>Eerste 8 bits staan vast op 0000 1010 (Netwerkdeel)</p><p>Standaard subnetmasker is 255.0.0.0 (/8)</p><p>Er is geen subnetdeel (netwerkdeel = lengte subnetmasker)</p><p>Overige 24 bits zijn vrij te kiezen (Hostdeel)</p><p>De twee hosts zitten in hetzelfde netwerk = ze kunnen elkaar zien</p></aside>
+    </section>
+
+    <section class="slide" data-slide="28">
+        <h2>Private IP Range – /24 privaat LAN (Klasse C)</h2>
+        <ul><li>IP adres in de vorm van 192.168.X.Y<ul><li>Netwerkdeel = ___ bits lang</li><li>Standaard SNM = ___ . ___ . ___ . ___ = ___ bits lang</li><li>Subnetdeel = ___ bits lang = ___ subnets</li><li>Hostdeel = ___ bits lang = __________ hosts</li></ul></li></ul>
+        <figure style="--figuur-breedte: 177mm"><img src="../img/hoorcollege-sessie-3-25.png" alt=""></figure>
+        <aside class="notities"><p>Het netwerkdeel is hier 16 bits lang! De eerste 16 bits (192.168) zijn VAST.</p><p>Standaard SNM = 255.255.255.0 = 24 bits lang</p><p>Het subnetdeel is dus 24 – 16 = 8 bits lang = 2^8 = 256 standaard subnets</p><p>Hostdeel = 8 bits lang = 254 hosts</p></aside>
+    </section>
+
+    <section class="slide" data-slide="29">
+        <h2>Private IP Range – /16 privaat LAN (Klasse B)</h2>
+        <ul><li>IP adres in de vorm van 172.X.Y.Z<ul><li>Netwerkdeel = 12 bits lang</li><li>Standaard SNM = 255 . 255 . 0 . 0 = 16 bits lang</li><li>Subnetdeel = ___ bits lang = ___ subnets</li><li>Hostdeel = ___ bits lang = __________ hosts</li></ul></li></ul>
+        <figure style="--figuur-breedte: 176mm"><img src="../img/hoorcollege-sessie-3-26.png" alt=""></figure>
+    </section>
+
+    <section class="slide" data-slide="30">
+        <h2>Oefeningen op Private IP range</h2>
+        <ul><li>3 oefeningen in de cursus / leeromgeving / video</li></ul>
+    </section>
+
+    <section class="slide" data-slide="31">
+        <h2>Subnetten</h2>
+        <ul><li>De private klassen verdelen de adresruimte in standaard subnets…</li><li>Per subnet een aantal hosts…</li></ul>
+        <figure style="--figuur-breedte: 209mm"><img src="../img/hoorcollege-sessie-3-27.png" alt=""></figure>
+        <p class="los">Als je meer subnets wil en/of minder hosts per subnet dan <br>kan je ‘subnetten’</p>
+        <p class="los">(2^0 = 1)</p>
+        <p class="los">(2^4 = 16)</p>
+        <p class="los">(2^8 = 256)</p>
+        <aside class="notities"><p>Waarom zou je willen afwijken van het standaard aantal subnets?</p><p>Minder computers per subnet = minder verspilling van adresruimte.</p><p>Performantie </p><p>Je kan niet minder subnets maken… dat is dan supernetting</p></aside>
+    </section>
+
+    <section class="slide" data-slide="32">
+        <h2>Subnetten – praktisch </h2>
+        <ul><li>Je kan afwijken van het subnetmasker om het netwerk kleiner te maken</li></ul>
+        <div class="beelden onder-elkaar"><figure style="--figuur-breedte: 166mm"><img src="../img/hoorcollege-sessie-3-29.png" alt=""></figure><figure style="--figuur-breedte: 175mm"><img src="../img/hoorcollege-sessie-3-28.png" alt=""></figure></div>
+    </section>
+
+    <section class="slide" data-slide="33" style="--tekst-schaal: 0.95">
+        <h2>Private IP Range /8 privaat LAN</h2>
+        <ul><li>Je kan afwijken van het subnetmasker om het netwerk kleiner te maken<ul><li>Subnetting  ipv 255.0.0.0 bv. 255.255.255.0  ipv /8 bv. /24</li><li>Eerste 8 bits zijn netwerkdeel, 16 bits zijn subnetdeel, 8 bits zijn hostdeel<ul><li>32 – 8 – 8 = 16</li><li>Bv. 10.0.0.16</li></ul></li><li>2^16 = 65536 subnets</li><li>2^8 -2 hosts = 254 hosts<ul><li>-2: eerste en laatste adres mag je niet gebruiken</li></ul></li></ul></li></ul>
+        <aside class="notities"><p>Je vertrekt hier van de vraag: hoeveel hosts wil ik onderbrengen in een subnet?</p><p>Hoeveel hosts wil ik scheiden van de andere hosts?</p><p>Hoe lang is mijn netwerk deel? Hoe lang is mijn host deel? Dan weet je het subnetdeel en hoeveel kleinere netwerkjes</p><p>je kan maken.</p></aside>
+    </section>
+
+    <section class="slide" data-slide="34">
+        <h2>Private IP Range /24 privaat LAN</h2>
+        <ul><li>Je kan afwijken van het subnetmasker om het netwerk kleiner te maken<ul><li>Subnetting  ipv 255.255.255.0 bv. 255.255.255.128  ipv /24 bv. /25</li><li>Eerste 16 bits zijn netwerkdeel, 9 bits zijn subnetdeel, 7 bits zijn hostdeel<ul><li>11000000 10101000 00000000 00000001</li></ul></li><li>2^9 = 512 subnets</li><li>2^7 - 2 hosts = 126 hosts<ul><li>-2: eerste en laatste adres mag je niet gebruiken</li></ul></li></ul></li></ul>
+    </section>
+
+    <section class="slide" data-slide="35">
+        <h2>Private IP Range /16 privaat LAN</h2>
+        <ul><li>Je kan afwijken van het subnetmasker om het netwerk kleiner te maken<ul><li>Subnetting  ipv 255.255.0.0 bv. 255.255.255.0  ipv /16 bv. /24</li><li>Eerste 12 bits zijn netwerkdeel, 12 bits zijn subnetdeel, 8 bits zijn hostdeel<ul><li>10101100 00010001 00000000 00000001</li></ul></li><li>2^12= 4096 subnetwerken</li><li>2^8 - 2 hosts = 254 hosts<ul><li>-2: eerste en laatste adres mag je niet gebruiken</li></ul></li></ul></li></ul>
+    </section>
+
+    <section class="slide" data-slide="36" style="--tekst-schaal: 0.825">
+        <h2>Subnetten</h2>
+        <ul><li>Opsplitsen op een logische manier op basis van <ul><li>rechten (medewerkers / gasten / administratie / …)</li><li>technologie (VOIP / televisies / WiFi / Printers …)</li></ul></li><li>Probeer geen adresruimte te verspillen<ul><li>45 hosts? -&gt; 6 bits = max 62 hosts</li><li>Subnetmasker is dan bijvoorbeeld 255.255.255.192 ofwel /26<ul><li>Eerste subnet: 10.0.0.0 tot en met 10.0.0.63</li><li>Tweede subnet: 10.0.0.64 tot en met 10.0.0.127</li></ul></li></ul></li><li>Praktisch? <ul><li>Per subnet ~1000 adressen -&gt; /22</li><li>Per subnet ~250 adressen -&gt; /24</li></ul></li></ul>
+    </section>
+
+    <section class="slide" data-slide="37">
+        <h2>Subnetten – Oefening 1 </h2>
+        <ul><li>In een garage is er de volgende structuur:<ul><li>Diagnose computers (in de werkplaats) =&gt; 5</li><li>Boekhouding =&gt; 3 </li><li>Receptie =&gt; 3</li><li>PV installatie met laadpalen =&gt; 10</li></ul></li><li>Welke klasse zou je aanraden?</li><li>Hoe zou je de adresruimte in subnets verdelen?</li></ul>
+        <aside class="notities"><p>Klasse C is goed</p><p>Niet, klasse C heeft al 256 subnets en 254 hosts per subnet dus er wordt al genoeg gescheiden</p></aside>
+    </section>
+
+    <section class="slide" data-slide="38" style="--tekst-schaal: 0.9">
+        <h2>Subnetten – Oefening 2 </h2>
+        <ul><li>In een KMO is er de volgende structuur:<ul><li>Productie: 200 hosts</li><li>Medewerkers: 700 hosts</li><li>Servers: 30 hosts</li><li>IoT sensoren: 150 hosts</li><li>Administratie: 70 hosts</li></ul></li><li>In principe is een klasse ____ netwerk geschikt. In dit type netwerk zijn er standaard ____ subnets en per subnet _________ hosts</li><li>Maar…</li></ul>
+        <aside class="notities"><p>Klasse B is goed. </p><p>In principe is een klasse B netwerk geschikt. Standaard 16 subnets en per subnet 65000 hosts</p><p>Maar… niet erg efficient en je verspilt heel veel adressen.</p></aside>
+    </section>
+
+    <section class="slide" data-slide="39" style="--tekst-schaal: 0.775">
+        <h2>Subnetten – Oefening 2 (de makkelijke manier)</h2>
+        <ul><li>Per subnet ~1000 hosts -&gt; /22</li><li>Netwerk 1:<ul><li>172.16.___.___ -&gt; 172.16.___.____</li></ul></li><li>Netwerk 2:<ul><li>172.16.___.___ -&gt; 172.16.___.____</li></ul></li><li>Netwerk 3:<ul><li>172.16.___.___ -&gt; 172.16.___.____</li></ul></li><li>Netwerk 4:<ul><li>172.16.___.___ -&gt; 172.16.___.____</li></ul></li><li>Netwerk 5:<ul><li>172.16.___.___ -&gt; 172.16.___.____</li></ul></li></ul>
+        <aside class="notities"><p>172.16.0.0 	-&gt;	172.16.3.255</p><p>172.16.4.0	-&gt;	172.16.7.255</p><p>172.16.8.0	-&gt;	172.16.11.255</p><p>172.16.12.0	-&gt;	172.16.15.255</p><p>172.16.16.0	-&gt;	172.16.19.255</p></aside>
+    </section>
+
+    <section class="slide" data-slide="40">
+        <h2>Subnetten – Oefening 2 (de moeilijke manier)</h2>
+        <ul><li>Hoeveel bits heb je minstens (inc. marge) nodig per subnet?</li><li>Netwerk 2: 700 hosts -&gt; ____ bits	-&gt; SNM: /____</li><li>Netwerk 1: 200 hosts -&gt; ____ bits	-&gt; SNM: /____</li><li>Netwerk 4: 150 hosts -&gt; ____ bits	-&gt; SNM: /____</li><li>Netwerk 5: 70 hosts -&gt; ____ bits	-&gt; SNM: /____</li><li>Netwerk 3: 30 hosts -&gt; ____ bits	-&gt; SNM: /____</li></ul>
+        <aside class="notities"><p>Begin bij het grootste netwerk, rangschik van groot naar klein</p><p>700 hosts = 10 bits = 1024 – 2 = 1022 -&gt; SNM = /22 (32 -10)</p><p>200 hosts = 8 bits = 256 – 2 = 254 -&gt; SNM = /24 (32 – 8)</p><p>150 hosts = 8 bits = 256 -2 = 254 -&gt; SNM = /24 (32 – 8)</p><p>70 hosts = 7 bits = 128 – 2 = 126 -&gt; SNM = /25 (32 – 7) </p><p>30 hosts = 6 bits = 64 – 2 = 62 -&gt; SNM = /26 (5 bits is te krap!)</p></aside>
+    </section>
+
+    <section class="slide" data-slide="41" style="--tekst-schaal: 0.875">
+        <h2>Subnetten – Oefening 2 (de moeilijke manier)</h2>
+        <ul><li>Netwerk 1:<ul><li>172.16.___.___ -&gt; 172.16.___.____</li></ul></li><li>Netwerk 2:<ul><li>172.16.___.___ -&gt; 172.16.___.____</li></ul></li><li>Netwerk 3:<ul><li>172.16.___.___ -&gt; 172.16.___.____</li></ul></li><li>Netwerk 4:<ul><li>172.16.___.___ -&gt; 172.16.___.____</li></ul></li><li>Netwerk 5:<ul><li>172.16.___.___ -&gt; 172.16.___.____</li></ul></li></ul>
+        <aside class="notities"><p>/22 172.16.0.0 	-&gt;	172.16.3.255</p><p>/24 172.16.4.0	-&gt;	172.16.4.255</p><p>/24 172.16.4.0	-&gt;	172.16.5.255</p><p>/25 172.16.6.0 -&gt;	172.16.6.127</p><p>172.16.6.128	-&gt;	172.16.6.191</p></aside>
+    </section>
+
+    <section class="slide" data-slide="42">
+        <h2>Subnetten – Oefeningen </h2>
+        <ul><li>Oefeningen in de cursus / leeromgeving / video</li></ul>
+    </section>
+
+    <section class="slide" data-slide="43">
+        <h2>Routing decisions</h2>
+        <figure style="--figuur-breedte: 107mm"><img src="../img/hoorcollege-sessie-3-30.jpg" alt=""></figure>
+    </section>
+
+    <section class="slide" data-slide="44">
+        <h2>Routing decisions</h2>
+        <ul><li>De router moet een pakket dichter bij zijn bestemming brengen</li><li>Op basis van routing table</li></ul>
+        <figure style="--figuur-breedte: 178mm"><img src="../img/hoorcollege-sessie-3-31.png" alt=""></figure>
+        <aside class="notities"><p>Het makkelijkste is om het te tonen aan de hand van een voorbeeld</p></aside>
+    </section>
+
+    <section class="slide" data-slide="45">
+        <h2>Routing decisions – Voorbeeldoefening 1</h2>
+        <div class="beelden"><figure style="--figuur-breedte: 178mm"><img src="../img/hoorcollege-sessie-3-33.png" alt=""></figure><figure style="--figuur-breedte: 84mm"><img src="../img/hoorcollege-sessie-3-32.png" alt=""></figure></div>
+        <p class="los">Pakket met bestemming 10.5.6.3<br>Welke rij is de beste match?</p>
+        <aside class="notities"><p>Match op rij 1</p><p>Match op rij 2</p><p>Geen op rij 3, 4, 5</p><p>Lengte van de match speelt een rol!</p><p>Rij 1 is de default row</p></aside>
+    </section>
+
+    <section class="slide" data-slide="46">
+        <h2>Routing decisions – Voorbeeldoefening 2</h2>
+        <figure style="--figuur-breedte: 177mm"><img src="../img/hoorcollege-sessie-3-34.png" alt=""></figure>
+        <p class="los">Pakket met bestemming 10.5.6.3<br>Welke rij is de beste match?</p>
+        <aside class="notities"><p>Rij twee met de laagste metric</p></aside>
+    </section>
+
+    <section class="slide" data-slide="47">
+        <h2>Routing decisions</h2>
+        <ul><li>Oefeningen in de cursus / leeromgeving / video</li></ul>
+    </section>
+
+<script src="hoorcollege.js"></script>
+</body>
+</html>

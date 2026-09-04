@@ -96,21 +96,35 @@ body {
 
 /* --------------------------------------------------------------- opsomming */
 
+/* --tekst-schaal is wat het sjabloon "tekst verkleinen bij overloop" noemt.
+   In de PowerPoint mag een opsomming onder haar kader doorlopen tot op de
+   slide; hier is de slide zelf het kader en knipt overflow: hidden weg wat
+   eronder valt. Het sjabloon zet die instelling aan op de tijdelijke
+   aanduiding, maar een slide mag ze uitzetten, en vijf slides van Sessie3 doen
+   dat en lopen over.
+
+   De waarde staat in de pagina en niet hier, want ze verschilt per slide, net
+   als --figuur-breedte. Ze is als enige maat in dit bestand NIET uit de
+   PowerPoint afgelezen: die zegt alleen dat het niet past, niet met hoeveel.
+   Ze komt van de fit-check in hoorcollege.js. De titel krimpt niet mee, precies
+   zoals PowerPoint het doet. */
 .slide ul {
     margin: 0;
     padding: 0;
     list-style: none;
-    font-size: 20pt;
+    font-size: calc(20pt * var(--tekst-schaal, 1));
     line-height: 1.35;
 }
 
-.slide ul ul { font-size: 18pt; }
-.slide ul ul ul { font-size: 16pt; }
+.slide ul ul { font-size: calc(18pt * var(--tekst-schaal, 1)); }
+.slide ul ul ul { font-size: calc(16pt * var(--tekst-schaal, 1)); }
 
 .slide li {
     position: relative;
     padding-left: 7mm;
-    margin-bottom: 2mm;
+    /* Krimpt mee, want PowerPoint haalt bij het verkleinen ook de regelafstand
+       aan (lnSpcReduction). Met elf punten op een slide is dit 22mm. */
+    margin-bottom: calc(2mm * var(--tekst-schaal, 1));
 }
 
 /* Het blokje van het sjabloon. Met list-style kiest de browser zelf de afstand
