@@ -118,6 +118,9 @@ body {
 
 /* De peiling kan niet mee naar papier: een iframe naar app.wooclap.com drukt
    af als een leeg vlak, en een peiling waar niemand op kan antwoorden is er
-   geen. De vraag ernaast staat als gewone tekst op de slide en blijft dus wel
-   staan; het antwoord hoort in de schrijfruimte ernaast. */
+   geen. Wat op het scherm wegvalt omdat Wooclap het zelf tekent, is hier dus
+   het enige wat er staat: de titel en de vraag komen terug en de slide krijgt
+   haar gewone marge weer. Het antwoord hoort in de schrijfruimte ernaast. */
 .slide .wooclap { display: none; }
+.slide.peiling { padding: var(--marge); }
+.slide.peiling > h2, .slide.peiling > .vraag { display: block; }

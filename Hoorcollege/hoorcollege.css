@@ -51,6 +51,10 @@ body {
 /* ------------------------------------------------------------------ slide */
 
 .slide {
+    /* De marge van het sjabloon, met een naam omdat .slide.peiling ze uitzet
+       en handout.css ze daar weer aanzet. Twee keer 21mm 22mm 12mm intypen is
+       twee plaatsen waar het getal kan veranderen. */
+    --marge: 21mm 22mm 12mm;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -58,7 +62,7 @@ body {
     height: 143mm;
     transform: translate(-50%, -50%) scale(var(--schaal));
     background: #fff;
-    padding: 21mm 22mm 12mm;
+    padding: var(--marge);
     display: none;
     flex-direction: column;
     overflow: hidden;
@@ -206,36 +210,43 @@ body {
 
 .slide a { color: inherit; }
 
-/* ---------------------------------------------------------------- wooclap */
+/* ---------------------------------------------------------------- peiling */
 
-/* Een peiling waar de klas tijdens de les op antwoordt. In de PowerPoint was
-   dit een invoegtoepassing, en die bestaat alleen in PowerPoint: bij de import
-   viel ze weg en bleven slide 5 en 6 met dezelfde illustratie onder dezelfde
-   titel over. Hier is het het iframe dat Wooclap zelf geeft.
+/* Een slide die uit een peiling bestaat, zoals .slide.beeld er een is die uit
+   een beeld bestaat. In de PowerPoint was dit een invoegtoepassing, en die
+   bestaat alleen daar: bij de import viel ze weg en bleven slide 5 en 6 achter
+   als dezelfde illustratie onder dezelfde titel.
 
-   DE VRAAG STAAT ALS TEKST OP DE SLIDE, niet alleen in de peiling. Op papier
-   is er geen peiling (handout.css laat het iframe weg), en dan is deze zin het
-   enige wat de student te lezen krijgt op de plaats waar hij zijn antwoord
-   schrijft. */
-.slide .vraag {
-    font-size: 20pt;
-    line-height: 1.35;
-    margin: 0;
-}
+   DE PEILING KRIJGT DE HELE SLIDE, en dat is geen smaakkwestie. Wooclap geeft
+   bij zijn insluitcode min-width: 500px en min-height: 355px op, en onder een
+   titel en een vraag bleef er van de 143mm nog 283px over: de peiling werd wel
+   getekend maar paste niet in haar eigen venster, en de helft ervan was weg.
+   Over de volle slide is het 960 bij 540px.
 
-/* Vult op wat de vraag overlaat, want hoe hoog een peiling is, hangt af van
-   hoeveel antwoorden ze telt en dat weet deze kant niet. */
-.slide > .wooclap {
-    flex: 1 1 auto;
-    min-height: 0;
-    margin-top: 4mm;
-}
+   DE TITEL EN DE VRAAG STAAN ER WEL, alleen niet op het scherm: Wooclap tekent
+   ze zelf, en tweemaal dezelfde vraag onder elkaar kost de ruimte waar het
+   hierboven om gaat. Op papier is er geen peiling en zijn zij het enige wat
+   overblijft, dus zet handout.css ze daar terug. */
+.slide.peiling { padding: 0; }
+
+.slide.peiling > h2, .slide.peiling > .vraag { display: none; }
+
+.slide.peiling > .wooclap { flex: 1; min-height: 0; }
 
 .slide .wooclap iframe {
     display: block;
     width: 100%;
     height: 100%;
     border: 0;
+}
+
+/* De vraag die bij de peiling hoort. Ze staat als tekst op de slide en niet
+   alleen in Wooclap, want op papier is er geen Wooclap en is deze zin het
+   enige wat de student leest op de plaats waar hij zijn antwoord schrijft. */
+.slide .vraag {
+    font-size: 20pt;
+    line-height: 1.35;
+    margin: 0;
 }
 
 /* ------------------------------------------------------------------ tabel */
