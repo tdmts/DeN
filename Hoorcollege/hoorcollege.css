@@ -223,6 +223,14 @@ body {
    getekend maar paste niet in haar eigen venster, en de helft ervan was weg.
    Over de volle slide is het 960 bij 540px.
 
+   HET IFRAME WIJST NAAR /live-session EN NIET NAAR DE INSLUITCODE die Wooclap
+   bij een vraag aanbiedt. Die insluitcode volgt het evenement in plaats van het
+   te sturen: ze blijft op het deelnamescherm met de QR staan zolang jij het
+   evenement niet elders begonnen bent, en dat is niet wat een spreker aan zijn
+   deck heeft. /live-session is het scherm waar je het evenement wel mee stuurt,
+   en Wooclap zet er geen frame-ancestors op, dus het mag ingesloten worden.
+   Wie hier ooit de "officiele" insluitcode terugzet, krijgt de QR terug.
+
    DE TITEL EN DE VRAAG STAAN ER WEL, alleen niet op het scherm: Wooclap tekent
    ze zelf, en tweemaal dezelfde vraag onder elkaar kost de ruimte waar het
    hierboven om gaat. Op papier is er geen peiling en zijn zij het enige wat
