@@ -739,6 +739,51 @@ at the bottom.
 reported as "recognised by no page" while in truth it had never been measured, and the message
 pointed at `reference.js` instead of at the check.
 
+## The hoorcollege is a deck that becomes a handout
+
+A third track, and it ends where the syllabus ends: a PDF the student downloads. What the PDF is
+for differs. The syllabus is a document he reads at home; a handout is the sheet he brings to the
+lecture, so half of every row on it is left blank for him to write in.
+
+**This section says where a fact lives, not what it says.** Each of the files below carries its
+reasoning in its own header, next to the code it explains. Repeating any of that here would give
+every one of those facts a second copy to drift from, which is exactly how
+`Theorie/Syllabus/IMPORT.md` came to describe header rows that no longer existed.
+What belongs here is only what no single file can own: how the pieces divide the work.
+
+```
+Hoorcollege/Sessie1.html     the deck: one <section class="slide"> per slide, and nothing else
+Hoorcollege/hoorcollege.css  what a slide IS, on screen and on paper
+Hoorcollege/handout.css      only what the printed sheet DOES with a slide
+Hoorcollege/hoorcollege.js   the projection, and the fit check
+Hoorcollege/IMPORT.md        what the import had to guess, one section per deck
+scripts/import-slides.py     pptx -> deck, once; after that the HTML is the source
+scripts/export-handout.py    deck -> downloads/DeN-handout-<naam>.pdf
+```
+
+**The split between the two stylesheets is what makes the handout trustworthy.** The bundle loads
+`hoorcollege.css` and lays `handout.css` over it, so a slide on paper is the same slide as on the
+beamer, only smaller. Something that prints wrong is fixed in `handout.css`; a slide that *is*
+wrong is fixed in `hoorcollege.css` and is then right in both. A rule that only paper needs does
+not belong in the first file, and a rule about the slide itself does not belong in the second.
+
+**The pptx is archived after the import, not edited,** the same rule as the syllabus and for the
+same reason. The consequence bites the other way round here: `import-slides.py` rewrites a deck
+completely, so a second run throws away every correction made by hand, and those corrections are
+exactly the work `IMPORT.md` pointed at. It cost a hand-rebuilt grid on slide 7 of Sessie1 once,
+during a re-import meant to verify a one-line fix.
+
+**The fit check exists on screen only.** A slide is 143mm and `overflow: hidden`, so what does not
+fit is clipped in silence, and at 45mm on paper it is past noticing. `hoorcollege.js` measures each
+slide and marks it; the handout bundle carries no scripts, so that mark cannot reach paper.
+
+**A deck is not a site page**, so `check-content.py` does not ask it for OrionCSS; `GEEN_SITEPAGINA`
+there says why. Every other rule still applies, and has to: a link or an image that does not exist
+prints as an empty box.
+
+**Where the PDF goes** is under `downloads/` above, with the reason its filename is fixed and the
+reason this track has no `overview.html`.
+
 ## Each lead has one job
 
 A lab has three or four `<p class="lead">` intros, one per Orion menu entry, and they used to
