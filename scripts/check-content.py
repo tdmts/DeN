@@ -222,6 +222,17 @@ ORION_JS = "https://tdmts.github.io/OrionCSS/main.js"
 # Pagina's die geen Orion-pagina zijn en dus buiten de meeste regels vallen.
 EXEMPT = {"pasteInOrion.html"}
 
+# Mappen waarvan de HTML geen sitepagina is. Een deck onder Hoorcollege/ is een
+# document, geen pagina: het staat in geen enkel Orion-menu, er linkt niets
+# naartoe, het draagt geen navigatiebalk en de student ziet er alleen de
+# handout-PDF van. Het laadt dus hoorcollege.css en niet OrionCSS, want twee
+# stylesheets over elkaar is bij elk verschil gokken wie wint.
+#
+# De rest van de regels blijft wel gelden, en dat is de bedoeling: de links en
+# de afbeeldingen van een deck moeten even goed bestaan en in git zitten als
+# die van een pagina, anders drukt de handout een leeg vlak af.
+GEEN_SITEPAGINA = {"Hoorcollege"}
+
 DOCUMENT_RE = re.compile(r"\.(pdf|zip|docx?|pptx?|xlsx?)(?:[?#]|$)", re.I)
 
 fouten = []
@@ -444,10 +455,11 @@ def check_wiring():
             continue
         tekst = pad.read_text(encoding="utf-8")
 
-        if ORION_CSS not in tekst:
-            fout(rel, "linkt de gehoste OrionCSS style.css niet")
-        if ORION_JS not in tekst:
-            fout(rel, "linkt de gehoste OrionCSS main.js niet")
+        if not (set(rel.parts) & GEEN_SITEPAGINA):
+            if ORION_CSS not in tekst:
+                fout(rel, "linkt de gehoste OrionCSS style.css niet")
+            if ORION_JS not in tekst:
+                fout(rel, "linkt de gehoste OrionCSS main.js niet")
 
         in_module = "Labo" in rel.parts or "Theorie" in rel.parts
         if not in_module:

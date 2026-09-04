@@ -1,0 +1,421 @@
+/*
+ * hoorcollege.css -- hoe een slide eruitziet, op het scherm en op papier.
+ *
+ * Dit is de ENIGE plaats waar staat hoe een deck eruitziet. Een deck onder
+ * Hoorcollege/ draagt alleen inhoud; wat ermee gebeurt, staat hier. Dezelfde
+ * afspraak als bij Theorie/Syllabus/syllabus.css, en om dezelfde reden: er is
+ * er een van gemaakt zodat er niet in elk bestand een tweede versie ontstaat.
+ *
+ * De handout laadt dit bestand OOK, met handout.css erbovenop. Zo is een slide
+ * op papier dezelfde slide als op het scherm, alleen verkleind, en kan de een
+ * niet uit de pas lopen met de ander.
+ *
+ * WAAROM DIT NAAST OrionCSS BESTAAT
+ *
+ * OrionCSS is de huisstijl van de SITE. Een deck is geen sitepagina: het staat
+ * in geen enkel Orion-menu, er linkt niets naartoe en de student ziet er alleen
+ * de handout-PDF van. Twee stylesheets over elkaar is bij elk verschil gokken
+ * wie wint, dus dit deck laadt OrionCSS niet.
+ *
+ * ALLE MATEN KOMEN UIT DE POWERPOINT, ze zijn niet gekozen. Het sjabloon van
+ * het departement zet de titel op 22mm van links en 21mm van boven in 20pt, de
+ * opsomming daaronder op 33mm in 20/18/16pt, de titelslide in 42pt met een
+ * ondertitel in 32pt, en een tussentitel in 32pt op oranje. Die oranje is de
+ * lt1 van het thema. Wie hier iets verandert, wijkt af van het sjabloon, en
+ * dat is een beslissing.
+ *
+ * DE SLIDE IS 254 BIJ 143mm EN WORDT GESCHAALD, niet herberekend. Zo staat elk
+ * ding er in millimeter in, precies zoals in de PowerPoint, en kiest alleen
+ * --schaal hoe groot het geheel wordt: hoorcollege.js zet die naar het venster,
+ * handout.css zet ze vast op 110/254.
+ */
+
+:root {
+    --oranje: #EF8767;          /* lt1 van het thema, de tussentitels */
+    --oranje-licht: #F1C29F;    /* accent1 */
+    --grijs: #646567;           /* accent3, de notities en de teller */
+    --grijs-licht: #ECECEC;     /* accent2 */
+    --schaal: 1;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; height: 100%; }
+
+body {
+    background: #202020;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000;
+    overflow: hidden;
+}
+
+/* ------------------------------------------------------------------ slide */
+
+.slide {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 254mm;
+    height: 143mm;
+    transform: translate(-50%, -50%) scale(var(--schaal));
+    background: #fff;
+    padding: 21mm 22mm 12mm;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.slide.actief { display: flex; }
+
+.slide h1, .slide h2 {
+    margin: 0;
+    font-weight: bold;
+    line-height: 1.15;
+}
+
+.slide h2 {
+    font-size: 20pt;
+    min-height: 12mm;           /* titel op 21mm, opsomming op 33mm */
+}
+
+/* Alles op een slide houdt zijn eigen hoogte; alleen de beelden vullen op wat
+   overblijft. Zonder dit krimpt een opsomming van drie regels tot twee en
+   loopt haar derde regel door de afbeelding eronder, wat een browser tekent
+   zonder ergens te klagen. */
+.slide > * { flex: 0 0 auto; }
+
+/* Behalve een los beeld: dat doet wat .beelden verderop doet en krimpt mee met
+   wat de tekst overlaat. Zonder dit houdt het de hoogte die bij zijn breedte
+   hoort, loopt het onderaan van de slide af en knipt overflow: hidden dat weg
+   zonder dat er iets misgaat. Groeien doet het niet, want een beeld groter
+   maken dan de PowerPoint het zet, maakt er een ander beeld van. */
+.slide > figure:not(.achtergrond) { flex: 0 1 auto; }
+
+/* --------------------------------------------------------------- opsomming */
+
+.slide ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 20pt;
+    line-height: 1.35;
+}
+
+.slide ul ul { font-size: 18pt; }
+.slide ul ul ul { font-size: 16pt; }
+
+.slide li {
+    position: relative;
+    padding-left: 7mm;
+    margin-bottom: 2mm;
+}
+
+/* Het blokje van het sjabloon. Met list-style kiest de browser zelf de afstand
+   tot de tekst en die klopt niet met de PowerPoint. */
+.slide li::before {
+    content: "";
+    position: absolute;
+    left: 1.5mm;
+    top: 0.42em;
+    width: 2.2mm;
+    height: 2.2mm;
+    background: var(--oranje);
+}
+
+.slide ul ul { margin-top: 2mm; }
+.slide ul ul li::before { background: var(--grijs); }
+
+/* ------------------------------------------------------------ afbeeldingen */
+
+.slide figure {
+    margin: 4mm auto 0;
+    text-align: center;
+    min-height: 0;              /* anders weigert flexbox te krimpen */
+}
+
+.slide figure img {
+    width: var(--figuur-breedte, auto);
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Een afbeelding die linksboven op de slide begint, staat er als achtergrond:
+   ze krijgt de plaats en de maat die de PowerPoint haar geeft en gaat achter de
+   tekst. In de stroom duwt ze de titel van de slide af, en overflow: hidden
+   laat je dat niet zien. */
+.slide figure.achtergrond {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    width: var(--figuur-breedte, 100%);
+    height: var(--figuur-hoogte, 100%);
+    z-index: 0;
+}
+
+.slide figure.achtergrond img {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: fill;
+}
+
+.slide > *:not(.achtergrond) { position: relative; z-index: 1; }
+
+/* Staan er meerdere op een slide, dan stonden ze in de PowerPoint naast
+   elkaar. Onder elkaar zetten maakt van twee schema's naast elkaar een
+   opsomming van twee schema's, en dat is iets anders. */
+.slide .beelden {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6mm;
+    margin-top: 4mm;
+    min-height: 0;
+    flex: 1;
+}
+
+.slide .beelden figure { margin: 0; }
+
+/* Tekst met een beeld ERNAAST, zoals de PowerPoint het zet. Onder de opsomming
+   is het beeld het eerste dat moet inleveren zodra die opsomming lang wordt,
+   en dan blijft er een postzegel over: het schema van 47mm kromp tot 20 bij de
+   zes punten van "Inleiding - TCP/IP model". Naast de tekst deelt het de
+   breedte in plaats van de hoogte, en dat is ook waar het in de PowerPoint
+   staat, op 204mm van links. */
+.slide .naast {
+    display: flex;
+    align-items: center;
+    gap: 8mm;
+    flex: 1;
+    min-height: 0;
+}
+
+.slide .naast > ul { flex: 1; min-width: 0; }
+
+/* Uitgerekt over de volle hoogte, want anders is de hoogte van de figuur die
+   van haar beeld en heeft max-height: 100% niets om zich tegen af te zetten. */
+.slide .naast > figure {
+    margin: 0;
+    flex: 0 1 auto;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide a { color: inherit; }
+
+/* ------------------------------------------------------------------ tabel */
+
+/* De kolombreedte komt uit de PowerPoint, want een lege cel krijgt van de
+   browser niets meer dan haar opvulling en juist daar moet de student in
+   kunnen schrijven. */
+.slide table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+    font-size: 14pt;
+    margin-top: 4mm;
+}
+
+.slide col { width: var(--kolom-breedte, auto); }
+
+.slide th, .slide td {
+    border: 0.3mm solid var(--grijs);
+    padding: 1.5mm 2mm;
+    text-align: left;
+    height: 9mm;
+}
+
+.slide th { background: var(--grijs-licht); }
+
+/* -------------------------------------------------------------- lagen */
+
+/* Twee stapels lagen met ertussen wat op die hoogte geregeld wordt. In de
+   PowerPoint waren dat twee schermafdrukken met negen lijnen en zeven losse
+   tekstvakken eroverheen; hier is het een raster, dus de tekst is tekst en de
+   rijen kunnen niet meer verschuiven. */
+.lagen {
+    display: grid;
+    grid-template-columns: 45mm 1fr 45mm;
+    gap: 1.5mm 4mm;
+    align-items: center;
+    margin-top: 4mm;
+    font-size: 14pt;
+    line-height: 1.2;
+}
+
+/* Krap in de hoogte, en dat is geen smaak. Zeven dozen boven elkaar met de
+   inleiding erboven kwamen 5mm te laag uit; in de PowerPoint lopen de twee
+   schermafdrukken tot 134.9mm en gebruiken ze dus de onderrand die deze slides
+   als marge houden. Een halve millimeter van elke doos haalt die 5mm op zonder
+   de marge op te geven. */
+.lagen .doos {
+    border: 0.3mm solid var(--grijs);
+    padding: 0.5mm 2mm;
+    text-align: center;
+}
+
+.lagen .taak { position: relative; text-align: center; }
+
+.lagen .taak::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    border-top: 0.3mm dashed var(--grijs);
+}
+
+.lagen .taak span {
+    position: relative;
+    background: #fff;
+    padding: 0 2mm;
+}
+
+/* --------------------------------------------------------------- soorten */
+
+/* De titelslide van het sjabloon is een foto met witte banen eroverheen, en
+   het sjabloon zet de titel er in zwart bovenop. Twee regels van 42pt komen
+   dan half in de foto te staan en zijn niet meer te lezen, wat op papier nog
+   erger is dan op het scherm. Daarom staat de tekst hier op een wit vlak
+   onderaan: de foto blijft, de titel is leesbaar.
+
+   Een vlak en geen verloop, en geen doorschijnend wit. Wat gedrukt wordt, moet
+   in elke PDF-lezer hetzelfde zijn. */
+.slide.titel {
+    background: #F6F6F6;
+    justify-content: flex-end;
+    padding: 21mm 19mm 14mm;
+}
+
+.slide.titel::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 72mm;
+    background: #fff;
+    z-index: 0;
+}
+
+/* De foto vult de band boven het witte vlak. Het sjabloon legt er nog een
+   tweede achtergrond overheen, een wit masker dat de foto in vorm knipt om
+   plaats te maken voor de titel; dat vlak maakt die plaats nu zelf, dus het
+   masker valt weg. */
+.slide.titel figure.achtergrond {
+    width: 100%;
+    height: 71mm;
+}
+
+.slide.titel figure.achtergrond img { object-fit: cover; }
+.slide.titel figure.achtergrond:not(:first-of-type) { display: none; }
+
+.slide.titel h1 { font-size: 38pt; }
+.slide.titel .ondertitel { font-size: 24pt; margin: 5mm 0 0; }
+.slide.titel .ondertitel:last-of-type { font-size: 18pt; color: var(--grijs); }
+
+.slide.sectie {
+    background: var(--oranje);
+    justify-content: center;
+    padding: 21mm 19mm;
+}
+
+.slide.sectie h2 { font-size: 32pt; color: #fff; min-height: 0; }
+
+/* Een slide die uit een beeld bestaat: dat beeld vult de slide. De PowerPoint
+   zet het op 198mm in een slide van 254 en houdt dus een rand over, maar op de
+   beamer leest die rand als een fout en niet als een keuze.
+
+   VULLEN EN NIET BIJSNIJDEN. De Edison-foto is 1.942 breed tegen 1.776 voor de
+   slide, dus haar echt alle hoeken laten halen zou er links en rechts 43 van de
+   1000 beeldpunten afhalen, en rechts staat "I've" op tien punten van de rand.
+   Het beeld gaat dus op de volle breedte en wat boven en onder overblijft,
+   krijgt de achtergrond van de layout. */
+.slide.beeld { padding: 0; justify-content: center; align-items: center; }
+
+.slide.beeld figure { margin: 0; width: 100%; height: 100%; }
+
+/* display: block, want een <img> is inline en dan houdt de regel eronder nog
+   ruimte vrij voor de staartletters. Dat zijn vier beeldpunten, en op een beeld
+   dat de volle hoogte neemt is dat vier punten te veel. */
+.slide.beeld figure img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: contain;
+}
+
+/* "Start zwart" van het sjabloon: die layout zet tx1 als achtergrond en dat is
+   zwart in dit thema. Zonder dit staat een zwarte foto op een wit vlak en zijn
+   de banden boven en onder juist wel te zien. */
+.slide.beeld.zwart { background: #000; }
+
+/* Een tekstvak waarvan de plaats op de slide niet mee kon (zie de kop van
+   scripts/import-slides.py). Zolang het er zo uitziet, zie je dat de slide nog
+   afgewerkt moet worden. */
+.slide .los {
+    font-size: 16pt;
+    margin: 2mm 0 0;
+    padding-left: 3mm;
+    border-left: 1mm solid var(--oranje-licht);
+}
+
+/* ------------------------------------------------------------- notities */
+
+/* De notities van de spreker. Ze staan in het deck omdat ze anders met de
+   PowerPoint verdwijnen; op het scherm haalt n ze tevoorschijn, op papier
+   staan ze nooit. */
+.notities { display: none; }
+
+body.notities-zichtbaar .slide.actief .notities {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 45mm;
+    overflow: auto;
+    background: var(--grijs-licht);
+    border-top: 0.5mm solid var(--grijs);
+    padding: 4mm 22mm;
+    font-size: 11pt;
+    color: #000;
+}
+
+.notities p { margin: 0 0 2mm; }
+
+/* ------------------------------------------------------------- past niet */
+
+/* Een slide waarvan de inhoud niet op de 143mm past. De browser knipt ze af
+   zonder ergens te klagen, en in de handout is diezelfde slide 45mm hoog, dus
+   daar zie je het niet meer. hoorcollege.js meet elke slide en zet deze klasse
+   erop.
+
+   Ze bestaat alleen op het scherm: de bundel van export-handout.py draagt geen
+   scripts, dus op papier wordt de klasse nooit toegekend. */
+.slide.past-niet::before {
+    content: "past niet";
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    padding: 1mm 2.5mm;
+    background: #C0392B;
+    color: #fff;
+    font-size: 10pt;
+}
+
+/* ---------------------------------------------------------------- teller */
+
+.teller {
+    position: fixed;
+    right: 4mm;
+    bottom: 3mm;
+    font-size: 10pt;
+    color: #888;
+    letter-spacing: 0.5px;
+}

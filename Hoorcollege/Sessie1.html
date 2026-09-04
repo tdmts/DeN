@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sessie1</title>
+<link rel="stylesheet" href="hoorcollege.css">
+</head>
+<body style="--slide-breedte: 254mm; --slide-hoogte: 143mm">
+
+    <section class="slide titel" data-slide="2">
+        <h1>Datacommunicatie en netwerken</h1>
+        <p class="ondertitel">Bachelor in de elektromechanica – automatisering</p>
+        <p class="ondertitel">Tom Demets | Stefan Lievens <br><a href="mailto:tom.demets@hogent.be" target="_blank">tom.demets@hogent.be</a> | <a href="mailto:stefan.lievens@hogent.be" target="_blank">stefan.lievens@hogent.be</a></p>
+        <figure class="achtergrond" style="--figuur-breedte: 123mm; --figuur-hoogte: 140mm"><img src="../img/hoorcollege-sessie-1-01.jpg" alt=""></figure>
+        <figure class="achtergrond" style="--figuur-breedte: 191mm; --figuur-hoogte: 143mm"><img src="../img/hoorcollege-sessie-1-02.png" alt=""></figure>
+    </section>
+
+    <section class="slide beeld zwart" data-slide="3">
+        <figure style="--figuur-breedte: 198mm"><img src="../img/hoorcollege-sessie-1-03.png" alt=""></figure>
+    </section>
+
+    <section class="slide sectie" data-slide="4">
+        <h2>TCP/IP vs OSI model</h2>
+    </section>
+
+    <section class="slide" data-slide="5">
+        <h2>Inleiding – OSI model</h2>
+        <figure style="--figuur-breedte: 84mm"><img src="../img/hoorcollege-sessie-1-04.jpeg" alt=""></figure>
+    </section>
+
+    <section class="slide" data-slide="6">
+        <h2>Inleiding – OSI model</h2>
+        <figure style="--figuur-breedte: 84mm"><img src="../img/hoorcollege-sessie-1-05.jpeg" alt=""></figure>
+        <aside class="notities"><p>We keren terug naar 1960, lang voor de geboorte van het Internet. Koude oorlog, sputnik, space race</p><p>Wat zou er nodig zijn qua hardware, afspraken, … om wereldwijd computers met elkaar te laten communiceren?</p><p>We vergelijken de antwoorden… -&gt; niet iedereen heeft hetzelfde idee -&gt; we moeten afspraken maken = standaard</p></aside>
+    </section>
+
+    <section class="slide" data-slide="7">
+        <h2>Inleiding – OSI model</h2>
+        <ul><li>OSI = Open Systems Interconnection (1979)<ul><li>Set van afspraken ontwikkeld om communicatie tussen verschillende hardware mogelijk te maken =&gt; lagenmodel</li></ul></li></ul>
+        <div class="lagen">
+            <span class="doos">Application</span><span class="taak"><span>Toepassing</span></span><span class="doos">Application</span>
+            <span class="doos">Presentation</span><span class="taak"><span>Voorstelling data</span></span><span class="doos">Presentation</span>
+            <span class="doos">Session</span><span class="taak"><span>Openen / sluiten verbinding</span></span><span class="doos">Session</span>
+            <span class="doos">Transport</span><span class="taak"><span>Aflevering</span></span><span class="doos">Transport</span>
+            <span class="doos">Network</span><span class="taak"><span>Addressering</span></span><span class="doos">Network</span>
+            <span class="doos">Data link</span><span class="taak"><span>Foutcontrole + addressering</span></span><span class="doos">Data link</span>
+            <span class="doos">Physical</span><span class="taak"><span>Transmissiemedia</span></span><span class="doos">Physical</span>
+        </div>
+        <aside class="notities"><p><strong>Op bord</strong></p><p>Transmissiemedia: kabel (coax, glasvezel, telefoonkabel, ethernetkabel)</p><p>Foutcontrole: CRC / pariteit | Adressering: binnen het lokaal netwerk (P-gebouw, B-gebouw, … klaslokalen, de persoon)</p><p>Adressering: buiten het lokaal netwerk (land, stad, straat + huisnummer)</p><p>Aflevering: gegarandeerd afleveren</p><p>Openen / sluiten: applicatie hoeft niet de verbinding constant open te houden (met meerdere tegelijk)</p><p>Voorstelling data: mp3, mp4, ASCII, … compressie, encryptie</p><p>Toepassing: welk protocol, bv. HTTP</p></aside>
+    </section>
+
+    <section class="slide" data-slide="8">
+        <h2>Inleiding – TCP/IP model</h2>
+        <ul><li>Vereenvoudigd OSI model<ul><li>Applicatie laag neemt Application, Presentation en Session over</li></ul></li><li>OSI in de praktijk, praktisch ieder netwerkapparaat ondersteunt TCP/IP</li></ul>
+        <div class="beelden"><figure style="--figuur-breedte: 82mm"><img src="../img/hoorcollege-sessie-1-08.png" alt=""></figure><figure style="--figuur-breedte: 91mm"><img src="../img/hoorcollege-sessie-1-09.png" alt=""></figure></div>
+        <aside class="notities"><p>Het is de verantwoordelijkheid van de applicatie (en dus de programmeur) om de verbinding te openen, een formaat te kiezen en een protocol te kiezen.</p></aside>
+    </section>
+
+    <section class="slide" data-slide="9">
+        <h2>Inleiding – TCP/IP model</h2>
+        <div class="naast">
+            <ul><li>De werking van een computernetwerk begrijpen</li><li>=</li><li>Het TCP/IP model begrijpen</li><li>We bespreken systematisch de verschillende lagen </li><li><em>Please Do Not Take Anything (TCP/IP)</em></li><li><em>Please Do Not Take Something Precious Away (OSI)</em></li></ul>
+            <figure style="--figuur-breedte: 47mm"><img src="../img/hoorcollege-sessie-1-10.png" alt=""></figure>
+        </div>
+    </section>
+
+    <section class="slide" data-slide="10">
+        <div class="beelden"><figure style="--figuur-breedte: 213mm; --figuur-hoogte: 120mm"><a href="https://www.youtube.com/watch?v=cA9ZJdqzOoU" target="_blank"><img src="../img/hoorcollege-sessie-1-11.png" alt=""></a></figure><figure style="--figuur-breedte: 33mm"><a href="https://www.youtube.com/watch?v=cA9ZJdqzOoU" target="_blank"><img src="../img/hoorcollege-sessie-1-12.png" alt=""></a></figure></div>
+        <p class="los"><a href="https://www.youtube.com/watch?v=cA9ZJdqzOoU" target="_blank">https://www.youtube.com/watch?v=cA9ZJdqzOoU</a></p>
+    </section>
+
+    <section class="slide sectie" data-slide="11">
+        <h2>TCP/IP model / Laag 1: fysieke laag</h2>
+    </section>
+
+    <section class="slide" data-slide="12">
+        <h2>Ethernetkabel</h2>
+        <figure style="--figuur-breedte: 103mm"><img src="../img/hoorcollege-sessie-1-13.jpeg" alt=""></figure>
+        <aside class="notities"><p><strong>Op bord</strong></p><p>Aantal kabels: 4 of 8 4 = maximum 100 Mbps | 8 = 1000 of 10000</p><p>Connectoren: M12 of RJ45</p><p>Categorieën: kwaliteitsgraad -&gt; invloed op maximum snelheid en lengte</p><p>Verschillende afschermingsgraden</p><p>Lengte van de kabel</p><p>Verschillende categorieën = kwaliteitsgraad</p></aside>
+    </section>
+
+    <section class="slide" data-slide="14">
+        <h2>Ethernetkabel – connectoren </h2>
+        <figure style="--figuur-breedte: 107mm"><img src="../img/hoorcollege-sessie-1-14.png" alt=""></figure>
+        <aside class="notities"><p>M12 en RJ45</p><p>Stof / vocht / trillingen / steviger dan plastic</p></aside>
+    </section>
+
+    <section class="slide" data-slide="15">
+        <h2>Ethernetkabel – afscherming </h2>
+        <figure style="--figuur-breedte: 160mm"><img src="../img/hoorcollege-sessie-1-15.jpeg" alt=""></figure>
+        <aside class="notities"><p><strong>Op bord</strong></p><p>Unshielded</p><p>Foiled</p><p>Shielded</p><p>Shielded Foiled</p></aside>
+    </section>
+
+    <section class="slide" data-slide="16">
+        <h2>Ethernetkabel – categorie </h2>
+        <table><colgroup><col style="--kolom-breedte: 43mm"><col style="--kolom-breedte: 43mm"><col style="--kolom-breedte: 43mm"><col style="--kolom-breedte: 43mm"><col style="--kolom-breedte: 43mm"></colgroup><thead><tr><th>Categorie</th><th>+- 30m</th><th>+- 50m</th><th>100m</th><th>Connector</th></tr></thead><tbody><tr><td>cat5e</td><td class="invulruimte"></td><td class="invulruimte"></td><td class="invulruimte"></td><td class="invulruimte"></td></tr><tr><td>cat6</td><td class="invulruimte"></td><td class="invulruimte"></td><td class="invulruimte"></td><td class="invulruimte"></td></tr><tr><td>cat6a</td><td class="invulruimte"></td><td class="invulruimte"></td><td class="invulruimte"></td><td class="invulruimte"></td></tr><tr><td>cat7</td><td class="invulruimte"></td><td class="invulruimte"></td><td class="invulruimte"></td><td class="invulruimte"></td></tr><tr><td>cat8</td><td class="invulruimte"></td><td class="invulruimte"></td><td class="invulruimte"></td><td class="invulruimte"></td></tr></tbody></table>
+        <p class="los">Hoe kan je zien als een kabel cat5e, cat6, cat6a, cat7 of cat8 is? / Wat als je verder moet dan 100m? / Wat in de industrie?</p>
+        <p class="los">Oefening: ga op onderzoek en vul de tabel aan.</p>
+        <aside class="notities"><p>cat5e  1Gbps    | 1Gbps    | 1 Gbps | RJ45</p><p>Cat6   10 Gbps | 10 Gbps | 1 Gbps | RJ45</p><p>Cat6a 10 Gbps | 10 Gbps | 10 Gbps | RJ45</p><p>Cat7   10 Gbps | 10 Gbps | 10 Gbps | GG45, TERA</p><p>Cat8   40 Gbps | 25 Gbps | 10 Gbps | RJ45 (cat8.1) en GG45, TERA (cat8.2)</p><p>Het staat op de kabelmantel</p><p>Switch tussenvoegen, glasvezel gebruiken</p><p>Cat6a en cat7</p></aside>
+    </section>
+
+    <section class="slide" data-slide="17">
+        <h2>Ethernetkabel – straight-thru en crossover</h2>
+        <figure style="--figuur-breedte: 160mm"><img src="../img/hoorcollege-sessie-1-16.png" alt=""></figure>
+        <aside class="notities"><p>In de meeste gevallen straight-thru</p><p>Enkel PC naar PC is crossover</p><p>AUTO MDI-X</p></aside>
+    </section>
+
+    <section class="slide" data-slide="18">
+        <h2>Oefening RJ-45 vs M12</h2>
+        <figure style="--figuur-breedte: 144mm"><img src="../img/hoorcollege-sessie-1-17.png" alt=""></figure>
+    </section>
+
+    <section class="slide" data-slide="19">
+        <h2>Line topologie</h2>
+        <figure style="--figuur-breedte: 150mm"><img src="../img/hoorcollege-sessie-1-18.png" alt=""></figure>
+        <aside class="notities"><p>Wat zouden de voor- en nadelen zijn van deze topologie?</p><p>	+: Weinig kabel nodig, eenvoudig, goedkoop</p><p>	-: Draadbreuk, ze kunnen elkaars communicatie zien</p><p>Daisy chaining</p><p>Wordt soms gebruikt in industriële netwerken zoals EtherCAT</p></aside>
+    </section>
+
+    <section class="slide" data-slide="20">
+        <h2>Bus topologie</h2>
+        <figure style="--figuur-breedte: 124mm"><img src="../img/hoorcollege-sessie-1-19.png" alt=""></figure>
+        <aside class="notities"><p>Gedeeld transmissiemedium: hosts takken af vanaf dezelfde kabel.</p><p>Bidirectionele communicatie</p><p>Voordelen?</p><p>	+: Weinig kabel nodig, eenvoudig, goedkoop</p><p>Nadelen?</p><p>	-: Wat als twee hosts op hetzelfde moment sturen? Collisions!</p><p>	-: Alle hosts ontvangen elkaars data… veilig?</p><p>	-: Wat als je de kabel onderbreekt? Complete failure!</p></aside>
+    </section>
+
+    <section class="slide" data-slide="21">
+        <h2>Ring topologie</h2>
+        <figure style="--figuur-breedte: 123mm"><img src="../img/hoorcollege-sessie-1-20.png" alt=""></figure>
+        <aside class="notities"><p>Repeaters die point to point met elkaar verbonden zijn</p><p>	Repeater krijgt de data binnen, kopieert en stuurt door</p><p>Voordelen:</p><p>	+: Unidirectioneel waardoor de kans op collisions verlaagt</p><p>	+: Weinig kabel nodig, eenvoudig, goedkoop</p><p>Nadelen:</p><p>	-: Alle hosts ontvangen elkaars data… veilig?</p><p>	-: Latency...</p></aside>
+    </section>
+
+    <section class="slide" data-slide="22">
+        <h2>Ster topologie</h2>
+        <figure style="--figuur-breedte: 89mm"><img src="../img/hoorcollege-sessie-1-21.png" alt=""></figure>
+        <aside class="notities"><p>Een apparaat in het midden van het netwerk</p><p>Voordelen:</p><p>	+: Fouten beperken zich tot 1 apparaat</p><p>	+: Eenvoudig en relatief goedkoop</p><p>	+: Privacy</p><p>Nadelen:</p><p>	-: Als het centraal punt wegvalt is er geen communicatie meer mogelijk</p></aside>
+    </section>
+
+    <section class="slide" data-slide="23">
+        <h2>Mesh topologie</h2>
+        <figure style="--figuur-breedte: 97mm"><img src="../img/hoorcollege-sessie-1-22.png" alt=""></figure>
+        <aside class="notities"><p>Geschikt voor zeer grote netwerken</p><p>Voordelen:</p><p>	+: Alternatief pad is beschikbaar</p><p>Nadelen:</p><p>	-: Duur</p></aside>
+    </section>
+
+    <section class="slide" data-slide="24">
+        <div class="beelden"><figure style="--figuur-breedte: 160mm"><a href="https://www.youtube.com/watch?v=v1JEuzBkOD8" target="_blank"><img src="../img/hoorcollege-sessie-1-23.png" alt=""></a></figure><figure style="--figuur-breedte: 51mm"><a href="https://www.youtube.com/watch?v=v1JEuzBkOD8" target="_blank"><img src="../img/hoorcollege-sessie-1-24.png" alt=""></a></figure></div>
+        <p class="los"><a href="https://www.youtube.com/watch?v=v1JEuzBkOD8" target="_blank">https://www.youtube.com/watch?v=v1JEuzBkOD8</a></p>
+    </section>
+
+<script src="hoorcollege.js"></script>
+</body>
+</html>
