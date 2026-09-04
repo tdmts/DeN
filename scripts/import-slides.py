@@ -47,6 +47,10 @@ WAT HET INTERPRETEERT
   groot ze getoond wordt: de titelfoto is 2506 punten breed voor een plaats van
   123mm. Dat is niet zichtbaar op het scherm en wel in de handout, die er van
   4.8 naar 1 MB gaat.
+- Staan er meerdere afbeeldingen op een slide, dan zeggen hun plaatsen in
+  welke volgorde en in welke richting ze horen. De volgorde in het bestand is
+  de stapelvolgorde en niet de leesvolgorde, en twee schema's onder elkaar in
+  een rij persen maakt ze allebei onleesbaar. Zie rangschik().
 - Een afbeelding die linksboven op de slide begint, is een achtergrond en geen
   figuur. Ze krijgt haar plaats en haar maat mee en gaat achter de tekst staan;
   in de gewone stroom duwt ze anders de titel van de slide af.
@@ -93,6 +97,18 @@ P = "{http://schemas.openxmlformats.org/presentationml/2006/main}"
 R = "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}"
 MC = "{http://schemas.openxmlformats.org/markup-compatibility/2006}"
 EMU_PER_MM = 914400 / 25.4
+
+# Wat als "niets" telt in een tekstvak. str.strip() haalt de gewone witruimte
+# weg maar laat een zero-width space staan, en PowerPoint zet die neer in een
+# vak waar ooit in getypt is en dat daarna leeggemaakt werd. Zo'n vak tekent
+# niets en kwam er toch in, als <p class="los"> zonder woorden erin; slide 34
+# van Sessie2 droeg er een. De feff is de BOM, die om dezelfde reden meekomt.
+ONZICHTBAAR = "\u200b\u200c\u200d\u2060\ufeff"
+
+
+def leeg(tekst):
+    return not tekst.strip(ONZICHTBAAR + " \t\r\n\u00a0")
+
 
 # De layoutnamen van het HOGENT-sjabloon, en welke klasse(n) de slide krijgt.
 # Zie de kop: dit is het enige signaal, aan de vormen is het niet te zien.
@@ -359,6 +375,44 @@ def hoogte_van(vorm):
     return int(ext.get("cy")) / EMU_PER_MM
 
 
+def plaats(vorm):
+    """De linkerbovenhoek en de hoogte van een vorm, in mm."""
+    xfrm = vorm.find(f".//{A}xfrm")
+    if xfrm is None:
+        return None
+    off, ext = xfrm.find(f"{A}off"), xfrm.find(f"{A}ext")
+    if off is None or ext is None or not ext.get("cy"):
+        return None
+    return (int(off.get("x", 0)) / EMU_PER_MM,
+            int(off.get("y", 0)) / EMU_PER_MM,
+            int(ext.get("cy")) / EMU_PER_MM)
+
+
+def rangschik(beelden):
+    """De volgorde en de richting van meerdere figuren, uit hun plaats.
+
+    DE VOLGORDE IN HET XML IS DE STAPELVOLGORDE, niet de leesvolgorde: wie in
+    PowerPoint een figuur naar voren haalt, zet ze achteraan in het bestand.
+    Slide 8 van Sessie1 heeft de rechtse schets vooraan staan, en die kwam hier
+    dus links terecht. Sorteren op de plaats zet dat recht.
+
+    OVERLAPPEN DE VERTICALE BEREIKEN NIET, dan stonden ze ONDER elkaar. Er een
+    rij van maken perst de twee schema's van slide 22 (221 en 177mm breed) in
+    de 210mm die een slide binnen haar marge overhoudt, en dan is geen van
+    beide nog te lezen. Overlappen ze wel, dan is het een rij, ook als de een
+    wat hoger begint dan de ander.
+    """
+    plaatsen = [p for p, _ in beelden]
+    if any(p is None for p in plaatsen):
+        return "beelden", [h for _, h in beelden]
+    stapel = all(not (a[1] < b[1] + b[2] and b[1] < a[1] + a[2])
+                 for i, a in enumerate(plaatsen) for b in plaatsen[i + 1:])
+    as_ = 1 if stapel else 0
+    op_volgorde = sorted(beelden, key=lambda bp: bp[0][as_])
+    return ("beelden onder-elkaar" if stapel else "beelden",
+            [h for _, h in op_volgorde])
+
+
 def bij_de_oorsprong(pic):
     """Staat deze afbeelding linksboven op de slide?
 
@@ -478,8 +532,15 @@ def is_aanduiding(vorm):
 
 
 def ontlijst(fragment):
-    """Een <ul> met een of meer punten terug naar platte tekst."""
-    fragment = re.sub(r"</li>\s*<li>", " / ", fragment)
+    """Een <ul> met een of meer punten terug naar platte tekst.
+
+    De punten worden regels en geen zin met schuine strepen ertussen. In het
+    tekstvak stonden het regels, en een schuine streep is een leesteken dat in
+    het document niet staat: dit script vertaalt opmaak en geen woorden. Op
+    slide 31 van Sessie2 leverde dat etiketten als "Modes? / b, g, n, ac, ax"
+    op, waar het label en zijn inhoud twee regels waren.
+    """
+    fragment = re.sub(r"</li>\s*<li>", "<br>", fragment)
     return re.sub(r"</?[uo]l>|</?li>", "", fragment).strip()
 
 
@@ -516,7 +577,7 @@ def bouw_slide(z, deel, nr, stam, teller):
         for kind in el:
             tag = kind.tag
             if tag == f"{P}sp":
-                if not "".join(kind.itertext()).strip():
+                if leeg("".join(kind.itertext())):
                     if not is_aanduiding(kind):
                         tekening += 1
                     continue
@@ -527,7 +588,9 @@ def bouw_slide(z, deel, nr, stam, teller):
                 else:
                     los.append(opsomming(kind, rels))
             elif tag == f"{P}pic":
-                beelden.append(afbeelding(z, kind, rels, stam, teller, nr))
+                gemaakt = afbeelding(z, kind, rels, stam, teller, nr)
+                if gemaakt:
+                    beelden.append((plaats(kind), gemaakt))
             elif tag == f"{P}cxnSp":
                 tekening += 1
             elif tag == f"{P}graphicFrame":
@@ -552,7 +615,7 @@ def bouw_slide(z, deel, nr, stam, teller):
     # het blauwe beeld over de QR-code ernaast: binnen een stapelcontext wint
     # een geplaatst element van een gewoon element, wat niemand ziet gebeuren.
     if not (koppen or tekst):
-        beelden = [b.replace(' class="achtergrond"', "") for b in beelden]
+        beelden = [(p, h.replace(' class="achtergrond"', "")) for p, h in beelden]
 
     if tekening:
         meld(nr, f"{tekening} lijnen of vormen zonder tekst overgeslagen; "
@@ -575,14 +638,17 @@ def bouw_slide(z, deel, nr, stam, teller):
     if soort == "titel":
         for stuk in tekst + los:
             delen.append(f'<p class="ondertitel">{ontlijst(stuk)}</p>')
-        delen.extend(beelden)
+        delen.extend(h for _, h in beelden)
     else:
         delen.extend(tekst)
         if len(beelden) > 1:
-            # Naast elkaar, want zo stonden ze op de slide. Zie hoorcollege.css.
-            delen.append('<div class="beelden">' + "".join(beelden) + "</div>")
+            # Naast of onder elkaar, zoals ze op de slide stonden; zie
+            # rangschik() hierboven en hoorcollege.css.
+            klasse_beelden, op_volgorde = rangschik(beelden)
+            delen.append(f'<div class="{klasse_beelden}">'
+                         + "".join(op_volgorde) + "</div>")
         else:
-            delen.extend(beelden)
+            delen.extend(h for _, h in beelden)
         for stuk in los:
             delen.append(f'<p class="los">{ontlijst(stuk)}</p>')
 

@@ -166,9 +166,12 @@ body {
 
 .slide > *:not(.achtergrond) { position: relative; z-index: 1; }
 
-/* Staan er meerdere op een slide, dan stonden ze in de PowerPoint naast
-   elkaar. Onder elkaar zetten maakt van twee schema's naast elkaar een
-   opsomming van twee schema's, en dat is iets anders. */
+/* Meerdere figuren op een slide, in de richting waarin ze in de PowerPoint
+   stonden: naast elkaar, of onder elkaar met .onder-elkaar erbij.
+   import-slides.py leest die richting af uit hun plaats en zet ze in die
+   volgorde neer. Van twee schema's naast elkaar een opsomming van twee
+   schema's maken is iets anders, en omgekeerd persen twee brede schema's
+   naast elkaar zichzelf onleesbaar. */
 .slide .beelden {
     display: flex;
     align-items: center;
@@ -179,7 +182,21 @@ body {
     flex: 1;
 }
 
-.slide .beelden figure { margin: 0; }
+/* Uitgerekt over de volle hoogte, om dezelfde reden als bij .naast hieronder:
+   met align-items: center houdt een figuur de hoogte van haar beeld en heeft
+   max-height: 100% niets om zich tegen af te zetten. Ze loopt dan van de slide
+   af terwijl de rij zelf netjes binnen de 143mm blijft, dus alleen de fit-check
+   ziet het. Slide 39 van Sessie2 stond zo 6 beeldpunten te laag. */
+.slide .beelden figure {
+    margin: 0;
+    min-height: 0;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide .beelden.onder-elkaar { flex-direction: column; }
 
 /* Tekst met een beeld ERNAAST, zoals de PowerPoint het zet. Onder de opsomming
    is het beeld het eerste dat moet inleveren zodra die opsomming lang wordt,
