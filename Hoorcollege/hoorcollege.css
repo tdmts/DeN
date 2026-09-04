@@ -227,6 +227,84 @@ body {
 
 .slide a { color: inherit; }
 
+/* ----------------------------------------------------------- aanwijzingen */
+
+/* Een figuur met de aanwijzingen erop die in de PowerPoint losse vormen waren:
+   een kader om een poort, een etiket eronder. Losse vormen gaan niet mee bij de
+   import (zie de kop van scripts/import-slides.py), en zonder hen bleven de
+   etiketten INTERNET en LAN onder de slide staan zonder iets aan te wijzen. Ze
+   waren dan niet fout, ze betekenden niets meer.
+
+   DE MATEN ZIJN PERCENTAGES VAN DE FIGUUR en geen millimeters van de slide. De
+   foto van slide 18 is 252mm breed en past niet binnen de marge van 22mm, dus
+   ze wordt versmald, en dan moet het kader mee versmallen. Ze zijn afgelezen
+   uit de PowerPoint, net als --figuur-breedte, en staan om dezelfde reden in
+   de pagina en niet hier. */
+.slide figure.aangewezen {
+    position: relative;
+    width: fit-content;
+    align-self: center;
+    display: block;
+}
+
+.slide figure.aangewezen img { display: block; }
+
+.slide .aanwijzing {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--b);
+}
+
+.slide .aanwijzing.kader {
+    height: var(--h);
+    border: 0.6mm solid var(--oranje);
+}
+
+.slide .aanwijzing.etiket {
+    font-size: 11pt;
+    font-weight: bold;
+    text-align: center;
+    white-space: pre;
+}
+
+/* -------------------------------------------------------------- rondom */
+
+/* Een beeld met etiketten eromheen, zoals slide 31 het vraagt: het wifi-teken
+   in het midden en de vragen die het hoorcollege erover stelt eromheen. In de
+   PowerPoint stonden die etiketten los en een beetje scheef; hier staan ze in
+   twee kolommen, want de scheefte was versiering en de plaats links of rechts
+   is dat niet. */
+.slide .rondom {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    /* Gelijke rijen: het beeld beslaat ze alle drie en is hoger dan de tekst
+       samen, dus zonder dit kruipt de overschot in de eerste rij en staan de
+       etiketten scheef onder elkaar. */
+    grid-template-rows: repeat(3, 1fr);
+    align-items: center;
+    justify-items: center;
+    gap: 4mm 6mm;
+    flex: 1;
+    min-height: 0;
+    margin-top: 4mm;
+    font-size: 14pt;
+    line-height: 1.25;
+}
+
+.slide .rondom p { margin: 0; }
+.slide .rondom .links { grid-column: 1; text-align: right; justify-self: end; }
+.slide .rondom .rechts { grid-column: 3; text-align: left; justify-self: start; }
+
+/* Het beeld staat in de middelste kolom en beslaat de drie rijen ernaast. */
+.slide .rondom > figure {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    margin: 0;
+    align-self: center;
+    max-height: 100%;
+}
+
 /* ---------------------------------------------------------------- peiling */
 
 /* Een slide die uit een peiling bestaat, zoals .slide.beeld er een is die uit

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sessie2</title>
+<link rel="stylesheet" href="hoorcollege.css">
+</head>
+<body style="--slide-breedte: 254mm; --slide-hoogte: 143mm">
+
+    <section class="slide titel" data-slide="2">
+        <h1>Datacommunicatie en netwerken</h1>
+        <p class="ondertitel">Bachelor in de elektromechanica – automatisering</p>
+        <p class="ondertitel">Tom Demets | Stefan Lievens <br><a href="mailto:tom.demets@hogent.be" target="_blank">tom.demets@hogent.be</a> | <a href="mailto:stefan.lievens@hogent.be" target="_blank">stefan.lievens@hogent.be</a></p>
+        <figure class="achtergrond" style="--figuur-breedte: 123mm; --figuur-hoogte: 140mm"><img src="../img/hoorcollege-sessie-2-01.jpg" alt=""></figure>
+        <figure class="achtergrond" style="--figuur-breedte: 191mm; --figuur-hoogte: 143mm"><img src="../img/hoorcollege-sessie-2-02.png" alt=""></figure>
+    </section>
+
+    <section class="slide" data-slide="3">
+        <h2>Herhaling</h2>
+        <ul><li>TCP/IP model</li></ul>
+        <aside class="notities"><p>TCP/IP model: physical, datalink, network, transport, application</p><p>Ethernetkabel:</p><p>Aantal draden, afscherming, categorie, connector</p><p>Topologie:</p><p>Line, bus, ring, star, mesh</p></aside>
+    </section>
+
+    <section class="slide sectie" data-slide="4">
+        <h2>TCP/IP model<br>Laag 2: datalink laag</h2>
+    </section>
+
+    <section class="slide" data-slide="5">
+        <h2>TCP/IP model</h2>
+        <figure style="--figuur-breedte: 97mm"><img src="../img/hoorcollege-sessie-2-03.png" alt=""></figure>
+        <p class="los">Als de data ontvangen wordt vanaf de Physical layer zijn er 2 dingen die we<br>direct moeten te weten komen!</p>
+        <aside class="notities"><p>Is de data foutloos?</p><p>Is de data voor ons bestemd?</p></aside>
+    </section>
+
+    <section class="slide" data-slide="6">
+        <h2>Frame</h2>
+        <ul><li>Bits van de physical layer worden omgezet naar een frame</li></ul>
+        <figure style="--figuur-breedte: 177mm"><img src="../img/hoorcollege-sessie-2-04.png" alt=""></figure>
+        <p class="los">Welke informatie kan je afleiden uit een frame?</p>
+        <aside class="notities"><p>Preamble: 10101010….</p><p>SFD: 10101011</p><p>Adressering via MAC (Media Access Control)</p><p>Length = maximum 1500 (0x5DC)</p><p>	Data die groter is opsplitsen in verschillende frames</p><p>	Een value groter dan 1500 betekent dat het een speciaal frame is (later)</p><p>Foutcontrole met frame check sequence</p></aside>
+    </section>
+
+    <section class="slide" data-slide="7">
+        <h2>MAC adres</h2>
+        <ul><li>Iedere netwerkkaart heeft zijn eigen MAC adres</li></ul>
+        <figure style="--figuur-breedte: 176mm"><img src="../img/hoorcollege-sessie-2-05.png" alt=""></figure>
+        <aside class="notities"><p>Wat is het MAC adres?</p><p>Hoe kan je het MAC adres terugvinden in Windows? cmd -&gt; ipconfig /all</p><p>Stel:</p><p>	je hebt een computer met daarin twee netwerkkaarten. </p><p>	De ene is draadloos met het netwerk verbonden, de andere bedraad.</p><p>	Hoeveel MAC adressen zijn er?</p></aside>
+    </section>
+
+    <section class="slide" data-slide="8">
+        <h2>MAC adres</h2>
+        <ul><li>Adressering binnen een lokaal netwerk (LAN)</li><li>Telt 48 bits maar wordt hexadecimaal voorgesteld</li><li>Verandert nooit</li><li>De eerste 24 bits zijn het fabrikant ID</li><li>De laatste 24 bits zijn de NIC ID</li><li>Uniek in het lokaal netwerk</li><li>Geen indicatie van de locatie binnen het netwerk = flat addressing</li></ul>
+    </section>
+
+    <section class="slide" data-slide="9">
+        <h2>LAN vs WAN</h2>
+        <figure style="--figuur-breedte: 99mm"><img src="../img/hoorcollege-sessie-2-06.jpg" alt=""></figure>
+    </section>
+
+    <section class="slide" data-slide="10">
+        <h2>Local Area Network (LAN)</h2>
+        <figure style="--figuur-breedte: 169mm"><img src="../img/hoorcollege-sessie-2-07.png" alt=""></figure>
+        <aside class="notities"><p>Lokaal beperkt gebied maar size doesn’t matter</p><p>Netwerk van een gezin / bedrijf</p><p>Verbinding via switch</p><p>Bedraad of draadloos</p></aside>
+    </section>
+
+    <section class="slide" data-slide="11">
+        <h2>Wide Are Network (WAN)</h2>
+        <figure style="--figuur-breedte: 199mm"><img src="../img/hoorcollege-sessie-2-08.png" alt=""></figure>
+        <aside class="notities"><p>Zeer groot gebied</p><p>Een aaneenschakeling van LANs</p><p>Verbinding via Switches en Routers</p></aside>
+    </section>
+
+    <section class="slide" data-slide="12">
+        <h2>Apparaten op een computernetwerk</h2>
+        <figure style="--figuur-breedte: 154mm"><img src="../img/hoorcollege-sessie-2-09.jpg" alt=""></figure>
+    </section>
+
+    <section class="slide" data-slide="13">
+        <h2>Network Interface Card (NIC) </h2>
+        <figure style="--figuur-breedte: 143mm"><img src="../img/hoorcollege-sessie-2-10.jpeg" alt=""></figure>
+        <aside class="notities"><p>PCI Express uitvoering of op het moederbord</p><p>10 Mbps &lt;-&gt; 10 Gbps </p><p>RJ-45 connector</p><p>Geschikt voor UTP / coax / glasvezel</p><p>Drivers installeren</p></aside>
+    </section>
+
+    <section class="slide" data-slide="14">
+        <h2>Hub</h2>
+        <figure style="--figuur-breedte: 131mm"><img src="../img/hoorcollege-sessie-2-11.png" alt=""></figure>
+        <aside class="notities"><p>Fysieke laag</p><p>Enkel binnen een LAN</p><p>Geen adressering</p><p>Onnodig verkeer</p><p>Collisions</p><p>Onveilig</p></aside>
+    </section>
+
+    <section class="slide" data-slide="15">
+        <h2>Switch</h2>
+        <figure style="--figuur-breedte: 218mm"><img src="../img/hoorcollege-sessie-2-12.jpeg" alt=""></figure>
+        <aside class="notities"><p>Datalink laag</p><p>MAC adressen -&gt; lokaal netwerk</p><p>Frames</p><p>Een switch leert -&gt; MAC address table -&gt; opvullen obv source MAC address</p></aside>
+    </section>
+
+    <section class="slide" data-slide="16">
+        <h2>Industriële switch</h2>
+        <ul><li>Oefening in de cursus</li></ul>
+        <figure style="--figuur-breedte: 96mm"><img src="../img/hoorcollege-sessie-2-13.jpeg" alt=""></figure>
+    </section>
+
+    <section class="slide" data-slide="17">
+        <h2>Router</h2>
+        <figure style="--figuur-breedte: 224mm"><img src="../img/hoorcollege-sessie-2-14.jpeg" alt=""></figure>
+        <aside class="notities"><p>Netwerk laag</p><p>IP adressen -&gt; koppeling tussen twee netwerken</p><p>Een IP adres wordt genoteerd in dotted decimal notation bv 192.168.0.1</p><p>In een IP adres zit er een structuur -&gt; hierarchical addressing -&gt; het adres verklapt waar je je bevindt in het netwerk</p></aside>
+    </section>
+
+    <section class="slide" data-slide="18">
+        <h2>D-LINK AC750 draadloze router</h2>
+        <figure style="--figuur-breedte: 48mm"><img src="../img/hoorcollege-sessie-2-16.png" alt=""></figure>
+        <figure class="aangewezen" style="--figuur-breedte: 252mm"><img src="../img/hoorcollege-sessie-2-15.png" alt="">
+            <span class="aanwijzing kader" style="--x: 39.18%; --y: 40.50%; --b: 9.18%; --h: 26.72%"></span>
+            <span class="aanwijzing kader" style="--x: 52.70%; --y: 40.50%; --b: 23.10%; --h: 26.72%"></span>
+            <span class="aanwijzing etiket" style="--x: 36.40%; --y: 70.43%; --b: 14.75%">INTERNET</span>
+            <span class="aanwijzing etiket" style="--x: 60.76%; --y: 70.43%; --b: 6.98%">LAN</span>
+            <span class="aanwijzing etiket" style="--x: 33.82%; --y: 84.45%; --b: 44.38%">NETWERK 1   |              NETWERK 2</span>
+        </figure>
+        <aside class="notities"><p>Dit toestel is eigenlijk een combinatie van een router en een switch (bedraad en draadloos)</p></aside>
+    </section>
+
+    <section class="slide" data-slide="19">
+        <h2>All-in-one (Telenet / Proximus routers)</h2>
+        <div class="beelden"><figure style="--figuur-breedte: 75mm"><img src="../img/hoorcollege-sessie-2-17.png" alt=""></figure><figure style="--figuur-breedte: 120mm"><img src="../img/hoorcollege-sessie-2-18.jpeg" alt=""></figure></div>
+    </section>
+
+    <section class="slide" data-slide="20">
+        <h2>HUB – Switch – Router </h2>
+        <ul><li>Layer 1: geen adressering<ul><li>HUB (LAN)</li></ul></li><li>Layer 2: MAC adressering<ul><li>SWITCH (LAN)</li></ul></li><li>Layer 3: IP adressering<ul><li>ROUTER (LAN/WAN)</li></ul></li></ul>
+        <div class="beelden"><figure style="--figuur-breedte: 57mm"><img src="../img/hoorcollege-sessie-2-20.jpeg" alt=""></figure><figure style="--figuur-breedte: 93mm"><img src="../img/hoorcollege-sessie-2-21.png" alt=""></figure><figure style="--figuur-breedte: 45mm"><img src="../img/hoorcollege-sessie-2-19.png" alt=""></figure><figure style="--figuur-breedte: 70mm"><img src="../img/hoorcollege-sessie-2-22.png" alt=""></figure></div>
+    </section>
+
+    <section class="slide" data-slide="21">
+        <h2>Managed switch</h2>
+        <figure style="--figuur-breedte: 125mm"><img src="../img/hoorcollege-sessie-2-23.jpeg" alt=""></figure>
+        <p class="los">Configureren via een console<br>poort<br>Welke twee zaken zou je <br>willen kunnen parameteriseren<br>op een groot bedrijfs/industrieel<br>netwerk?</p>
+        <aside class="notities"><p>De prioriteit van verschillende frames</p><p>De beveiliging van de poorten</p></aside>
+    </section>
+
+    <section class="slide" data-slide="22">
+        <h2>Managed switch – aangepast frame</h2>
+        <div class="beelden onder-elkaar"><figure style="--figuur-breedte: 221mm"><img src="../img/hoorcollege-sessie-2-24.png" alt=""></figure><figure style="--figuur-breedte: 177mm"><img src="../img/hoorcollege-sessie-2-25.png" alt=""></figure></div>
+        <p class="los">TPI = 0x8100<br>       = ? (decimaal)<br>       Staat op de <br>       plaats waar ?<br>       vroeger stond</p>
+        <p class="los">Hoe weet de switch dat het over een complexer frame gaat?</p>
+        <aside class="notities"><p>Decimaal 33024</p><p>Staat op de plaats waar LENGTH vroeger stond</p></aside>
+    </section>
+
+    <section class="slide" data-slide="23">
+        <h2>Virtual LAN  (VLAN)</h2>
+        <figure style="--figuur-breedte: 203mm"><img src="../img/hoorcollege-sessie-2-26.png" alt=""></figure>
+        <aside class="notities"><p>VLAN = Virtual LAN</p><p>Op dezelfde hardware gescheiden netwerken maken</p><p>Waarom?</p><p>	Veiligheid (afdelingen, iedereen kan inpluggen)</p><p>	Performantie (broadcast)</p></aside>
+    </section>
+
+    <section class="slide" data-slide="24">
+        <h2>Demo 1</h2>
+        <ul><li>VLAN met Packet Tracer</li></ul>
+        <figure style="--figuur-breedte: 143mm"><img src="../img/hoorcollege-sessie-2-27.png" alt=""></figure>
+    </section>
+
+    <section class="slide" data-slide="25">
+        <h2>Demo 2</h2>
+        <ul><li>VLAN ID met Packet Tracer</li></ul>
+        <figure style="--figuur-breedte: 148mm"><img src="../img/hoorcollege-sessie-2-28.png" alt=""></figure>
+        <aside class="notities"><p>De VLAN en QOS info wordt direct gestript bij het verlaten van de switch tenzij het verkeer naar een andere switch gaat!</p><p>In deze demo willen we de informatie effectief zien in een frame!</p></aside>
+    </section>
+
+    <section class="slide" data-slide="26">
+        <h2>Priority Code Point</h2>
+        <div class="beelden onder-elkaar"><figure style="--figuur-breedte: 177mm"><img src="../img/hoorcollege-sessie-2-30.png" alt=""></figure><figure style="--figuur-breedte: 143mm"><img src="../img/hoorcollege-sessie-2-29.png" alt=""></figure></div>
+        <aside class="notities"><p>Computer zendt frame naar poort</p><p>Instellingen op de switch hebben die poort ingesteld op een bepaalde prioriteit</p><p>Managed switch overschrijft PCP waarde</p><p>Industrieel netwerk zoals EtherCAT of ProfiNET -&gt; Priority 6 (Voice)</p><p>Drop Eligible Indicator (DEI) bit is 0 of 1. Indien 1 dan mag het frame gedropt worden bij congestion</p></aside>
+    </section>
+
+    <section class="slide" data-slide="27">
+        <h2>Even herhalen…</h2>
+        <ul><li>Datalink laag -&gt; MAC adressering</li><li>Netwerk laag -&gt; IP adressering</li><li>Binnen een LAN gebruikt de _____ (apparaat) enkel _____ adressen om hosts te adresseren</li><li>Ga je buiten het LAN dan heb je een _____ (apparaat) en _____ adressen nodig</li><li>MAAR!!! Applicaties gebruiken enkel IP adressen…</li></ul>
+        <aside class="notities"><p>Switch, MAC</p><p>Router, IP</p></aside>
+    </section>
+
+    <section class="slide" data-slide="28">
+        <h2>Address Resolution Protocol (ARP)</h2>
+        <ul><li>Applicaties gebruiken IP adressen</li><li>Binnen het LAN wordt gewerkt met MAC adressering</li><li>Hoe worden frames dan bezorgd in een LAN?</li><li>ARP = IP adres naar MAC adres</li></ul>
+        <figure style="--figuur-breedte: 107mm"><img src="../img/hoorcollege-sessie-2-31.png" alt=""></figure>
+    </section>
+
+    <section class="slide" data-slide="29">
+        <h2>Address Resolution Protocol (ARP)</h2>
+        <ul><li>ARP met Packet Tracer</li></ul>
+    </section>
+
+    <section class="slide" data-slide="30">
+        <h2>802.11 WiFi</h2>
+        <figure style="--figuur-breedte: 136mm"><img src="../img/hoorcollege-sessie-2-32.jpg" alt=""></figure>
+    </section>
+
+    <section class="slide" data-slide="31">
+        <h2>802.11 Wifi</h2>
+        <ul><li>Hoe werkt Wifi?</li></ul>
+        <div class="rondom">
+            <p class="links">Banden?<br>2,4GHz / 5GHz</p>
+            <figure style="--figuur-breedte: 68mm"><img src="../img/hoorcollege-sessie-2-33.jpg" alt=""></figure>
+            <p class="rechts">Oorsprong?</p>
+            <p class="links">Modes?<br>b, g, n, ac, ax</p>
+            <p class="rechts">Kanalen?<br>1, 2, …</p>
+            <p class="links">Encryptie?<br>WEP/WPA/WPA2/WPA3</p>
+            <p class="rechts">Bereik?<br>Binnen / buiten</p>
+        </div>
+        <aside class="notities"><p>Wat is Wifi nu eigenlijk?</p><p>Oorsprong in kassasystemen (bv. scanners in Colruyt)</p><p>Draadloos internet op de ISM band</p><p>Beschrijft afspraken op de fysieke en datalink laag</p><p>Fysieke laag</p><p>Frequenties, versie: b, g, n, ac</p><p>Datalink laag</p><p>Carrier Sense Multiple Access / Collision Avoidance</p><p>MAC adressering</p><p>Bereik: ~ 40m binnen / ~ 90m buiten</p></aside>
+    </section>
+
+    <section class="slide" data-slide="32">
+        <h2>Industrial Scientific and Medical Band (ISM Band)</h2>
+        <figure style="--figuur-breedte: 169mm"><img src="../img/hoorcollege-sessie-2-34.png" alt=""></figure>
+        <aside class="notities"><p>Het elektromagnetisch spectrum zit overvol!</p><p>	Een nieuwe techologie op een wereldwijde frequentie? Een utopie...</p><p>	De ISM band is een ongelisenseerde frequentieband</p><p>Dual band = 2,4GHz + 5GHz routers</p><p>Triple band = 2,4 + 5 + 5,2</p><p>Quad band = 2,4 + 5 + 5,2 + 5,8</p></aside>
+    </section>
+
+    <section class="slide" data-slide="33">
+        <h2>802.11 b WiFi</h2>
+        <ul><li>11 Mbps</li></ul>
+        <div class="beelden onder-elkaar"><figure style="--figuur-breedte: 207mm"><img src="../img/hoorcollege-sessie-2-36.png" alt=""></figure><figure style="--figuur-breedte: 65mm"><img src="../img/hoorcollege-sessie-2-35.png" alt=""></figure></div>
+        <aside class="notities"><p>Vergelijk het met FM radio</p><p>Draagfrequentie op 2,4 GHz</p><p>Bandbreedte 22 MHz</p><p>14 Overlappende kanalen, 13 in Europa</p><p>Op de uiteinden -30db = -1000x origineel signaal</p><p>Praktisch 600 à 800 kBps</p></aside>
+    </section>
+
+    <section class="slide" data-slide="34">
+        <h2>802.11 g WiFi</h2>
+        <ul><li>54 Mbps</li></ul>
+        <div class="beelden"><figure style="--figuur-breedte: 106mm"><img src="../img/hoorcollege-sessie-2-38.png" alt=""></figure><figure style="--figuur-breedte: 87mm"><img src="../img/hoorcollege-sessie-2-37.jpg" alt=""></figure></div>
+        <aside class="notities"><p>ISM band op 2.4 GHz</p><p>Compatibel met b standaard</p><p>Theoretisch 54 Mbps, praktisch 3 MBps </p><p>Enkel kanaal 10 en 11 wereldwijd</p></aside>
+    </section>
+
+    <section class="slide" data-slide="35">
+        <h2>802.11 n Wifi4</h2>
+        <ul><li>600 Mbps maar in de praktijk ?</li></ul>
+        <figure style="--figuur-breedte: 90mm"><img src="../img/hoorcollege-sessie-2-39.jpeg" alt=""></figure>
+        <aside class="notities"><p>Compatibel met g en b</p><p>Maximum 600Mbps maar in de praktijk ongeveer de helft</p><p>Toch nog altijd een grote sprong voorwaarts</p><p>Hoe komt dat? Volgende slides</p></aside>
+    </section>
+
+    <section class="slide" data-slide="36">
+        <h2>802.11 n Wifi4 – SU-MIMO</h2>
+        <ul><li>Single User Multiple Inputs Multiple Outputs (SU-MIMO)</li></ul>
+        <figure style="--figuur-breedte: 175mm"><img src="../img/hoorcollege-sessie-2-40.png" alt=""></figure>
+        <aside class="notities"><p>Maximum snelheid is hier 600Mbps, deel dat ongeveer door 2</p><p>Meerdere antennes = meerdere datastromen in parallel</p><p>Maar wel nog ieder apparaat om de beurt. Dus eerst Laptop, daarna SmartTV, dan SmartPhone, …</p><p>Hoe meer clients, hoe moeilijker het wordt</p><p>Streaming wordt ook lastig</p></aside>
+    </section>
+
+    <section class="slide" data-slide="37">
+        <h2>802.11 n Wifi4 – Dual Band</h2>
+        <figure style="--figuur-breedte: 147mm"><img src="../img/hoorcollege-sessie-2-41.jpeg" alt=""></figure>
+        <aside class="notities"><p>2,4 GHz -&gt; lagere theoretische snelheid maar groter bereik</p><p>5 GHz -&gt; grotere theoretische snelheid maar lager bereik</p><p>Voorbeeld van op een lage toon en traag te spreken vs hoge toon en snel</p></aside>
+    </section>
+
+    <section class="slide" data-slide="38">
+        <h2>802.11 n Wifi4 – Channel bonding</h2>
+        <figure style="--figuur-breedte: 189mm"><img src="../img/hoorcollege-sessie-2-42.png" alt=""></figure>
+        <p class="los"><a href="https://www.youtube.com/watch?v=RswCYd8X-sQ" target="_blank">https://www.youtube.com/watch?v=RswCYd8X-sQ</a></p>
+        <aside class="notities"><p>Dezelfde kanalen als bij 802.11 g</p><p>Aanliggende kanalen!</p><p>BBx2 = Snelheid x2</p><p>Channel Bonding -&gt; overlap!</p></aside>
+    </section>
+
+    <section class="slide" data-slide="39">
+        <h2>802.11 ac Wifi5</h2>
+        <ul><li>6.9 Gbps</li><li>Dual band</li></ul>
+        <div class="beelden"><figure style="--figuur-breedte: 110mm"><img src="../img/hoorcollege-sessie-2-44.png" alt=""></figure><figure style="--figuur-breedte: 106mm"><img src="../img/hoorcollege-sessie-2-43.png" alt=""></figure></div>
+        <aside class="notities"><p>Dual band 2,4GHz en 5 GHz</p></aside>
+    </section>
+
+    <section class="slide" data-slide="40">
+        <h2>802.11 ac Wifi5 – MU-MIMO</h2>
+        <ul><li>Multi User Multiple Inputs Multiple Outputs (MU-MIMO)<ul><li>Bij SU-MIMO had iedere client om de beurt de volledige bandbreedte.<br>Wat is het verschil met MU-MIMO?</li><li>Wanneer wordt de verbinding onderbroken?</li><li>Wat is Beamforming?</li></ul></li></ul>
+        <div class="beelden onder-elkaar"><figure style="--figuur-breedte: 39mm"><img src="../img/hoorcollege-sessie-2-46.png" alt=""></figure><figure style="--figuur-breedte: 64mm"><img src="../img/hoorcollege-sessie-2-45.png" alt=""></figure></div>
+        <p class="los"><a href="https://www.youtube.com/watch?v=B2h8FohnwUs" target="_blank">https://www.youtube.com/watch?v=B2h8FohnwUs</a></p>
+        <aside class="notities"><p>MU MIMO = een deeltje van de BB maar de hele tijd</p><p>nooit</p></aside>
+    </section>
+
+    <section class="slide" data-slide="41">
+        <h2>802.11 ac Wifi5 – Channel bonding</h2>
+        <figure style="--figuur-breedte: 173mm"><img src="../img/hoorcollege-sessie-2-47.jpeg" alt=""></figure>
+        <aside class="notities"><p>Hoeveel kanalen kan je maximaal bonden in de 2.4 GHz band? 2</p><p>Hoeveel in de 5 GHz band? 8</p><p>BB wordt dan 160 MHz</p></aside>
+    </section>
+
+    <section class="slide" data-slide="42">
+        <h2>802.11 ac Wifi5 – Beamforming</h2>
+        <div class="beelden"><figure style="--figuur-breedte: 121mm"><img src="../img/hoorcollege-sessie-2-48.png" alt=""></figure><figure style="--figuur-breedte: 121mm"><img src="../img/hoorcollege-sessie-2-49.png" alt=""></figure></div>
+        <aside class="notities"><p>Letterlijk: straalvorming</p><p>Heel gericht sturen naar 1 (of meerdere) ontvangers</p><p>Verhoogt het bereik</p></aside>
+    </section>
+
+    <section class="slide" data-slide="43">
+        <h2>802.11 ax Wifi6(E)</h2>
+        <ul><li>9.6 Gbps</li><li>MU-MIMO, Beamforming, Channel bonding</li><li>Dual, triple en zelfs quad band, </li></ul>
+        <figure style="--figuur-breedte: 100mm"><img src="../img/hoorcollege-sessie-2-50.png" alt=""></figure>
+    </section>
+
+    <section class="slide" data-slide="44">
+        <h2>802.11 ax Wifi6 – OFDMA </h2>
+        <ul><li>Orthogonal Frequency Division Multiple Access (OFDMA)</li></ul>
+        <figure style="--figuur-breedte: 137mm"><img src="../img/hoorcollege-sessie-2-51.jpeg" alt=""></figure>
+        <aside class="notities"><p>OFDM: iedere zender krijgt het volledig kanaal, dus de volledige BB</p><p>OFDMA: de bandbreedte van het kanaal wordt verdeeld over de zenders</p></aside>
+    </section>
+
+    <section class="slide" data-slide="45">
+        <h2>802.11 WiFi / Beveiliging</h2>
+        <figure style="--figuur-breedte: 165mm"><img src="../img/hoorcollege-sessie-2-52.png" alt=""></figure>
+        <aside class="notities"><p>Oefening artikel</p><p>Staat ook op chamilo in mapje onder documenten</p></aside>
+    </section>
+
+<script src="hoorcollege.js"></script>
+</body>
+</html>
