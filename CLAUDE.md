@@ -63,10 +63,11 @@ all**, the way `overview.html` never had one: there is nothing above an Orion en
 may send you to. The way out is the Orion menu.
 
 No build system and no test suite. You edit HTML/CSS/JS directly. `scripts/` holds all the tooling:
-five Python scripts, of which `check-content.py` and `import-brightspace.py` are stdlib only.
+seven Python scripts, of which `check-content.py` and `import-brightspace.py` are stdlib only.
 `export-verslag.py` and `import-syllabus.py` need `python-docx` (and `import-syllabus.py` also
-`pillow`, but only to crop an image the Word crops), and `export-syllabus.py` needs
-`pypdf` and `reportlab` plus a headless Chrome or Edge. There is also one Node script,
+`pillow`, but only to crop an image the Word crops), `import-slides.py` needs `pillow` for the same
+reason, and `export-syllabus.py` and `export-handout.py` need `pypdf` and `reportlab` plus a
+headless Chrome or Edge. There is also one Node script,
 `check-nav.js`, which needs `jsdom` and is the single reason a `node_modules/` may exist here. It is
 gitignored and nothing else depends on it.
 
@@ -119,6 +120,12 @@ Theorie/Syllabus/      the lecture track: the source of the syllabus PDF
     Theorie/
         reference.html the hub
         <Hoofdstuk>/   one folder per chapter, one page per Heading 2 of the Word
+Hoorcollege/           the lecture decks: the source of the handout PDFs
+    Sessie1.html       one deck, one <section class="slide"> per slide
+    hoorcollege.css    how a slide looks, the only place it lives
+    hoorcollege.js     the projection: one slide at a time, and the fit check
+    handout.css        what the printed sheet does with a slide, nothing more
+    IMPORT.md          what the importer had to guess, written by import-slides.py
 Algemeen/Planning.html the labo and theory schedule; the single source for session counts
 Algemeen/Evaluatie.html how the course is graded; the single source for every weight
 img/  datasheets/  downloads/  handouts/  scripts/
@@ -228,8 +235,18 @@ complains.
   background reading. It is big, it never changes, and nothing regenerates it.
   The fourth is the **syllabus PDF**, `Datacommunicatie-en-netwerken-syllabus.pdf`, derived like
   the verslag templates but from `Theorie/Syllabus/` and by `export-syllabus.py`; rule 13 keeps it
-  in step. All four are committed, because Pages serves only tracked files.
-  The `_oplossing.pkt` solutions stay on Brightspace and are deliberately absent.
+  in step. The fifth is a **handout PDF**, `DeN-handout-sessie-1.pdf`, derived from a deck under
+  `Hoorcollege/` by `export-handout.py`. All five are committed, because Pages serves only tracked
+  files. The `_oplossing.pkt` solutions stay on Brightspace and are deliberately absent.
+
+  **A handout's filename is an agreement with Orion, so it is fixed.** The lecture track has no
+  landing page: its Orion topic links straight at
+  `https://tdmts.github.io/DeN/downloads/DeN-handout-sessie-1.pdf`, so a new export is in front of
+  the student the moment it is pushed. That is why there is no `overview.html` here and why one
+  should not be added. The price is that the URL is now public: `export-handout.py` derives the
+  name from the deck (`Sessie1` becomes `sessie-1`), so renaming the deck or passing another
+  `--naam` moves the file and the Orion link 404s, with nothing in this repo failing. Rename the
+  deck only together with the link in Orion.
 
 **The planning owns the session counts, and nothing else may repeat them.**
 [`Algemeen/Planning.html`](Algemeen/Planning.html) carries the labo schedule and the theory
