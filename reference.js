@@ -169,6 +169,90 @@ window.LAB_REFERENCE = {
                         href: 'FysiekeLaag/TestJezelf.html'
                     }
                 ]
+            },
+            {
+                name: 'Datalink laag',
+                reeks: 'theorie',
+                topics: [
+                    {
+                        id: 'datalink-overzicht',
+                        name: 'Kernpunten en studievragen',
+                        blurb: 'Wat je uit dit hoofdstuk moet meenemen, en de vragen waarop je achteraf een antwoord hoort te hebben.',
+                        href: 'DatalinkLaag/Overzicht.html'
+                    },
+                    {
+                        id: 'datalink-inleiding',
+                        name: 'Inleiding',
+                        blurb: 'De laag die van een reeks enen en nullen een frame maakt, het op fouten controleert en nagaat voor wie het bestemd is.',
+                        href: 'DatalinkLaag/Inleiding.html'
+                    },
+                    {
+                        id: 'datalink-frame',
+                        name: 'Frame',
+                        blurb: 'Veld voor veld door een ethernet frame: preamble, adressen, EtherType, data en de controlesom achteraan.',
+                        href: 'DatalinkLaag/Frame.html'
+                    },
+                    {
+                        id: 'datalink-mac-adres',
+                        name: 'MAC adres',
+                        blurb: 'Achtenveertig bits die de fabrikant vastlegt, in twee helften: wie de kaart maakte en het hoeveelste exemplaar ze is.',
+                        href: 'DatalinkLaag/MacAdres.html'
+                    },
+                    {
+                        id: 'datalink-lan',
+                        name: 'Local Area Network (LAN)',
+                        blurb: 'Een netwerk binnen een begrensd gebied, waarin apparaten elkaar via een switch en hun MAC adres bereiken.',
+                        href: 'DatalinkLaag/LocalAreaNetworkLan.html'
+                    },
+                    {
+                        id: 'datalink-wan',
+                        name: 'Wide Area Network (WAN)',
+                        blurb: 'Wat er nodig is om lokale netwerken op verschillende locaties aan elkaar te knopen, met het internet als grootste voorbeeld.',
+                        href: 'DatalinkLaag/WideAreaNetworkWan.html'
+                    },
+                    {
+                        id: 'datalink-apparaten',
+                        name: 'Apparaten op een computernetwerk',
+                        blurb: 'Hub, netwerkkaart, powerline adapter en switch, tot de industriële en de managed uitvoering, met vragen bij de datasheet.',
+                        href: 'DatalinkLaag/ApparatenOpEenComputernetwerk.html'
+                    },
+                    {
+                        id: 'datalink-vlan',
+                        name: 'Virtual LAN (VLAN)',
+                        blurb: 'Eén set switches logisch opdelen in gescheiden netwerken, en de tag in het frame waarmee dat gebeurt.',
+                        href: 'DatalinkLaag/VirtualLanVlan.html'
+                    },
+                    {
+                        id: 'datalink-qos',
+                        name: 'Layer 2 Quality Of Service (QOS)',
+                        blurb: 'Drie bits in dezelfde tag geven een frame voorrang, wat telt zodra spraak, video of een machine over het netwerk gaat.',
+                        href: 'DatalinkLaag/Layer2QualityOfServiceQos.html'
+                    },
+                    {
+                        id: 'datalink-arp',
+                        name: 'Address Resolution Protocol (ARP)',
+                        blurb: 'Hoe een host bij een IP adres het bijbehorende MAC adres opvraagt, en waarom hij het antwoord bijhoudt.',
+                        href: 'DatalinkLaag/AddressResolutionProtocolArp.html'
+                    },
+                    {
+                        id: 'datalink-wifi',
+                        name: '802.11 Wifi',
+                        blurb: 'De ISM banden, de standaarden van 802.11b tot Wifi 7, en waar SSID, channel bonding en MIMO vandaan komen.',
+                        href: 'DatalinkLaag/80211Wifi.html'
+                    },
+                    {
+                        id: 'datalink-oefening-wifi-security',
+                        name: 'Oefening Wifi security mode',
+                        blurb: 'Zes vragen over WEP, WPA, WPA2 en WPA3: welke je vandaag nog instelt en welke je beter laat staan.',
+                        href: 'DatalinkLaag/OefeningWifiSecurityMode.html'
+                    },
+                    {
+                        id: 'datalink-test-jezelf',
+                        name: 'Test jezelf',
+                        blurb: 'Eenentwintig vragen over frames, MAC adressen, switches, virtuele netwerken en wifi.',
+                        href: 'DatalinkLaag/TestJezelf.html'
+                    }
+                ]
             }
         ]
     },

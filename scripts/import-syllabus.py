@@ -695,6 +695,23 @@ def renderen(blokkenlijst, ctx, kop_offset=2, ontvet=False):
                 onder_laatste(f"<p>{inhoud}</p>")
             continue
 
+        # Een alinea zonder tekst die alleen een tekening draagt, sluit een
+        # genummerde lijst niet af: in deze Word staat die tekening bij de vraag
+        # erboven en volgen de keuzemogelijkheden eronder. Vraag 13 en 19 van
+        # Test jezelf van de datalink laag zijn zo gebouwd. Zonder deze regel
+        # valt zo'n vraag uiteen in een lijstitem, een losse figuur en een losse
+        # bulletlijst, en dan staan de keuzes buiten de vraag: de export vindt
+        # er geen enkele in en kan de letter van het juiste antwoord niet meer
+        # tellen. Alleen bij een open <ol>, zoals de keuzelijst-regel hierboven,
+        # want na een gewone opsomming is een figuur wel degelijk een figuur.
+        if (not inhoud and plaatjes and stapel and stapel[0][0] == "ol"
+                and stapel[-1][1]):
+            for naam, breedte in plaatjes:
+                noteer(ctx["waar"], f"afbeelding {naam} stond tussen een vraag "
+                                    "en haar keuzes en is in de vraag gezet")
+                onder_laatste(figuur(naam, "", ctx["diepte"], breedte))
+            continue
+
         if not inhoud and not plaatjes:
             continue
 

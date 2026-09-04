@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAC adres</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>MAC adres</h1>
+
+        <p>Zoals je al kon afleiden uit de Ethernet header van een Frame telt een MAC adres 6 bytes ofwel 48 bits. Omdat het nogal onhandig is om dit adres binair uit te schrijven wordt gekozen voor een kortere, hexadecimale, notatie.</p>
+
+        <p>Een MAC adres ziet er bijvoorbeeld zo uit: 80-32-53-43-31-59.</p>
+
+        <p>Je kan je MAC adres op je Windows computer te weten komen door het uitvoeren van het commando ipconfig /all. Iedere netwerkkaart heeft zijn eigen MAC adres.</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-03-datalink-laag-01.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <p>Het is de fabrikant van de netwerkkaart die het MAC adres kiest. Bij het produceren van de kaart wordt het MAC adres vast ingesteld en deze zal, onder normale omstandigheden, nooit meer veranderen.</p>
+
+        <p>Een MAC adres bestaat uit twee delen:</p>
+
+        <ol>
+            <li>Organizationally Unique Identifier (OUI)</li>
+            <li>Network Interface Card Identifier (NIC)</li>
+        </ol>
+
+        <p>De eerste 3 bytes (OUI) identificeren de fabrikant van de netwerkkaart. Heb je bijvoorbeeld een netwerkaart van Intel dan zijn de eerste drie bytes 80-32-53.</p>
+
+        <p>De laatste drie bytes (NIC) identificeren de netwerkkaart zelf. Het is belangrijk om in te zien dat dit een willekeurig getal is en niets te maken heeft met het type of model van de netwerkkaart. Een MAC adres moet uniek zijn op het netwerk voor een juiste adressering.</p>
+
+        <p>In een MAC adres zit dus geen echte structuur die iets zou kunnen verklappen over de fysieke locatie van de netwerkinterface in het netwerk. We noemen dit ook wel <em>flat adressing</em>. Een MAC adres wordt gebruikt om een computer te adresseren binnen het lokale netwerk (LAN).</p>
+
+        <p>Op een andere laag van het TCP/IP model, de netwerk laag, vinden we ook nog IP adressering terug. Dit type adres ziet er bijvoorbeeld zo uit: 84.12.129.253. In tegenstelling tot een MAC adres zit er in dit type adres wel een bepaalde structuur in die er voor kan zorgen dat computers buiten het lokale netwerk kunnen worden geadresseerd. Hierover later meer.</p>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Resolution Protocol (ARP)</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Address Resolution Protocol (ARP)</h1>
+
+        <p>ARP ofwel het Address Resolution Protocol, is een protocol binnen de datalink laag van het TCP/IP model dat computers, die allemaal op hetzelfde LAN zijn aangesloten, in staat stelt verbinding te maken met andere computers op dat LAN, zonder hun MAC adres te kennen.</p>
+
+        <p>Binnen TCP/IP zijn er twee adresseringsystemen in gebruik. Het ene situeert zich op de datalink laag en heet MAC adressering. Het andere bevindt zich op de netwerk laag en heet IP adressering. Over IP adressering zullen we het in het volgend hoofdstuk uitgebreid hebben.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr><td>Application</td></tr>
+                    <tr><td>Transport</td></tr>
+                    <tr><td>Network (IP adressering)</td></tr>
+                    <tr><td>Datalink (MAC adressering)</td></tr>
+                    <tr><td>Physical</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Binnen een LAN worden computers geadresseerd met hun MAC adres, buiten het LAN met hun IP adres. Maar…. een computer heeft, als hij verbonden is met een TCP/IP netwerk, wel beide adressen. Zelfs al is hij enkel verbonden met een LAN, toch heeft hij een IP adres.</p>
+
+        <p>Meestal worden programma’s geschreven zodat ze zowel computers binnen en buiten het LAN kunnen adresseren. Het is dan maar ook logisch dat de meeste applicaties gebruik maken van IP adressering en niet van MAC adressering.</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 114.3mm">
+            <img src="../../../../img/syllabus-03-datalink-laag-14.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <p>Maar wat als je nu twee computers in een lokaal netwerk hebt die verbonden zijn met elkaar door middel van een switch? Zoals je weet kan een switch enkel overweg met MAC adressen… En in deze situatie hebben we een computer die een andere computer adresseert met behulp van een IP adres… Hoe weet de zender nu welk MAC adres er bij dit bij IP adres hoort zodat hij bij het maken van het frame het destination MAC adres kan invullen?</p>
+
+        <p>Het antwoord is ARP.</p>
+
+        <p>Als we zouden klikken op de knop ‘Open’ dan zou het besturingssysteem eerst nagaan als het IP adres (192.168.0.3) nog niet bestaat in de lokale ARP tabel. De ARP tabel is een soort van tijdelijk geheugen waarin er in de ene kolom IP adressen staan en in de andere MAC adressen. Als er een overeenkomst is gevonden dan kan de datalink laag het frame opvullen met source en destination MAC adres.</p>
+
+        <p>Je kan jouw arp tabel opvragen door in Windows het commando arp -a in te geven. Op het zicht kan je al onmiddellijk zien dat het lokale adres 192.168.1.38 is en er al communicatie is geweest met 192.168.1.1, 192.168.1.39, 192.168.1.42 en 192.168.1.43 binnenin het LAN.</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-03-datalink-laag-15.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <p>Als er geen overeenkomst gevonden is in de ARP tabel dan stuurt de netwerkkaart van computer A eerst een ARP request. Een ARP request is een broadcast frame. Een broadcast frame is een frame dat gestuurd wordt naar alle computers in het lokale netwerk.</p>
+
+        <p>Het broadcastframe dat gestuurd wordt bevat de volgende gegevens:</p>
+
+        <p>source MAC: AA:BB:CC:DD:EE:FF, source IP: 192.168.0.2</p>
+
+        <p>destination MAC: ff:ff:ff:ff:ff:ff (broadcast), destination IP: 192.168.0.3</p>
+
+        <p>De switch ontvangt dit frame, ziet dat het gestuurd wordt naar een broadcast MAC adres en forward dit naar alle poorten. Iedere aangesloten machine ontvangt het frame op zijn netwerkkaart.</p>
+
+        <p>Iedere netwerkkaart controleert als zijn IP adres 192.168.0.3 is. Indien niet, dan negeert hij de broadcast en laat hij het frame vallen (= frame drop). Als dat wel het geval is stuurt hij een unicastpakket terug:</p>
+
+        <p>source MAC: 00:11:22:33:44:55, source IP: 192.168.0.3</p>
+
+        <p>destination MAC: AA:BB:CC:DD:EE:FF, destination IP: 192.168.0.2</p>
+
+        <p>De switch ontvangt opnieuw het frame, ziet dat het gaat over een specifiek MAC adres, kijkt in zijn MAC address table welke poort hiermee overeenkomt en stuurt het door.</p>
+
+        <p>Computer A ontvangt het frame en werkt zijn ARP tabel. Hij weet nu dat dat 00:11:22:33:44:55 overeenkomt met 192.168.0.3. Vanaf nu kan de nodige MAC adres informatie opgevuld worden voor de datalink laag en kunnen frames zeer efficiënt uitgewisseld worden over het netwerk.</p>
+
+        <p>De aandachtige student zal misschien opmerken dat we ARP niet nodig hebben als we het destination MAC adres zouden opvullen met het broadcast MAC adres ff:ff:ff:ff:ff:ff. Maar... dat heeft uiteraard een zeer belangrijk nadeel: de switch gedraagt zich dan als een hub. Alle frames worden doorgestuurd naar alle computers in het netwerk waardoor dit zeer inefficiënt verloopt.</p>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

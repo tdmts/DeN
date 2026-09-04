@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual LAN (VLAN)</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Virtual LAN (VLAN)</h1>
+
+        <p>Laat ons eerst eens vertrekken van een normaal LAN waarbij alle gebruikers binnen het LAN verbonden zijn via switches. In dit netwerk treffen we verschillende gebruikers zoals studenten, docenten, de boekhouding, IT gebruikers, gasten, ... aan. Ook de verschillende apparaten zoals computers en servers zijn verbonden met elkaar.</p>
+
+        <p>Gezien ze allemaal verbonden zijn via dezelfde switches wordt het netwerkverkeer  niet gescheiden van elkaar. Dit houdt een mogelijk beveiligingsrisico in. Een student kan bijvoorbeeld de servers van de boekhouding bereiken. Hij heeft daarom nog geen toegangsrechten maar misschien slaagt hij daar wel, na verloop van tijd, in.</p>
+
+        <p>Idealiter zouden we deze gebruikers en apparaten willen scheiden van elkaar maar in de praktijk zou dit betekenen dat we hiervoor alle hardware moeten ontdubbelen. Een apart netwerk voor studenten, een apart netwerk voor docenten, een apart netwerk voor servers, enzovoort. Het spreekt voor zich dat dit moeilijk haalbaar is omdat alle gebruikers en apparaten zich dan fysiek heel dicht bij elkaar moeten bevinden én dit zou ook heel snel heel duur worden.</p>
+
+        <p>De oplossing voor dit probleem is het aanmaken van VLAN&#x27;s. VLAN staat voor Virtual Local Area Network. In een VLAN zijn apparaten logisch verbonden ongeacht hun fysieke locatie.</p>
+
+        <p>Je kan je dit inbeelden door twee switches voor te stellen. Met de ene switch zijn enkel studenten verbonden en met de andere switch enkel docenten. Beide groepen zijn enkel bereikbaar voor elkaar. Met een VLAN gebruiken ze dezelfde switch maar is hun verkeer toch van elkaar gescheiden.</p>
+
+        <p>In de praktijk gebeurt dit door de verschillende poorten van een switch in een VLAN te stoppen. VLAN 100 is bijvoorbeeld voor studenten, VLAN 200 voor docenten, VLAN 300 voor gasten, ...</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-03-datalink-laag-13.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <p>Als een frame verstuurd aankomt op bijvoorbeeld poort 1, die deel uitmaakt van VLAN 100, dan zal de switch het frame openen en op de plaats van het VLAN ID de waarde 0000 0110 0100 zetten.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr><td colspan="16">Tag Control Information</td></tr>
+                    <tr><td>15</td><td>14</td><td>13</td><td>12</td><td>11</td><td>10</td><td>9</td><td>8</td><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+                    <tr><td colspan="3">PCP</td><td>DEI</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Het frame kan enkel doorgestuurd worden naar andere poorten die in hetzelfde VLAN zitten.</p>
+
+        <p>Een bijkomende reden om VLAN&#x27;s  te configureren is dat je prioriteit kan instellen op het netwerkverkeer. Je kan bijvoorbeeld een VLAN aanmaken voor alle apparaten die een hoge prioriteit nodig hebben. Dit zijn bijvoorbeeld Voice Over IP telefoons, Smart TV&#x27;s, toestellen die video moeten streamen en natuurlijk ook machine gestuurde tijds kritische processen (zoals lassen, lijmen, verven, ...) .</p>
+
+        <p>Afhankelijk van de netwerkpoort bevindt de gebruiker of het apparaat zich dus in een ander VLAN met andere toegangsrechten en prioriteit op het netwerk. De switch overschrijft dan de waarde in PCP met de waarde die jij hebt gekozen .</p>
+
+        <p>Merk op dat de gebruiker uiteraard geen rechtstreeks toegang mag krijgen tot de switch anders volstaat het om een kabel in een andere poort te stoppen om andere toegangsrechten en prioriteit te krijgen.</p>
+
+        <p>Hoeveel en welke VLAN&#x27;s moet je dan uiteindelijk maken? Dat is grotendeels vrij te kiezen en hangt er vanaf hoe het netwerk er uitziet.</p>
+
+        <p>Vaak is een VLAN voor:</p>
+
+        <ul>
+            <li>de computers van gewone gebruikers</li>
+            <li>Servers</li>
+            <li>Machine pc&#x27;s</li>
+            <li>Spraak &amp; video</li>
+            <li>Printers</li>
+        </ul>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

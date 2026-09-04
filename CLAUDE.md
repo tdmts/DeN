@@ -494,6 +494,14 @@ The image branch used to run only for a paragraph that was not a list item, so a
 written to `img/` and referenced by nothing, and the questions printed with the picture missing and
 nothing failing. They get no figcaption, because the paragraph's text is the question itself.
 
+**A paragraph carrying nothing but an image does not close a numbered list either.** Chapter 3 puts
+the drawing of questions 13 and 19 in an ordinary paragraph between the question and its options,
+where chapter 2 put it inside the question's own paragraph. The list closed on it, and the options
+then sat *beside* the question instead of inside it: `oplossingen_uit()` finds no `<ul>` in the
+question, so there is no letter to count and no answer to print, and the page looks perfectly
+ordinary. Only while an `<ol>` is open, the same guard the options rule carries, because after a
+plain bullet list a figure really is a figure.
+
 **A paragraph in the List Paragraph style that carries no numbering is the explanation under the
 bullet above it**, and goes inside that `<li>`. Word marks it no other way: no indent of its own, no
 second level, only the style. Miss it and a list of six bullets with a sentence under each comes out

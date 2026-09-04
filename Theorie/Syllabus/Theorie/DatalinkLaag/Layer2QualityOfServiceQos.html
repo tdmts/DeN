@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layer 2 Quality Of Service (QOS)</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Layer 2 Quality Of Service (QOS)</h1>
+
+        <p>Het ene frame is het andere niet. Sommige frames hebben een hogere prioriteit nodig op het netwerk dan andere. Denk bijvoorbeeld aan spraak (Voice Over IP / VOIP), video of een  machine gestuurd productieproces.</p>
+
+        <p>Bij al deze types verkeer treedt er best zo weinig mogelijk vertraging op gezien deze de indruk zouden geven dat ze &#x27;haperen&#x27;. Dit is natuurlijk nefast voor een tijd kritisch proces dat aangestuurd wordt over het netwerk.</p>
+
+        <p>Bij het verzenden van een frame kan de zender (bijvoorbeeld een computer of een switch) ervoor kiezen om het Priority Code Point veld een bepaalde waarde te geven.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr><td colspan="16">Tag Control Information</td></tr>
+                    <tr><td>15</td><td>14</td><td>13</td><td>12</td><td>11</td><td>10</td><td>9</td><td>8</td><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+                    <tr><td colspan="3">PCP</td><td>DEI</td><td colspan="12">12 bit VLAN ID</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <thead class="table-header-custom">
+                    <tr><th>PCP value</th><th>Priority</th><th>Traffic type</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>000 (0)</td><td>Default</td><td>Best effort (normaal)</td></tr>
+                    <tr><td>001 (1)</td><td>Lowest</td><td>Background</td></tr>
+                    <tr><td>010 (2)</td><td rowspan="5"></td><td>Excellent effort</td></tr>
+                    <tr><td>011 (3)</td><td>Excellent effort</td></tr>
+                    <tr><td>100 (4)</td><td>Excellent effort</td></tr>
+                    <tr><td>101 (5)</td><td>Video</td></tr>
+                    <tr><td>110 (6)</td><td>Voice</td></tr>
+                    <tr><td>111 (7)</td><td>Highest</td><td>Network control</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>In het hoofdstuk Virtual LAN heb je gelezen dat je, door het aanmaken van afzonderlijke VLAN&#x27;s, ervoor kan zorgen dat netwerkverkeer op bepaalde VLAN&#x27;s een hogere prioriteit krijgt.</p>
+
+        <p>Stel nu dat de zender het Priority Code Point veld ingesteld had op 000 (de normale prioriteit). Het frame komt aan op poort 1 die in VLAN 100 zit. Op dat VLAN had jij een priority ingesteld van 110 (Voice). De switch overschrijft nu die waarde vooraleer het frame wordt doorgestuurd naar een andere poort.</p>
+
+        <p>Een goed idee zou dus zijn om alle kritieke verkeer in één of meerdere afzonderlijke VLAN&#x27;s te stoppen met een hoge prioriteit.</p>
+
+        <p>De 8 niveaus moet je uiteraard niet uit het hoofd moet kennen. Weet gewoon dat QOS bestaat op laag 2 van het TCP/IP model en dat je dit kan instellen per VLAN.</p>
+
+        <p>Voor een industrieel netwerk zoals Profinet, EtherCAT of Modbus kan je bijvoorbeeld de waarde van het PCP veld instellen op Voice (value 6) om de vertraging minimaal te houden.</p>
+
+        <p>Aanvullend is er ook nog het Drop Eligible Indicator veld. Dit is een bit die bepaalt als het frame in aanmerking komt om gewist te worden bij teveel congestie op het netwerk. Dit zou bijvoorbeeld typisch het geval kunnen zijn voor streaming video en voice.</p>
+
+        <p>De aandachtige lezer zal meteen opmerken dat er hier een conflict optreedt als de DEI bit op 1 staat terwijl we QOS voice ingesteld hebben voor ons industrieel netwerk. Er mogen daar helemaal geen frames gewist worden. Opletten dus!</p>
+
+        <p>QOS is een <em>best effort</em> om netwerkverkeer een hogere prioriteit te geven. Het is geen garantie dat frames binnen een bepaalde tijd afgeleverd zullen worden.</p>
+
+        <p>In de praktijk volstaan VLAN&#x27;s en QOS uiteraard vaak wel om spraak, video en productieverkeer vloeiend over het netwerk te versturen. Weet echter wel dat vooral de afstand, het type transmissiemedium en het type netwerkkaart een grote rol spelen in de snelheid van het netwerk.</p>
+
+        <p>Praktisch ga je als volgt te werk: kies eerst een degelijke kabel. Bij voorkeur cat7 SFTP. Je configureert op een switch een VLAN en je koppelt daaraan een hogere prioriteit (voice). Op de switch zelf stel je de poorten in die bij dat bepaald VLAN horen. Vanaf het moment dat een apparaat verbonden is op die poort bevindt het zich in dat VLAN en is er automatisch ook die hogere prioriteit aan gekoppeld.</p>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

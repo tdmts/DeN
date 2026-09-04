@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test jezelf</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Test jezelf</h1>
+
+        <ol class="vragen">
+            <li>Welke twee taken neemt de datalink laag op zich?
+                <ul>
+                    <li>Afspraken omtrent een transmissiemedium zoals koperen kabels, glasvezel of draadloze signalen, en adressering in een lokaal netwerk</li>
+                    <li class="juist">Adressering in een lokaal netwerk, en controle van de juistheid van de gegevens in het frame</li>
+                    <li>Adressering in een globaal netwerk, en controle van de juistheid van de gegevens in het frame</li>
+                    <li>Afspraken omtrent een transmissiemedium zoals koperen kabels, glasvezel of draadloze signalen, en adressering in een globaal netwerk</li>
+                </ul>
+                <div class="oplossing">Het transmissiemedium is de fysieke laag en adressering over netwerken heen is de netwerk laag. Wat overblijft voor de datalink laag, is adresseren binnen het lokale netwerk en nagaan of het frame onderweg niet beschadigd is.</div>
+            </li>
+            <li>Hoe ziet een MAC adres er uit?
+                <ul>
+                    <li>192.168.0.1</li>
+                    <li class="juist">80-32-53-43-31-5D</li>
+                    <li>www.hogent.be</li>
+                </ul>
+            </li>
+            <li>Welke bewering over een MAC adres is niet waar?
+                <ul>
+                    <li>Het wordt door de fabrikant van de netwerkkaart vastgelegd</li>
+                    <li>In een MAC adres zit geen structuur die iets zegt over de locatie van een host in een netwerk</li>
+                    <li>Een MAC adres wordt gebruikt binnen een lokaal netwerk</li>
+                    <li>Een MAC adres moet uniek zijn in het lokaal netwerk</li>
+                    <li class="juist">Een hub kan overweg met MAC adressen</li>
+                </ul>
+                <div class="oplossing">Een hub werkt op de fysieke laag en leest geen enkel adres: hij zet elk binnenkomend signaal op al zijn poorten. Het is de switch die naar het MAC adres kijkt.</div>
+            </li>
+            <li>Als een computer twee bedrade en één draadloze NIC heeft, hoeveel unieke MAC adressen heeft de computer dan in totaal?
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulruimte">
+                        <tbody>
+                            <tr><td>&nbsp;</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">Drie. Het MAC adres hangt aan de netwerkkaart en niet aan de computer, en dat geldt voor een draadloze kaart evengoed als voor een bedrade.</div>
+            </li>
+            <li>Vul de lege velden van het frame aan
+                <div class="oplossing">Van links naar rechts: Destination MAC Address, Source MAC Address, Length / Type en Frame Check Sequence.</div>
+            </li>
+        </ol>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <thead class="table-header-custom">
+                    <tr><th><strong>7 bytes</strong></th><th><strong>1 byte</strong></th><th><strong>6 bytes</strong></th><th><strong>6 bytes</strong></th><th><strong>2 bytes</strong></th><th><strong>46 tot 1500 bytes</strong></th><th><strong>4 bytes</strong></th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Preamble</td><td>Start Frame Delimiter</td><td></td><td></td><td></td><td>Data</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ol class="vragen" start="6">
+            <li>Waarvoor staat de afkorting LAN?
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulruimte">
+                        <tbody>
+                            <tr><td>&nbsp;</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">Local Area Network.</div>
+            </li>
+            <li>Welke bewering is waar?
+                <ul>
+                    <li>Een LAN is een verzameling van meerdere WANs</li>
+                    <li class="juist">Een WAN is een verzameling van meerdere LANs</li>
+                </ul>
+            </li>
+            <li>Het HOGENT netwerk is een …
+                <ul>
+                    <li class="juist">LAN</li>
+                    <li>WAN</li>
+                </ul>
+                <div class="oplossing">Hoe groot het gebied is, doet er niet toe: een LAN is het netwerk van één organisatie op één plaats, en daarin verschilt de hogeschool niet van je netwerk thuis.</div>
+            </li>
+            <li>Het internet is een …
+                <ul>
+                    <li>LAN</li>
+                    <li class="juist">WAN</li>
+                </ul>
+            </li>
+            <li>Het apparaat dat je gebruikt om met een ander netwerk te communiceren is een…
+                <ul>
+                    <li>Hub</li>
+                    <li>Switch</li>
+                    <li class="juist">Router</li>
+                </ul>
+            </li>
+            <li>Als je meerdere lokale netwerken wil maken met verschillende toegangsrechten voor de gebruikers op dezelfde hardware, dan kan je gebruik maken van:
+                <ul>
+                    <li>cat7</li>
+                    <li class="juist">VLAN</li>
+                    <li>802.11 n</li>
+                    <li>OFDMA</li>
+                </ul>
+            </li>
+            <li>Wat gebeurt er als een switch een frame ontvangt waarvan het destination MAC adres niet voorkomt in zijn MAC adreslijst?
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulruimte">
+                        <tbody>
+                            <tr><td>&nbsp;</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">Hij gedraagt zich even als een hub en zet het frame op al zijn poorten. Dat heet flooden. Zodra de ontvanger antwoordt, ziet de switch diens MAC adres als source op een bepaalde poort en vult hij zijn MAC address table aan; het volgende frame gaat wel naar die ene poort.</div>
+            </li>
+            <li>Door hoeveel VLANs zou je deze opstelling kunnen vervangen?
+                <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 82.3mm">
+                    <img src="../../../../img/syllabus-03-datalink-laag-30.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+                </figure>
+                <ul>
+                    <li>1</li>
+                    <li class="juist">2</li>
+                    <li>4</li>
+                </ul>
+                <div class="oplossing">De twee switches dragen twee gescheiden netwerken, en dat zijn er dus twee. Één switch met twee VLANs doet hetzelfde werk met de helft van de hardware.</div>
+            </li>
+            <li>Waarvoor staat de afkorting QOS?
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulruimte">
+                        <tbody>
+                            <tr><td>&nbsp;</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">Quality Of Service.</div>
+            </li>
+            <li>Welk QOS niveau zou je instellen als je een industrieel netwerk gebruikt dat een kritisch proces aanstuurt?
+                <ul>
+                    <li>QOS 0 of 1</li>
+                    <li class="juist">QOS 5 of 6</li>
+                </ul>
+            </li>
+            <li>Waarom wordt het ARP protocol gebruikt?
+                <ul>
+                    <li>Zodat een computer binnen een lokaal netwerk het IP adres te weten komt van de ontvanger op basis van de ontvanger zijn MAC adres</li>
+                    <li class="juist">Zodat een computer binnen een lokaal netwerk het MAC adres te weten komt van de ontvanger op basis van de ontvanger zijn IP adres</li>
+                    <li>Om verschillende VLANs van elkaar te scheiden met behulp van destination en source MAC adres</li>
+                    <li>Om prioritair netwerkverkeer altijd voorrang te geven, zelfs al is er sprake van een zeer hoge belasting <em>van het netwerk</em></li>
+                </ul>
+            </li>
+            <li>Op welke twee frequentiebanden zendt een dual band router uit?
+                <ul>
+                    <li>100 Mbps en 1000 Mbps</li>
+                    <li>cat5 en cat6</li>
+                    <li class="juist">2.4 GHz en 5 GHz</li>
+                </ul>
+            </li>
+            <li>Welke is de meest performante standaard?
+                <ul>
+                    <li>802.11 ac</li>
+                    <li>802.11 ax</li>
+                    <li>802.11 b</li>
+                    <li class="juist">802.11 be</li>
+                    <li>802.11 g</li>
+                    <li>802.11 n</li>
+                </ul>
+            </li>
+            <li>Welk principe zie je afgebeeld in deze figuur?
+                <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+                    <img src="../../../../img/syllabus-03-datalink-laag-31.jpeg" class="img-fluid" alt="Afbeelding uit de syllabus">
+                </figure>
+                <ul>
+                    <li>Ethernet</li>
+                    <li>MIMO</li>
+                    <li class="juist">Channel bonding</li>
+                    <li>OFDMA</li>
+                </ul>
+                <div class="oplossing">Onder de rij kanalen van 20 MHz staat een rij van 40 MHz, waarin telkens twee buren tot één kanaal samengenomen zijn. Dubbele bandbreedte, en daarmee dubbele snelheid.</div>
+            </li>
+            <li>Aan welke voorwaarden voldoet een goede PSK?
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulruimte">
+                        <tbody>
+                            <tr><td>&nbsp;</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">Lang, en niet te raden. Tegen AES zelf is geen aanval bekend, dus wat een aanvaller overhoudt, is je sleutel uitproberen. Een woord uit het woordenboek, een naam of een geboortedatum houdt dat niet tegen, en de sleutel die de fabrikant op de router zette, verander je.</div>
+            </li>
+            <li>Welke security mode(s) en encryptie standaard zou je instellen op een draadloze router?
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulruimte">
+                        <tbody>
+                            <tr><td>&nbsp;</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">WPA3 als je router en je toestellen het aankunnen, anders WPA2. In beide gevallen AES als encryptie, nooit TKIP: dat is de oude standaard van WPA en ze is intussen afgeschreven.</div>
+            </li>
+        </ol>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+    <script src="../../../../oplossingen.js"></script>
+</body>
+
+</html>

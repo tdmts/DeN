@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frame</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Frame</h1>
+
+        <p>Zoals je weet gebruiken we transmissiemedia zoals bijvoorbeeld ethernetkabel om boodschappen tussen machines uit te wisselen. Op de kabel worden die boodschappen voorgesteld door signaalniveaus. In de praktijk worden dat dus een reeks logische enen en nullen. Samen vormen ze een ethernet frame.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr><td><p>Preamble</p>
+        <p>(7 bytes)</p></td><td><p>Start Frame Delimiter</p>
+        <p>(1 byte)</p></td><td><p>Destination MAC Address</p>
+        <p>(6 bytes)</p></td><td><p>Source MAC Address</p>
+        <p>(6 bytes)</p></td><td><p>Length</p>
+        <p>/</p>
+        <p>Type</p>
+        <p>(2 bytes)</p></td><td><p>Data</p>
+        <p>(46 – 1500 bytes)</p></td><td><p>Frame Check Sequence (CRC)</p>
+        <p>(4 bytes)</p></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Een frame begint met een <em>preamble</em>. Dit zijn 56 bits (= 7*8) aan afwisselend 1en en 0en. Dit is zo omdat de ontvanger hierop kan synchroniseren.</p>
+
+        <p>Daarna volgt de <em>S</em><em>tart </em><em>F</em><em>rame </em><em>D</em><em>elimiter</em>. Dit is in feite de laatste preamble byte en ziet er zo uit: 101010<strong>11</strong><strong>. </strong>Doordat de laatste twee bits 1 zijn weet de ontvanger dat onmiddellijk hierna de eigenlijke informatie volgt.</p>
+
+        <p>Die informatie begint met het <em>destination MAC adres</em> (ontvanger) en het <em>source MAC adres</em> (zender). Een MAC adres wordt genoteerd in hexadecimaal formaat en ziet er bijvoorbeeld zo uit: 80-32-53-43-31-5D. Uiteraard gaat dit in het frame omgezet worden naar een reeks van 48 bits.</p>
+
+        <p>Daarna volgt de lengte of het type. Afhankelijk van de waarde in dit veld krijgt het een andere betekenis. Als de waarde hiervan kleiner of gelijk is aan 1500 dan wordt hier de lengte van het data veld aangeduid in bytes. Als de waarde groter of gelijk is aan 1536 dan wordt hier het type mee aangeduid. Met het type weet je iets meer over de inhoud van de data in het frame.</p>
+
+        <p>Als de waarde in dit veld bijvoorbeeld 2048 is, dan weet je dat het om een IPv4-pakket gaat dat in het frame zit. Deze informatie is belangrijk omdat de netwerklaag van het ontvangende systeem op basis hiervan weet welk protocol de ontvangen gegevens moet verwerken.</p>
+
+        <p>De tussenliggende waarden (1501–1535) worden niet gebruikt, om verwarring tussen de twee interpretaties (lengte of type) te voorkomen.</p>
+
+        <p>In het voorlaatste veld vinden we de data terug die over het netwerk verzonden zal worden. De minimale lengte van het data-veld is 46 bytes en de maximale lengte is 1500 bytes. Als de verzonden gegevens korter zijn dan 46 bytes, wordt het frame automatisch aangevuld met opvuldata (padding) om de minimale lengte te bereiken. Als je meer dan 1500 bytes wil versturen dan zal die informatie opgesplitst moeten worden in meerdere frames of wordt er gebruik gemaakt van jumbo frames.</p>
+
+        <p>Als laatste is er de Frame Check Sequence. Toen het frame gemaakt werd door de ontvanger is er op de velden source, destination, length en data een <em>checksum</em> berekend. Een checksum is een soort van controle getal dat de ontvanger kan gebruiken om te kijken als het frame geen fouten bevat. Bij het ontvangen van de frame wordt opnieuw de checksum berekend en als deze verschilt dan weet de ontvanger dat er een fout is opgetreden.</p>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apparaten op een computernetwerk</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Apparaten op een computernetwerk</h1>
+
+        <h2>Hub</h2>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 56.4mm">
+            <img src="../../../../img/syllabus-03-datalink-laag-05.png" class="img-fluid" alt="We beginnen de reeks met een &amp;#x27;uitzondering&amp;#x27;. De hub is, net als een switch of router, een apparaat dat het middelpunt kan zijn van aangesloten netwerkapparaten in een single network (= LAN).">
+            <figcaption class="figure-caption">We beginnen de reeks met een &#x27;uitzondering&#x27;. De hub is, net als een switch of router, een apparaat dat het middelpunt kan zijn van aangesloten netwerkapparaten in een single network (= LAN).</figcaption>
+        </figure>
+
+        <p>De hub werkt op de fysieke laag van het TCP/IP model. Dit betekent dat een hub geen weet heeft van MAC adressen. Het enige wat een hub doet is een binnenkomend frame verspreiden naar alle andere poorten.</p>
+
+        <p>Iedere ethernetpoort is intern met elkaar verbonden waardoor we een gedeeld transmissiemedium krijgen. Een frame dat aankomt op poort 1 komt tegelijkertijd aan op poort 2, 3 en 4. Een frame dat verstuurd wordt naar alle mogelijke ontvangers noemen we een broadcast.</p>
+
+        <p>Alle apparaten ontvangen het frame, zelfs al is het niet voor hen bestemd. Dit zorgt voor veel onnodig verkeer op het netwerk. Daarnaast zorgt het ook voor botsingen of collisions omdat twee apparaten tegelijkertijd frames kunnen versturen.</p>
+
+        <p>Het gebruiken van een hub in een computernetwerk is potentieel onveilig. Alle verkeer wordt namelijk doorgestuurd naar alle netwerkapparaten op het netwerk. Ieder netwerkapparaat ontvangt ieder frame.</p>
+
+        <p>De frames beschikken over een source en destination MAC adres. Als het destination MAC adres overeenkomt met het MAC adres van een netwerkapparaat wordt het frame door de netwerkkaart weerhouden en anders wordt het genegeerd. Het is dus de netwerkkaart die beslist om het pakket te aanvaarden of niet.</p>
+
+        <p>Als we een netwerkkaart in monitor mode plaatsen dan worden alle pakketten weerhouden, zelfs al zijn deze niet voor de netwerkkaart bestemd. Op die manier kunnen we alle gegevens onderscheppen.</p>
+
+        <p>Dit probleem stelt zich echter niet bij een switch of router gezien niet alle ethernetpoorten met elkaar intern doorverbonden zijn.</p>
+
+        <h2>Network Interface Card (NIC)</h2>
+
+        <p>Een network interface card (NIC) of in het Nederlands een netwerkkaart is een hardware onderdeel in een computer.</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 122.6mm">
+            <img src="../../../../img/syllabus-03-datalink-laag-06.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <p>Dit onderdeel is uiteraard nodig om die computer deel te uit te laten maken van een computernetwerk.</p>
+
+        <p>Soms is de netwerkkaart een aparte PCI-Express kaart maar tegenwoordig is deze al vaak standaard aanwezig op het moederbord.</p>
+
+        <p>De meeste netwerkkaarten zijn full duplex. Dit betekent dat ze gelijktijdig kunnen verzenden en ontvangen. De technologie die wordt gebruikt beslaat de eerste twee lagen van het TCP/IP model namelijk de fysieke laag en de datalink laag.</p>
+
+        <p>De fysieke laag omdat het type transmissiemedium (coax, RJ-45, glasvezel, ...) bepalend is voor de connector.  Voor de meeste toepassingen wordt vooral de netwerkkaart met RJ-45 (UTP / STP / FTP) connector gebruikt. Indien een computer geen RJ-45 aansluiting heeft bestaan er USB-adapters op de markt.</p>
+
+        <p>Om een computer met een netwerkkaart te laten werken is software nodig: de zogenaamde drivers of stuurprogramma&#x27;s. Voor veelgebruikte kaarten zijn deze drivers vaak onderdeel van het besturingssysteem. Anders worden ze met het product meegeleverd, of zijn doorgaans te downloaden op de website van de fabrikant van de netwerkkaart.</p>
+
+        <p>De snelheid van de netwerkkaart wordt vaak uitgedrukt als 10/100 Ethernet wat slaat op 10 Mbps of 100 Mbps ofwel 10/100/1000 Ethernet waarbij dit laatste slaat op 1 Gbps.</p>
+
+        <p>Iedere netwerkkaart heeft, zoals je al weet, zijn eigen MAC adres. Dit adres is statisch (het verandert nooit) en wordt toegekend tijdens het fabricageproces.</p>
+
+        <h2>Powerline adapter</h2>
+
+        <p>In de winkel zal je geen hub meer kunnen kopen maar powerline adapters werken wel nog volgens dit principe.</p>
+
+        <p>Deze adapters gebruiken de elektriciteitskabels.</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 86.0mm">
+            <img src="../../../../img/syllabus-03-datalink-laag-07.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <p>De ene powerline adapter verbind je bijvoorbeeld via een ethernetkabel met een vrije poort op hub, switch of router en de andere powerline adapter, enkele kamers verder, verbind je via een ethernetkabel met een computer. Je hebt dus altijd minstens twee powerline adapters nodig.</p>
+
+        <p>De theoretische snelheid van een powerline netwerk varieert van 500 Mbps tot 2 Gbps maar weet dat de afstand en de kwaliteit van de bedrading een grote invloed hebben. Ook het aangesloten aantal apparaten kan een rol spelen gezien het elektriciteitsnetwerk geen punt tot punt verbinding is tussen de verschillende adapters.</p>
+
+        <p>Sommige powerline adapters zenden ook Wi-Fi uit. Op die manier kan je makkelijk jouw draadloos netwerk uitbreiden over langere afstanden.</p>
+
+        <h2>Switch</h2>
+
+        <p>Een switch is een ‘slimmer’ apparaat dat net zoals een hub het middelpunt kan zijn van aangesloten netwerkapparaten zoals computers, printers, spelconsoles,… in een single network.</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-03-datalink-laag-08.jpeg" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <p>Een ‘gewone’ switch werkt op de datalink laag (de tweede laag) van het TCP/IP model. Dit betekent dat de switch overweg kan met MAC adressering om frames efficiënt op hun bestemming te brengen binnen hetzelfde netwerk.</p>
+
+        <p>Met de netwerk laag (de derde laag) van het TCP/IP model kan een gewone switch echter niet overweg. Dit betekent dat dit type switch geen IP adressen kan interpreteren om pakketten op hun bestemming te brengen buiten het lokale netwerk. Deze taak zal opgenomen moeten worden door een router.</p>
+
+        <p>Er bestaat ook zoiets als een ‘layer 3 switch’ die wel overweg kan met IP adressen. Deze is vooral handig in grote netwerken waarbij deze dan eenvoudige taken kan overnemen van een router. Dit apparaat bespreken we echter niet want het valt buiten het bereik van deze cursus.</p>
+
+        <p>Intern in de switch wordt een <em>MAC address table</em> bijgehouden. In deze tabel staat er welk MAC address bij welke poort op de switch hoort.</p>
+
+        <p>Een switch opent iedere frame  die aankomt op een van zijn poorten (in bovenstaande figuur tel je er 26) en kijkt naar het destination MAC address (en het source MAC address).</p>
+
+        <p>In de tabel wordt opgezocht welke poort bij het destination MAC address hoort en het frame wordt op deze enkele poort gezet. Een groot contrast met de hub waarbij het frame doorgestuurd werd naar alle poorten. We kunnen bijgevolg stellen dat een switch veel efficiënter en veiliger werkt dan een hub.</p>
+
+        <p>Je vraagt je misschien af hoe een switch weet welk MAC adres bij welke poort hoort? Met andere woorden: hoe wordt de MAC address table opgevuld? De switch is een lerend apparaat dat uit het netwerkverkeer informatie kan afleiden.</p>
+
+        <p>Onderstel even dat we een switch hebben met 4 poorten en dat de switch net aangezet werd. De MAC address table is dan leeg en een frame moet verstuurd worden van apparaat A naar apparaat B. Beide apparaten zijn op dezelfde switch aangesloten.</p>
+
+        <p>Wanneer een frame aankomt op de switch dan weet de switch het source MAC address en de overeenkomstige poort. De MAC address table wordt aangevuld met deze informatie.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+                    <tr><td>80-32-53-43-31-5D</td><td>?</td><td>?</td><td>?</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Het frame moet evenwel gestuurd worden naar de ontvanger en voor het destination MAC address is er geen informatie in de MAC address table. De switch gedraagt zich dan even als een hub en stuurt het frame naar alle poorten. Dit wordt ook wel een broadcast of flood (= vloed) genoemd.</p>
+
+        <p>Alle verbonden apparaten ontvangen het frame maar zij bekijken het destination MAC address en besluiten (vrijwillig) dat het frame niet voor hen bestemd is en laten het vallen (= frame drop). Enkel de ontvanger weerhoudt het frame en indien er informatie aangevraagd werd door de zender dan stuurt de ontvanger een frame terug.</p>
+
+        <p>De switch ziet nu opnieuw een binnenkomend frame met een source MAC address (die nu eigenlijk het MAC address is van apparaat B) op de bijhorende poort en vult de MAC address table opnieuw aan.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+                    <tr><td>80-32-53-43-31-5D</td><td>?</td><td>80-32-53-43-31-59</td><td>?</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Wanneer apparaat A nu opnieuw een frame verstuurt naar apparaat B dan zijn beide MAC addresses gekend in de MAC address table. Het frame wordt dan slechts naar 1 poort verstuurd. Dit is dan uiteraard geen broadcast maar wel een unicast.</p>
+
+        <h2>Industriële switch</h2>
+
+        <p>De Beckhoff industriële switch is een standaard layer 2 switch die je kan plaatsen op een DIN-rail. Gewoon 24V voorzien, de uitvoering kiezen (aantal poorten), monteren en je bent klaar.</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 61.2mm">
+            <img src="../../../../img/syllabus-03-datalink-laag-09.jpeg" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <p>Bekijk eens de datasheet op volgende pagina’s en beantwoord de vragen.</p>
+
+        <ol class="vragen">
+            <li>Welk type kabel sluit je aan op een RJ-45 poort?
+                <ul>
+                    <li class="juist">Ethernet</li>
+                    <li>Glasvezel</li>
+                    <li>Coax</li>
+                </ul>
+            </li>
+            <li>Welke uitvoering kan tot 1Gbps aan?
+                <ul>
+                    <li>CU2016</li>
+                    <li class="juist">CU2208</li>
+                    <li>CU2005</li>
+                </ul>
+            </li>
+            <li>Wat gebeurt er met frames die te kort zijn?
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulruimte">
+                        <tbody>
+                            <tr><td>&nbsp;</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">Die worden niet doorgestuurd. De switch werkt volgens store-and-forward: hij leest het frame eerst helemaal in, en alles korter dan 64 bytes laat hij vallen, net als een frame met een CRC-fout.</div>
+            </li>
+            <li>Wat gebeurt er met frames die te lang zijn? Welke switch kan er wel mee overweg?
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulruimte">
+                        <tbody>
+                            <tr><td>&nbsp;</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">Alles boven 1536 bytes gaat er evenmin door. De CU2208 is de uitzondering: die kan vanaf hardwareversie 01 jumbo frames aan tot 9720 bytes, op al zijn poorten.</div>
+            </li>
+            <li>Waarom is het nuttig dat deze switch tot 1000 adressen per poort kan onthouden?
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulruimte">
+                        <tbody>
+                            <tr><td>&nbsp;</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">Dan hangt er aan één poort niet één apparaat maar een heel netwerksegment. De switch onthoudt elk MAC adres erachter en blijft de frames gericht doorsturen in plaats van te flooden.</div>
+            </li>
+        </ol>
+
+        <p>Product overviewBECKHOFF</p>
+
+        <p>Product overview</p>
+
+        <p>Introduction</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 153.0mm">
+            <img src="../../../../img/syllabus-03-datalink-laag-10.jpg" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <p>The Beckhoff Ethernet switches offer five, eight or sixteen RJ45 Ethernet ports. Switches relay incoming Ethernet frames to the destination ports. In full duplex mode, they prevent collisions. They can be used universally in automation and office networks. User-friendly installation via integrated mounting rail adapter.</p>
+
+        <p>Their particular suitability for use in the industrial environment is underlined by the following benefits:</p>
+
+        <ul>
+            <li>Compact design in metal housing</li>
+            <li>10/100 Mbaud (CU2208: 1000 Mbaud) with automatic baud rate detection</li>
+            <li>Half or full duplex operation</li>
+            <li>Cross-over detection: automatic detection and correction of crossover and straight-through Ethernet cables</li>
+            <li>Fast diagnosis with 2 LEDs per Ethernet port directly on the RJ45 socket</li>
+            <li>Simple mounting on DIN rail</li>
+            <li>Industrial design</li>
+        </ul>
+
+        <p>Technical data</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <thead class="table-header-custom">
+                    <tr><th colspan="3">Technical data</th><th>CU2005</th><th>CU2008</th><th>CU2016</th><th colspan="3">CU2208</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td colspan="3">Bus system</td><td colspan="6"><p>Ethernet (all IEEE 802.3-based protocols)</p>
+        <p>Store-and-forward switching mode, unmanaged</p></td></tr>
+                    <tr><td colspan="3">Number of Ethernet ports</td><td>5</td><td>8</td><td>16</td><td colspan="3">8</td></tr>
+                    <tr><td colspan="3">Ethernet interface</td><td colspan="3">10BASE-T/100BASE-TX Ethernet with RJ45</td><td colspan="3"><p>10 BASE-T/ I00BASETX/</p>
+        <p>I000BASE-T</p>
+        <p>Ethernet with RJ45</p></td></tr>
+                    <tr><td colspan="3">Cable length</td><td colspan="6">up to 100 m twisted pair, switches cascadable without restriction</td></tr>
+                    <tr><td colspan="3">Baud rate</td><td colspan="3">10/100 Mbit/s, IEEE 802.3u auto-negotiation, half or full duplex, automatic settings</td><td colspan="3">10/100/1000 Mbit/s, IEEE 802.3u autonegotiation, half or full duplex, automatic settings</td></tr>
+                    <tr><td colspan="3">Diagnosis</td><td colspan="3"><p>2 LEDs per channel:</p>
+        <ul>
+            <li>Link/Activity</li>
+            <li>100 Mbit</li>
+        </ul></td><td colspan="3"><p>2 LEDs per channel:</p>
+        <ul>
+            <li>Link/Activity</li>
+            <li>1000 Mbit</li>
+        </ul></td></tr>
+                    <tr><td colspan="3">Power supply</td><td colspan="6">via three-pole spring loaded terminal (+, -, PE)</td></tr>
+                    <tr><td colspan="3">Supply voltage</td><td colspan="4">24 Voc (18 Voc to 30 Voc), protected against polarity reversal. Observe UL note</td><td></td><td></td></tr>
+                    <tr><td colspan="3">Current consumption</td><td>typically 90 mA</td><td>typically 100 mA</td><td>typically 150 mA</td><td colspan="3">typically 180 mA</td></tr>
+                    <tr><td colspan="3">Weight</td><td>approx. 270 g</td><td>approx. 340 g</td><td>approx. 540 g</td><td colspan="3">approx. 430 g</td></tr>
+                    <tr><td colspan="3">Dimensions without plugs (W x H x D)</td><td><p>approx. 73 mm x</p>
+        <p>100 mm x 38 mm</p></td><td><p>approx. 85 mm x</p>
+        <p>100 mm x 38 mm</p></td><td>approx. 146.5 mm x 100 mm x 38 mm</td><td colspan="3">approx. 122 mm x 100 mm x 38 mm</td></tr>
+                    <tr><td>Mounting</td><td></td><td></td><td colspan="6">on 35 mm DIN rail (mounting rail according to EN 50022)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Basic function principles</p>
+
+        <p>Store and Forward</p>
+
+        <p>The switch operates according to the store-and-forward principle. Frames that are faulty (CRC error), too short (&lt; 64 bytes) or too long (&gt; 1536 bytes) are generally not passed on.</p>
+
+        <p>Address Memory</p>
+
+        <p>The switch learns the MAC addresses of the connected devices for each port. Only frames that have these addresses, broadcast/or multi-cast addresses, or which have unknown addresses are passed on to this port. Because the switch remembers more than 1000 addresses for each port, it is also suitable for connecting entire network segments. After approx. 5 minutes (Aging Time) unused addresses are removed from the memory. If required, they are re-learnt again later.</p>
+
+        <p>Throughput</p>
+
+        <p>The switch can pass through up to 148800 Ethernet frames per second (Wire Speed)</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 0.3mm">
+            <img src="../../../../img/syllabus-03-datalink-laag-11.jpg" class="img-fluid" alt="POE - Power over Ethernet">
+            <figcaption class="figure-caption">POE - Power over Ethernet</figcaption>
+        </figure>
+
+        <p>The CU20xx, CU22xx and CU26xx switches do not support POE according to IEEE 802.3; they do not reveal themselves as PSE (power sourcing equipment) or PD (powered devices). Any PSE connected to the switch must therefore not apply a voltage.</p>
+
+        <p>No provision is made in the standard for passive interconnection or distribution.</p>
+
+        <p>Jumbo Frames</p>
+
+        <p>Jumbo Frames are oversized Ethernet telegrams with a length of more than 1518 bytes. They are used in applications that require very high data throughput, for example.</p>
+
+        <p>The CU2208 (from hardware version 01) supports Jumbo Frames up to 9720 bytes on all ports. Please note the following:</p>
+
+        <ul>
+            <li>Jumbo Frames only supported by ports with Gbit link</li>
+            <li>Jumbo Frames place high demands on internal data transmission. It is therefore necessary to assess the data throughput that can be achieved through the CU2208 for each individual application. Under full load no more than 2 ports can be used for Jumbo Frames at the same time.</li>
+        </ul>
+
+        <p>Jumbo Frames are not subject to standardization. It is therefore necessary to verify that the frames used by the application are supported by the CU2208.</p>
+
+        <h2>Managed switch</h2>
+
+        <p>Een gewone layer 2 switch, zoals we net hebben besproken, is een apparaat zonder complexen. Je zet het ergens in het netwerk, je voorziet spanning en je kan naar eigen goeddunken apparaten aansluiten. Er is geen extra configuratie nodig.</p>
+
+        <p>Dat werkt goed zolang de vereisten enkel zijn dat frames moeten verplaatst worden tussen plaats A en B op het netwerk.</p>
+
+        <p>In een bedrijf of een grotere organisatie is het echter iets complexer dan dat. Er zijn verschillende types netwerkverkeer zoals spraak, video, data,  frames die in (bijna) realtime moeten afgeleverd worden voor een geautomatiseerd productie proces, ... Er zijn ook verschillende types gebruikers zoals machine-operatoren, management, ... en niet iedereen heeft dezelfde rechten op het netwerk.</p>
+
+        <p>Op een managed switch kan je je aanmelden en daarna het verkeer parameterizeren. De parameters die je kan instellen hebben voornamelijk te maken met de informatie die je kan terugvinden in een frame. In het labo ga je hierop een oefening moeten maken.</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-03-datalink-laag-12.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <p>Je zou bijvoorbeeld kunnen instellen dat enkel MAC adres 00:11:22:33:44:55 aangesloten mag zijn op poort 1 van de switch. Op die manier kan je de toegang beperken tot het netwerk. Uiteraard moet je er dan wel voor zorgen dat de gebruiker niet gewoon zijn kabel in een andere poort kan stoppen...</p>
+
+        <p>Maar hoe weet je nu bijvoorbeeld dat de data in een frame tijdsgevoelig is? Of hoe stel je rechten in? Die informatie staat niet vermeld in de velden van een standaard ethernet frame…</p>
+
+        <p>Herinner je je nog dat we in vorig hoofdstuk zeiden dat in het length field van een frame de waarde niet groter mocht zijn dan 1500? Als dat toch het geval is, dan weet de switch dat we te maken hebben met een complexer ethernet frame en zullen de velden anders geïnterpreteerd worden.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr><td><p>Preamble</p>
+        <p>(7 bytes)</p></td><td><p>Start Frame Delimiter</p>
+        <p>(1 byte)</p></td><td><p>Destination MAC Address</p>
+        <p>(6 bytes)</p></td><td><p>Source MAC Adddres</p>
+        <p>(6 bytes)</p></td><td><p><strong>Tag Protocol Identifier</strong></p>
+        <p>(2 bytes)</p></td><td><p><strong>Tag Control Information</strong></p>
+        <p>(2 bytes)</p></td><td><p>Length</p>
+        <p>(2 bytes)</p></td><td><p>Data</p>
+        <p>(46 – 1500 bytes)</p></td><td><p>Frame Check Sequence</p>
+        <p>(4 bytes)</p></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Waar vroeger het Length veld stond staat nu het Tag Protocol Identifier veld. Als de waarde hiervan hexadecimaal 0x8100 (33024 decimaal) is, dan weet de switch dat we te maken hebben met een frame waarbij er eerst nog een Tag Control Information veld volgt vooraleer de length en de data worden doorgestuurd.</p>
+
+        <p>Als we het Tag Control Information veld even in detail bekijken dan zien we dat er drie bits voorzien worden voor de Priority Code Point en één bit voor Drop Eligible Indicator. De naam alleen al geven je misschien een idee waarvoor deze velden zullen dienen. Een ander veld is VLAN ID. Beide bespreken we in volgende hoofdstukken en we beginnen met het uitleggen wat een VLAN precies is.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr><td colspan="3">Tag Control Information</td></tr>
+                    <tr><td><p>Priority Code Point (PCP)</p>
+        <p>(3 bits)</p></td><td><p>Drop Eligible Indicator (DEI)</p>
+        <p>(1 bit)</p></td><td><p>VLAN ID</p>
+        <p>(12 bits)</p></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+    <script src="../../../../oplossingen.js"></script>
+</body>
+
+</html>
