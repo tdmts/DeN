@@ -87,13 +87,13 @@ window.LAB_REFERENCE = {
                     {
                         id: 'tcpip-overzicht',
                         name: 'Kernpunten en studievragen',
-                        blurb: 'Wat je uit dit hoofdstuk moet meenemen, en de vragen waarop je achteraf een antwoord hoort te hebben.',
+                        blurb: 'Waarom een lagenmodel bestaat, welke laag welke afspraken draagt, en welk van de twee modellen de praktijk gebruikt.',
                         href: 'TcpIpModel/Overzicht.html'
                     },
                     {
                         id: 'tcpip-osi-model',
                         name: 'OSI model',
-                        blurb: 'Zeven lagen, ontstaan uit de standaardisatie die een eind maakte aan hardware die alleen met zichzelf praatte.',
+                        blurb: 'Zeven lagen, bedacht toen hardware van verschillende fabrikanten niet samenwerkte, vandaag nog als academische referentie.',
                         href: 'TcpIpModel/OsiModel.html'
                     },
                     {
@@ -105,7 +105,7 @@ window.LAB_REFERENCE = {
                     {
                         id: 'tcpip-test-jezelf',
                         name: 'Test jezelf',
-                        blurb: 'Vijf vragen over de lagen en waar ze voor dienen.',
+                        blurb: 'Zes vragen over de lagen en waar ze voor dienen.',
                         href: 'TcpIpModel/TestJezelf.html'
                     }
                 ]
@@ -117,7 +117,7 @@ window.LAB_REFERENCE = {
                     {
                         id: 'fysiek-overzicht',
                         name: 'Kernpunten en studievragen',
-                        blurb: 'Wat je uit dit hoofdstuk moet meenemen, en de vragen waarop je achteraf een antwoord hoort te hebben.',
+                        blurb: 'Het transmissiemedium en de netwerktopologie: de afspraken over kabel, connector en signaalniveau.',
                         href: 'FysiekeLaag/Overzicht.html'
                     },
                     {
@@ -177,7 +177,7 @@ window.LAB_REFERENCE = {
                     {
                         id: 'datalink-overzicht',
                         name: 'Kernpunten en studievragen',
-                        blurb: 'Wat je uit dit hoofdstuk moet meenemen, en de vragen waarop je achteraf een antwoord hoort te hebben.',
+                        blurb: 'Foutcontrole met CRC en adressering met MAC, en de apparaten die een frame binnen het LAN bezorgen.',
                         href: 'DatalinkLaag/Overzicht.html'
                     },
                     {
@@ -261,7 +261,7 @@ window.LAB_REFERENCE = {
                     {
                         id: 'netwerk-overzicht',
                         name: 'Kernpunten en studievragen',
-                        blurb: 'Wat je uit dit hoofdstuk moet meenemen, en de vragen waarop je achteraf een antwoord hoort te hebben.',
+                        blurb: 'IP adressering buiten het LAN: subnetmasker, private ranges, DHCP en de routing decision van een router.',
                         href: 'NetwerkLaag/Overzicht.html'
                     },
                     {
@@ -381,7 +381,7 @@ window.LAB_REFERENCE = {
                     {
                         id: 'transport-overzicht',
                         name: 'Kernpunten en studievragen',
-                        blurb: 'Wat je uit dit hoofdstuk moet meenemen, en de vragen waarop je achteraf een antwoord hoort te hebben.',
+                        blurb: 'TCP tegenover UDP, het poortnummer dat applicaties uit elkaar houdt, en NAT met port forwarding.',
                         href: 'TransportLaag/Overzicht.html'
                     },
                     {
@@ -429,7 +429,7 @@ window.LAB_REFERENCE = {
                     {
                         id: 'applicatie-overzicht',
                         name: 'Kernpunten en studievragen',
-                        blurb: 'Wat je uit dit hoofdstuk moet meenemen, en de vragen waarop je achteraf een antwoord hoort te hebben.',
+                        blurb: 'De bovenste laag, met HTTP, SMTP, FTP en SSH, het formaat van de data en de encapsulatie door de vijf lagen.',
                         href: 'ApplicatieLaag/Overzicht.html'
                     },
                     {

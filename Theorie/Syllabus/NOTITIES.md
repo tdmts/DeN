@@ -1,54 +1,84 @@
 # Notities bij de syllabus
 
-Wat bij het overzetten opviel en wat jij moet beslissen. De tekst zelf is
-letterlijk overgenomen, dus hier staat niets dat al veranderd is.
+Wat bij het overzetten opviel, en wat erover beslist is. Een hoofdstuk dat
+nog geen redactionele doorloop gehad heeft, staat hier met wat jij moet
+beslissen; een hoofdstuk dat er wel een gehad heeft, met wat er beslist is en
+waarom.
 
 Wat de omzetting zelf moest raden of liet vallen, staat in
 [IMPORT.md](IMPORT.md), en dat bestand wordt door de importer geschreven.
 
 ## Hoofdstuk 1, TCP/IP model
 
-**De antwoorden op Test jezelf: nakijken.** In de Word is bij geen enkele
-meerkeuzevraag een mogelijkheid aangeduid, niet vet, niet gekleurd en niet
-gemarkeerd. De afspraak is nu dat de juiste mogelijkheid gemerkt wordt met
-`class="juist"` op de `<li>` en dat de export daaruit een sectie Oplossingen
-drukt achteraan het hoofdstuk. Wat hieronder staat, is dus **niet uit de Word
-overgenomen maar afgeleid uit de theorie van het hoofdstuk**, en het is het
-enige in deze import dat een inhoudelijke keuze is in plaats van een
-opmaakkeuze. Kijk het na voor het gedrukt wordt.
+**De antwoorden op Test jezelf: nagekeken en beslist.** De juiste mogelijkheid
+staat als `class="juist"` op de `<li>`, en de export drukt daaruit een sectie
+Oplossingen achteraan het hoofdstuk. Die aanduiding komt niet uit de brontekst
+maar is hier gekozen, en ze is getoetst aan de theorie van dit hoofdstuk zelf.
 
 | Vraag | Antwoord | Waarop het steunt |
 |---|---|---|
-| 1 Som de vijf lagen op | Fysiek, datalink, netwerk, transport en applicatie | 1.2, de tabel TCP/IP updated en het ezelsbrugje Please Do Not Take Anything |
+| 1 Som de vijf lagen op | Van onder naar boven: fysiek, datalink, netwerk, transport en applicatie | 1.2, het ezelsbrugje Please Do Not Take Anything |
 | 2 Nut van OSI en TCP/IP | b, afspraken waardoor machines over verschillende netwerken heen communiceren | woordelijk het eerste kernpunt van het hoofdstuk |
 | 3 Vendor lock in | b, een product niet compatibel maken met dat van een ander | 1.1, "die hardware was natuurlijk niet compatibel met de hardware van een andere fabrikant" |
 | 4 Welke lagen komen overeen | a, fysiek, datalink, netwerk, transport | 1.2, in de tabel OSI naast TCP/IP staan die vier een op een |
 | 5 Wat omvat de applicatie laag | c, sessie, presentatie, applicatie | 1.2, in diezelfde tabel beslaat Application drie OSI-lagen |
+| 6 Welk model gebruikt de praktijk | b, TCP/IP, want OSI heeft nog enkel een academische betekenis | 1.1, "In de praktijk wordt TCP/IP gebruikt", en het vierde kernpunt |
 
 Vraag 1 is een open vraag, dus daar is het antwoord geschreven en niet
-aangeduid. Het staat in `<div class="oplossing">` bij de vraag. De formulering
-is van mij; de inhoud staat in 1.2.
+aangeduid. Het staat in `<div class="oplossing">` bij de vraag.
 
-Voor de vijf hoofdstukken die nog komen, geldt hetzelfde: de import brengt de
-vragen mee, de antwoorden moeten erbij gezet worden. Regel 14 van
-`scripts/check-content.py` faalt op een vraag zonder antwoord, dus je kan er
-niet over kijken.
+**De richting staat nu in het antwoord op vraag 1.** "Som de vijf lagen, in
+volgorde, op" zegt niet van onder naar boven of van boven naar onder, en de twee
+bronnen in 1.2 spreken elkaar daarin tegen: het ezelsbrugje loopt van fysiek
+naar applicatie, de tabel TCP/IP updated van applicatie naar fysiek. Het antwoord
+begint daarom met "Van onder naar boven", zodat de student ziet welke van de twee
+gedrukt staat. De vraag zelf is niet aangeraakt.
 
-**Vraag 1 van Test jezelf staat ook bij Studievragen.** "Som de vijf lagen, in
-volgorde, op van het TCP/IP model" staat woordelijk in het kader vooraan het
-hoofdstuk en als eerste vraag achteraan. Dat kan opzet zijn (de studievragen
-kondigen aan wat de test vraagt), maar dan is het de enige van de twee
-studievragen die terugkomt.
+**Vraag 6 is hier bijgeschreven.** Het kader vooraan stelt twee studievragen. De
+eerste kwam woordelijk terug als vraag 1 van Test jezelf, de tweede kwam nergens
+terug, dus van de twee vragen die het hoofdstuk aankondigt werd er maar een
+getoetst. Vraag 6 sluit dat gat, met dezelfde vraagstelling als de studievraag.
+Ze is niet uit de brontekst overgenomen maar hier geschreven; het feit staat in
+1.1 en in het vierde kernpunt. De blurb van Test jezelf in `reference.js` zegt
+daarom "Zes vragen".
 
-**De tabel met Upper en Lower layers heeft geen kopregel.** De eerste rij
-(Upper layers / Application / Protocols zoals HTTP) is gewoon de eerste
-gegevensrij, en de Word bevestigt dat. Dat klopt inhoudelijk, maar het is de
-enige tabel van het hoofdstuk zonder kop, dus het is het nakijken waard of dat
-zo bedoeld is.
+Dat vraag 1 twee keer in het hoofdstuk staat, blijft zo: een studievraag die
+terugkomt in de test is wat een studievraag hoort te doen.
 
-**Het lagenstapeltje in het Voorwoord is een tabel van vijf rijen op een
-kolom.** In de Word is dat een tekening van de stapel, geen gegevens. Op papier
-werkt het, maar als je die stapel ooit als afbeelding wil, is dit de plek.
+**De tabel met Upper en Lower layers heeft geen kopregel, en dat is beslist.** De
+eerste rij (Upper layers / Application / Protocols zoals HTTP) is een
+gegevensrij: Upper layers overspant drie rijen als categorie van lagen, niet als
+kolomtitel. Het is de enige tabel van het hoofdstuk zonder kop, en dat hoort zo.
+De twee tabellen die wel een kopregel dragen, TCP/IP original naast TCP/IP
+updated en OSI naast TCP/IP, hebben allebei echte kolomtitels.
+
+**Het lagenstapeltje in het Voorwoord blijft een tabel van vijf rijen op een
+kolom.** Het is een tekening van de stapel en geen gegevens, en op papier werkt
+die vorm. Wat eraan ontbrak was een bijschrift: er stond nergens waar de stapel
+voor staat. De tabel zit nu in een `<figure>` met een `<figcaption>`, dezelfde
+vorm die een afbeelding krijgt, dus er is geen nieuwe CSS voor nodig. Een echte
+tekening is niet gemaakt: die levert alleen opmaak op voor iets wat nu al goed
+drukt.
+
+### Taalfouten
+
+Deze horen niet bij de stijl maar bij de taal, en `SCHRIJFSTIJL.md` vraagt om ze
+te verzamelen zodat een ronde er een diff van een soort van maakt.
+
+Rechtgezet:
+
+- Kernpunt 3 schreef "de lagen waarmee de eindgebruiker het meest mee in
+  aanraking komt", met het voorzetsel twee keer. In dezelfde zin stonden de twee
+  laagnamen in twee vormen ("fysiek" tegenover "de applicatie laag"); dat is mee
+  gelijkgetrokken naar "de fysieke laag".
+
+Blijft open, voor een aparte ronde over de zes hoofdstukken:
+
+- 1.1 schrijft "ezelsbrug**get**je", 1.2 schrijft "ezelsbrug**j**e". Twee
+  opeenvolgende secties, twee vormen. `SCHRIJFSTIJL.md` noemt `ezelsbruggetje`
+  bij naam, dus dat is de vorm die wint.
+- Vraag 1 van Test jezelf eindigt zonder leesteken, terwijl vraag 2 tot 6 op een
+  vraagteken eindigen en dezelfde zin bij Studievragen een punt draagt.
 
 ## Hoofdstuk 2, Fysieke laag
 
