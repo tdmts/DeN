@@ -163,6 +163,38 @@ Draai dit voor je een inhoudelijke wijziging afsluit. Een groene check hoort bij
    precies wat je bij een volgende hoofdstukimport vergeet. Een oefening die met
    onderstreepte lijnen werkt in plaats van met een tabel, glipt er nog door.
 
+   Ze kijkt ook of de nummering doorloopt. Een vragenlijst valt in HTML uiteen
+   zodra er een tussenzin, een tabel of een figuur tussen twee vragen staat, en
+   alleen start= houdt de telling dan aan. Vergeet je het, dan begint de lijst
+   opnieuw bij 1 terwijl de sectie Oplossingen doortelt, en hoort antwoord 1 bij
+   vraag 3. In hoofdstuk 2 drukte de Test jezelf 1 tot 5 en daarna 1 tot 3,
+   terwijl de oplossingen ernaast 6, 7 en 8 zeiden.
+
+15. Geen onopgeloste gok van de importer in een syllabuspagina. Waar de Word
+   niets zegt, moet scripts/import-syllabus.py kiezen, en zo'n keuze mag niet
+   alleen in IMPORT.md belanden. Die log wordt per hoofdstuk geschreven en
+   daarna nooit meer aangeraakt, dus over de hoofdstukken die niet in de run
+   zaten vertelt hij wat er ooit gebeurde in plaats van wat er nu staat. Na een
+   correctie aan de kopregelregel beweerde hij over drie tabellen een kopregel
+   die er niet meer stond, met een reden die de code niet meer kende, en niets
+   merkte dat op.
+
+   Daarom staat de twijfel als data-geraden op het element zelf. Zolang ze er
+   staat is de check rood, dus ze staat in de weg in plaats van in een logboek,
+   en ze veroudert niet, want ze staat bij de markup die ze beschrijft. Je lost
+   ze op door het attribuut te schrappen (de gok klopt) of door de markup te
+   veranderen, en dat schrappen is meteen het bewijs dat er iemand gekeken heeft.
+
+16. Elke syllabusafbeelding wordt door een pagina gebruikt. De importer schrijft
+   de afbeeldingen uit de Word naar img/ en zet ze in de pagina waar ze horen;
+   mist die tweede stap, dan staat het bestand er wel en verwijst niets ernaar.
+   Bij hoofdstuk 2 gebeurde dat met drie topologietekeningen die in een lijstitem
+   stonden: de vragen drukten af zonder tekening, er was niets aan stuk, en het
+   is gevonden doordat iemand de pagina las. Een bestand waar niets naar wijst is
+   dus geen rommel maar een aanwijzing dat er inhoud verloren is. De regel vangt
+   even goed een figuur die uit een pagina geknipt wordt terwijl het bestand
+   blijft staan, en blijft dus van pas als de importer allang niet meer draait.
+
 Wat hier NIET in staat, en bewust niet: patroon 18 van SCHRIJFSTIJL.md, dat zegt
 dat een pagina niet mag verwijzen naar de geschiedenis van het materiaal zelf
 ("de theorie blijft wel op de site staan"). De woorden die zoiets verraden komen
@@ -913,10 +945,14 @@ def _top_lijsten(fragment):
             continue
         if (diepte == 0 and m.group(2) == "ol"
                 and re.search(r'class="[^"]*\bvragen\b', m.group(3))):
-            begin = re.search(r'start="(\d+)"', m.group(3))
-            begin = int(begin.group(1)) if begin else volgende
+            gedeclareerd = re.search(r'start="(\d+)"', m.group(3))
+            # Zonder start begint de lijst op het scherm en op papier opnieuw
+            # bij 1; hier telt hij door, zodat de vraagnummers in een melding
+            # kloppen met wat de export zou drukken. _nummering vergelijkt de
+            # twee met elkaar, want juist dat verschil is de fout.
+            begin = int(gedeclareerd.group(1)) if gedeclareerd else volgende
             items = _lijstitems(fragment[m.start():], "ol")
-            uit.append((begin, items))
+            uit.append((begin, items, gedeclareerd is not None, volgende))
             volgende = begin + len(items)
         diepte += 1
     return uit
@@ -925,8 +961,45 @@ def _top_lijsten(fragment):
 def _vragen(fragment):
     """(nummer, openingstag, inhoud) per vraag, over alle <ol>'s van de pagina heen."""
     return [(begin + i, tag, inhoud)
-            for begin, items in _top_lijsten(fragment)
+            for begin, items, _, _ in _top_lijsten(fragment)
             for i, (tag, inhoud) in enumerate(items)]
+
+
+def _nummering(pagina, tekst):
+    """Loopt de nummering van de vragen door over de <ol>'s heen?
+
+    Een vragenlijst valt in HTML uiteen zodra er een tussenzin, een tabel of een
+    figuur tussen twee vragen staat, en alleen het start-attribuut houdt de
+    telling dan aan. Vergeet je het, dan begint de lijst opnieuw bij 1 terwijl
+    de sectie Oplossingen achteraan het hoofdstuk gewoon doortelt: antwoord 1
+    hoort dan bij vraag 3, en op het scherm is er niets aan te zien behalve het
+    nummer zelf.
+
+    Dat is geen bedacht scenario. In hoofdstuk 2 drukte de Test jezelf 1 tot 5
+    en daarna 1 tot 3, terwijl de oplossingen ernaast 6, 7 en 8 zeiden.
+    """
+    for begin, items, gedeclareerd, verwacht in _top_lijsten(tekst):
+        if not items:
+            continue
+        if gedeclareerd:
+            # Er staat een getal: het moet aansluiten op de vraag ervoor.
+            if begin == verwacht:
+                continue
+            fout(pagina.relative_to(REPO),
+                 f'een <ol class="vragen"> begint op start="{begin}" terwijl de '
+                 f"vraag ervoor op {verwacht - 1} eindigde; de nummering springt")
+        else:
+            # Er staat geen getal, dus de browser begint opnieuw bij 1. Dat is
+            # alleen juist voor de eerste lijst van de pagina. Hier mag niet met
+            # begin vergeleken worden: die viel bij gebrek aan een attribuut
+            # terug op verwacht en is dus altijd gelijk.
+            if verwacht == 1:
+                continue
+            fout(pagina.relative_to(REPO),
+                 f'een <ol class="vragen"> mist start="{verwacht}", dus de '
+                 "nummering begint opnieuw bij 1 terwijl de oplossingen "
+                 f"doortellen vanaf {verwacht}")
+        return
 
 
 def check_vragen():
@@ -949,6 +1022,7 @@ def check_vragen():
         if not vragen:
             _vergeten_vragenlijst(pagina, tekst)
             continue
+        _nummering(pagina, tekst)
         for nummer, _, inhoud in vragen:
             keuzes = _lijstitems(inhoud, "ul")
             if keuzes:
@@ -968,6 +1042,73 @@ def check_vragen():
             fout(pagina.relative_to(REPO),
                  "draagt vragen maar laadt oplossingen.js niet; de PDF toont de "
                  "antwoorden dan wel en de site niet")
+
+
+def check_geraden():
+    """Regel 15: geen onopgeloste gok van de importer in een syllabuspagina.
+
+    Waar de Word niets zegt, moet scripts/import-syllabus.py kiezen. Dat is
+    onvermijdelijk; wat wel te vermijden is, is dat zo'n keuze alleen in
+    IMPORT.md belandt. Die log wordt per hoofdstuk geschreven en daarna nooit
+    meer aangeraakt, dus hij vertelt over de andere hoofdstukken wat er ooit
+    gebeurde en niet wat er nu staat. Na de correctie aan heeft_kopregel
+    beweerde hij over drie tabellen een kopregel die er niet meer stond, met een
+    reden die de code niet meer kent, en niets merkte dat op.
+
+    Het attribuut staat daarom bij de markup zelf. Zolang het er staat, is de
+    check rood en kan je niet afsluiten zonder te kijken. Je lost het op door
+    het te schrappen (de gok klopt) of door de markup te veranderen, en dat
+    schrappen is meteen het bewijs dat een mens ernaar gekeken heeft.
+    """
+    bron = REPO / "Theorie" / "Syllabus" / "Theorie"
+    if not bron.is_dir():
+        return
+    for pagina in sorted(bron.rglob("*.html")):
+        for m in re.finditer(r'data-geraden="([^"]*)"',
+                             pagina.read_text(encoding="utf-8")):
+            fout(pagina.relative_to(REPO),
+                 f"onopgeloste gok van de import: {m.group(1)}. Kijk na wat de "
+                 "Word doet, pas de markup aan of laat ze staan, en schrap dan "
+                 "het attribuut")
+
+
+def check_weesafbeeldingen():
+    """Regel 16: elke syllabusafbeelding wordt door een pagina gebruikt.
+
+    De importer schrijft de afbeeldingen uit de Word naar img/ en zet ze in de
+    pagina waar ze horen. Mist die tweede stap, dan staat het bestand er wel en
+    verwijst niets ernaar: de vraag "welke topologie is dit?" verschijnt zonder
+    tekening, en er is niets aan stuk. Precies dat gebeurde bij hoofdstuk 2,
+    waar drie topologietekeningen in een lijstitem stonden en de afbeeldingstak
+    alleen liep voor een alinea die er geen was. Het is gevonden doordat iemand
+    de pagina las.
+
+    Een bestand in img/ waar niets naar wijst, is dus geen rommel maar een
+    aanwijzing dat er inhoud verloren is. De regel blijft ook nadat de importer
+    met pensioen is van pas: ze vangt even goed een figuur die uit een pagina
+    geknipt wordt terwijl het bestand blijft staan.
+    """
+    img = REPO / "img"
+    if not img.is_dir():
+        return
+    bestanden = sorted(p for p in img.iterdir()
+                       if p.name.startswith("syllabus-") and p.is_file())
+    if not bestanden:
+        return
+    # De scripts tellen mee: de omslag laadt het logo uit export-syllabus.py en
+    # niet uit een pagina, en dat is geen wees maar een ander soort gebruik.
+    gebruikt = "\n".join(
+        p.read_text(encoding="utf-8", errors="ignore")
+        for map_ in (REPO / "Theorie", REPO / "Labo", REPO / "scripts")
+        if map_.is_dir()
+        for p in map_.rglob("*")
+        if p.is_file() and p.suffix in (".html", ".css", ".py", ".js"))
+    for bestand in bestanden:
+        if bestand.name not in gebruikt:
+            fout(bestand.relative_to(REPO),
+                 "staat in img/ maar geen enkele pagina gebruikt hem; de import "
+                 "heeft hem geschreven en nergens gezet, dus er ontbreekt een "
+                 "afbeelding op een pagina")
 
 
 def _vergeten_vragenlijst(pagina, tekst):
@@ -1015,6 +1156,8 @@ def main():
     check_dubbele_introductie()
     check_syllabus_pdf()
     check_vragen()
+    check_geraden()
+    check_weesafbeeldingen()
 
     for w in warnings:
         print(f"  waarschuwing  {w}")

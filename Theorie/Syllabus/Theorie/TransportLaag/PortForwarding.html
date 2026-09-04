@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Port forwarding</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Port forwarding</h1>
+
+        <p>Port Forwarding en Network Address Translation (NAT) gaan hand in hand. Voor de volledigheid herhalen we even kort het basisprincipe van NAT.</p>
+
+        <p>Bij NAT proberen we de IPv4 tekortkoming van &#x27;slechts&#x27; 4 miljard mogelijke IP adressen te verbergen door enkel de machines die rechtstreeks verbonden zijn met het internet (zoals onze router) een publiek IP adres te geven. De machines binnen het LAN krijgen op hun beurt een privaat IP adres toegekend van de router.</p>
+
+        <p>Als je toch een servertoepassing wil beschikbaar maken vanaf een machine binnen het LAN dan kan dit op het eerste zicht niet omdat deze geen publiek IP adres heeft. Enkel de router heeft een publiek IP adres gekregen van de internetprovider en de machines binnen het LAN zijn dus onbereikbaar van buitenaf.</p>
+
+        <p>Wat we gaan doen bij port forwarding is de router zodanig instellen dat verkeer bestemd voor het publiek IP adres op een bepaalde poort gaan doorsturen naar een privaat IP adres op dezelfde (of een andere) poort.</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-05-transport-laag-03.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <p>In formulevorm: Publiek IP + POORT X = Privaat IP + POORT Y.</p>
+
+        <p>De router neemt dus alle vertaalwerk op zich. Het enige waar wij moeten voor zorgen is dat het interne private IP adres niet wijzigt. Dit kunnen we makkelijk doen door DHCP uit te zetten op de interne machine en manueel het IP adres te configureren.</p>
+
+        <p>Een bijkomende optie is om enkel TCP, enkel UDP of beiden door te sturen. Dit hangt af van het type transport protocol dat gebruikt wordt door de applicatie.</p>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

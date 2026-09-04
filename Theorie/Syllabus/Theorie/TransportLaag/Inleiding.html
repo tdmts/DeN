@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inleiding</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Inleiding</h1>
+
+        <p>De transport laag bevindt zich tussen de netwerk laag en de applicatie laag. Ze is de laatste laag die adresinformatie bevat in de vorm van poortnummers.</p>
+
+        <p>In de datalink laag was er sprake van MAC adressering. Een 48 bit adres dat hexadecimaal wordt genoteerd en iedere computer uniek adresseert binnen een LAN. Een switch is het apparaat bij uitstek om alle hosts binnen het LAN te verbinden.</p>
+
+        <p>Omdat er in een MAC adres geen structuur zit zou het heel moeilijk zijn om dit te gebruiken op een aaneenschakeling van netwerken zoals het internet. Als we over verschillende netwerken heen willen adresseren dan hebben we IP adressering nodig want daarin zit wel een structuur. De hardware die we daarvoor moeten gebruiken is een router.</p>
+
+        <p>Via MAC en IP kunnen we dus binnen en buiten het LAN verschillende machines adresseren. Toch is dat nog niet voldoende omdat het in de praktijk applicaties zijn die tegen elkaar praten.</p>
+
+        <p>Denk er even over na, je opent een browser en je surft naar een bepaalde website. In feite open je op jouw computer een applicatie en ergens op een netwerk draait er een server met daarop een webservertoepassing geïnstalleerd. Dit programma moet content aanleveren. Applicaties praten tegen applicaties.</p>
+
+        <p>Op jouw computer kan je meerdere applicaties tegelijk openen (Firefox, Outlook, Spotify, ...) en allen openen ze een verbinding met een server. Op de server zelf kunnen er meerdere gebruikers actief zijn en sterker nog, er kunnen zelfs meerdere webserver programma&#x27;s actief zijn. Dezelfde machine kan bijvoorbeeld zowel webverkeer als mailverkeer afhandelen.</p>
+
+        <p>Om dit alles in goede banen te leiden heeft iedere applicatie een poortnummer. Voor een webserver is dat bijvoorbeeld poort 80, om een e-mail te verzenden gebruik je poort 25 en om een Secure Shell te openen gebruik je poort 22. Je leest hierover meer in het hoofdstuk TCP.</p>
+
+        <p>Ook de client applicatie opent een poort. Welke poort dat precies is wordt gekozen door het operating system en is eerder willekeurig. Om deze reden moet je dan ook in je client programma geen source port specificeren. Enkel een destination port is verplicht.</p>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

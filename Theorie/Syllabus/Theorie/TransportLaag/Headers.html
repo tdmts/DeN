@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Headers</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Headers</h1>
+
+        <h2>TCP header</h2>
+
+        <p>De transport laag bevindt zich tussen de netwerk laag en de applicatie laag. Op de netwerk laag vinden we het IP adres terug. Dit adres is bedoeld om iedere netwerkkaart uniek te identificeren binnen het netwerk én om het mogelijk te maken dat we pakketten kunnen versturen over verschillende netwerken heen.</p>
+
+        <p>Hier zit er echter nog een probleem. Op dit moment kunnen we met de netwerk laag pakketten versturen van computer naar computer maar nog niet van applicatie naar applicatie.</p>
+
+        <p>De Transmission Control Protocol header lost dit probleem op aan de hand van een source port en een destination port. Deze poorten worden namelijk gekoppeld aan applicaties die op de machine draaien.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr><td colspan="3"><p>Source port</p>
+        <p>(2 bytes)</p></td><td><p>Destination port</p>
+        <p>(2 bytes)</p></td></tr>
+                    <tr><td colspan="4"><p>Sequence number</p>
+        <p>(4 bytes)</p></td></tr>
+                    <tr><td colspan="4"><p>Acknowledge number</p>
+        <p>(4 bytes)</p></td></tr>
+                    <tr><td><p>Header length</p>
+        <p>(4 bits)</p></td><td><p>Reserved</p>
+        <p>(6 bits)</p></td><td><p>Code bits</p>
+        <p>(6 bits)</p></td><td><p>Window</p>
+        <p>(2 bytes)</p></td></tr>
+                    <tr><td colspan="3"><p>Checksum</p>
+        <p>(2 bytes)</p></td><td><p>Urgent</p>
+        <p>(2 bytes)</p></td></tr>
+                    <tr><td colspan="4"><p>Options</p>
+        <p>(n bytes)</p></td></tr>
+                    <tr><td colspan="4"><p>Data</p>
+        <p>(n bytes)</p></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>De source port is het poortnummer van de applicatie die wil zenden. Het besturingssysteem kan hiervoor in theorie een willekeurig poortnummer tussen 0 en 65535 kiezen. In de praktijk wordt meestal een poort tussen 49152 to 65535 gekozen. Het source poortnummer kan telkens veranderen. Meestal wordt een poort geopend voor slechts een korte periode gezien bij pakketgeschakelde netwerken de datatransmissie vaak in <em>bursts</em> verloopt.</p>
+
+        <p>De destination port is het poortnummer van de applicatie die de data moet ontvangen. Een zender moet dus twee zaken weten over de ontvanger: het IP adres van de computer en de poort van de applicatie.</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 159.2mm">
+            <img src="../../../../img/syllabus-05-transport-laag-01.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <p>Het zou dus weinig praktisch zijn om voor de ontvanger de poort te laten variëren. De zender zou dit dan telkens ook moeten weten. De meeste applicaties hebben dus een &#x27;vast&#x27; poortnummer. Om er enkele op te noemen draait een webserver op poort 80, een e-mailserver op poort 25 en een secure shell server op poort 22.</p>
+
+        <p>Naast de poortinformatie zien we in de TCP header nog twee heel belangrijke velden: het sequence en acknowledge number.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr><td colspan="3">Source port</td><td>Destination port</td></tr>
+                    <tr><td colspan="4">Sequence number</td></tr>
+                    <tr><td colspan="4">Acknowledge number</td></tr>
+                    <tr><td>Header length</td><td>Reserved</td><td>Code bits</td><td>Window</td></tr>
+                    <tr><td colspan="3">Checksum</td><td>Urgent</td></tr>
+                    <tr><td colspan="4">Options</td></tr>
+                    <tr><td colspan="4">Data</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>De hoofdeigenschap van TCP is dat we pakketten &#x27;gegarandeerd&#x27; willen afleveren. Dit betekent dat we pakketten die verloren gegaan zijn door transmissieproblemen of collisions toch nog bij hun bestemming willen krijgen.</p>
+
+        <p>Het feit dat we dit proberen heeft als gevolg dat pakketten eventueel niet in volgorde aankomen. Om de pakketten toch nog te kunnen sorteren langs de kant van de ontvanger krijgt ieder pakket een sequence number.</p>
+
+        <p>Gegarandeerd afleveren is noodzakelijk wanneer het gaat over bijvoorbeeld bestandsoverdracht. Een document versturen heeft niet veel zin als er een stuk uit verloren is gegaan.</p>
+
+        <p>TCP lost dit op door middel van een acknowledgement number. Ieder pakket wordt bevestigd door de ontvanger door naar de zender een pakket te sturen met de boodschap dat het verzonden pakket goed ontvangen is geweest.</p>
+
+        <p>De zender verwacht binnen een bepaalde tijd een acknowledgement van het verzonden pakket. Krijgt deze dat niet dan wordt het pakket opnieuw verstuurd.</p>
+
+        <h2>UDP header</h2>
+
+        <p>Naast TCP is UDP een veelgebruikte keuze wat betreft het protocol op de transport laag.</p>
+
+        <p>We moeten echter even opmerken dat het bepalen van het protocol al gebeurd is in de netwerk laag op de IP header. Daar vind je bij IPv4 het Protocol veld terug en bij IPv6 het Next Header veld. De waarde in deze twee velden bepaalt als er TCP of UDP of nog een ander protocol gebruikt wordt voor het pakket.</p>
+
+        <p>Terwijl TCP zijn uiterste best doet om pakketten gegarandeerd af te leveren bij de ontvanger door middel van hertransmissie bij verlies en het zelfs tot fouten leidt wanneer een datastroom niet volledig ontvangen is, is dit bij UDP niet het geval.</p>
+
+        <p>Bij UDP is er bij verlies van een pakket geen hertransmissie en dus ook geen gegarandeerde aflevering.</p>
+
+        <p>Je vraagt je misschien af wanneer UDP gebruikt wordt? Toch zijn er enkele toepassingen zoals VOIP (Voice Over IP = bellen via het netwerk), videoconferencing en games. Het heeft namelijk geen zin om bijvoorbeeld bij een telefoongesprek verloren stukjes spraakdata na een tijdje toch opnieuw te sturen. Het moment is dan reeds voorbij en het zou enkel verwarrend zijn voor de ontvanger.</p>
+
+        <p>Als we kijken naar de UDP header dan zien we dat deze véél minder complex is dan de TCP header. Er zijn slechts vier velden en twee ervan beschrijven de data. Dit wijst dat UDP een protocol is die gemaakt is voor snelheid.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr><td><p>Source port</p>
+        <p>(2 bytes)</p></td><td><p>Destination port</p>
+        <p>(2 bytes)</p></td></tr>
+                    <tr><td><p>Length</p>
+        <p>(2 bytes)</p></td><td><p>Checksum</p>
+        <p>(2 bytes)</p></td></tr>
+                    <tr><td colspan="2"><p>Data</p>
+        <p>(n bytes)</p></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Net zoals bij TCP dienen source port en destination port als identificatie voor de applicatie.</p>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

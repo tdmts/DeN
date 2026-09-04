@@ -217,3 +217,43 @@ letterlijk overgenomen.
 - tabel "" kreeg een kopregel, want de tabelstijl maakt de eerste rij op (tblLook firstRow)
 - lege tabel van 3 rijen overgenomen als invulruimte
 - lege tabel van 3 rijen overgenomen als invulruimte
+
+## Transport laag (opening)
+
+- kader "Kernpunten" werd een info-box met data-kader="kernpunten"; het icoontje uit de Word valt weg en het vet, want de hele inhoud stond vet
+- kader "Studievragen" werd een info-box met data-kader="studievragen"; het icoontje uit de Word valt weg en het vet, want de hele inhoud stond vet
+
+## Transport laag > Headers
+
+- tabel "Source port
+(2 bytes)" kreeg GEEN kopregel (geen enkel signaal), nakijken
+- tabel "Source port" kreeg GEEN kopregel (geen enkel signaal), nakijken
+- tabel "Source port
+(2 bytes)" kreeg GEEN kopregel (geen enkel signaal), nakijken
+
+## Transport laag > Network Address Translation (NAT)
+
+- tabel "Klasse" kreeg een kopregel, want de tabelstijl maakt de eerste rij op (tblLook firstRow)
+- em-dash of en-dash in: 10.0.0.0 – 10.255.255.255
+- em-dash of en-dash in: 172.16.0.0 – 172.31.255.255
+- em-dash of en-dash in: 192.168.0.0 – 192.168.255.255
+- tabel "Privaat IP adres" kreeg een kopregel, want de tabelstijl maakt de eerste rij op (tblLook firstRow)
+- tabel "Privaat IP adres + poort" kreeg een kopregel, want de tabelstijl maakt de eerste rij op (tblLook firstRow)
+
+## Transport laag > Firewall
+
+- lege tabel van 1 rijen overgenomen als invulruimte
+- tabel "ACCEPT / DENY / DROP" kreeg GEEN kopregel (geen enkel signaal), nakijken
+
+## Transport laag > Test jezelf
+
+- tabel met een lege kolom onder de vraag erboven gezet als invulruimte
+- tabel "a" kreeg GEEN kopregel (geen enkel signaal), nakijken
+- tabel "a": kolom 2 staat overal leeg en werd invulruimte, op de breedte van de Word
+- tabel "HTTP (webverkeer)" kreeg GEEN kopregel (geen enkel signaal), nakijken
+- tabel "(16 bytes)" kreeg GEEN kopregel (geen enkel signaal), nakijken
+- lege tabel van 1 rijen overgenomen als invulruimte
+- afbeelding syllabus-05-transport-laag-07.png stond tussen een vraag en haar keuzes en is in de vraag gezet
+- tabel met een lege kolom onder de vraag erboven gezet als invulruimte
+- tabel "# private IP adressen computer" kreeg GEEN kopregel (geen enkel signaal), nakijken
+- tabel "# private IP adressen computer": kolom 2 staat overal leeg en werd invulruimte, op de breedte van de Word

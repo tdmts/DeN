@@ -440,6 +440,92 @@ Identifier. Dat is geen schrijffout maar een andere naam voor hetzelfde veld, en
 ze staat in een tekening die de student moet aanvullen. Verander je ze, verander
 ze dan op allebei de plaatsen tegelijk.
 
+## Hoofdstuk 5, Transport laag
+
+**De antwoorden: nakijken.** Zelfde afspraak en zelfde voorbehoud als bij de vier
+vorige hoofdstukken. In de Word is niets aangeduid, dus alles hieronder is
+afgeleid uit de theorie van het hoofdstuk en geen overname. Het hoofdstuk draagt
+elf vragen op twee pagina's.
+
+**De vragen van 5.5 Firewall stonden als losse alinea's en zijn nu een
+vragenlijst**, net zoals bij vier oefeningpagina's van hoofdstuk 4. De tabel met
+ACCEPT / DENY / DROP stond achter de lijst en hoort bij vraag 3; ze staat nu in
+die vraag. In 5.6 Test jezelf stonden de tabel van vraag 3, de tabel van vraag 4
+en de schrapzin van vraag 5 elk buiten hun vraag, zodat de lijst drie keer brak
+en met `start=` verder telde. Ze staan nu in de vraag waar ze bij horen en de
+lijst is er weer een. De woorden zijn niet aangeraakt.
+
+**5.5 Firewall is drie schermafbeeldingen van een Engelse tekst en geen letter
+eigen tekst.** De drie afbeeldingen dragen de hele uitleg over host based tegen
+network based, over ACCEPT / DENY / DROP en over firewall rules, en de student
+moet er drie vragen over beantwoorden. Dat werkt op papier, maar het staat wel
+haaks op de rest van de syllabus: het is niet doorzoekbaar, niet vertaald en het
+verschilt van formaat met alles eromheen. Herschrijven is werk voor later; het
+staat hier omdat het geen importfout is maar een keuze in de Word.
+
+**De TCP header van vraag 4 schrijft bytes waar bits bedoeld zijn.** De tekening
+noteert de poortvelden als (16 bytes) en de sequence en acknowledge velden als
+(32 bytes), terwijl 5.2 Headers dezelfde velden correct 2 bytes en 4 bytes
+noemt. 16 bits is 2 bytes en 32 bits is 4 bytes, dus het gaat om de eenheid en
+niet om het getal. Niet aangepast, want het staat in een tekening die de student
+moet aanvullen en de fout is de moeite van het opmerken waard; de oplossing zegt
+het er wel bij. Verbeter je ze, doe het dan in de HTML.
+
+**De TCP header staat twee keer in 5.2, de tweede keer zonder de veldgroottes.**
+Er is verder geen enkel verschil: geen arcering, geen vet, geen kleur. De zin
+erboven kondigt het sequence en acknowledge number aan, dus vermoedelijk waren
+die twee rijen ooit gemarkeerd en is die opmaak weg. Zoals ze er nu staat, leest
+de tweede tabel als een herhaling van de eerste. Overgenomen zoals de Word ze
+geeft.
+
+**Vraag 1 van Test jezelf kan in twee volgordes.** "De transportlaag is de link
+tussen de (a) laag en de (b) laag." De Kernpunten schrijven applicatie en dan
+netwerk, 5.1 en 5.2 schrijven netwerk en dan applicatie. De oplossing rekent
+allebei goed, want de Word kiest zelf niet.
+
+### Firewall (5.5)
+
+| Vraag | Antwoord | Waarop het steunt |
+|---|---|---|
+| 1 Windows firewall | host based | de derde afbeelding: een host based firewall staat op een individuele computer |
+| 2 waarom toch een network based firewall | een plaats om de regel te zetten, ook voor apparaten waarop je niets kan instellen | staat niet in de tekst, dat zegt de vraag zelf |
+| 3 surfen blokkeren | DROP, OUTGOING, TCP, poort 80 | de tweede afbeelding blokkeert verkeer van binnen naar externe websites; de eerste zegt dat de meeste firewalls alleen ACCEPT en DROP gebruiken |
+
+### Test jezelf (5.6)
+
+| Vraag | Antwoord | Waarop het steunt |
+|---|---|---|
+| 1 tussen welke lagen | applicatie en netwerk, beide volgordes goed | 5.1 en de Kernpunten, die het zelf omgekeerd schrijven |
+| 2 waarmee gescheiden | c, poortnummer | 5.1: MAC en IP horen bij de machine, de poort bij de applicatie |
+| 3 standaard poorten | 80, 25, 22 | 5.1 en 5.2 noemen alle drie letterlijk |
+| 4 TCP header aanvullen | source port, destination port, sequence number, acknowledge number | de tabel van 5.2, met dezelfde rijen |
+| 5 schrap wat niet past | eenvoudiger, snelle, niet | 5.2, UDP header: vier velden, gericht op snelheid, geen hertransmissie |
+| 6 hoeveel IPv4 adressen | ongeveer 4 miljard, in de praktijk 3 | 5.3, eerste twee alinea's |
+| 7 private en publieke adressen | computers 4 en 0, router 1 en 1 | 5.3 en de tekening: vier PC's achter de switch, de router met een LAN kant en een WAN kant |
+| 8 server bereiken vanaf WAN | c, port forwarding | 5.4, de hele sectie |
+
+## De kopregel van een tabel: de regel was te ruim
+
+Hoofdstuk 5 bracht een fout in de importer aan het licht die de vier vorige
+hoofdstukken ook al raakte. `tblLook firstRow` is alleen een signaal als de
+tabelstijl voorwaardelijke opmaak voor de eerste rij ook echt definieert.
+Onopgemaaktetabel1 doet dat; Tabelraster en TableGrid definieren helemaal geen
+voorwaardelijke opmaak, dus daar staat de vlag aan zonder dat Word ook maar iets
+tekent. Een en twintig tabellen in deze Word kregen zo een kopregel die in het
+document niet bestaat.
+
+Twee daarvan waren zichtbaar fout en zijn met de hand rechtgezet:
+
+- 4.7 Subnetmasker: de bovenste rij van de AND berekening is het IP adres en niet
+  een kop
+- 4.18 Test jezelf: de rij MAC van de invultabel is de eerste van drie rijen die
+  de student invult
+
+Twee andere waren per toeval juist en zijn blijven staan, nu als gewone
+kopregel: de kolomtitels van de Beckhoff tabel in 3.5 en de rij Klasse A / B / C
+in 4.18. De importer meldt ze voortaan als "nakijken", en dat is eerlijker: een
+vlag die niets tekent is geen bewijs.
+
 ## Voor de hele syllabus, gezien tijdens het lezen
 
 **De Word is nieuwer dan de PDF die nu in Orion staat.** De docx is van

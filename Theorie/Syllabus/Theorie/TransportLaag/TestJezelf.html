@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test jezelf</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Test jezelf</h1>
+
+        <ol class="vragen">
+            <li>De transportlaag is de link tussen de (a) laag en de (b) laag.
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulkolom">
+                        <colgroup>
+                            <col style="--kolom-breedte: 12.4mm">
+                            <col style="--kolom-breedte: 147.4mm">
+                        </colgroup>
+                        <tbody>
+                            <tr><td>a</td><td class="invulruimte"></td></tr>
+                            <tr><td>b</td><td class="invulruimte"></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">(a) de applicatie laag en (b) de netwerk laag. De omgekeerde volgorde is even goed: het hoofdstuk schrijft ze zelf in beide richtingen.</div>
+            </li>
+            <li>Een applicatie met netwerkmogelijkheden wordt op dezelfde machine van andere applicaties gescheiden door middel van een
+                <ul>
+                    <li>MAC adres</li>
+                    <li>IP adres</li>
+                    <li class="juist">Poortnummer</li>
+                    <li>Geen van deze antwoorden is correct</li>
+                </ul>
+                <div class="oplossing">Het MAC adres hoort bij de netwerkkaart en het IP adres bij de machine, dus alle applicaties op die machine delen ze. Alleen het poortnummer verschilt per applicatie.</div>
+            </li>
+            <li>Geef bij ieder netwerkprotocol de standaard poort
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr><td>HTTP (webverkeer)</td><td>SMTP (e-mail)</td><td>SSH (secure shell)</td></tr>
+                            <tr><td></td><td></td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">HTTP 80, SMTP 25, SSH 22.</div>
+            </li>
+            <li>Vul de TCP header aan
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr><td colspan="3">(16 bytes)</td><td>(16 bytes)</td></tr>
+                            <tr><td colspan="4">(32 bytes)</td></tr>
+                            <tr><td colspan="4">(32 bytes)</td></tr>
+                            <tr><td>Header length</td><td>Reserved</td><td>Code bits</td><td>Window</td></tr>
+                            <tr><td colspan="3">Checksum</td><td>Urgent</td></tr>
+                            <tr><td colspan="4">Options</td></tr>
+                            <tr><td colspan="4">Data</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">Bovenste rij: source port en destination port. Daaronder het sequence number en het acknowledge number. Let op de eenheid: de tabel schrijft bytes waar bits bedoeld zijn. Een poort is 16 bits, dus 2 bytes, en een sequence number 32 bits, dus 4 bytes, precies zoals de TCP header eerder in dit hoofdstuk ze noteert.</div>
+            </li>
+            <li>Schrap wat niet past.
+                <p>De UDP header is eenvoudiger / complexer dan de TCP header. Dit komt omdat UDP vooral gericht is op snelle / verzekerde datatransmissie. Als een pakket verloren gaat bij een UDP transmissie dan gaat de zender het wel / niet opnieuw versturen.</p>
+                <div class="oplossing">Eenvoudiger, snelle, niet. UDP heeft vier velden tegenover de negen van TCP, en zonder sequence en acknowledge number is er niets om een verloren pakket mee op te merken of opnieuw te vragen.</div>
+            </li>
+            <li>Hoeveel IPv4 adressen zijn er (ongeveer) maximaal beschikbaar?
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulruimte">
+                        <tbody>
+                            <tr><td>&nbsp;</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">Ongeveer 4 miljard. Een IPv4 adres is 32 bits, dus 2^32 of 4.294.967.296 adressen. Daarvan zijn er in de praktijk maar zo’n 3 miljard bruikbaar, want een groot deel is vroeger gereserveerd.</div>
+            </li>
+            <li>Hoeveel private en publieke IP adressen worden ingenomen door deze hosts als je weet dat er aan NAT gedaan wordt?
+                <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 58.9mm">
+                    <img src="../../../../img/syllabus-05-transport-laag-07.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+                </figure>
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulkolom">
+                        <colgroup>
+                            <col style="--kolom-breedte: 62.4mm">
+                            <col style="--kolom-breedte: 97.4mm">
+                        </colgroup>
+                        <tbody>
+                            <tr><td># private IP adressen computers</td><td class="invulruimte"></td></tr>
+                            <tr><td># publieke IP adressen computers</td><td class="invulruimte"></td></tr>
+                            <tr><td># private IP adressen router</td><td class="invulruimte"></td></tr>
+                            <tr><td># publieke IP adressen router</td><td class="invulruimte"></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">Vier private adressen voor de computers en nul publieke: PC1 tot PC4 staan achter de switch in het LAN. De router heeft er twee, één van elk. Zijn kant naar de switch (Gig0/1) krijgt een privaat adres en is de default gateway van de vier PC’s; zijn kant naar de DSL modem (Gig0/0/0) krijgt het ene publieke adres van de provider. Dat is precies wat NAT oplevert: vier machines op één ingenomen publiek adres.</div>
+            </li>
+            <li>Als je vanop het WAN een server wil bereiken die in het LAN staat dan moet je … instellen
+                <ul>
+                    <li>MAC forwarding</li>
+                    <li>IP forwarding</li>
+                    <li class="juist">Port forwarding</li>
+                </ul>
+                <div class="oplossing">De server in het LAN heeft geen publiek IP adres, dus je kan hem van buitenaf niet rechtstreeks aanspreken. Met port forwarding stuurt de router verkeer dat op een bepaalde poort van zijn publiek adres binnenkomt door naar het private adres van die server.</div>
+            </li>
+        </ol>
+
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+    <script src="../../../../oplossingen.js"></script>
+</body>
+
+</html>

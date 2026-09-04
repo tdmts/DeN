@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firewall</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Firewall</h1>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-05-transport-laag-04.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-05-transport-laag-05.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-05-transport-laag-06.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <ol class="vragen">
+            <li>De ingebouwde Windows firewall op je computer is een
+                <ul>
+                    <li class="juist">Host based firewall</li>
+                    <li>Network based firewall</li>
+                </ul>
+            </li>
+            <li>Een network based firewall heeft een aantal nadelen maar waarom is het een goed idee om toch zo’n apparaat te hebben (staat niet in de tekst)?
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulruimte">
+                        <tbody>
+                            <tr><td>&nbsp;</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">Omdat je de regel dan op één plaats zet in plaats van op iedere machine apart. Een host based firewall moet je op elke computer instellen en onderhouden, en hij beschermt alleen die ene computer. Een network based firewall staat op de grens van het netwerk en beschermt alles wat erachter hangt, ook de apparaten waarop je zelf niets kan instellen: printers, camera’s, een PLC. Hij blijft ook werken als een gebruiker zijn eigen firewall uitzet of als zijn machine besmet is.</div>
+            </li>
+            <li>Je wil ervoor zorgen dat gebruikers in je LAN niet meer kunnen surfen naar externe websites. Welke firewall rule moet je instellen op de network based firewall?
+                <p>Schrap wat niet past en vul aan.</p>
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr><td>ACCEPT / DENY / DROP</td><td>INCOMING / OUTGOING</td></tr>
+                            <tr><td>PROTOCOL: TCP/ UDP</td><td>PORT: _____</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">DROP, OUTGOING, TCP, poort 80. Het verkeer vertrekt in het LAN en gaat naar buiten, dus OUTGOING. Webverkeer is TCP op poort 80. DROP en niet DENY: de tekst zegt dat de meeste firewalls alleen ACCEPT en DROP gebruiken, want een geweigerd pakket kost bandbreedte op de terugweg. Wil je ook HTTPS blokkeren, dan heb je er een tweede regel bij nodig voor poort 443.</div>
+            </li>
+        </ol>
+
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+    <script src="../../../../oplossingen.js"></script>
+</body>
+
+</html>

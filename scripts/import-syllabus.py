@@ -26,6 +26,19 @@ verbetert geen typfouten en herschrijft geen zin. Wat het onderweg opmerkt (een
 tabel waarvan het de kopregel moest raden, een lege tabel, een em-dash) schrijft
 het in IMPORT.md, zodat de auteur beslist in plaats van het script.
 
+WAAR HET MOET GOKKEN, ZET HET DAT IN DE PAGINA. IMPORT.md is een verslag van een
+run en geen werklijst: hij wordt per hoofdstuk bevroren op het moment van
+importeren, dus zodra je hier een regel verandert of de HTML met de hand
+bijwerkt, staat er iets in dat niet meer waar is. Dat is ook echt gebeurd: na de
+correctie aan heeft_kopregel beweerde IMPORT.md over drie tabellen een kopregel
+die er niet meer stond, met een reden die de code niet meer kent.
+
+Een gok krijgt daarom een data-geraden op het element zelf, en regel 15 van
+scripts/check-content.py laat de check daarop vallen. Zo staat de twijfel in de
+weg in plaats van in een logboek, en veroudert ze niet, want ze staat bij de
+markup die ze beschrijft. Je lost ze op door het attribuut te schrappen, en dat
+schrappen is de bevestiging.
+
 WAT HET WEL INTERPRETEERT, en waarom dat geen woorden raakt:
 
   - Een tabel van twee rijen waarvan de tweede rij over de volle breedte loopt,
@@ -41,9 +54,11 @@ WAT HET WEL INTERPRETEERT, en waarom dat geen woorden raakt:
     opvulling en dan is er niets om in te schrijven.
   - Samengevoegde cellen (vMerge, gridSpan) worden rowspan en colspan. Zonder
     dat verschuift de hele tabel een kolom en klopt er niets meer van.
-  - Een kopregel wordt alleen gezet als de Word er een aanduidt (tblHeader) of
-    als de hele eerste rij vet staat. Anders krijgt de tabel geen thead, en dat
-    staat in de notities.
+  - Een kopregel wordt alleen gezet als de Word er een aanduidt (tblHeader),
+    als de hele eerste rij vet staat, of als de tabelstijl de eerste rij
+    voorwaardelijk opmaakt en die stijl dat ook werkelijk definieert. Anders
+    krijgt de tabel geen thead en een data-geraden, want dan is er geen enkel
+    signaal en is het een gok.
   - Een alinea in de stijl List Paragraph zonder nummering is de uitleg ONDER
     het opsommingsteken erboven, en gaat dus in dat lijstitem. Zonder dat valt
     een lijst van zes uiteen in zes lijstjes van een.
@@ -454,7 +469,22 @@ def kolombreedtes(tabel):
     return uit
 
 
-def heeft_kopregel(tabel, rijen):
+def maakt_stijl_eerste_rij_op(doc, stijl_id):
+    """Definieert deze tabelstijl voorwaardelijke opmaak voor de eerste rij?
+
+    Zonder die definitie tekent Word niets, hoe de vlag ook staat.
+    """
+    if not stijl_id:
+        return False
+    for st in doc.styles.element.findall(qn("w:style")):
+        if st.get(f"{{{W}}}styleId") != stijl_id:
+            continue
+        return any(c.get(f"{{{W}}}type") == "firstRow"
+                   for c in st.findall(qn("w:tblStylePr")))
+    return False
+
+
+def heeft_kopregel(tabel, rijen, doc):
     """Is de eerste rij een kopregel?
 
     Deze Word geeft daar geen enkel zichtbaar teken van: de kopregels van
@@ -464,6 +494,15 @@ def heeft_kopregel(tabel, rijen):
     signaal dat de tabel met een kopregel onderscheidt van de tabel zonder.
     Eenkolomstabellen vallen af: die stapelen lagen op elkaar en hun eerste
     rij is gewoon de bovenste laag.
+
+    Die vlag telt alleen bij een stijl die de eerste rij ook werkelijk
+    opmaakt. Tabelraster en TableGrid doen dat niet: ze definieren geen
+    enkele voorwaardelijke opmaak, dus daar staat de vlag aan zonder dat
+    Word iets tekent. Een en twintig tabellen in deze Word kregen zo een
+    kopregel die er in het document niet staat, waaronder de AND berekening
+    van 4.7, waarvan de bovenste rij gewoon het IP adres is. Zonder signaal
+    is het geen kopregel maar iets om na te kijken, en dat zegt de log dan
+    ook.
     """
     pr = tabel.rows[0]._tr.find(qn("w:trPr"))
     if pr is not None and pr.find(qn("w:tblHeader")) is not None:
@@ -483,7 +522,10 @@ def heeft_kopregel(tabel, rijen):
 
     tblpr = tabel._tbl.find(qn("w:tblPr"))
     look = tblpr.find(qn("w:tblLook")) if tblpr is not None else None
-    eerste_rij = look is not None and look.get(f"{{{W}}}firstRow") == "1"
+    stijl = tblpr.find(qn("w:tblStyle")) if tblpr is not None else None
+    stijl_id = stijl.get(f"{{{W}}}val") if stijl is not None else None
+    eerste_rij = (look is not None and look.get(f"{{{W}}}firstRow") == "1"
+                  and maakt_stijl_eerste_rij_op(doc, stijl_id))
     if eerste_rij and len(rijen[0]) > 1 and len(rijen) > 2:
         return True, "de tabelstijl maakt de eerste rij op (tblLook firstRow)"
     return False, ("eenkolomstabel" if len(rijen[0]) < 2 else "geen enkel signaal")
@@ -531,12 +573,32 @@ def tabel_html(tabel, ctx):
                 '        <tbody>\n' + body + '\n        </tbody>\n'
                 '    </table>\n</div>')
 
-    kop, reden = heeft_kopregel(tabel, rijen)
+    kop, reden = heeft_kopregel(tabel, rijen, ctx["doc"])
     eerste_cel = tabel.rows[0].cells[0].text.strip()[:30]
     if kop:
         noteer(waar, f'tabel "{eerste_cel}" kreeg een kopregel, want {reden}')
     else:
         noteer(waar, f'tabel "{eerste_cel}" kreeg GEEN kopregel ({reden}), nakijken')
+
+    # Waar de Word niets zegt, gokt de importer, en die gok hoort in de pagina
+    # te staan en niet alleen in IMPORT.md. Een logregel wordt niet gelezen en
+    # veroudert bovendien stil: verander je hier een regel of pas je de HTML met
+    # de hand aan, dan blijft er in IMPORT.md staan wat er ooit gebeurde. Het
+    # attribuut staat bij de markup die het beschrijft, en regel 15 van
+    # scripts/check-content.py laat de check erop vallen tot een mens beslist
+    # heeft. Je lost het op door het attribuut te schrappen (gok bevestigd) of
+    # door de markup te veranderen.
+    #
+    # Alleen wanneer er geen enkel signaal is. Een eenkolomstabel is een
+    # afgesproken uitzondering en geen gok, en een kopregel die de Word wel
+    # aanduidt evenmin.
+    geraden = ""
+    if not kop and reden == "geen enkel signaal":
+        # Het label van de tabel gaat mee, anders staan er op een pagina met drie
+        # zulke tabellen drie meldingen die niet uit elkaar te houden zijn.
+        label = html.escape(" ".join(eerste_cel.split())[:24], quote=True)
+        geraden = (' data-geraden="kopregel: de Word geeft geen enkel signaal'
+                   f'{(", tabel " + label) if label else ""}"')
 
     # Een kolom die overal leeg staat, is invulruimte binnen een tabel die
     # verder tekst draagt. Ze wordt als zodanig gemerkt en de tabel krijgt de
@@ -565,7 +627,7 @@ def tabel_html(tabel, ctx):
 
     klassen = "table table-bordered" + (" invulkolom" if leeg else "")
     stukken = ['<div class="table-responsive table-spacer">',
-               f'    <table class="{klassen}">']
+               f'    <table class="{klassen}"{geraden}>']
     if breedtes:
         stukken.append("        <colgroup>")
         for mm in breedtes:

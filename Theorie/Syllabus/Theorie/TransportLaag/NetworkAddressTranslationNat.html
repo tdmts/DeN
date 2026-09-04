@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Address Translation (NAT)</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Network Address Translation (NAT)</h1>
+
+        <p>Zoals je al weet heeft iedere host in een TCP/IP computernetwerk een uniek IP-adres. De IPv4 standaard specificeert dat er theoretisch iets meer dan een 4 miljard adressen zijn.</p>
+
+        <p>In de praktijk zijn er slechts ongeveer 3 miljard adressen effectief beschikbaar. Dit komt omdat in het verleden er zeer veel IP-adressen werden gereserveerd voor militaire- en testdoeleinden. Door de spectaculaire groei in Azië en de groei in de mobiele telefonie markt werden midden 2011 de laatste IPv4-adressen uitgedeeld aan de telecomoperatoren.</p>
+
+        <p>Bijgevolg zijn alle beschikbare IPv4 adressen gereserveerd en ondertussen zijn er veel meer dan 3 miljard hosts verbonden met het Internet.</p>
+
+        <p>Om het aantal gebruikte IP adressen te reduceren wordt gebruik gemaakt van Network Address Translation. Hosts (bijvoorbeeld een computer) krijgen van de router op het LAN een privaat IP adres en hosts op het WAN (bijvoorbeeld de router) krijgen van de telecomoperator een publiek IP adres.</p>
+
+        <p>De private IP adressen binnen het LAN hoeven niet uniek te zijn over de verschillende netwerken heen want de private adresruimte binnen het LAN is volledig afgescheiden van de publieke adresruimte van het WAN.</p>
+
+        <p>Enkel het publiek IP adres van de router is bijgevolg een ingenomen IP adres. Een organisatie kan duizenden hosts aangesloten hebben, met een privaat IP adres, op haar LAN, terwijl er bijvoorbeeld slechts één publiek IP adres wordt ingenomen.</p>
+
+        <p>De private IP adresruimte wordt verdeeld in drie blokken:</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <thead class="table-header-custom">
+                    <tr><th>Klasse</th><th>Bereik</th><th>Lengte NW deel</th><th>Standaard SNM</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>A</td><td>10.0.0.0 – 10.255.255.255</td><td>8</td><td>/8</td></tr>
+                    <tr><td>B</td><td>172.16.0.0 – 172.31.255.255</td><td>12</td><td>/16</td></tr>
+                    <tr><td>C</td><td>192.168.0.0 – 192.168.255.255</td><td>16</td><td>/24</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Afhankelijk van de grootte van het LAN wordt voor adresruimte A (10.x.x.y), B (172.x.y.z) of C (192.168.x.y) gekozen. Dit type IP adres kan enkel voorkomen op een LAN.</p>
+
+        <p>Gezien pakketten verstuurd moeten worden tussen verschillende hosts en het source IP adres een privaat IP adres is dat enkel bestaat op het LAN, moet de router de omzetting maken tussen het lokale private IP en het externe publieke IP adres.</p>
+
+        <p>Stel dat er drie hosts aanwezig zijn op het LAN en deze zijn allen verbonden met de router. Er zijn dan drie private IP adressen en één publiek IP adres. In de NAT tabel staat dan:</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <thead class="table-header-custom">
+                    <tr><th>Privaat IP adres</th><th>Publiek IP adres</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>192.168.67.46</td><td>217.83.3.17</td></tr>
+                    <tr><td>192.168.67.154</td><td>217.83.3.17</td></tr>
+                    <tr><td>192.168.67.73</td><td>271.83.3.17</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Pakketten die verstuurd worden vanaf het LAN krijgen dus als source IP adres 217.83.3.17 en niet 192.168.67.46 of 192.168.67.154 of 192.168.67.73. Hun destination IP adres is bijvoorbeeld 66.35.250.150 .</p>
+
+        <p>Een probleem vormt zich wanneer de pakketten terugkeren. Het source IP adres is dan 66.35.250.150 maar het destination IP adres is 217.83.3.17 . Eenmaal aangekomen op de router is er geen manier om na te gaan naar welke private host (192.168.67.46 / 192.168.67.154 / 192.168.67.73) ze doorgestuurd moeten worden.</p>
+
+        <p>De oplossing is om naast het source IP adres ook de poort te wijzigen bij het versturen van het pakket. De poortinformatie is iets wat toegevoegd wordt in de transport laag. Voorlopig mag je onthouden dat het MAC adres het adres is van de machine op het LAN, het IP adres is het adres op het WAN en de poort is het adres van de applicatie op de machine.</p>
+
+        <p>Iedere private host heeft dan een andere poort. De tabel ziet er dan als volgt uit:</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <thead class="table-header-custom">
+                    <tr><th>Privaat IP adres + poort</th><th>Publiek IP adres</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>192.168.67.46 : 32523</td><td>217.83.3.17</td></tr>
+                    <tr><td>192.168.67.154 : 16408</td><td>217.83.3.17</td></tr>
+                    <tr><td>192.168.67.73 : 43978</td><td>271.83.3.17</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Samengevat:</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-05-transport-laag-02.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <p>In principe is NAT niet meer nodig met IPv6 gezien er meer dan genoeg IP adressen beschikbaar zijn. Toch is het interessant om NAT te blijven gebruiken.</p>
+
+        <p>De redenen hiervoor zijn van economische aard maar ook veiligheid speelt een rol. Een publiek IP adres reserveren kost geld en met NAT heeft een instelling slechts 1 publiek IP nodig. Een privaat IP adres is ook niet zo makkelijk te bereiken van buitenaf en dit maakt het moeilijker om binnen te dringen op een netwerk.</p>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

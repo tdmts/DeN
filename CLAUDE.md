@@ -205,7 +205,13 @@ Rule 2 only walks `Theorie/`, so if you add a page there and forget `reference.j
 complains.
 
 - `img/` — self-hosted images, descriptive filenames. Never hotlink Brightspace
-  (`/content/enforced/...`): those paths break every academic year.
+  (`/content/enforced/...`): those paths break every academic year. **A `syllabus-*` file no page
+  refers to fails rule 16**, because it is evidence that content went missing rather than clutter:
+  the importer wrote the file and then failed to place it. Chapter 2 shipped three topology
+  drawings that way, so three questions asking "which topology is this?" printed with no picture
+  and nothing failed. The rule catches a figure cut from a page with the file left behind just as
+  well, so it outlives the importer. `syllabus-cover-logo.png` is referenced from
+  `export-syllabus.py` rather than a page, which is why the rule reads the scripts too.
 - `datasheets/` — self-hosted PDFs a page links to. Same reason: a vendor URL dies mid-semester.
 - `handouts/` — the three handout PDFs from the Brightspace export (sessie 1, datalink laag,
   netwerk laag). Parked: nothing links to them yet and what becomes of them beside the syllabus is
@@ -441,6 +447,27 @@ words**: no typo is fixed, no sentence is rewritten. What it had to guess goes i
 `Theorie/Syllabus/IMPORT.md`, which it rewrites for the chapters of that run and leaves alone for
 the others. Editorial findings go in `NOTITIES.md` beside it, by hand.
 
+**A guess that only lands in `IMPORT.md` is a guess nobody resolves.** That log is a record of one
+run: it is frozen per chapter at import time, so the moment you change a rule here or edit the HTML
+by hand, it describes something that is no longer true. That is not hypothetical. After the
+header-row rule was corrected, `IMPORT.md` still claimed a header row on three tables that no
+longer had one, citing a reason the code no longer knows, and nothing detected the contradiction.
+It also does not get read: 137 lines, 34 of them saying "nakijken".
+
+So where the Word gives no signal at all, the importer writes **`data-geraden`** on the element
+itself, and **rule 15** of the content check fails on any that is still there. The mark sits with
+the markup it describes, so it cannot go stale; the check is red until you look, so it cannot go
+unread; and you resolve it by deleting the attribute, which makes the deletion itself the record
+that a person decided. Only the no-evidence case is marked. A one-column table is a stated
+exception rather than a guess, and a header the Word actually indicates is evidence, so neither
+gets a mark.
+
+This does not catch the importer being *confidently* wrong, which is what the header-row bug
+was: it asserted a reason it had never checked. The discipline that covers that class is narrower
+and cannot be automated away. **A reason the importer prints must be a reason it actually read.**
+Each `want ...` string in `noteer()` should have a predicate behind it that genuinely tests that
+reason, not a proxy for it.
+
 Six things it does interpret, and none of them touch a word:
 
 - **A two-row table whose second row spans the width is a captioned box** (Kernpunten,
@@ -464,6 +491,15 @@ Six things it does interpret, and none of them touch a word:
   conditional first-row format. The flag that switches that on is `tblLook firstRow`, and it is the
   only thing that separates the table that has a header from the one that has not. One-column
   tables are excluded: those stack layers and their first row is the top layer.
+
+  **That flag only counts on a style that defines the first-row format.** `Onopgemaaktetabel1`
+  does; `Tabelraster` and `TableGrid` define no conditional formatting at all, so there the flag is
+  on and Word draws nothing. Twenty-one tables were getting a header row that does not exist in the
+  document, among them the AND calculation of 4.7, whose top row is simply the IP address, and the
+  fill-in table of 4.18, whose first row is one of three the student writes in. Two of the
+  twenty-one happened to be real headers, which is exactly why this was invisible for four
+  chapters: the rule was right often enough. Without a style that draws something, there is no
+  signal, so the importer now logs it as "nakijken" and a person decides.
 - **The width of an image comes from the Word,** as `wp:extent`, and is carried across as a
   `--figuur-breedte` on the `<figure>`. Without it an image falls back to its own pixel size at
   96 dpi, which says nothing at all: it records how the screenshot happened to be taken. The
@@ -625,6 +661,15 @@ together on the `start` attribute before they count a question. They each used t
 14 passed without checking them and the export printed five answers for eight questions, and both
 looked exactly like a page in order.
 
+**That `start` is now checked as well,** because the stitching hides the case where it is missing.
+An `<ol class="vragen">` that is not the first on the page must carry a `start` that continues from
+the question before it. Leave it off and the browser and the PDF restart at 1 while the Oplossingen
+section keeps counting, so answer 1 belongs to question 3 and only the number itself gives it away.
+Chapter 2 shipped exactly that: 1 to 5, then 1 to 3, with 6, 7 and 8 in the solutions beside it.
+Note that the check may not compare against the stitched number, which falls back to the expected
+value when the attribute is absent and is therefore always equal; it reads whether the attribute is
+declared at all.
+
 The export is **all or nothing** per chapter: one question without an answer and it prints no
 solutions for that chapter at all, because a list that skips question 3 lets a student believe he
 got question 3 right. That is the right call and a silent one, since it is a "let op" line among the
@@ -692,7 +737,7 @@ how the number was picked.
 
 [`scripts/check-content.py`](scripts/check-content.py) is the single "is this repo publishable"
 check. Run it before finishing any content edit; a `Stop` hook in
-[`.claude/settings.json`](.claude/settings.json) also runs it. Its docstring lists the fourteen
+[`.claude/settings.json`](.claude/settings.json) also runs it. Its docstring lists the sixteen
 rules.
 Two of them are worth repeating here because they fail *silently* otherwise:
 

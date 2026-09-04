@@ -373,6 +373,54 @@ window.LAB_REFERENCE = {
                         href: 'NetwerkLaag/TestJezelf.html'
                     }
                 ]
+            },
+            {
+                name: 'Transport laag',
+                reeks: 'theorie',
+                topics: [
+                    {
+                        id: 'transport-overzicht',
+                        name: 'Kernpunten en studievragen',
+                        blurb: 'Wat je uit dit hoofdstuk moet meenemen, en de vragen waarop je achteraf een antwoord hoort te hebben.',
+                        href: 'TransportLaag/Overzicht.html'
+                    },
+                    {
+                        id: 'transport-inleiding',
+                        name: 'Inleiding',
+                        blurb: 'Waarom een MAC en een IP adres niet volstaan zodra er meerdere applicaties op dezelfde machine draaien.',
+                        href: 'TransportLaag/Inleiding.html'
+                    },
+                    {
+                        id: 'transport-headers',
+                        name: 'Headers',
+                        blurb: 'De TCP header veld per veld, en waarom die van UDP met vier velden toekomt.',
+                        href: 'TransportLaag/Headers.html'
+                    },
+                    {
+                        id: 'transport-nat',
+                        name: 'Network Address Translation (NAT)',
+                        blurb: 'Hoe een heel LAN op een enkel publiek IP adres naar buiten komt, en wat de poort daarmee te maken heeft.',
+                        href: 'TransportLaag/NetworkAddressTranslationNat.html'
+                    },
+                    {
+                        id: 'transport-port-forwarding',
+                        name: 'Port forwarding',
+                        blurb: 'De weg terug naar binnen: een server in het LAN bereikbaar maken vanaf het internet.',
+                        href: 'TransportLaag/PortForwarding.html'
+                    },
+                    {
+                        id: 'transport-firewall',
+                        name: 'Firewall',
+                        blurb: 'Host based tegenover network based, en hoe een firewall rule eruitziet.',
+                        href: 'TransportLaag/Firewall.html'
+                    },
+                    {
+                        id: 'transport-test-jezelf',
+                        name: 'Test jezelf',
+                        blurb: 'Acht vragen over poortnummers, de TCP en UDP header, NAT en port forwarding.',
+                        href: 'TransportLaag/TestJezelf.html'
+                    }
+                ]
             }
         ]
     },
