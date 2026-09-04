@@ -128,7 +128,7 @@ Hoorcollege/           the lecture decks: the source of the handout PDFs
     IMPORT.md          what the importer had to guess, written by import-slides.py
 Algemeen/Planning.html the labo and theory schedule; the single source for session counts
 Algemeen/Evaluatie.html how the course is graded; the single source for every weight
-img/  datasheets/  downloads/  handouts/  scripts/
+img/  datasheets/  downloads/  scripts/
 reference.js           the manifest of every theory page, per module
 back-link.js  reference-dashboard.js  reference-dashboard.css
 oplossingen.js         the reveal that shows an answer, on every page with questions
@@ -220,9 +220,6 @@ complains.
   well, so it outlives the importer. `syllabus-cover-logo.png` is referenced from
   `export-syllabus.py` rather than a page, which is why the rule reads the scripts too.
 - `datasheets/` — self-hosted PDFs a page links to. Same reason: a vendor URL dies mid-semester.
-- `handouts/` — the three handout PDFs from the Brightspace export (sessie 1, datalink laag,
-  netwerk laag). Parked: nothing links to them yet and what becomes of them beside the syllabus is
-  still open. They are not datasheets, which is why they do not sit in `datasheets/`.
 - `downloads/` — what the student downloads. Four kinds live here, and the difference matters when
   you edit one. The **verslag templates** are derived: regenerate them in the same commit as a
   change to the `Opdracht.html` they came from, which rule 6 of the check enforces by mtime. The
@@ -235,9 +232,16 @@ complains.
   background reading. It is big, it never changes, and nothing regenerates it.
   The fourth is the **syllabus PDF**, `Datacommunicatie-en-netwerken-syllabus.pdf`, derived like
   the verslag templates but from `Theorie/Syllabus/` and by `export-syllabus.py`; rule 13 keeps it
-  in step. The fifth is a **handout PDF**, `DeN-handout-sessie-1.pdf`, derived from a deck under
-  `Hoorcollege/` by `export-handout.py`. All five are committed, because Pages serves only tracked
-  files. The `_oplossing.pkt` solutions stay on Brightspace and are deliberately absent.
+  in step. The fifth is a **handout PDF**, one per deck under
+  `Hoorcollege/`, derived by `export-handout.py`. All five are committed, because Pages serves only
+  tracked files. The `_oplossing.pkt` solutions stay on Brightspace and are deliberately absent.
+
+  **A `handouts/` used to sit beside this one** and no longer does. It held the three handout PDFs
+  the Brightspace export shipped, parked because nothing linked to them. Once the decks existed,
+  two of the three were the same lecture as a deck here and so a second copy of a PDF this repo
+  generates, which is the one thing a derived file may not be; the third's deck was imported and
+  the folder went with it. A handout lives in `downloads/` because that is where a file the student
+  downloads lives, and it has exactly one source, the deck it is printed from.
 
   **A handout's filename is an agreement with Orion, so it is fixed.** The lecture track has no
   landing page: its Orion topic links straight at
@@ -752,7 +756,9 @@ every one of those facts a second copy to drift from, which is exactly how
 What belongs here is only what no single file can own: how the pieces divide the work.
 
 ```
-Hoorcollege/Sessie1.html     the deck: one <section class="slide"> per slide, and nothing else
+Hoorcollege/Sessie1.html     a deck: one <section class="slide"> per slide, and nothing else
+Hoorcollege/Sessie2.html     one file per hoorcollege, named after the session it is given in
+Hoorcollege/Sessie3.html
 Hoorcollege/hoorcollege.css  what a slide IS, on screen and on paper
 Hoorcollege/handout.css      only what the printed sheet DOES with a slide
 Hoorcollege/hoorcollege.js   the projection, and the fit check
@@ -902,7 +908,9 @@ Three more things to know:
   Do not carry those over.
 - There are no PowerPoints in it. The theory exists as `DEN Syllabus 20250912.pdf` plus three
   handouts (sessie 1, datalink laag, netwerk laag). The syllabus is the source for the `Theorie/`
-  track, and the page split gets approved before anything is written.
+  track, and the page split gets approved before anything is written. The decks under
+  `Hoorcollege/` came later and from OneDrive, not from this export, which is why those three
+  handouts are no longer in the repo.
 
 **Solutions:** the theory exercises (subnetting) get their solution on the site behind a reveal,
 because that is self-study. Lab solutions and the `_oplossing.pkt` Packet Tracer files stay on
