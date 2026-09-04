@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klasse A /8 subnets berekenen</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Klasse A /8 subnets berekenen</h1>
+
+        <p>VLANs en subnets, allemaal goed en wel maar hoe pak je dat nu praktisch aan? Meestal start je vanaf een concrete probleemsituatie. Bedrijf X heeft zoveel hosts en daarna ga je subnetten en VLANs instellen.</p>
+
+        <p>Het lijkt allemaal moeilijker dan het is.</p>
+
+        <p>Je kan kiezen om te subnetten in klasse A, B of C maar bij klasse C heb je per subnet al maximum 256 hosts per subnet. Het heeft niet veel zin om daar nog kleiner te gaan. Klasse B subnetten is logischer want daar zijn er maximum 65534 hosts per subnet. Maar wij kiezen in deze oefening voor klasse A omdat we daar volledige controle hebben over een subnetmasker van 24 bits.</p>
+
+        <p>In een klasse A private IP range is het netwerkdeel 10. en het subnetmasker 255.0.0.0 . Het hostdeel is dan 24 bits en er zijn geen standaard subnets zoals in klasse B of C. Omwille van performantie redenen gaan we de adresruimte wel onderverdelen in subnetten.</p>
+
+        <h2>Opgave</h2>
+
+        <p>We hebben een KMO en deze heeft een aantal afdelingen:</p>
+
+        <ul>
+            <li>Productie (200 hosts)
+                <ul>
+                    <li>Industriële computers, embedded systems</li>
+                    <li>PLCs</li>
+                    <li>Industriële robots met controller</li>
+                </ul>
+            </li>
+            <li>Medewerkers (700 hosts)
+                <ul>
+                    <li>Desktops</li>
+                    <li>Laptops</li>
+                    <li>Tablets</li>
+                    <li>Smartphones</li>
+                </ul>
+            </li>
+            <li>Servers (30 hosts)</li>
+            <li>IoT sensoren (150 hosts)
+                <ul>
+                    <li>Temperatuur, vocht, luchtkwaliteit, ... houdt de productie in de gaten</li>
+                </ul>
+            </li>
+            <li>Administratie / boekhouding (70 hosts)
+                <ul>
+                    <li>Iemand moet de papierberg bijhouden...</li>
+                </ul>
+            </li>
+        </ul>
+
+        <p>Totaal zijn dat dus 1150 hosts.</p>
+
+        <h2>De makkelijke manier</h2>
+
+        <p>We kijken in het lijstje naar het grootst aantal hosts (700) en we bepalen het aantal bits dat we nodig hebben om dit getal voor te stellen: 10 (2^10 = 1024)</p>
+
+        <p>Het subnetmasker is dan /22 (32 - 10) ofwel 255.255.252.0</p>
+
+        <p>Het eerste subnet is dan 10.0.0.0 tot en met 10.0.3.255 en is VLAN 10</p>
+
+        <p>Het tweede subnet is dan 10.0.4.0 tot en met 10.0.7.255 en is VLAN 20</p>
+
+        <p>Het derde subnet is dan 10.0.8.0 tot en met 10.0.11.255 en is VLAN 30</p>
+
+        <p>Het vierde subnet is dan 10.0.12.0 tot en met 10.0.15.255 en is VLAN 40</p>
+
+        <p>Het vijfde subnet is dan 10.0.16.0 tot en met 10.0.19.255 en is VLAN 50</p>
+
+        <p>We hebben dus voor alle afdelingen een even grote adresruimte genomen van 1022 hosts en hoewel dit perfect werkt hebben we hier en daar wel wat adresruimte verspild.</p>
+
+        <h2>De moeilijke manier</h2>
+
+        <p>Als je geen adresruimte wil verspillen dan ga je meer gedetailleerd subnetten. Je kijkt dan afdeling per afdeling welk subnetmasker je nodig hebt. Je begint bij de grootste afdeling, dan de tweede grootste, ...</p>
+
+        <p><strong>Medewerkers</strong></p>
+
+        <p>700 hosts -&gt; 10 bits -&gt; subnetmasker 255.255.252.0 ofwel /22</p>
+
+        <p>Het eerste subnet is dan 10.0.0.0 tot en met 10.0.3.255 en is VLAN 10</p>
+
+        <p><strong>Productie</strong></p>
+
+        <p>200 hosts -&gt; 8 bits -&gt; subnetmasker 255.255.255.0 ofwel /24</p>
+
+        <p>Het tweede subnet is dan 10.0.4.0 tot en met 10.0.4.255 en is VLAN 20</p>
+
+        <p><strong>IoT sensoren</strong></p>
+
+        <p>150 hosts -&gt; 8 bits -&gt; subnetmasker 255.255.255.0 ofwel /24</p>
+
+        <p>Het derde subnet is dan 10.0.5.0 tot en met 10.0.5.255 en is VLAN 30</p>
+
+        <p><strong>Administratie / boekhouding</strong></p>
+
+        <p>70 hosts -&gt; 7 bits -&gt; subnetmasker 255.255.255.128 ofwel /25</p>
+
+        <p>Het vierde subnet is dan 10.0.6.0 tot en met 10.0.6.127 en is VLAN 40</p>
+
+        <p><strong>Servers</strong></p>
+
+        <p>30 hosts -&gt; 5 bits -&gt; maar dat is te krap -&gt; 6 bits -&gt; subnetmasker 255.255.255.64 ofwel /26</p>
+
+        <p>Het vijfde subnet is dan 10.0.6.128 tot en met 10.0.6.191 en is VLAN 50</p>
+
+        <h2>Conclusie</h2>
+
+        <p>Je moet je natuurlijk afvragen als het allemaal de moeite wel waard is om een paar adressen te besparen... In de praktijk worden heel vaak subnetmasker /22 (een veelvoud van 1000) en /24 (een veelvoud van 256) gebruikt. Veel groter of kleiner dan dat gaat men niet.</p>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

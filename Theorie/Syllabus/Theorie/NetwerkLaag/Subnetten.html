@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subnetten</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Subnetten</h1>
+
+        <p>In een modern bedrijfsnetwerk gaan VLANs en subnets hand in hand. Per VLAN wordt er een subnet aangemaakt (of omgekeerd).</p>
+
+        <p>Een subnet is een stuk adresruimte in een netwerk en een VLAN is een apart LAN op dezelfde hardware.</p>
+
+        <p>De reden waarom we VLANs en subnetten maken in een LAN is eenvoudig: performantie. Hosts communiceren met elkaar en af en toe sturen ze ook een broadcast pakket.</p>
+
+        <p>Een broadcast pakket is een pakket dat uitgezonden wordt door 1 computer en afgeleverd moet worden bij alle computers in het netwerk. Hoe meer hosts er in het netwerk zijn, hoe meer pakketten er moeten afgeleverd worden en dit heeft invloed op de performantie van het netwerk.</p>
+
+        <p>Een voorbeeld hiervan is een DHCP request of een ARP request.</p>
+
+        <p>Stel nu dat we een klasse B netwerk hebben met daarin zo&#x27;n 65000 hosts. Als er een broadcast pakket van 1 kB gestuurd wordt vanaf 1 host dan vertaalt zich dat naar 65 MB trafiek in totaal.</p>
+
+        <p>Door het netwerk op te delen in subnets / VLANs maken we het dus performanter.</p>
+
+        <p>Doorgaans gaan we in een subnet / VLAN maximum zo&#x27;n 1000 hosts plaatsen. Maar als we kijken naar de standaard private IP ranges dan zien we het volgende:</p>
+
+        <ul>
+            <li>/24: klasse C netwerk : 256 subnets en 254 hosts per subnet : geen probleem</li>
+            <li>/16 : klasse B netwerk : 16 subnets en 65534 hosts per subnet : probleem</li>
+            <li>/8 : klasse A netwerk : 0 subnets en 17 miljoen hosts : probleem</li>
+        </ul>
+
+        <p>Als we minder hosts per subnet willen dan moeten we het subnetmasker aanpassen. Dit noemt men ook wel subnetten.</p>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

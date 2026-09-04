@@ -317,6 +317,129 @@ nog:
 Verbeter je ze, doe het dan in de HTML: die is vanaf nu de bron, en de Word wordt
 gearchiveerd.
 
+## Hoofdstuk 4, Netwerk laag
+
+**De antwoorden: nakijken.** Zelfde afspraak en zelfde voorbehoud als bij de drie
+vorige hoofdstukken. In de Word is niets aangeduid, dus alles hieronder is
+afgeleid uit de theorie van het hoofdstuk en geen overname. Het hoofdstuk draagt
+28 vragen over vijf pagina's, en dat is meer dan hoofdstuk 3.
+
+**Vier oefeningpagina's stelden hun vragen als gewone alinea's, en zijn nu
+vragenlijsten.** Dat is een ingreep in de opmaak en ze is bewust genomen. In de
+Word staat de vraag van 4.8, 4.10 en 4.17 als een losse alinea met invulruimte
+eronder; zonder `ol class="vragen"` kent de export ze niet en drukt ze er ook
+geen oplossing bij, en op de site verschijnt er geen reveal. De woorden van de
+vragen zijn niet aangeraakt en de invulruimte staat er nog: de vraag krijgt er
+alleen een nummer voor. Waar de Word de oplossing zelf al voorstructureert
+(Stap 1, Stap 2, Stap 3 in 4.8 en 4.10), blijft die structuur staan waar ze
+stond.
+
+**De drie oefeningen van 4.14 zijn doorlopend genummerd, van 1 tot 9.** Ze
+begonnen elk opnieuw bij 1. De oplossingensectie drukt per pagina één lijst, dus
+drie keer een vraag 1 zou drie antwoorden geven waarvan er twee bij het verkeerde
+nummer staan. Hetzelfde geldt voor de zes vragen van 4.17.
+
+**De invulruimte bij vraag 7 van Test jezelf stond in de mogelijkheid "Nee".** De
+importer trekt een lege tabel vlak na een vraag in die vraag, en hier zat de
+tabel achter het laatste keuzevakje. Op papier stond de rekenruimte dan onder
+"Nee" in plaats van onder de vraag. Ze staat nu na de mogelijkheden, in de vraag
+zelf.
+
+**Drie en-dashes zijn een koppelteken geworden**, want ze staan er als minteken:
+"32 – 6" en "22 = 32 – 10" in 4.12, en "2^24 – 2" in 4.9. Dezelfde bladzijden
+schrijven elders "2^6 - 2", dus de Word is er zelf niet consequent in. Het gaat
+om het rekenteken en niet om een gedachtestreepje, dus dit is opmaak en geen
+woord.
+
+### Oefening op subnetmasker (4.8)
+
+| Vraag | Antwoord | Waarop het steunt |
+|---|---|---|
+| 1 172.19.1.2 en 172.19.5.12 met /22 | nee, 172.19.0.0 tegen 172.19.4.0 | 4.7, de AND bewerking. 252 is 11111100, dus 1 wordt 0 en 5 wordt 4 |
+
+### Oefeningen op Private IP range (4.10)
+
+| Vraag | Antwoord | Waarop het steunt |
+|---|---|---|
+| 1 192.168.60.38 en .41 met /29 | nee, 192.168.60.32 tegen 192.168.60.40 | 4.7 en 4.9. 248 is 11111000, dus de subnetten liggen om de acht adressen |
+| 2 10.140.64.5 en 10.159.12.8 met /11 | ja, beide 10.128.0.0 | 224 is 11100000, dus om de 32 adressen; 140 en 159 vallen allebei in het blok dat op 128 begint |
+| 3 172.16.4.9 en 172.17.9.4 met /16 | nee, 172.16.0.0 tegen 172.17.0.0 | 4.9, hetzelfde voorbeeld staat daar met 172.16.0.1 en 172.17.0.1 |
+
+### Oefeningen op subnets (4.14)
+
+| Vraag | Antwoord | Waarop het steunt |
+|---|---|---|
+| 1 Waarom statisch en niet DHCP | het adres moet vast zijn, want het staat in het programma van de PLC | 4.3, de nadelen van DHCP staan er omgekeerd: een lease loopt af en het adres kan veranderen |
+| 2 Hoeveel apparaten in 172.19.0.0 /22 | 1022 | 4.12, 2^n - 2 met n de hostbits |
+| 3 Eerste en laatste bruikbare adres | 172.19.0.1 tot 172.19.3.254 | idem, netwerk ID en broadcast vallen weg |
+| 4 Hoeveel apparaten in /26 | 62 | 4.12, "2^6 - 2 is 62" staat er woordelijk |
+| 5 Eerste en laatste bruikbare adres | 192.168.6.65 tot 192.168.6.126 | de blokgrenzen liggen om de 64 en 120 valt in het blok 64 tot 127 |
+| 6 Kleinste subnet waarin alles past | /28, 255.255.255.240 | zes laadpalen plus de databankcomputer is zeven, en een /29 geeft er maar zes |
+| 7 Welk masker aanraden, en waarom | /28, maar meer dan een keuze is te verdedigen | 4.12, "marge voor als er nog een printer zou bij komen"; 14 adressen is het dubbele van wat er nodig is |
+| 8 Netwerk ID en broadcast | 192.168.1.128 en 192.168.1.143 | 192.168.0.0 /24 en 192.168.1.0 /25 zijn bezet, dus het eerste vrije /28 blok begint op .128 |
+| 9 Kleinste en grootste bruikbare adres | 192.168.1.129 tot 192.168.1.142 | idem |
+
+**Vraag 6 is herschreven, en dat is een ingreep.** In de Word staat "Wat is het
+kleinste subnetmasker dat je kan gebruiken?", en als getal is 255.255.255.240 net
+het grootste van de twee. Wat de vraag test, is hoeveel hostbits zeven apparaten
+nodig hebben, en dat vraagt ze nu: "Wat is het kleinste subnet waarin alle
+apparaten passen? Geef het subnetmasker." Het antwoord blijft /28.
+
+**Vraag 7 vraagt nu ook waarom.** Ze heeft geen enkel juist antwoord: vraag 6
+vraagt de ondergrens, vraag 7 de afweging. Zonder "en waarom" leest de
+oplossingensectie /28 af als het antwoord, terwijl een student die /27 verdedigt
+de vraag even goed beantwoordt. Het antwoord zegt dat nu zelf in zijn eerste zin.
+
+### Routing decision oefeningen (4.17)
+
+| Vraag | Antwoord | Waarop het steunt |
+|---|---|---|
+| 1 Welke rijen matchen op 10.5.6.3 | 1, 2, 3, 4 en 5 | 4.15, de mask bewerking per rij. Rij 6 geeft 10.0.0.0 tegen 84.12.9.1 |
+| 2 Beste match | rij 5 | 4.15, "de beste match is de langste match ... dan wordt de rij gekozen met de laagste metric": rij 4 en 5 zijn allebei /24, en 110 is minder dan 112 |
+| 3 Hoeveel netwerkkaarten | twee | 4.15, de kolom Interface; er staan maar twee adressen in |
+| 4 Verbonden met | a, hetzelfde netwerk | beide interfaces staan on-link bij 172.29.8.0 /24 en delen dezelfde default gateway |
+| 5 Welke rijen matchen op 172.29.8.14 | 1, 2, 3 en 6 | de rijen met /32 vragen een exacte match op .2, .3 of .255 |
+| 6 Beste match | rij 3 | rij 3 en 6 zijn allebei /24, en 54 is minder dan 67 |
+
+### Test jezelf (4.18)
+
+| Vraag | Antwoord | Waarop het steunt |
+|---|---|---|
+| 1 De vijf lagen met hun adressering | Application, Transport, Network, Datalink, Physical; IP en MAC | 4.1, de tabel en de alinea eronder |
+| 2 Voorbeeldadres en aantal bits | MAC 48, IPv4 32, IPv6 128 bits | 4.1 en 4.5, met precies die drie voorbeeldadressen |
+| 3 Ontbrekende velden van de IPv4 header | Time to live, Protocol, source IP adres, destination IP adres | 4.2, dezelfde tabel staat daar volledig |
+| 4 TCP of UDP | a, TCP | 4.2, de aankondiging van de transport laag; TCP bevestigt en hertransmitteert |
+| 5 Betekenis van 127.0.0.1 | c, het loopback adres | 4.4, waar het naast het APIPA bereik 169.254 staat |
+| 6 De drie private klassen | zie 4.9 | 4.9, alle zes de rijen staan daar per klasse uitgeschreven |
+| 7 10.1.0.1 en 10.2.0.1 met /9 | a, ja, beide 10.0.0.0 | 4.7 en 4.9. Van het tweede byte telt alleen de hoogste bit, en die is bij 1 en 2 nul |
+| 8 172.16.1.1 valt in | b, privaat klasse B | 4.9, "van 172.16.0.1 tot 172.31.255.254" |
+| 9 De vier DHCP pakketten | discover, offer, request, acknowledge | 4.3, de handshake staat er woordelijk, met het broadcast adres en met wat de acknowledge meegeeft |
+
+**Vraag 9 is vervangen, en dat is een ingreep.** In de Word vroeg ze naar de
+meest performante wifistandaard, uit ac, ax en g. Dat is 3.10 en geen netwerk
+laag, en 3.12 stelt dezelfde vraag als vraag 18 met be erbij, dus met een ander
+antwoord; twee bijna gelijke vragen met een verschillend antwoord onthoudt een
+student verkeerd. Wat er nu staat, vraagt naar de vier pakketten van de DHCP
+handshake.
+
+Weglaten kon ook, maar dan bleef er een gat: de Test jezelf raakte de lagen, de
+IPv4 header, het loopback adres, de private klassen en het subnetmasker, en niets
+van DHCP, DNS, APIPA, default gateway of routing. De handshake staat woordelijk
+in 4.3 en sluit aan bij vraag 5, die over 127.0.0.1 en APIPA gaat.
+
+**Twee typfouten uit de Word zijn verbeterd.** In de HTML, want die is vanaf nu
+de bron:
+
+- 4.16: "dan zal de default row altjid een match zijn" is altijd geworden
+- 4.14: "gescheiden kan worden van de rest het netwerk" is "van de rest van het
+  netwerk" geworden
+
+**Identifier is blijven staan.** Het derde veld van de IPv4 header heet in
+RFC 791 Identification, en de Word schrijft op beide plaatsen (4.2 en 4.18)
+Identifier. Dat is geen schrijffout maar een andere naam voor hetzelfde veld, en
+ze staat in een tekening die de student moet aanvullen. Verander je ze, verander
+ze dan op allebei de plaatsen tegelijk.
+
 ## Voor de hele syllabus, gezien tijdens het lezen
 
 **De Word is nieuwer dan de PDF die nu in Orion staat.** De docx is van

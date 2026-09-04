@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Host Configuration Protocol (DHCP)</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Dynamic Host Configuration Protocol (DHCP)</h1>
+
+        <p>Zoals je weet moet iedere host in het TCP/IP netwerk over een IP adres beschikken. Dit adres is uniek in het ganse netwerk. Als gebruiker kan je zelf een statisch adres toekennen aan iedere host.</p>
+
+        <p>Dit heeft als voordeel dat je op ieder moment weet op welk IP adres een host terug te vinden is maar dit heeft enkele nadelen:</p>
+
+        <ul>
+            <li>Je moet zelf bijhouden welke host bij welk adres hoort;</li>
+            <li>Je moet manueel dit adres invullen, samen met een subnetmasker en default gateway;</li>
+            <li>Als je verandert van netwerk moet je dit opnieuw invullen;</li>
+            <li>Je moet bijhouden welk IP adres nog vrij is en je moet op voorhand weten wat het subnetmasker is, samen met de default gateway;</li>
+            <li>Als je het IP adres verkeerd ingevuld hebt zodanig dat je een duplicaat krijgt op het netwerk dan krijg je een onstabiele verbinding.</li>
+        </ul>
+
+        <p>Om al deze nadelen te verhelpen gebruiken we DHCP.</p>
+
+        <p>DHCP bestaat uit twee onderdelen:</p>
+
+        <ol>
+            <li>DHCP Client</li>
+            <li>DHCP Server</li>
+        </ol>
+
+        <p>Client en server werken samen wat betreft het ontvangen en dynamisch uitdelen van IP adressen in het netwerk. De DHCP Client is de host die het IP adres opvraagt en ontvangt van de DHCP server.</p>
+
+        <p>Dit alles gebeurt aan de hand van een DHCP handshake. De DHCP Client heeft bij het verbinding maken met het netwerk nog geen IP adres en stuurt meteen een DHCP discover pakket naar alle hosts in het netwerk. Dit gebeurt aan de hand van het broadcast adres: 255.255.255.255. Iedere host in het netwerk ontvangt bijgevolg een DHCP discover maar het is / zijn enkel de DHCP server(s) die er op zullen reageren met een DHCP offer.</p>
+
+        <p>Het DHCP offer pakket is een voorstel van DHCP Server naar de Client toe met een beschikbaar IP adres. Als de DHCP Client hierop ingaat stuurt hij een DHCP request naar de DHCP Server.</p>
+
+        <p>Als laatste bevestigt de server het IP adres via een DHCP Acknowledge en geeft daarbij ook nog bijkomende gegevens mee:</p>
+
+        <ul>
+            <li>De default gateway (meestal het adres van de router)</li>
+            <li>Het subnetmasker</li>
+            <li>De lease time (hoe lang je het IP adres mag gebruiken)</li>
+        </ul>
+
+        <p>Als de lease time afloopt en de DHCP client zich nog steeds op het netwerk bevindt dan gebeurt de DHCP handshake opnieuw.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <thead class="table-header-custom">
+                    <tr><th>DHCP client</th><th>DCHP server</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Discover</td><td></td></tr>
+                    <tr><td></td><td>Offer</td></tr>
+                    <tr><td>Request</td><td></td></tr>
+                    <tr><td></td><td>Acknowledge</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

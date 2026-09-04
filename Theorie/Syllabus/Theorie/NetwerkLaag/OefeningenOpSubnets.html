@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oefeningen op subnets</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Oefeningen op subnets</h1>
+
+        <h2>Oefening 1</h2>
+
+        <p><strong>Gegeven:</strong></p>
+
+        <p>In het labo industriële robots (3AM) moet je leren werken met een Cognex camera en een robot. Beiden moeten op het netwerk geplaatst worden zodat je ze extern kunt aansturen met bijvoorbeeld een PLC.</p>
+
+        <p>Via de IT afdeling heb je voor beiden een IP adres aangevraagd. De IT afdeling heeft je in plaats daarvan een volledig subnet gegeven: 172.19.0.0 / 22</p>
+
+        <p><strong>Gevraagd:</strong></p>
+
+        <ol class="vragen">
+            <li>Waarom is het interessant om voor de apparaten zelf een IP adres in te stellen en dat niet te laten toekennen via DHCP?
+                <div class="oplossing">Omdat de camera en de robot altijd op hetzelfde adres bereikbaar moeten zijn. Het adres van de camera staat in het programma van de PLC, en een DHCP server kan er na een herstart een ander uitdelen. Veel industriële apparaten hebben trouwens helemaal geen DHCP client.</div>
+            </li>
+            <li>Hoeveel apparaten kan je maximum een IP adres geven in dit subnet?
+                <div class="oplossing">Een /22 laat 32 - 22 = 10 bits over voor het hostdeel, dus 2^10 - 2 = 1022 apparaten. De twee die eraf gaan zijn het netwerk ID en het broadcast adres.</div>
+            </li>
+            <li>Wat is het eerste en laatste bruikbare IP adres dat je kan gebruiken in dit subnet?
+                <div class="oplossing">Van 172.19.0.1 tot 172.19.3.254. Het netwerk ID is 172.19.0.0 en het broadcast adres 172.19.3.255.</div>
+            </li>
+        </ol>
+
+        <p><strong>Oplossing:</strong></p>
+
+        <h2>Oefening 2</h2>
+
+        <p><strong>Gegeven:</strong></p>
+
+        <p>Een PLC heeft als IP adres 192.168.6.120 en het subnetmasker is 255.255.255.192. Om te kunnen communiceren met de PLC ga je je eigen computer een IP adres moeten geven in hetzelfde subnet…</p>
+
+        <p><strong>Gevraagd:</strong></p>
+
+        <ol class="vragen" start="4">
+            <li>Hoeveel apparaten kan je maximum een IP adres geven in dit subnet?
+                <div class="oplossing">255.255.255.192 is een /26, dus blijven er 6 hostbits over: 2^6 - 2 = 62 apparaten.</div>
+            </li>
+            <li>Wat is het eerste en laatste bruikbare IP adres dat je kan gebruiken in dit subnet?
+                <div class="oplossing">Met 6 hostbits liggen de subnetgrenzen om de 64 adressen, en 120 valt in het blok 192.168.6.64 tot 192.168.6.127. Bruikbaar is dus 192.168.6.65 tot 192.168.6.126.</div>
+            </li>
+        </ol>
+
+        <p><strong>Oplossing:</strong></p>
+
+        <h2>Oefening 3</h2>
+
+        <p><strong>Gegeven:</strong></p>
+
+        <p>Op je stage kom je terecht in een autogarage waar je de laadpalen moet uitrusten met intelligente meters. De meters werken over TCP/IP zodat centraal het verbruik kan bijgehouden worden in een databank. De meters en de computer waarop de databank is geïnstalleerd hebben allen een IP adres.</p>
+
+        <p>Er is gekozen geweest om een apart subnet te gebruiken zodat alles gescheiden kan worden van de rest van het netwerk. Momenteel zijn er 6 laadpalen.</p>
+
+        <p>In de garage wordt er gewerkt met klasse C adressering. Momenteel zitten alle computers en printers van de boekhouding in het netwerk 192.168.0.0 (met standaard subnetmasker) en de diagnose computers in het netwerk 192.168.1.0 met subnetmasker /25.</p>
+
+        <p>De IT afdeling heeft je gevraagd om een voorstel te doen wat betreft het subnet…</p>
+
+        <p><strong>Gevraagd:</strong></p>
+
+        <ol class="vragen" start="6">
+            <li>Wat is het kleinste subnet waarin alle apparaten passen? Geef het subnetmasker.
+                <div class="oplossing">Er moeten zeven apparaten in: de zes laadpalen en de computer met de databank. Een /29 geeft 2^3 - 2 = 6 bruikbare adressen en dat is er een te weinig, dus je komt uit op een /28 ofwel 255.255.255.240, goed voor 14 adressen.</div>
+            </li>
+            <li>Welk subnetmasker zou je aanraden om te gebruiken, en waarom?
+                <div class="oplossing">Meer dan een antwoord is te verdedigen; het gaat om je argument. Een /28 geeft 14 adressen, het dubbele van wat de garage nu nodig heeft, dus er kunnen laadpalen bij zonder het subnet opnieuw in te delen. Verwacht je er veel meer, dan is een /27 met 30 adressen beter.</div>
+            </li>
+            <li>Wat is het netwerk ID en broadcast IP adres in jouw gekozen subnet?
+                <div class="oplossing">192.168.0.0 is met zijn standaard subnetmasker helemaal bezet, en 192.168.1.0 /25 loopt tot 192.168.1.127. Het eerste vrije /28 blok begint dus op 192.168.1.128: dat is het netwerk ID, en het broadcast adres is 192.168.1.143.</div>
+            </li>
+            <li>Wat is het kleinste en grootste bruikbare IP adres in jouw gekozen subnet?
+                <div class="oplossing">192.168.1.129 tot 192.168.1.142.</div>
+            </li>
+        </ol>
+
+        <p><strong>Oplossing:</strong></p>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+    <script src="../../../../oplossingen.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oefening op subnetmasker</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Oefening op subnetmasker</h1>
+
+        <p><strong>Gegeven:</strong></p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr><td>IP adres computer 1</td><td>IP adres computer 2</td><td>Subnetmasker</td></tr>
+                    <tr><td>172.19.1.2</td><td>172.19.5.12</td><td>255.255.252.0</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p><strong>Gevraagd:</strong></p>
+
+        <ol class="vragen">
+            <li>Zitten de twee computers in hetzelfde netwerk?
+                <div class="oplossing">Nee. Het masker 255.255.252.0 is een /22, dus alleen de zes hoogste bits van het derde byte tellen mee. Bij 172.19.1.2 geeft de AND bewerking 172.19.0.0 en bij 172.19.5.12 geeft ze 172.19.4.0. Twee verschillende netwerken.</div>
+            </li>
+        </ol>
+
+        <p><strong>Oplossing:</strong></p>
+
+        <p>Stap 1: zet het IP adres en subnetmasker van de eerste computer om naar binaire vorm en maak de AND bewerking</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered invulruimte">
+                <tbody>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr><td>&nbsp;</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Stap 2: zet het IP adres en subnetmasker van de tweede computer om naar binaire vorm en maak de AND bewerking</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered invulruimte">
+                <tbody>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr><td>&nbsp;</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Stap 3: komt het resultaat van beide AND bewerkingen overeen?</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered invulruimte">
+                <tbody>
+                    <tr><td>&nbsp;</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Computer 1 zit in het netwerk</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered invulruimte">
+                <tbody>
+                    <tr><td>&nbsp;</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Computer 2 zit in het netwerk</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered invulruimte">
+                <tbody>
+                    <tr><td>&nbsp;</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+    <script src="../../../../oplossingen.js"></script>
+</body>
+
+</html>

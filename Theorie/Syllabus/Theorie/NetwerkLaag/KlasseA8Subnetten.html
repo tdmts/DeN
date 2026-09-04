@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klasse A /8 subnetten</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Klasse A /8 subnetten</h1>
+
+        <p>Laat ons beginnen met het meest eenvoudige private IP adres range: klasse A ofwel /8.</p>
+
+        <p>In een /8 private IP range zijn er standaard geen subnets. Het IP adres heeft een vast netwerkdeel dat 8 bits lang is en dit komt overeen met de lengte van het standaard subnetmasker. De overige 24 bits zijn voorbehouden voor het hostdeel.</p>
+
+        <p>Dit betekent dat er ongeveer 2^24 mogelijke adressen zijn ofwel zo&#x27;n 17 miljoen. Waarschijnlijk is er geen enkel bedrijf ter wereld met 17 miljoen hosts op zijn netwerk maar laat ons eens aannemen dat dit wel zo is.</p>
+
+        <p>Als er 1 host is die een broadcast pakket stuurt dan moet dit pakket verstuurd worden naar 17 miljoen andere hosts. Als dat pakket zo&#x27;n 1 kB groot is dan moet er maar liefst 17 GigaByte  aan data over het netwerk versluisd worden. Dat is natuurlijk een gigantische hoeveelheid data en heeft een invloed op de performantie.</p>
+
+        <p>Als we subnetten dan verdelen we de adresruimte van het netwerk in kleinere deeltjes en die verdeling doen we niet zomaar, we doen dit op een logische manier. We maken een bijvoorbeeld een subnet voor medewerkers van het bedrijf, een subnet voor machine pc&#x27;s, een subnet voor printers, een subnet voor gasten, een subnet voor telefoons, een subnet voor TV&#x27;s, ... en per subnet maken we een VLAN.</p>
+
+        <p>Om geen IP adressen te verspillen houden we ook rekening met het aantal hosts die in dat subnet (ongeveer) zullen zitten. Zijn er bijvoorbeeld 30 printers. Om dit getal binair voor te stellen heb je 5 bits nodig want 2^5 = 32. Maar dan heb je geen marge voor als er nog een printer zou bij komen… Een betere keuze zou zijn om 6 bits te voorzien voor de adresruimte. Een goed subnet zou dus /26 (26 = 32 - 6) zijn. Er zijn dan 6 bits voor het hostdeel en 2^6 - 2 is 62.</p>
+
+        <p>Heb je een grote groep gebruikers (bijvoorbeeld 5000) dan ga je gewoon vijf subnets maken van /22 (22 = 32 - 10 en 2^10 = 1024) in plaats van 1 subnet van /19.</p>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

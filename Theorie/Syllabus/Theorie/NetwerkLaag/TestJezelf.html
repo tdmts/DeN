@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test jezelf</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Test jezelf</h1>
+
+        <ol class="vragen">
+            <li>Som nog eens de vijf lagen op van het TCP/IP model. Vul aan met het juiste type adressering. De eerste laag krijg je cadeau.
+                <div class="oplossing">Van boven naar onder: Application, Transport, Network, Datalink en Physical. De netwerk laag werkt met IP adressering, de datalink laag met MAC adressering.</div>
+            </li>
+        </ol>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr><td colspan="2"></td></tr>
+                    <tr><td colspan="2"></td></tr>
+                    <tr><td></td><td>______ adressering</td></tr>
+                    <tr><td></td><td>______ adressering</td></tr>
+                    <tr><td colspan="2">Physical</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ol class="vragen" start="2">
+            <li>Geef bij elk type adressering een voorbeeld adres en noteer hoeveel bits ervoor gebruikt worden.
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulkolom">
+                        <colgroup>
+                            <col style="--kolom-breedte: 22.4mm">
+                            <col style="--kolom-breedte: 110.0mm">
+                            <col style="--kolom-breedte: 27.4mm">
+                        </colgroup>
+                        <thead class="table-header-custom">
+                            <tr><th>MAC</th><th class="invulruimte"></th><th class="invulruimte"></th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>IPv4</td><td class="invulruimte"></td><td class="invulruimte"></td></tr>
+                            <tr><td>IPv6</td><td class="invulruimte"></td><td class="invulruimte"></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">MAC: 0A:1B:2C:3D:4E:5F, 48 bits. IPv4: 84.56.123.36, 32 bits. IPv6: 2001:0db8:85a3:0000:1319:8a2e:0370:7344, 128 bits.</div>
+            </li>
+            <li>Vul de ontbrekende velden van de IPv4 header aan:
+                <div class="oplossing">Op de derde rij Time to live en Protocol, en de twee rijen daaronder zijn het source IP adres en het destination IP adres.</div>
+            </li>
+        </ol>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr><td>Version</td><td>Header length</td><td>DSCP</td><td>ECN</td><td colspan="2">Total length</td></tr>
+                    <tr><td colspan="4">Identifier</td><td>Flags</td><td>Fragment offset</td></tr>
+                    <tr><td colspan="2">________________</td><td colspan="2">_________________</td><td colspan="2">Header checksum</td></tr>
+                    <tr><td colspan="6">_______________________________________________________________________</td></tr>
+                    <tr><td colspan="6">_______________________________________________________________________</td></tr>
+                    <tr><td colspan="6">Options</td></tr>
+                    <tr><td colspan="6">Data</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ol class="vragen" start="4">
+            <li>Kies je best voor TCP of UDP als je een gegarandeerde aflevering van pakketten wil?
+                <ul>
+                    <li class="juist">TCP</li>
+                    <li>UDP</li>
+                </ul>
+                <div class="oplossing">UDP stuurt zijn pakketten weg en kijkt niet om. TCP laat elk pakket bevestigen en stuurt opnieuw wat onderweg verloren ging.</div>
+            </li>
+            <li>Wat is de betekenis van het adres 127.0.0.1 ?
+                <ul>
+                    <li>Het is het IP adres van de router</li>
+                    <li>Het is het IP adres van de default gateway</li>
+                    <li class="juist">Het is het loopback IP adres van je eigen computer</li>
+                    <li>Het is een APIPA adres</li>
+                </ul>
+                <div class="oplossing">Alles wat je naar 127.0.0.1 stuurt, komt bij je eigen machine terug binnen zonder dat het de netwerkkaart ooit ziet. Een APIPA adres begint met 169.254.</div>
+            </li>
+            <li>Geef bij iedere private klasse het kleinste en grootste IP adres samen met de standaard lengte van het netwerkdeel, het standaard subnetmasker en het standaard aantal subnets.
+                <div class="oplossing">Klasse A: 10.0.0.1 tot 10.255.255.254, netwerkdeel 8 bits, subnetmasker 255.0.0.0, geen subnets, ongeveer 17 miljoen hosts. Klasse B: 172.16.0.1 tot 172.31.255.254, netwerkdeel 12 bits, subnetmasker 255.255.0.0, 16 subnets, ongeveer 65500 hosts per subnet. Klasse C: 192.168.0.1 tot 192.168.255.254, netwerkdeel 16 bits, subnetmasker 255.255.255.0, 256 subnets, 254 hosts per subnet.</div>
+            </li>
+        </ol>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <thead class="table-header-custom">
+                    <tr><th></th><th>Klasse A</th><th>Klasse B</th><th>Klasse C</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Kleinste</td><td></td><td></td><td></td></tr>
+                    <tr><td>Grootste</td><td></td><td></td><td></td></tr>
+                    <tr><td>Lengte NW deel</td><td></td><td></td><td></td></tr>
+                    <tr><td>SNM</td><td></td><td></td><td></td></tr>
+                    <tr><td>Aantal subnets</td><td></td><td></td><td></td></tr>
+                    <tr><td>Hosts per subnet</td><td></td><td></td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ol class="vragen" start="7">
+            <li>Kunnen host 10.1.0.1 en 10.2.0.1 elkaar zien als je weet dat het subnetmasker /9 is?
+                <ul>
+                    <li class="juist">Ja</li>
+                    <li>Nee</li>
+                </ul>
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulruimte">
+                        <tbody>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr><td>&nbsp;</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulruimte">
+                        <tbody>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr><td>&nbsp;</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">/9 is 255.128.0.0. Van het tweede byte telt alleen de hoogste bit mee, en die staat bij 1 en bij 2 allebei op nul. De AND bewerking geeft dus twee keer 10.0.0.0, en de hosts zitten in hetzelfde netwerk.</div>
+            </li>
+            <li>Het IP adres 172.16.1.1 valt in het bereik van …
+                <ul>
+                    <li>Een privaat klasse A adres</li>
+                    <li class="juist">Een privaat klasse B adres</li>
+                    <li>Een privaat klasse C adres</li>
+                    <li>Een publiek IP adres</li>
+                </ul>
+                <div class="oplossing">De private klasse B loopt van 172.16.0.1 tot 172.31.255.254.</div>
+            </li>
+            <li>Welke vier pakketten wisselen een DHCP client en een DHCP server uit, en in welke volgorde?
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulruimte">
+                        <tbody>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr><td>&nbsp;</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">Discover, offer, request en acknowledge. De client stuurt zijn discover naar het broadcast adres 255.255.255.255, want hij heeft zelf nog geen adres. Bij de acknowledge krijgt hij naast het IP adres ook het subnetmasker, de default gateway en de lease time.</div>
+            </li>
+        </ol>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+    <script src="../../../../oplossingen.js"></script>
+</body>
+
+</html>

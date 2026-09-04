@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Default row</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Default row</h1>
+
+        <p>Als we de routetabel bekijken dan zien we dat de eerste rij heel speciaal is. Zowel network destination en netmask zijn 0.0.0.0 .</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-04-netwerk-laag-13.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <p>Dit zorgt ervoor dat om het even welk pakket met om het even welk destination IP adres een exacte match zal geven waardoor die interface een kandidaat wordt om het pakket naar te forwarden. Dit wordt ook wel de default row genoemd. Op de default row zie je ook de gateway staan. Dit is natuurlijk de default gateway waarover we het al kort gehad hebben.</p>
+
+        <p>Als er geen enkele andere match is dan zal de default row altijd een match zijn en het pakket wordt dan gestuurd naar de default gateway.</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-04-netwerk-laag-14.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <p>De default gateway werd aangeleverd door de DHCP server of ze werd manueel ingesteld door de gebruiker. Bij je thuis is de default gateway waarschijnlijk gewoon het IP adres van je router.</p>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

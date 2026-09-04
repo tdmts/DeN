@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private IP range</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Private IP range</h1>
+
+        <p>De router is de koppeling tussen twee netwerken. Het LAN en het WAN. Een router heeft één publiek IP adres wat verkregen wordt van de Internet Service Provider (ISP) en deelt, via de DHCP server, ook private IP adressen uit aan clients in het LAN.</p>
+
+        <p>Binnen het LAN krijgen de computers een IP adres van de DHCP server uit een bepaald bereik. Dit bereik noemen we de private IP range.</p>
+
+        <p>We onderscheiden drie private IP ranges:</p>
+
+        <ul>
+            <li>10.x.x.y /8 voor zeer grote netwerken met heel veel computers (+ 65535)</li>
+            <li>172.x.y.z /16 voor middelgrote netwerken met meer dan 254 computers</li>
+            <li>192.168.x.y /24 voor kleine netwerken met minder dan 254 computers</li>
+        </ul>
+
+        <p>Voor performantieredenen neem je best het netwerk dat qua grootte best bij de omvang van jouw organisatie past. Het heeft bijvoorbeeld weinig zin om bij jou thuis een /8 adresruimte te gebruiken.</p>
+
+        <p>Het is belangrijk dat je onthoudt dat deze private IP adressen nooit op het Internet zullen voorkomen maar enkel in een LAN.</p>
+
+        <h2>Opbouw van een IP adres</h2>
+
+        <p>We hebben al een paar keer aangehaald dat er in een IP adres een zekere structuur zit. Je kan het een beetje vergelijken met een gewoon adres. Je woont in een land, in een stad, in een straat, met een bepaald huisnummer. Combineer die gegevens met elkaar en je hebt een adres. Net zoals in een gewoon adres zit er in een IP adres een zekere hiërarchie.</p>
+
+        <p>Een IP adres bevat een aantal delen:</p>
+
+        <ul>
+            <li>Netwerkdeel</li>
+            <li>Subnetdeel (niet verplicht)</li>
+            <li>Hostdeel</li>
+        </ul>
+
+        <p>In een netwerk kunnen er een aantal hosts (computers) zitten. Eventueel kan je het netwerk nog in kleinere subnets opsplitsen. Het opsplitsen in subnets kan je doen als je bijvoorbeeld een apart netwerk wil voor verschillende soorten gebruikers of apparaten of wanneer je de performantie van het netwerk wil verbeteren.</p>
+
+        <p>Je kan zien als een netwerk opgedeeld is in subnets wanneer de lengte van het netwerkdeel kleiner is dan de lengte van het subnetmasker. We maken dit concreet in de volgende hoofdstukken.</p>
+
+        <h2>10.x.x.y /8</h2>
+
+        <p>In een /8 privaat IP netwerk wordt afgesproken dat het IP adres dat voor deze doeleinden mag worden gebruikt altijd 10.X.X.Y is. De X mag je vervangen door een getal van 0 (inclusief) tot 255 (inclusief). De Y mag je vervangen door een getal van 1 (inclusief) tot 254 (inclusief) .</p>
+
+        <p>Het kleinste IP adres is dan 10.0.0.1 en het grootste 10.255.255.254. Dit alles is goed voor een private adresruimte van zo’n 17 miljoen apparaten (2^24 - 2). We noemen dit ook wel klasse A adressen.</p>
+
+        <p>Op het Internet ga je geen enkel IP adres tegenkomen dat in dit bereik ligt. Deze adresruimte wordt enkel in een LAN gebruikt.</p>
+
+        <p>Als we het kleinste en grootste adres binair schrijven dan krijgen we dit:</p>
+
+        <p>Minimum:00001010000000000000000000000001Maximum:00001010111111111111111111111110</p>
+
+        <p>Het netwerkdeel van het IP adres is hier standaard 8 bits lang en dat komt overeen met de lengte van het standaard subnetmasker: /8. Dit betekent dat er geen subnets gemaakt zijn in deze adresruimte want de lengte van het netwerkdeel en subnetdeel zijn gelijk aan elkaar.</p>
+
+        <p>Alle hosts zitten dus standaard in dezelfde adresruimte en kunnen elkaar bereiken.</p>
+
+        <p>Om zeker te weten als twee computers elkaar kunnen bereiken in het netwerk dan nemen we van beiden hun IP adres en bekijken we dit in combinatie met het subnetmasker.</p>
+
+        <p>De /8 van het subnetmasker is binair: 11111111 00000000 00000000 00000000</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <thead class="table-header-custom">
+                    <tr><th></th><th>Host 1</th><th>Host 2</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td></td><td>10.       0.       0.       1</td><td>10.       0.       0.       2</td></tr>
+                    <tr><td>IP adres</td><td>00001010.00000000.00000000.00000001</td><td>00001010.00000000.00000000.00000010</td></tr>
+                    <tr><td>Subnetmasker</td><td>11111111.00000000.00000000.00000000</td><td>11111111.00000000.00000000.00000000</td></tr>
+                    <tr><td>AND:</td><td>00001010.00000000.00000000.00000000</td><td>00001010.00000000.00000000.00000000</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Als na de AND bewerking beide hetzelfde resultaat opleveren, dan kunnen de computers elkaar bereiken. Ze zitten dan in hetzelfde netwerk!</p>
+
+        <p>Zoals je waarschijnlijk wel zal snappen kunnen alle hosts op het ene netwerk met het standaard subnet van /8 elkaar &#x27;zien&#x27;. Je mag dat gerust 17 miljoen keer uitrekenen maar neem gerust aan dat het zo is.</p>
+
+        <p>Stel nu dat je het subnetmasker zou aanpassen naar /16…</p>
+
+        <p>Kunnen host 10.0.0.1 en host 10.1.1.1 elkaar bereiken? Kan je dit op het zicht zien?</p>
+
+        <h2>192.168.X.Y /24</h2>
+
+        <p>In een /24 privaat netwerk wordt afgesproken dat het IP adres dat voor deze doeleinden mag worden gebruikt altijd 192.168.X.Y is. De X mag je vervangen door een getal van 0 (inclusief) tot 255 (inclusief). De Y mag je vervangen door een getal van 1 (inclusief) tot 254 (inclusief) .</p>
+
+        <p>Het kleinste IP adres is dan 192.168.0.1 en het grootste 192.168.255.254. We noemen dit ook wel klasse C adressen.</p>
+
+        <p>Het netwerkdeel is hier 16 bits lang (192.168) maar het standaard subnetmasker is 24 bits. Dat zorgt dat we nu in een rare situatie komen want het subnetmasker is langer dan het netwerkdeel…</p>
+
+        <p>192.168 is het netwerkdeel, X (8 bits) is het subnetdeel en Y (8 bits) is het hostdeel. De adresruimte wordt dus standaard opgedeeld in 256 (2^8) subnets.</p>
+
+        <p>Om beter te begrijpen wat dit inhoudt moet je je even voorstellen dat we twee hosts hebben: 192.168.0.1 en 192.168.1.1 . Bij beiden is het standaard subnetmasker in deze adresruimte /24 ofwel 255.255.255.0.</p>
+
+        <p>Als we willen weten als de hosts elkaar kunnen bereiken moeten we de AND bewerking maken tussen de twee IP adressen (192.168.0.1 , 192.168.1.1) en het subnetmasker (255.255.255.0)</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <thead class="table-header-custom">
+                    <tr><th></th><th>Host 1</th><th>Host 2</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td></td><td>192.     168.       0.       1</td><td>192.     168.       1.       1</td></tr>
+                    <tr><td>IP adres</td><td>11000000.10101000.00000000.00000001</td><td>00001010.10101000.00000001.00000001</td></tr>
+                    <tr><td>Subnetmasker</td><td>11111111.11111111.11111111.00000000</td><td>11111111.11111111.11111111.00000000</td></tr>
+                    <tr><td>AND:</td><td>11000000.10101000.00000000.00000000</td><td>11000000.10101000.00000001.00000000</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Je merkt dat de twee elkaar niet kunnen bereiken gezien het resultaat van de AND bewerking niet hetzelfde oplevert. De twee hosts zitten in een ander netwerk en zijn dus gescheiden van elkaar!</p>
+
+        <p>Per subnet zijn er dus 254 hosts die elkaar kunnen bereiken.</p>
+
+        <p>Kunnen host 192.168.10.1 en host 192.168.11.1 elkaar bereiken als het subnetmasker /24 is?</p>
+
+        <h2>172.X.Y.Z /16</h2>
+
+        <p>Een /16 privaat netwerk heeft een netwerkdeel dat altijd 12 bits lang (172.X) is en de overige 20 bits (X.Y.Z) worden voorzien voor het subnet en de hosts. De X mag je vervangen door een getal van 16 (inclusief) tot 31 (inclusief). De Y mag je vervangen door een getal van 0 (inclusief) tot 255 (inclusief). De Z mag je vervangen door een getal van 1 (inclusief) tot 254 (inclusief)</p>
+
+        <p>Het kleinste IP adres is dan 172.16.0.1 en het grootste 172.31.255.254. We noemen dit ook wel klasse B adressen.</p>
+
+        <p>Het is interessant om deze nog eens voluit in hun binaire vorm te noteren.</p>
+
+        <p>Minimum:10101100000100000000000000000001Maximum:10101100111100001111111111111110</p>
+
+        <p>Het netwerkdeel is hier 12 bits lang maar het standaard subnetmasker is 16 bits ofwel 255.255.0.0. Dat betekent dat we nu opnieuw in een rare situatie komen want het standaard subnetmasker is langer dan het netwerkdeel én het netwerkdeel is geen veelvoud van 8.</p>
+
+        <p>Als we de lengte van het netwerkdeel (12) aftrekken van het standaard subnetmasker dan zien we dat er 4 bits worden gebruikt voor het opdelen in subnets. Als we even omrekenen dan komen we al snel tot de conclusie dat de adresruimte standaard verdeeld wordt in 16 (2^4) subnets. Per subnet zijn er dan ongeveer 65500 (2^16) hosts die elkaar kunnen bereiken.</p>
+
+        <p>Om beter te begrijpen wat dit inhoudt moet je je even voorstellen dat we twee hosts hebben: 172.16.0.1 en 172.17.0.1. Bij beiden is het standaard subnetmasker in deze adresruimte /16 ofwel 255.255.0.0.</p>
+
+        <p>Als we willen weten als de hosts elkaar kunnen bereiken moeten we de AND bewerking maken tussen de twee IP adressen en het subnetmasker.</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <thead class="table-header-custom">
+                    <tr><th></th><th>Host 1</th><th>Host 2</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td></td><td>172.      16.       0.       1</td><td>172.      17.       0.       1</td></tr>
+                    <tr><td>IP adres</td><td>10101100.00010000.00000000.00000001</td><td>10101100.00010001.00000000.00000001</td></tr>
+                    <tr><td>Subnetmasker</td><td>11111111.11111111.00000000.00000000</td><td>11111111.11111111.00000000.00000000</td></tr>
+                    <tr><td>AND:</td><td>10101100.00010000.00000000.00000000</td><td>10101100.00010001.00000000.00000000</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Je merkt dat de twee elkaar niet kunnen bereiken gezien het resultaat van de AND bewerking niet hetzelfde oplevert. De twee hosts zitten in een ander netwerk en zijn dus gescheiden van elkaar!</p>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

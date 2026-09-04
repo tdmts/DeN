@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routing decision oefeningen</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Routing decision oefeningen</h1>
+
+        <h2>Oefening 1</h2>
+
+        <p>Een pakket heeft als destination IP adres 10.5.6.3</p>
+
+        <p>Welke rij is de beste match in deze vereenvoudigde en fictieve IPv4 routing table?</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <thead class="table-header-custom">
+                    <tr><th><strong>Rij</strong></th><th><strong>Network destination</strong></th><th><strong>Netmask</strong></th><th><strong>Metric</strong></th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>0.0.0.0</td><td>0.0.0.0</td><td>31</td></tr>
+                    <tr><td>2</td><td>10.0.0.0</td><td>255.0.0.0</td><td>54</td></tr>
+                    <tr><td>3</td><td>10.5.0.0</td><td>255.255.0.0</td><td>96</td></tr>
+                    <tr><td>4</td><td>10.5.6.0</td><td>255.255.255.0</td><td>112</td></tr>
+                    <tr><td>5</td><td>10.5.6.0</td><td>255.255.255.0</td><td>110</td></tr>
+                    <tr><td>6</td><td>84.12.9.1</td><td>255.0.0.0</td><td>44</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p><strong>Gevraagd</strong></p>
+
+        <ol class="vragen">
+            <li>Op welke rij(en) van de IPv4 route tabel zal er een match zijn?
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulruimte">
+                        <tbody>
+                            <tr><td>&nbsp;</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">Op rij 1, 2, 3, 4 en 5. Rij 6 valt af: 10.5.6.3 AND 255.0.0.0 geeft 10.0.0.0 en dat is niet 84.12.9.1.</div>
+            </li>
+        </ol>
+
+        <ol class="vragen" start="2">
+            <li>Welke rij is de beste match?
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulruimte">
+                        <tbody>
+                            <tr><td>&nbsp;</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">Rij 5. Rij 4 en 5 dragen allebei het langste masker, /24, en dan wint de laagste metric: 110 tegen 112.</div>
+            </li>
+        </ol>
+
+        <h2>Oefening 2</h2>
+
+        <p>Een pakket heeft als destination IP adres 172.29.8.14. Welke rij is de beste match?</p>
+
+        <div class="table-responsive table-spacer">
+            <table class="table table-bordered">
+                <thead class="table-header-custom">
+                    <tr><th><strong>Rij</strong></th><th><strong>Network destination</strong></th><th><strong>Netmask</strong></th><th><strong>Gateway</strong></th><th><strong>Interface</strong></th><th><strong>Metric</strong></th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>0.0.0.0</td><td>0.0.0.0</td><td>172.29.8.1</td><td>172.29.8.2</td><td>31</td></tr>
+                    <tr><td><strong>2</strong></td><td>0.0.0.0</td><td>0.0.0.0</td><td>172.29.8.1</td><td>172.29.8.3</td><td>40</td></tr>
+                    <tr><td><strong>3</strong></td><td>172.29.8.0</td><td>255.255.255.0</td><td>On-Link</td><td>172.29.8.2</td><td>54</td></tr>
+                    <tr><td><strong>4</strong></td><td>172.29.8.2</td><td>255.255.255.255</td><td>On-Link</td><td>172.29.8.2</td><td>12</td></tr>
+                    <tr><td><strong>5</strong></td><td>172.29.8.255</td><td>255.255.255.255</td><td>On-Link</td><td>172.29.8.2</td><td>331</td></tr>
+                    <tr><td><strong>6</strong></td><td>172.29.8.0</td><td>255.255.255.0</td><td>On-Link</td><td>172.29.8.3</td><td>67</td></tr>
+                    <tr><td><strong>7</strong></td><td>172.29.8.3</td><td>255.255.255.255</td><td>On-Link</td><td>172.29.8.3</td><td>11</td></tr>
+                    <tr><td><strong>8</strong></td><td>172.29.8.255</td><td>255.255.255.255</td><td>On-Link</td><td>172.29.8.3</td><td>331</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p><strong>Gevraagd</strong></p>
+
+        <ol class="vragen" start="3">
+            <li>Hoeveel netwerkkaarten zijn er aanwezig op de computer?
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulruimte">
+                        <tbody>
+                            <tr><td>&nbsp;</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">Twee. In de kolom Interface staan maar twee adressen: 172.29.8.2 en 172.29.8.3.</div>
+            </li>
+        </ol>
+
+        <ol class="vragen" start="4">
+            <li>De netwerkkaarten zijn verbonden met
+                <ul>
+                    <li class="juist">Hetzelfde netwerk</li>
+                    <li>Een verschillend netwerk</li>
+                </ul>
+                <div class="oplossing">Beide interfaces staan on-link bij 172.29.8.0 /24 en delen dezelfde default gateway 172.29.8.1.</div>
+            </li>
+        </ol>
+
+        <ol class="vragen" start="5">
+            <li>Op welke rij(en) van de IPv4 route tabel zal er een match zijn?
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulruimte">
+                        <tbody>
+                            <tr><td>&nbsp;</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">Op rij 1, 2, 3 en 6. De rijen met masker 255.255.255.255 vragen een exacte match op 172.29.8.2, 172.29.8.3 of 172.29.8.255, en het pakket gaat naar 172.29.8.14.</div>
+            </li>
+        </ol>
+
+        <ol class="vragen" start="6">
+            <li>Welke rij is de beste match?
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulruimte">
+                        <tbody>
+                            <tr><td>&nbsp;</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">Rij 3. Rij 3 en 6 dragen allebei het langste masker, /24, en rij 3 heeft de laagste metric: 54 tegen 67.</div>
+            </li>
+        </ol>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+    <script src="../../../../oplossingen.js"></script>
+</body>
+
+</html>

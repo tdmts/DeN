@@ -253,6 +253,126 @@ window.LAB_REFERENCE = {
                         href: 'DatalinkLaag/TestJezelf.html'
                     }
                 ]
+            },
+            {
+                name: 'Netwerk laag',
+                reeks: 'theorie',
+                topics: [
+                    {
+                        id: 'netwerk-overzicht',
+                        name: 'Kernpunten en studievragen',
+                        blurb: 'Wat je uit dit hoofdstuk moet meenemen, en de vragen waarop je achteraf een antwoord hoort te hebben.',
+                        href: 'NetwerkLaag/Overzicht.html'
+                    },
+                    {
+                        id: 'netwerk-inleiding',
+                        name: 'Inleiding',
+                        blurb: 'Waarom MAC adressering ophoudt aan de rand van het LAN, en welke laag het daarbuiten overneemt.',
+                        href: 'NetwerkLaag/Inleiding.html'
+                    },
+                    {
+                        id: 'netwerk-ip-header',
+                        name: 'IP header',
+                        blurb: 'De velden van de IPv4 header een voor een, en waarin IPv6 daarvan afwijkt.',
+                        href: 'NetwerkLaag/IpHeader.html'
+                    },
+                    {
+                        id: 'netwerk-dhcp',
+                        name: 'Dynamic Host Configuration Protocol (DHCP)',
+                        blurb: 'Hoe een host zijn adres, masker en gateway krijgt zonder dat iemand ze invult.',
+                        href: 'NetwerkLaag/DynamicHostConfigurationProtocolDhcp.html'
+                    },
+                    {
+                        id: 'netwerk-apipa',
+                        name: 'Automatic Private IP Address (APIPA)',
+                        blurb: 'Het adres dat een computer zichzelf geeft als de DHCP server zwijgt, en wat het je verraadt.',
+                        href: 'NetwerkLaag/AutomaticPrivateIpAddressApipa.html'
+                    },
+                    {
+                        id: 'netwerk-dns',
+                        name: 'Domain Name System (DNS)',
+                        blurb: 'Van hogent.be naar een IP adres: waarom namen bestaan en wie ze vertaalt.',
+                        href: 'NetwerkLaag/DomainNameSystemDns.html'
+                    },
+                    {
+                        id: 'netwerk-default-gateway',
+                        name: 'Default gateway',
+                        blurb: 'Waar een pakket heen gaat waarvan de bestemming niet in je eigen netwerk ligt.',
+                        href: 'NetwerkLaag/DefaultGateway.html'
+                    },
+                    {
+                        id: 'netwerk-subnetmasker',
+                        name: 'Subnetmasker',
+                        blurb: 'De AND bewerking waarmee je uitrekent of twee hosts in hetzelfde netwerk zitten.',
+                        href: 'NetwerkLaag/Subnetmasker.html'
+                    },
+                    {
+                        id: 'netwerk-oefening-subnetmasker',
+                        name: 'Oefening op subnetmasker',
+                        blurb: 'Twee adressen en een masker: reken de AND bewerking uit en vergelijk.',
+                        href: 'NetwerkLaag/OefeningOpSubnetmasker.html'
+                    },
+                    {
+                        id: 'netwerk-private-ip-range',
+                        name: 'Private IP range',
+                        blurb: 'De drie bereiken die binnen een LAN gebruikt worden, en hoeveel hosts elk ervan aankan.',
+                        href: 'NetwerkLaag/PrivateIpRange.html'
+                    },
+                    {
+                        id: 'netwerk-oefeningen-private-ip-range',
+                        name: 'Oefeningen op Private IP range',
+                        blurb: 'Drie oefeningen op dezelfde AND bewerking, met maskers die niet op een byte grens vallen.',
+                        href: 'NetwerkLaag/OefeningenOpPrivateIpRange.html'
+                    },
+                    {
+                        id: 'netwerk-subnetten',
+                        name: 'Subnetten',
+                        blurb: 'Waarom je een netwerk opdeelt: broadcastverkeer, en VLANs die met subnets meelopen.',
+                        href: 'NetwerkLaag/Subnetten.html'
+                    },
+                    {
+                        id: 'netwerk-klasse-a-subnetten',
+                        name: 'Klasse A /8 subnetten',
+                        blurb: 'Wat er misloopt in een /8 zonder subnets, en hoe je bits uit het hostdeel leent.',
+                        href: 'NetwerkLaag/KlasseA8Subnetten.html'
+                    },
+                    {
+                        id: 'netwerk-klasse-a-berekenen',
+                        name: 'Klasse A /8 subnets berekenen',
+                        blurb: 'Van een aantal gebruikers naar een subnetmasker, stap voor stap uitgerekend.',
+                        href: 'NetwerkLaag/KlasseA8SubnetsBerekenen.html'
+                    },
+                    {
+                        id: 'netwerk-oefeningen-subnets',
+                        name: 'Oefeningen op subnets',
+                        blurb: 'Hoeveel apparaten passen er in dit subnet, en wat is het eerste en laatste bruikbare adres?',
+                        href: 'NetwerkLaag/OefeningenOpSubnets.html'
+                    },
+                    {
+                        id: 'netwerk-routing-decisions',
+                        name: 'Routing decisions',
+                        blurb: 'De routetabel van je eigen computer, kolom per kolom, en hoe een router er een rij uit kiest.',
+                        href: 'NetwerkLaag/RoutingDecisions.html'
+                    },
+                    {
+                        id: 'netwerk-default-row',
+                        name: 'Default row',
+                        blurb: 'De rij met 0.0.0.0 die op alles matcht, en waarom ze toch de laatste keuze is.',
+                        href: 'NetwerkLaag/DefaultRow.html'
+                    },
+                    {
+                        id: 'netwerk-routing-oefeningen',
+                        name: 'Routing decision oefeningen',
+                        blurb: 'Drie routetabellen: welke rijen matchen, en welke is de beste match?',
+                        href: 'NetwerkLaag/RoutingDecisionOefeningen.html'
+                    },
+                    {
+                        id: 'netwerk-test-jezelf',
+                        name: 'Test jezelf',
+                        blurb: 'Negen vragen over adressering, de IPv4 header, private ranges en subnetmaskers.',
+                        href: 'NetwerkLaag/TestJezelf.html'
+                    }
+                ]
             }
         ]
     },

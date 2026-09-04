@@ -130,3 +130,90 @@ letterlijk overgenomen.
 - afbeelding syllabus-03-datalink-laag-31.jpeg stond tussen een vraag en haar keuzes en is in de vraag gezet
 - lege tabel van 1 rijen overgenomen als invulruimte
 - lege tabel van 1 rijen overgenomen als invulruimte
+
+## Netwerk laag (opening)
+
+- kader "Kernpunten" werd een info-box met data-kader="kernpunten"; het icoontje uit de Word valt weg en het vet, want de hele inhoud stond vet
+- kader "Studievragen" werd een info-box met data-kader="studievragen"; het icoontje uit de Word valt weg en het vet, want de hele inhoud stond vet
+
+## Netwerk laag > Inleiding
+
+- tabel "Application" kreeg GEEN kopregel (eenkolomstabel), nakijken
+
+## Netwerk laag > IP header
+
+- tabel "Version
+(4 bits)" kreeg GEEN kopregel (geen enkel signaal), nakijken
+- tabel "Version
+(4 bits)" kreeg GEEN kopregel (geen enkel signaal), nakijken
+
+## Netwerk laag > Dynamic Host Configuration Protocol (DHCP)
+
+- tabel "DHCP client" kreeg een kopregel, want de tabelstijl maakt de eerste rij op (tblLook firstRow)
+
+## Netwerk laag > Subnetmasker
+
+- tabel "1" kreeg een kopregel, want de tabelstijl maakt de eerste rij op (tblLook firstRow)
+
+## Netwerk laag > Oefening op subnetmasker
+
+- tabel "IP adres computer 1" kreeg GEEN kopregel (geen enkel signaal), nakijken
+- lege tabel van 3 rijen overgenomen als invulruimte
+- lege tabel van 3 rijen overgenomen als invulruimte
+- lege tabel van 1 rijen overgenomen als invulruimte
+- lege tabel van 1 rijen overgenomen als invulruimte
+- lege tabel van 1 rijen overgenomen als invulruimte
+
+## Netwerk laag > Private IP range
+
+- em-dash of en-dash in: Het kleinste IP adres is dan 10.0.0.1 en het grootste 10.255.255.254. 
+- tabel "" kreeg een kopregel, want de tabelstijl maakt de eerste rij op (tblLook firstRow)
+- tabel "" kreeg een kopregel, want de tabelstijl maakt de eerste rij op (tblLook firstRow)
+- tabel "" kreeg een kopregel, want de tabelstijl maakt de eerste rij op (tblLook firstRow)
+
+## Netwerk laag > Oefeningen op Private IP range
+
+- tabel "IP adres computer 1" kreeg GEEN kopregel (geen enkel signaal), nakijken
+- lege tabel van 3 rijen overgenomen als invulruimte
+- lege tabel van 3 rijen overgenomen als invulruimte
+- lege tabel van 1 rijen overgenomen als invulruimte
+- lege tabel van 1 rijen overgenomen als invulruimte
+- lege tabel van 1 rijen overgenomen als invulruimte
+- tabel "IP adres computer 1" kreeg GEEN kopregel (geen enkel signaal), nakijken
+- lege tabel van 3 rijen overgenomen als invulruimte
+- lege tabel van 3 rijen overgenomen als invulruimte
+- lege tabel van 1 rijen overgenomen als invulruimte
+- lege tabel van 1 rijen overgenomen als invulruimte
+- lege tabel van 1 rijen overgenomen als invulruimte
+- tabel "IP adres computer 1" kreeg GEEN kopregel (geen enkel signaal), nakijken
+- lege tabel van 3 rijen overgenomen als invulruimte
+- lege tabel van 3 rijen overgenomen als invulruimte
+- lege tabel van 1 rijen overgenomen als invulruimte
+- lege tabel van 1 rijen overgenomen als invulruimte
+- lege tabel van 1 rijen overgenomen als invulruimte
+
+## Netwerk laag > Klasse A /8 subnetten
+
+- em-dash of en-dash in: Om geen IP adressen te verspillen houden we ook rekening met het aanta
+- em-dash of en-dash in: Heb je een grote groep gebruikers (bijvoorbeeld 5000) dan ga je gewoon
+
+## Netwerk laag > Routing decision oefeningen
+
+- tabel "Rij" kreeg een kopregel, want de hele eerste rij staat vet
+- lege tabel van 1 rijen overgenomen als invulruimte
+- lege tabel van 1 rijen overgenomen als invulruimte
+- tabel "Rij" kreeg een kopregel, want de hele eerste rij staat vet
+- lege tabel van 1 rijen overgenomen als invulruimte
+- lege tabel van 1 rijen overgenomen als invulruimte
+- lege tabel van 1 rijen overgenomen als invulruimte
+
+## Netwerk laag > Test jezelf
+
+- tabel "" kreeg GEEN kopregel (eenkolomstabel), nakijken
+- tabel met een lege kolom onder de vraag erboven gezet als invulruimte
+- tabel "MAC" kreeg een kopregel, want de tabelstijl maakt de eerste rij op (tblLook firstRow)
+- tabel "MAC": kolom 2, 3 staat overal leeg en werd invulruimte, op de breedte van de Word
+- tabel "Version" kreeg GEEN kopregel (geen enkel signaal), nakijken
+- tabel "" kreeg een kopregel, want de tabelstijl maakt de eerste rij op (tblLook firstRow)
+- lege tabel van 3 rijen overgenomen als invulruimte
+- lege tabel van 3 rijen overgenomen als invulruimte

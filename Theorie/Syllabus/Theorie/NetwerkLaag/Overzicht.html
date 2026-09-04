@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netwerk laag</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Netwerk laag</h1>
+
+        <div class="info-box" data-kader="kernpunten">
+            <div class="info-title remark">Kernpunten</div>
+            <ul>
+                <li>In de netwerk laag worden IP adressen gebruikt om adressering mogelijk te maken buiten het LAN.</li>
+                <li>De juiste terminologie voor data in de netwerk laag, transport laag en applicatie laag is nu pakket in plaats van frame.</li>
+                <li>Het apparaat dat gebruikt wordt om pakketten met een ander netwerk uit te wisselen op basis van IP adressen is een router.</li>
+                <li>Een computer kan een IP adres op twee manieren verkrijgen: statisch (door de gebruiker zelf ingevuld) en dynamisch (verkregen door de DHCP server of APIPA)</li>
+                <li>Omdat IP adressen moeilijk te onthouden zijn wordt soms gebruik gemaakt van domeinnamen zoals hogent.be .</li>
+                <li>Je kan nagaan als twee hosts in hetzelfde netwerk zitten door de AND bewerking uit te voeren op hun IP adres en subnetmasker.</li>
+                <li>In IPv4 zijn er drie private IP ranges: 10.x.x.y, 172.x.y.z en 192.168.x.y . Soms worden die nog opgedeeld in subnets voor veiligheid en performantie doeleinden.</li>
+                <li>De router maakt routing decisions met behulp van een routing table.</li>
+                <li>De default gateway is het IP adres naar waar een pakket zal gestuurd worden als het niet rechtstreeks kan bezorgd worden.</li>
+            </ul>
+        </div>
+
+        <div class="info-box" data-kader="studievragen">
+            <div class="info-title tip">Studievragen</div>
+            <ol>
+                <li>Omschrijf in eigen woorden de functie van de netwerk laag.</li>
+                <li>Welke twee protocollen vinden we terug in de IP header? Schrijf hun afkortingen voluit. Wat is het verschil tussen deze twee?</li>
+                <li>Hoeveel bits telt een IPv4 adres? En een IPv6 adres?</li>
+                <li>Wat is het nut van de IP adressen 0.0.0.0, 127.0.0.1 en 255.255.255.255 ?</li>
+                <li>Waarvoor dient DHCP? Hoe werkt de DHCP handshake?</li>
+                <li>Wat gebeurt er als er geen DHCP server is op het netwerk? Hoe krijgt een netwerkinterface toch een IP adres?</li>
+                <li>Waarvoor dient DNS? Schrijf de afkorting voluit.</li>
+                <li>Welke zijn de drie private IP ranges? Welke zou je gebruiken in een thuisnetwerk? Welke zou je gebruiken in een bedrijf?</li>
+                <li>Op basis van IP adres en subnetmasker moet je kunnen bepalen als twee computers met elkaar kunnen communiceren.</li>
+                <li>Op basis van een IP adres en subnetmasker moet je kunnen bepalen hoeveel hosts er in het subnet zitten en wat het kleinste en grootste IP (bruikbare) adres van dat subnet is.</li>
+                <li>Op basis van een IP adres en subnetmasker moet je de routing decision kunnen voorspellen, rekening houdend met de lengte van de match en de metric.</li>
+            </ol>
+        </div>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic Private IP Address (APIPA)</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Automatic Private IP Address (APIPA)</h1>
+
+        <p>Als een computer ingesteld is als DHCP client verwacht deze een IP adres van de DHCP server. Dit gebeurt praktisch onmiddellijk wanneer de computer verbonden wordt met het netwerk. Als de DHCP server geen IP adres uitdeelt zal de computer zichzelf een Automatic Private IP Address (APIPA) toekennen.</p>
+
+        <p>Een APIPA adres moet toegekend worden omdat een systeem als IP adres 0.0.0.0 heeft voor het verbonden wordt met het netwerk. Zoals je weet is dit een ongeldig adres. Als de DHCP server geen IP adres uitdeelt blijft het systeem met dit adres zitten. Het is onmogelijk om met dit adres op het netwerk aangesloten te zijn, vandaar het zelf toegekende adres.</p>
+
+        <p>APIPA is de benaming die Microsoft geeft aan dit mechanisme. Het wordt ook wel auto-IP genoemd.</p>
+
+        <p>Een APIPA adres is een adres in het bereik van 169.254.1.0 tot 169.254.254.255 . Als je jouw IP instellingen nakijkt en je ziet dat jouw computer een adres heeft binnen dit bereik dan weet je dat je verbonden bent met het netwerk maar er waarschijnlijk geen communicatie mogelijk is met andere apparaten op het netwerk.</p>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>
