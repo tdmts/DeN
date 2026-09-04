@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Transfer Protocol (FTP)</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>File Transfer Protocol (FTP)</h1>
+
+        <p>De protocollen HTTP, SMTP en SSH dienen allen om informatie uit te wisselen tussen computers en/of gebruikers achter die computers.</p>
+
+        <p>Bij FTP is dat niet anders maar hier ligt de focus op het overdragen van files (= bestanden). FTP bestaat al sinds 1971 en er is altijd sprake van een FTP server en een FTP client.</p>
+
+        <p>De poort waarop de FTP server werkt is 21 en het protocol is, logischerwijze, TCP omdat we een gegarandeerde en volledige overdracht willen van pakketten.</p>
+
+        <p>Standaard is FTP niet voorzien van encryptie waardoor je met Wireshark de FTP gebruikers en wachtwoorden makkelijk kan onderscheppen. Om deze reden is er een opvolger: Secure FTP of SFTP.</p>
+
+        <p>Bij SFTP werkt de server dan volledig over SSH waardoor je enkel een SFTP client nodig hebt. Dit is bijvoorbeeld filezilla.</p>
+
+        <p>Het enige wat je in dat programma moet doen is SFTP aanduiden, het IP adres van de server ingeven en aanmelden. Je kan dat makkelijk eens zelf testen met bijvoorbeeld een Raspberry PI.</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-06-applicatie-laag-05.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-06-applicatie-laag-06.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

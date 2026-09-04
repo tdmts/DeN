@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Mail Transfer Protocol (SMTP)</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Simple Mail Transfer Protocol (SMTP)</h1>
+
+        <p>Naast HTTP wordt e-mail ook heel vaak gebruikt om informatie uit te wisselen. Iedereen heeft al een e-mail verstuurd maar in de industrie wordt e-mail vaak gebruikt om een (kritische) status te rapporteren i.v.m. het productieproces.</p>
+
+        <p>Bij HTTP moet de gebruiker zelf een actie ondernemen (surfen naar een pagina) terwijl dit bij SMTP automatisch in de inbox terechtkomt. Je kan het vergelijken met een <em>event</em>.</p>
+
+        <p>Het is niet de bedoeling dat we het SMTP protocol volledig zullen bespreken. Het enige wat je moet onthouden is dat SMTP een eenvoudig tekstgebaseerd protocol is dat draait op TCP poort 25.</p>
+
+        <p>Met tekstgebaseerd bedoelen we dat we een mail kunnen versturen door in interactie te gaan met de mailsverver en dat de boodschappen die we uitwisselen leesbaar zijn.</p>
+
+        <p>Je kan dus, in theorie, zelf een TCP verbinding openen via een programma zoals PuTTY met een mailserver. Het is echter makkelijker om, als je automatisch mail wil versturen, gebruik te maken van een code bibliotheek in PHP, ASP.Net, C# of NodeRed.</p>
+
+        <p>Mailservers worden echter beveiligd gezien ze misbruikt zouden kunnen worden voor SPAM doeleinden. Als je een mailserver wil gebruiken dan heb je vaak een login en wachtwoord nodig en is het aantal mails dat je kan sturen op een dag soms beperkt.</p>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

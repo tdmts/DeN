@@ -257,3 +257,15 @@ letterlijk overgenomen.
 - tabel met een lege kolom onder de vraag erboven gezet als invulruimte
 - tabel "# private IP adressen computer" kreeg GEEN kopregel (geen enkel signaal), nakijken
 - tabel "# private IP adressen computer": kolom 2 staat overal leeg en werd invulruimte, op de breedte van de Word
+
+## Applicatie laag (opening)
+
+- kader "Kernpunten" werd een info-box met data-kader="kernpunten"; het icoontje uit de Word valt weg en het vet, want de hele inhoud stond vet
+- kader "Studievragen" werd een info-box met data-kader="studievragen"; het icoontje uit de Word valt weg en het vet, want de hele inhoud stond vet
+
+## Applicatie laag > Test jezelf
+
+- tabel "HTTP(S) (surfen)" kreeg GEEN kopregel (geen enkel signaal), nakijken
+- tabel met een lege kolom onder de vraag erboven gezet als invulruimte
+- tabel "" kreeg GEEN kopregel (geen enkel signaal), nakijken
+- tabel "": kolom 6 staat overal leeg en werd invulruimte, op de breedte van de Word

@@ -617,6 +617,24 @@ Those letters are also why `syllabus.css` gives the options a, b, c instead of b
 that says "b" needs a "b" to point at. That lettering hangs on `ol.vragen`, so an ordinary bullet
 list stays an ordinary bullet list.
 
+**Exactly one option is marked, and a question with more correct answers gets rewritten rather than
+the rule relaxed.** This comes up once a chapter or so, because the Word asks plenty of questions in
+the plural, and it is settled: adapt the question, not the contract. Chapter 3 hit it twice (two and
+three correct answers) and chapter 6 once, and all three were reworked. Two techniques cover every
+case met so far. **Pair the options** so that exactly one pairing is right, and say in the question
+how many there are, which is what 3.12 question 1 does. Or **invert the stem** to "which one is
+not", which works whenever precisely one option is wrong: 6.7 question 3 named four fields a
+programme needs and only the MAC address does not belong, so turning the question around kept all
+four options, in their original order, and changed nothing but the sentence asking.
+
+Relaxing the rule looks cheaper and is not. `class="juist"` is read in three places
+(`check-content.py` rule 14, `export-syllabus.py`, `oplossingen.js`), so a plural answer means
+keeping a letter list in step across two renderers, in two languages, forever. And the rewrite is
+worth having on its own: a multiple-answer question that does not say how many to tick is a worse
+question, which is why 3.12 states the count out loud. The decision was recorded only in
+`NOTITIES.md` under chapter 3 for a while, and was duly missed the next time it came up; that is
+why it is here.
+
 **An answer is a `<div>`, never a comment.** It lived in `<!-- oplossing: ... -->`, which made it
 content only one renderer could ever see, and a nested `-->` silently eats the rest of the file, the
 way the verslag block in an `Opdracht.html` warns about. Everything is in the HTML; what does not

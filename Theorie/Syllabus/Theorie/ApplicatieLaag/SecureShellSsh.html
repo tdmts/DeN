@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure SHell (SSH)</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Secure SHell (SSH)</h1>
+
+        <p>Ondertussen heb je (hopelijk) al een aantal keer het SSH protocol gebruikt. Je hebt dit bijvoorbeeld nodig wanneer je wil aanmelden vanop een andere locatie op een Linux machine of Raspberry PI via de console (terminal).</p>
+
+        <p>In Windows gebruik je daarvoor vaak het programma PuTTY. Het enige wat je in dat programma moet doen is een IP adres ingeven van de hostname waarop je wil aanmelden samen met het poortnummer waarop de SSH server draait (standaard 22).</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 126.2mm">
+            <img src="../../../../img/syllabus-06-applicatie-laag-02.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <p>Er is dus sprake van een SSH client (bijvoorbeeld PuTTY) en een SSH server.</p>
+
+        <p>SSH is een protocol dat enorm vaak gebruikt wordt en waarschijnlijk zal je hier later, in je professionele loopbaan ook nog mee geconfronteerd worden. De &#x27;voorloper&#x27; van SSH is Telnet. De reden waarom SSH gebruikt wordt zit verklapt in de naam: Secure Shell. Alle trafiek wordt versleuteld.</p>
+
+        <p>Dit betekent dat je, zelfs al onderschep je de pakketten met Wireshark, niet kan zien welke commando&#x27;s ingegeven worden.</p>
+
+        <p>Commando ingegeven via SSH</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-06-applicatie-laag-03.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <p>Commando onderschept in Wireshark</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/syllabus-06-applicatie-laag-04.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <p>Dat is natuurlijk niet onbelangrijk want zoals je weet moet je voor je kan commando&#x27;s ingeven met sudo rechten eerst het wachtwoord ingeven.</p>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

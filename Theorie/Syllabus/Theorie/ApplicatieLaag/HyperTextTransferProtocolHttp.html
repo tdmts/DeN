@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyper Text Transfer Protocol (HTTP)</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Hyper Text Transfer Protocol (HTTP)</h1>
+
+        <p>Van een aantal dingen die we dagelijks gebruiken hebben we weinig of geen idee hoe ze precies werken. Een televisie, een auto of een browser om er maar enkele te noemen.</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 75.6mm">
+            <img src="../../../../img/syllabus-06-applicatie-laag-01.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
+
+        <p>We hebben er notie van, we weten ongeveer wat de principes zijn maar de details zijn ons niet vertrouwd. In dit hoofdstuk proberen we dit voor HTTP iets duidelijker te maken.</p>
+
+        <p>Zoals je weet is een <strong>protocol </strong>een set van <strong>afspraken </strong>die gemaakt worden. HTTP is dus ook gewoon een set van aspraken. De partijen die de afspraken maken zijn in dit geval een <strong>client </strong>en een <strong>server</strong>. Client en server zijn in deze context geen machines maar wel <strong>programma&#x27;s</strong>.</p>
+
+        <p>Het is natuurlijk zo dat het server programma meestal wel op een zwaardere computer zal draaien omdat er nu eenmaal veel clients mee kunnen verbinden maar in principe kan het server programma op eender welke machine actief zijn.</p>
+
+        <p>De set van afspraken slaat concreet op de <strong>boodschappen</strong> die uitgewisseld worden tussen client en server. Een client stuurt een <strong>request</strong> naar de server en deze stuurt een <strong>response </strong>terug naar de client.</p>
+
+        <p>Die request en response boodschappen zijn omschreven in een Request For Comments. Dit is een soort van discussieplatform waar verschillende &#x27;experten&#x27; een voorstel indienen en die gerevisioneerd kan worden door anderen. Die experten zijn soms individuen maar natuurlijk ook medewerkers van verschillende technologiebedrijven zoals Google, Microsoft en dergelijke meer.</p>
+
+        <p>Een <strong>HTTP request</strong> ziet er bijvoorbeeld zo uit:</p>
+
+        <p><strong>GET </strong><strong>/opleidingen/bachelors/elektromechanica/</strong><strong> HTTP/1.1</strong></p>
+
+        <p>Host: hogent.be</p>
+
+        <p>Connection: close</p>
+
+        <p>User-Agent: Mozilla/5.0 (Windows; U; Windows NT 10.0; nl; rv:1.8.0.3) Gecko/20060426 Firefox/1.5.0.3</p>
+
+        <p>Accept: text/xml,text/html,text/plain,image/png,image/jpeg,image/gif</p>
+
+        <p>Accept-Charset: ISO-8859-1,utf-8</p>
+
+        <p>Zoals je kan zien is zo&#x27;n request vrij duidelijk leesbaar. We vragen aan de webserver de pagina hogent.be/opleidingen/bachelors/elektromechanica/ en wij gebruiken Firefox op het besturingssysteem Windows NT 10.0. Dit is handig om te weten voor de webserver omdat er soms een onderscheid gemaakt moet worden tussen een desktop en mobiele versie van een pagina.</p>
+
+        <p>De server stuurt een <strong>HTTP response</strong> terug die er bijvoorbeeld zo uit ziet:</p>
+
+        <p><strong>HTTP/1.1 </strong><strong>200</strong><strong> OK</strong></p>
+
+        <p>Date: Thu, 08 Apr 2020 18:24:33 GMT</p>
+
+        <p>Server: Apache/1.3.29 (Unix) PHP/4.3.4</p>
+
+        <p>X-Powered-By: PHP/4.3.4</p>
+
+        <p>Content-Language: nl</p>
+
+        <p>Content-Type: text/html; charset=iso-8859-1</p>
+
+        <p>Connection: close</p>
+
+        <p>Content-Type: text/html</p>
+
+        <p>Content-Length: 49</p>
+
+        <p>&lt;html&gt;</p>
+
+        <p>&lt;head&gt;</p>
+
+        <p>&lt;/head&gt;</p>
+
+        <p>&lt;body&gt;</p>
+
+        <p>&lt;/body&gt;</p>
+
+        <p>&lt;/html&gt;</p>
+
+        <p>Eerst en vooral is er de <strong>response code</strong>, die in dit geval <strong>200</strong> is. Dit betekent dat de pagina die gevraagd werd in het request gevonden is en de inhoud straks volgt. Een andere response code is bijvoorbeeld <strong>404</strong> en deze betekent dat de pagina niet gevonden kon worden.</p>
+
+        <p>Onderaan zie je HTML code, dit is de eigenlijke inhoud van de pagina. HTML staat voor <strong>Hyper Text Markup Language. </strong>Iedere browser wordt verondersteld HTML correct te kunnen weergeven. Je kan de HTML code van een pagina opvragen door in de browser rechts te klikken en dan te kiezen voor &#x27;Toon broncode van deze pagina&#x27; (oid).</p>
+
+        <p>Nu je de basisprincipes kent van HTTP proberen we dit opnieuw te koppelen aan ons <strong>TCP/IP model</strong>.</p>
+
+        <p><strong>HTTP </strong>is een protocol dat draait op de <strong>applicatie laag </strong>en dat betekent dat de direct aangrenzende laag de <strong>transport laag</strong> is. Wie een client of server wil programmeren zal dus  niet enkel rekening moeten houden met de <strong>request</strong> en <strong>response boodschappen</strong> maar ook met de gegevens die nodig zijn in de <strong>header</strong> velden van die laag.</p>
+
+        <p>De keuze van <strong>transport protocol</strong> dat gebruikt wordt voor <strong>HTTP </strong>is eenvoudig te maken en is <strong>TCP </strong>omdat deze een <strong>volledige overdracht</strong> garandeert. Als je surft naar een website wil je de volledige pagina laden en niet, omwille van transmissieproblemen, gegevens verliezen.</p>
+
+        <p>Als we kiezen voor TCP dan is er natuurlijk de <strong>TCP header. </strong>De zaken waarmee zowel client als server rekening moeten mee houden zijn het <strong>poortnummer</strong>.</p>
+
+        <p>Voor HTTP is de afspraak gemaakt dat <strong>poortnummer 80</strong> gebruikt wordt voor de server kant. Voor HTTPS is dat poort 443.</p>
+
+        <p>Een <strong>webserver</strong> is dus een programma dat luistert naar <strong>HTTP requests</strong> op poort 80 en een <strong>HTTP response</strong> terugstuurt naar een client. Populaire webservers zijn <strong>Apache</strong>, <strong>Nginx</strong> of Microsoft&#x27;s Internet Information Services of <strong>IIS</strong>.</p>
+
+        <p>Een <strong>client</strong> is een programma dat een HTTP request verstuurt naar een webserver op poort 80 en een HTTP response ontvangt. Dit programma is dan bijvoorbeeld een browser.</p>
+
+        <p>In de <strong>industrie </strong>wordt HTTP niet enkel gebruikt om webpagina&#x27;s aan te leveren via een browser. Het wordt ook gebruikt om bijvoorbeeld data door te sturen over <strong>productieprocessen</strong> of deze zelfs te <strong>automatiseren</strong>.</p>
+
+        <p>Bekijk eens onderstaand eenvoudig <strong>HTTP request</strong>:</p>
+
+        <p><strong>GET </strong><strong>/robot/position/</strong><strong> HTTP/1.1</strong></p>
+
+        <p>Host: mijnbedrijf.be</p>
+
+        <p>En dan de bijhorende <strong>HTTP response</strong>:</p>
+
+        <p><strong>HTTP/1.1 </strong><strong>200</strong><strong> OK</strong></p>
+
+        <p>Content-Type: application/octet-stream</p>
+
+        <p>Content-Length: 27</p>
+
+        <p>x: 10.990</p>
+
+        <p>y: 12.422</p>
+
+        <p>z: 68.366</p>
+
+        <p>De coördinaten zijn hier dynamisch en dit betekent dat <strong>gewone HTML</strong> code, die statisch is, <strong>niet voldoende</strong> zou zijn.</p>
+
+        <p>De oplossing hiervoor zou het gebruiken van een <strong><em>Server Side Script</em></strong> taal zoals <strong>PHP </strong>of <strong>ASP.Net</strong> kunnen zijn. Deze zou dan in staat moeten zijn om data op te vragen van het productieproces en dit dan te renderen in het HTTP response.</p>
+
+        <p>Wie niet zelf wil programmeren kan ook aan de slag met tools zoals <strong>NodeRed</strong>. Wie geduld heeft kan wachten tot dit aan bod komt in 3 automatisering en wie geen geduld heeft kan  al eens zelf aan de slag. NodeRed is gratis.</p>
+
+        <p>Je zou op die manier een hele verzameling aan acties kunnen opmaken die meerdere machines uitlezen en aansturen. Dit is wat men dan een <strong>Application Programming Interface</strong> of API zou noemen.</p>
+
+        <p>Het voordeel van te werken via HTTP is dat je bijvoorbeeld een productieproces kan aansturen vanuit de browser en je daar geen andere software voor nodig hebt langs de client kant.</p>
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+</body>
+
+</html>

@@ -504,6 +504,67 @@ allebei goed, want de Word kiest zelf niet.
 | 7 private en publieke adressen | computers 4 en 0, router 1 en 1 | 5.3 en de tekening: vier PC's achter de switch, de router met een LAN kant en een WAN kant |
 | 8 server bereiken vanaf WAN | c, port forwarding | 5.4, de hele sectie |
 
+## Hoofdstuk 6, Applicatie laag
+
+Het laatste hoofdstuk. Hiermee is de hele Word overgezet en is de HTML vanaf nu
+de enige bron.
+
+**De antwoorden: nakijken.** Zelfde afspraak en zelfde voorbehoud als bij de vijf
+vorige hoofdstukken. In de Word is niets aangeduid. Het hoofdstuk draagt drie
+vragen, alle drie in de Test jezelf.
+
+**De drie vragen stonden los van hun tabel.** De tabel van vraag 1 en die van
+vraag 2 stonden achter de lijst in plaats van erin, waardoor de lijst brak en
+met `start=` verder telde. Ze staan nu in de vraag waar ze bij horen. De woorden
+zijn niet aangeraakt.
+
+**Vraag 3 is herschreven, en dat is een ingreep.** In de Word vraagt ze welke
+velden je in een gebruikersinterface moet voorzien, met vier mogelijkheden
+waarvan er drie juist zijn: IP adres, poortnummer en de keuze TCP of UDP, en het
+MAC adres niet. De afspraak is dat een meerkeuzevraag er precies een aanduidt,
+dus is de vraag aangepast in plaats van de regel, net zoals bij vraag 1 en 3 van
+hoofdstuk 3.
+
+Ze vraagt nu welk veld er *niet* bij hoort. Alle vier de mogelijkheden uit de
+Word staan er nog en in dezelfde volgorde; alleen de vraagzin is omgedraaid. Dat
+gaat hier makkelijker dan in hoofdstuk 3, want er was al precies een verkeerde
+bij, dus er hoefde geen mogelijkheid te verdwijnen of verdubbeld te worden. Wat
+de vraag test, blijft hetzelfde: dat een MAC adres niets is wat een gebruiker
+intypt.
+
+**Een losse "en" in de invultabel van vraag 1 is weg.** In de Word staat in de
+tweede rij, eerste kolom het woordje "en", in een cel waar de student de poort
+van HTTP moet schrijven. Er staat verder niets in die rij. Het is een restje en
+geen inhoud, en op papier zou de student in een vakje moeten schrijven waar al
+iets in staat. Verbeterd in de HTML, want die is vanaf nu de bron.
+
+**De twee gokken van de import zijn opgelost: geen van beide tabellen krijgt een
+kopregel.** Bij vraag 1 is de bovenste rij de vraag zelf (de vier protocollen)
+en zijn de twee rijen eronder de invulruimte; bij vraag 2 is de bovenste rij de
+applicatielaag, de eerste van vijf lagen. Dezelfde keuze als bij de
+protocoltabel van 5.6, zodat de twee er op papier hetzelfde uitzien.
+
+**De HTTP requests en responses zijn gewone alinea's.** In 6.2 staan een request
+en twee responses uitgeschreven, regel per regel, en elke regel is in de Word een
+aparte alinea zonder eigen stijl. Op papier komt er dus alinearuimte tussen
+"Host: hogent.be" en "Connection: close". Zo staat het in de Word en zo is het
+overgenomen. Wil je er een blok van maken, dan is dat een stijlbeslissing in
+`syllabus.css` en geen importkwestie.
+
+**De twee bijschriften op de SSH pagina staan boven hun afbeelding**, niet
+eronder: "Commando ingegeven via SSH" en "Commando onderschept in Wireshark".
+Dat is de volgorde van de Word en ze is bewust gehouden. Het zijn geen
+`figcaption`, want dan zouden ze onder de afbeelding springen en zou de tweede
+bij de eerste afbeelding komen te staan.
+
+### Test jezelf (6.7)
+
+| Vraag | Antwoord | Waarop het steunt |
+|---|---|---|
+| 1 poorten en protocol | HTTP 80, HTTPS 443, SMTP 25, SSH 22, FTP 21, alle vier TCP | 6.2 tot 6.5, elk noemt zijn eigen poort; TCP omdat elk van de vier een volledige overdracht wil |
+| 2 encapsulatie aanvullen | applicatie, transport, netwerk, datalink, fysiek | 6.6, dat de vijf lagen in die volgorde doorloopt |
+| 3 welk veld hoort er niet bij | a, het MAC adres | 6.6: het destination MAC adres is niet gekend en verandert bij elke hop |
+
 ## De kopregel van een tabel: de regel was te ruim
 
 Hoofdstuk 5 bracht een fout in de importer aan het licht die de vier vorige

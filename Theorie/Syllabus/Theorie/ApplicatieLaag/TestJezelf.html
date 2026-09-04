@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test jezelf</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Test jezelf</h1>
+
+        <ol class="vragen">
+            <li>Geef bij ieder netwerkprotocol de standaard poort en als TCP of UDP wordt gebruikt. Schrijf de poort in de eerste rij en TCP of UDP in de tweede rij.
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr><td>HTTP(S) (surfen)</td><td>SMTP (e-mail)</td><td>SSH (secure shell)</td><td>FTP (file transfer)</td></tr>
+                            <tr><td></td><td></td><td></td><td></td></tr>
+                            <tr><td></td><td></td><td></td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">HTTP 80 en HTTPS 443, SMTP 25, SSH 22, FTP 21. Alle vier gebruiken ze TCP: het gaat telkens om een overdracht die volledig moet aankomen.</div>
+            </li>
+            <li>Vul het encapsulatie diagram aan samen met de ontbrekende lagen van het TCP/IP model
+                <div class="table-responsive table-spacer">
+                    <table class="table table-bordered invulkolom">
+                        <colgroup>
+                            <col style="--kolom-breedte: 22.0mm">
+                            <col style="--kolom-breedte: 22.0mm">
+                            <col style="--kolom-breedte: 21.9mm">
+                            <col style="--kolom-breedte: 24.9mm">
+                            <col style="--kolom-breedte: 21.9mm">
+                            <col style="--kolom-breedte: 21.9mm">
+                            <col style="--kolom-breedte: 25.2mm">
+                        </colgroup>
+                        <tbody>
+                            <tr><td></td><td></td><td></td><td>Data</td><td></td><td class="invulruimte"></td><td>Applicatie</td></tr>
+                            <tr><td></td><td></td><td></td><td>Data</td><td></td><td class="invulruimte"></td><td></td></tr>
+                            <tr><td></td><td></td><td></td><td>Data</td><td></td><td class="invulruimte"></td><td></td></tr>
+                            <tr><td></td><td></td><td></td><td>Data</td><td></td><td class="invulruimte"></td><td></td></tr>
+                            <tr><td colspan="5">1010101010101010…10101011…1101001010101011…</td><td class="invulruimte"></td><td>Fysiek</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="oplossing">Van boven naar onder: applicatie, transport, netwerk, datalink en fysiek. Elke laag zet zijn eigen header voor de data van de laag erboven: de transport laag de TCP of UDP header met de poortnummers, de netwerk laag de IP header met de adressen, de datalink laag de header met de MAC adressen en een trailer erachter. De fysieke laag maakt er signaalniveaus van, en dat is de rij enen en nullen onderaan.</div>
+            </li>
+            <li>Als je een programma schrijft dat een verbinding moet maken met een ander programma via TCP/IP dan moet je een aantal velden in de gebruikersinterface voorzien. Welk veld hoort er niet bij?
+                <ul>
+                    <li class="juist">MAC adres</li>
+                    <li>IP adres</li>
+                    <li>Poortnummer</li>
+                    <li>TCP of UDP</li>
+                </ul>
+                <div class="oplossing">Het MAC adres van de bestemming kent je programma niet, en het verandert bij elke hop onderweg (6.6). De drie andere moet je wel invullen: het IP adres van de andere machine, de poort van de applicatie erop, en de keuze tussen TCP en UDP.</div>
+            </li>
+        </ol>
+
+    </div>
+
+    <script src="../../../../reference.js"></script>
+    <script src="../../../../back-link.js"></script>
+    <script src="../../../../oplossingen.js"></script>
+</body>
+
+</html>

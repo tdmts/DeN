@@ -421,6 +421,60 @@ window.LAB_REFERENCE = {
                         href: 'TransportLaag/TestJezelf.html'
                     }
                 ]
+            },
+            {
+                name: 'Applicatie laag',
+                reeks: 'theorie',
+                topics: [
+                    {
+                        id: 'applicatie-overzicht',
+                        name: 'Kernpunten en studievragen',
+                        blurb: 'Wat je uit dit hoofdstuk moet meenemen, en de vragen waarop je achteraf een antwoord hoort te hebben.',
+                        href: 'ApplicatieLaag/Overzicht.html'
+                    },
+                    {
+                        id: 'applicatie-inleiding',
+                        name: 'Inleiding',
+                        blurb: 'Het verschil tussen het programma dat je ziet en het protocol waar het onder werkt.',
+                        href: 'ApplicatieLaag/Inleiding.html'
+                    },
+                    {
+                        id: 'applicatie-http',
+                        name: 'Hyper Text Transfer Protocol (HTTP)',
+                        blurb: 'Een request en een response van dichtbij, en wat HTTP in de industrie doet buiten een browser.',
+                        href: 'ApplicatieLaag/HyperTextTransferProtocolHttp.html'
+                    },
+                    {
+                        id: 'applicatie-smtp',
+                        name: 'Simple Mail Transfer Protocol (SMTP)',
+                        blurb: 'Mail als tekstprotocol op poort 25, en waarom een machine er een status mee rapporteert.',
+                        href: 'ApplicatieLaag/SimpleMailTransferProtocolSmtp.html'
+                    },
+                    {
+                        id: 'applicatie-ssh',
+                        name: 'Secure SHell (SSH)',
+                        blurb: 'Aanmelden op een console van op afstand, en wat Wireshark er wel en niet van ziet.',
+                        href: 'ApplicatieLaag/SecureShellSsh.html'
+                    },
+                    {
+                        id: 'applicatie-ftp',
+                        name: 'File Transfer Protocol (FTP)',
+                        blurb: 'Bestanden overzetten op poort 21, en waarom de opvolger over SSH werkt.',
+                        href: 'ApplicatieLaag/FileTransferProtocolFtp.html'
+                    },
+                    {
+                        id: 'applicatie-encapsulatie',
+                        name: 'Encapsulatie',
+                        blurb: 'Het hele TCP/IP verhaal in een woord: wat elke laag aan het pakket toevoegt, van surfen tot signaalniveau.',
+                        href: 'ApplicatieLaag/Encapsulatie.html'
+                    },
+                    {
+                        id: 'applicatie-test-jezelf',
+                        name: 'Test jezelf',
+                        blurb: 'Drie vragen over poortnummers, het encapsulatie diagram en wat een programma moet weten.',
+                        href: 'ApplicatieLaag/TestJezelf.html'
+                    }
+                ]
             }
         ]
     },
