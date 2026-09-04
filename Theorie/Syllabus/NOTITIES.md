@@ -82,36 +82,70 @@ Blijft open, voor een aparte ronde over de zes hoofdstukken:
 
 ## Hoofdstuk 2, Fysieke laag
 
-**De antwoorden op Test jezelf: nakijken.** Zelfde afspraak als bij hoofdstuk 1,
-en zelfde voorbehoud: in de Word is niets aangeduid, dus dit is afgeleid en geen
-overname. De acht vragen staan in de Word als een doorlopende lijst, en dat
-nummer is nu ook wat de PDF drukt.
+**De antwoorden: nagekeken en beslist.** Zelfde afspraak als bij hoofdstuk 1: de
+juiste mogelijkheid staat als `class="juist"` op de `<li>`, een open vraag draagt
+een `<div class="oplossing">`, en de export drukt daaruit een sectie Oplossingen
+achteraan het hoofdstuk. Niets daarvan komt uit de brontekst; alles is hier
+gekozen en getoetst aan de theorie van dit hoofdstuk. Het hoofdstuk draagt drie
+pagina's met vragen, niet een: Test jezelf, RJ-45 vs M12 en Oefening: switch
+bekabelen.
+
+### Test jezelf (2.9)
 
 | Vraag | Antwoord | Waarop het steunt |
 |---|---|---|
 | 1 Som de vijf lagen op | Fysiek, datalink, netwerk, transport en applicatie | zelfde vraag als vraag 1 van hoofdstuk 1, zie 1.2 |
 | 2 Omschrijving van een STP kabel | b, afscherming rond alle individuele aderparen | 2.2, "Als die afscherming niet voldoende is gebruikt men STP kabel. Er wordt dan rond de individuele aderparen een folie gewikkeld" |
 | 3 Benaming bij de definities | unicast en broadcast, in die volgorde | 2.7 Ster, waar hub en access point broadcast heten en switch en router unicast |
-| 4 Hoe ziet een MAC adres eruit | c, 00-09-0F-FE-00-01 | de twee andere zijn een IPv4- en een IPv6-adres; het MAC adres komt in 2.7 Bus ter sprake |
+| 4 Hoe ziet een MAC adres eruit | c, 00-09-0F-FE-00-01 | 2.7 Bus, dat sinds deze doorloop de schrijfwijze geeft; zie hieronder |
 | 5 Maximale snelheid van cat7 over 100m | 10 Gbps | 2.2, "kan een cat7 kabel deze snelheid halen over de volledige 100 meter", en de tabel eronder |
 | 6 EtherCAT | Ring | de tekening bij de vraag: de kabel loopt van de master langs vier nodes en komt bij de master terug |
-| 7 EtherCAT | Ster | de tekening bij de vraag: alles waaiert uit vanaf een EtherCAT junction |
+| 7 EtherCAT | Ster | de tekening bij de vraag; zie hieronder waarom Ster en niet Line |
 | 8 Profibus | Bus | de tekening bij de vraag: een doorlopende lijn waar de veldapparaten op aftakken |
 
+**2.7 Bus geeft nu de schrijfwijze van een MAC adres.** Vraag 4 was uit het
+hoofdstuk niet te beantwoorden. 2.7 Bus zei wel wat een destination MAC adres
+doet, maar nergens in hoofdstuk 2 stond er een uitgeschreven, dus je moest de
+twee andere mogelijkheden herkennen als IPv4 en IPv6, en die notaties komen pas
+in hoofdstuk 4. Er staat nu een alinea onder de frame drop die zegt dat een MAC
+adres zes bytes is en hoe je het schrijft. Het voorbeeld daar is met opzet een
+ander adres dan de mogelijkheid in vraag 4, zodat de vraag een herkenningsvraag
+blijft en geen opzoekvraag wordt.
+
+**Vraag 7 is Ster, en de tekening toont drie junctions en niet een.** De grond
+die hier eerst stond ("alles waaiert uit vanaf een EtherCAT junction") las de
+tekening verkeerd: er staan drie junctions naast elkaar, elk met aftakkingen naar
+boven en naar onder, plus een tak naar rechts. Van de vijf mogelijkheden past
+Ster het best, omdat een junction zijn poorten point-to-point schakelt zoals een
+switch en Beckhoff deze opstelling zelf een ster noemt. Wat blijft wringen is dat
+2.7 Ster een ster definieert als "iedere host direct verbonden met een
+gemeenschappelijke centrale node", en die is er niet: een student die de
+definitie strikt toepast kan Line verdedigen. Bewust niet opgelost door 2.7 uit
+te breiden, want dan schrijf je de boomtopologie half bij zonder ze zo te noemen.
+
 **Vraag 6 en 7 heten allebei EtherCAT en zijn toch niet dezelfde vraag.** Wat ze
-onderscheidt is de tekening: de ene toont een ring, de andere een junction waar
-alles op uitkomt. Kijk die twee antwoorden na, want ze staan of vallen met hoe je
-de tekening leest, en de tekst van de vraag zegt niets.
+onderscheidt is de tekening: de ene toont een gesloten lus, de andere een
+vertakking op junctions.
 
-**De zin erboven kondigt PROFINET aan en er komt geen PROFINET-vraag.** Er staan
-drie vragen, tweemaal EtherCAT en eenmaal Profibus. Dat kan opzet zijn nu vraag 6
-en 7 twee verschillende EtherCAT-opstellingen tonen, maar dan klopt de aankondiging
-niet meer.
+**PROFINET is uit de aankondiging gehaald.** De zin boven vraag 6 noemde EtherCAT,
+PROFIBUS en PROFINET en vroeg "in welke topologie ze geschakeld zijn", terwijl er
+drie vragen volgen over EtherCAT, EtherCAT en Profibus. Er is voor PROFINET geen
+tekening beschikbaar: alle 34 afbeeldingen van dit hoofdstuk zijn geplaatst en de
+bron heeft er geen. De zin noemt nu de twee netwerken die werkelijk aan bod komen.
+Wat je schrapt is een voorbeeld en geen leerstof.
 
-**Vraag 1 is woordelijk vraag 1 van hoofdstuk 1.** "Som de vijf lagen in volgorde
-op van het TCP/IP model" staat in allebei de tests. In hoofdstuk 1 is dat de
-vraag waar het hoofdstuk over ging, hier is het een opfrissing. Dat kan opzet
-zijn, maar het is de enige vraag die in twee hoofdstukken terugkomt.
+**Vraag 1 blijft staan, en ze is niet woordelijk vraag 1 van hoofdstuk 1.** Deze
+versie zet er "Begin met de fysieke laag" bij, wat hoofdstuk 1 juist mist; daar is
+de richting daarom in het antwoord gezet. Dat de vraag twee keer voorkomt is
+verdedigbaar: de fysieke laag is laag een, en de stapel is het kader waarin dit
+hoofdstuk past. Hoofdstuk 1 heeft dezelfde afweging al gemaakt voor een studievraag
+die in zijn eigen test terugkomt.
+
+Wat daarbij opviel en niet aangeraakt is: van de zeven studievragen in het kader
+worden er drie getoetst. Studievraag 1 (het nut van de fysieke laag), 2
+(aderparen), 3 (de connector) en 6 (welke kabel thuis, welke in de industrie)
+komen in de test niet terug. Hoofdstuk 1 schreef daarvoor een vraag bij; hier zijn
+dat er vier, en dat is een grotere ingreep dan een doorloop hoort te doen.
 
 **De test vraagt naar frames en MAC adressen.** Vraag 3 en 4 gaan over unicast,
 broadcast en het MAC adres, en dat is datalink en niet fysiek. Ze zijn wel te
@@ -119,94 +153,173 @@ beantwoorden: 2.7 Netwerktopologie voert die begrippen in bij bus en ster, met
 "Voorlopig mag je onthouden dat". Als de volgorde van de hoofdstukken ooit
 wijzigt, is dit de plek waar dat pijn doet.
 
-**De tekst achter RJ-45 vs M12 is gevonden.** De vragen verwijzen naar de
-secties Abstract en Introduction van een artikel, en dat artikel staat wel
-degelijk in de syllabus: het is *M12 versus RJ45 Ethernet connection systems*
-van Dietmar Röring (Phoenix Contact), drie bladzijden die als scan achteraan
-Ethernetkabel staan (`syllabus-02-fysieke-laag-06/07/08.png`). Er stond alleen
-nergens dat het een artikel was, laat staan welk. De oefening zegt dat nu in
-haar openingszin. De vierde bladzijde van het artikel (Conclusion) zit niet in
-de syllabus; geen van de vragen heeft ze nodig.
+### RJ-45 vs M12 (2.3)
 
-**De antwoorden op RJ-45 vs M12: nakijken.** Zelfde voorbehoud als bij de twee
-Test jezelfs: in de Word is niets aangeduid, dus dit is afgeleid uit het artikel
-en geen overname.
+**De tekst achter de vragen is gevonden.** De vragen verwijzen naar de secties
+Abstract en Introduction van een artikel, en dat artikel staat wel degelijk in de
+syllabus: het is *M12 versus RJ45 Ethernet connection systems* van Dietmar Röring
+(Phoenix Contact), drie bladzijden die als scan achteraan Ethernetkabel staan
+(`syllabus-02-fysieke-laag-06/07/08.png`). Er stond alleen nergens dat het een
+artikel was, laat staan welk. De oefening zegt dat nu in haar openingszin. De
+vierde bladzijde van het artikel (Conclusion) zit niet in de syllabus; geen van de
+vragen heeft ze nodig.
 
 | Vraag | Antwoord | Waarop het steunt |
 |---|---|---|
 | 1 Kleinere RJ-45 variant | RJ-11 | staat er met opzet niet in; de RJ-11 is de connector van een vaste telefoonlijn, zes posities in plaats van acht |
 | 2 Vier problemen | vocht, temperatuurschommelingen, trillingen, schokken | woordelijk de Introduction: "humidity, drastic temperature changes, vibration and shock" |
-| 3 Ander type connector | de RJ-45 push-pull connector | blz. 2, de PNO legde die in 2002 voor Profinet vast |
+| 3 Derde connectortype voor Profinet | de RJ-45 push-pull connector | blz. 2, de PNO legde die in 2002 voor Profinet vast |
 | 4 IP67 | c, water- en stofbestendigheid | algemeen bekend, en het artikel gebruikt IP67 en IP20 als beschermingsgraad |
 | 5 EMC | b, M12 | blz. 3, de M12 Quickon sluit 360 graden rond de kabel en is daarom geschikt bij veel EMC |
 | 6 FastEthernet | 100 Mbps | blz. 3, "Fast Ethernet (100Base-T) ... at a transmission rate of 100 Mbps" |
 | 7 Acht pin M12 | 1000 Mbps | blz. 3, acht pinnen zijn er voor Gigabit Ethernet (1000Base-T) |
 
-**Vraag 3 is de wankelste van de zeven.** Ze vraagt naar een connector "behalve
-RJ-45 en M12", en het enige wat het artikel bij Profinet noemt is de RJ-45
-push-pull. Dat is een ander type connector (hij klikt vast en haalt IP67), maar
-hij heet nog altijd RJ-45, dus de vraag spreekt zichzelf half tegen. Kijk na of
-jij iets anders bedoeld hebt.
+**Vraag 3 sloot haar eigen antwoord uit en is herschreven.** Ze vroeg een connector
+"behalve RJ-45 en M12", en dat zijn precies de twee die het artikel voor Profinet
+noemt: er bleef niets over. Wie het antwoord vond, moest de uitsluiting in de vraag
+negeren. Ze vraagt nu naar "een derde connectortype, naast de gewone RJ-45 en de
+M12". Dat onderscheid maakt het artikel zelf, dat spreekt van "a new RJ45 push-pull
+locking connector" en verderop van "this connector type".
 
-**Oefening: switch bekabelen is herschreven naar genummerde vragen.** In de Word
-staan de vier opdrachten als bullets met "omcirkel" eronder. Een oplossing kan
-naar een bullet niet wijzen, dus het zijn nu de vier items van een
-`<ol class="vragen">`; de omcirkeltabellen en de invullijnen staan er
-onveranderd onder. Dit is de enige plaats in deze import waar de opmaak van de
-Word bewust niet gevolgd is.
+### Oefening: switch bekabelen (2.6)
 
-**De antwoorden op Oefening: switch bekabelen: nakijken.**
+**Herschreven naar genummerde vragen.** In de Word staan de vier opdrachten als
+bullets met "omcirkel" eronder. Een oplossing kan naar een bullet niet wijzen, dus
+het zijn nu de vier items van een `<ol class="vragen">`; de omcirkeltabellen en de
+invullijnen staan er onveranderd onder. Dit is de enige plaats in deze import waar
+de opmaak van de Word bewust niet gevolgd is.
 
 | Vraag | Antwoord | Waarop het steunt |
 |---|---|---|
 | 1 10/100 Base T, < 30 m | cat5e / RJ45 | de poort haalt 100 Mbps; de tabel in 2.2 geeft cat5e 1 Gbps over 100 m, dus alles erboven kost meer en levert niets |
-| 2 Gig-T, 70 m | cat6 / RJ45 | zie hieronder |
+| 2 Gig-T, 70 m | cat5e / RJ45 | de tabel in 2.2: cat5e haalt 1 Gbps over 100 m, dus ook over 70; zie hieronder |
 | 3 SFP module, < 1 km | J4859C | de datasheets bij de vraag: de eerste is koper met RJ-45, de tweede haalt 550 m over multimode, de derde 10 km over singlemode |
-| 4 Glasvezelkabel | LC OS2 | de J4859C is 1310 nm over SMF met duplex LC; OM3 en OM4 zijn multimode en SC is de verkeerde connector |
+| 4 Glasvezelkabel | LC OS2 | de J4859C is 1310 nm over SMF met duplex LC; OS2 is de enige singlemode in de rij en SC is de verkeerde connector |
 
-**Vraag 2 is een keuze en geen gevolgtrekking.** De tabel in 2.2 geeft cat5e
-1 Gbps over 100 meter, en een Gig-T poort vraagt 1 Gbps over 70 meter. Strikt
-genomen volstaat cat5e dus, en dan is vraag 2 hetzelfde antwoord als vraag 1 en
-vraagt ze niets nieuws. cat6 is hier ingevuld omdat "performante" in de
-vraagstelling naar marge wijst en omdat twee vragen anders samenvallen. Beslis
-jij welke van de twee je bedoelt; het is de enige oplossing in dit hoofdstuk die
-niet uit het materiaal volgt.
+**Vraag 2 staat nu op cat5e en stond op cat6.** cat6 volgde uit niets: een Gig-T
+poort vraagt 1 Gbps, cat5e haalt dat over 100 meter en dus ook over 70, en dan is
+cat5e onder beide helften van "(kost) geschikte / performante" het antwoord. Het
+was de enige oplossing in dit hoofdstuk die niet uit het materiaal volgde. Dat
+vraag 1 en 2 nu hetzelfde antwoord dragen is geen zwakte: vraag 1 toetst dat je
+een 100 Mbps-poort niet overbekabelt, vraag 2 dat een snellere poort daarom nog
+geen snellere kabel vraagt.
 
-**De SFP in de tabel heet J8117C en op zijn datasheet J8177C.** Twee cijfers
-omgewisseld, in de Word al. Welke van de twee juist is, maakt voor het antwoord
-niets uit (die module is koper en valt sowieso af), maar een van de twee is een
-typfout.
+Wat voor cat6 pleitte en niet zwaar genoeg woog: de 70 meter in de vraag doet
+alleen iets tegenover cat6's 10 Gbps-grens van 50 meter, wat suggereert dat de
+auteur naar "de beste kabel die op 70 meter nog werkt" toe redeneerde. En 2.2
+noemt cat6 "een kwalitatief betere kabel" en zegt dat de industrie meestal cat6 of
+hoger gebruikt.
 
-**De tekeningen bij vraag 6, 7 en 8 dragen geen bijschrift.** Ze zaten in de Word
-in de alinea van de vraag zelf, dus er is geen tekst die erbij hoort, en de
-alt-tekst zegt daarom alleen "Afbeelding uit de syllabus". Voor de PDF maakt dat
-niets uit, voor de pagina op de site wel: wie hem met een schermlezer leest, hoort
-niet wat er staat. Een bijschrift of een alt-tekst schrijven is een tekstwijziging
-en dus aan jou.
+**De SFP heet nu J8177C en heette J8117C.** Twee omgewisselde cijfers, in de Word
+al, tegen de datasheet in die er drie regels lager onder staat. Voor het antwoord
+maakte het niets uit (die module is koper en valt sowieso af), maar de vraag vraagt
+de student juist om de drie namen naast de drie datasheets te leggen, en dan past
+er een niet. J8177C is bovendien de bestaande: dat is de HP X121 1G SFP RJ45 T.
+J8117C is geen HP-artikelnummer.
 
-**De netwerkkaarten staan in een tabel van twee op twee.** Bovenin twee foto's,
-eronder de bijschriften. In de Word is dat een indeling en geen gegevenstabel,
-dus ze heeft terecht geen kopregel gekregen, maar als je ooit twee `figure`'s
-naast elkaar wil in plaats van een tabel, is dit de plek.
+### Drie oplossingsteksten beweerden meer dan hun bron
 
-**Typfouten die uit de Word meekomen.** Letterlijk overgenomen, dus ze staan er
-nog:
+Alle drie geschreven door de import om een antwoord te motiveren, alle drie met een
+feit erin dat op geen enkele bladzijde van de syllabus staat.
+
+- **Vraag 4 van de oefening** zei "1310 nm over singlemode, en dat is precies wat
+  OS2 is". Dat spreekt 2.5 tegen, dat OS1 en OS2 allebei singlemode noemt. Het zegt
+  nu dat OS2 de enige singlemode in de rij van drie is, en dat is wat de keuze
+  beslist.
+- **Vraag 3 van RJ-45 vs M12** zei "hij klikt vast in plaats van met een lipje en
+  haalt zo IP67". Het lipje van de gewone RJ-45 komt in het artikel niet voor, en
+  het artikel legt geen verband tussen het push-pull mechanisme en IP67: het noemt
+  de twee naast elkaar. Nu: "hij vergrendelt met een push-pull mechanisme en
+  voldoet aan beschermingsklasse IP67".
+- **Vraag 5 van RJ-45 vs M12** schreef de metalen behuizing en de afscherming over
+  360 graden toe aan "de M12". Het artikel zegt dat van de M12 **Quickon**, een
+  product van Phoenix Contact. Dat staat er nu.
+
+### Vier lopende zinnen stonden als bijschrift
+
+De importer maakt van een Word-alinea die een afbeelding *in* de tekst draagt een
+`<figure>` met die alinea als bijschrift. In dit hoofdstuk gebeurde dat vier keer:
+tweemaal in Ethernetkabel, eenmaal in Glasvezelkabel en eenmaal in Netwerkkaarten.
+Drie ervan lazen als bijschrift nog door. De vierde niet: de openingszin van
+Glasvezelkabel eindigt op een dubbele punt die de lijst eronder aankondigt, en die
+lijst stond buiten de `<figure>`, dus de aanhef stond in bijschriftopmaak onder een
+foto en de drie voordelen begonnen aan niets.
+
+Alle vier zijn ze nu een gewone `<p>`, en de vier figuren dragen een bijschrift dat
+beschrijft wat er te zien is. Bij de M12-foto blijft de tweede zin van de auteur het
+bijschrift ("In de afbeelding zie je rechts de 4 wire variant"), want die verwijst
+echt naar het beeld; alleen de eerste zin is eruit gehaald.
+
+Aan de importer zelf is niet geraakt: een tweede run gooit elke correctie van dit
+hoofdstuk weg. Wie de regel ooit aanscherpt, doet dat voor een hoofdstuk dat nog
+geimporteerd moet worden.
+
+### De tekening bij Line staat nu bij de zin die ernaar verwijst
+
+2.7 Line opende met "Zoals je kan zien worden alle nodes met elkaar doorverbonden",
+en de tekening stond vier alinea's lager, achter de voordelen en de nadelen. Bus,
+Ring en Ster op dezelfde pagina doen het omgekeerd: eerst de omschrijving, dan
+meteen de tekening. Line volgt nu datzelfde patroon.
+
+### Zes afbeeldingen dragen nu een echte alt-tekst
+
+De importer schrijft `alt="Afbeelding uit de syllabus"` wanneer een afbeelding geen
+bijschrift heeft. Voor de PDF maakt dat niets uit, voor de site wel, en bij zes
+afbeeldingen draagt het beeld de vraag zelf: de drie topologietekeningen bij vraag
+6, 7 en 8 (de vraagstelling is een woord) en de drie SFP-datasheets bij vraag 3 van
+de oefening (de artikelnummers zeggen niets, de specificaties staan alleen in het
+beeld). Die zes zijn beschreven, zonder de topologie bij naam te noemen: wie de
+tekening ziet, ziet de lus of de aftakkingen ook, en meer geeft de alt dus niet weg.
+
+De 24 andere houden de generieke tekst. Ze staan naast een alinea die hetzelfde
+zegt, en alt-teksten voor de hele syllabus horen in een ronde over de zes
+hoofdstukken en niet als bijwerk hier.
+
+### De netwerkkaarten staan in een tabel van twee op twee
+
+Bovenin twee foto's, eronder de bijschriften. In de Word is dat een indeling en
+geen gegevenstabel, dus ze heeft terecht geen kopregel gekregen, maar als je ooit
+twee `figure`'s naast elkaar wil in plaats van een tabel, is dit de plek.
+
+### Taalfouten
+
+Deze horen niet bij de stijl maar bij de taal, en `SCHRIJFSTIJL.md` vraagt om ze te
+verzamelen zodat een ronde er een diff van een soort van maakt.
+
+Rechtgezet, elf stuks, alle in de HTML omdat die vanaf nu de bron is:
 
 - 2.7 Netwerktopologie: "er zijn natuurlijke meerdere manieren" (natuurlijk)
+- 2.7 Netwerktopologie: "netwerk **typologieën**" (topologieën). De opvallendste van
+  de elf: het onderwerp van de hele sectie, verkeerd gespeld in de zin die het
+  invoert.
+- 2.7 Bus: "en het deze punten moet altijd worden afgesloten" (en deze punten
+  moeten)
 - 2.7 Bus: "een vorm van van channel access control" (van van)
 - 2.7 Ster: "gedraag het systeem zich dan als een bus netwerk" (gedraagt)
 - 2.7 Ster: "wat als meerdere hosts een frame wilen sturen" (willen)
 - 2.7 Mesh: "waarbij niet alle verbinden worden gelegd" (verbindingen)
 - 2.7 Mesh: "hoe verder een client zich van dit apparaat verwijderd" (verwijdert)
+- 2.7 Mesh: "Elk node kan immers zowel wifi ontvangen als uitzenden" (Elke)
+- 2.9 Test jezelf, vraag 3: "van een zender naar een alle ontvangers" (naar alle)
+- 2.5 Glasvezelkabel: "onderverdeeld in OM- en OS-types, De OM-types" (punt in
+  plaats van komma)
 
-Verbeter je ze, doe het dan in de HTML: die is vanaf nu de bron, en de Word wordt
-gearchiveerd.
+Blijft open, voor een aparte ronde over de zes hoofdstukken. Dit zijn geen fouten
+maar afspraken, en een afspraak die je in een hoofdstuk maakt en in vijf andere
+niet, levert alleen een nieuwe inconsistentie op:
+
+- 2.4 RJ-45 vs M12, vraag 1: een spatie voor het vraagteken.
+- 2.7 Ster schrijft eenmaal "media access control" waar dezelfde sectie het drie
+  keer "channel access control" noemt. Welke van de twee de syllabus aanhoudt, is
+  een keuze die ook hoofdstuk 3 raakt.
+- "PROFIBUS" naast "Profibus" en "PROFINET" naast "Profinet", binnen dit hoofdstuk
+  en tegenover het artikel dat "Profinet" schrijft.
 
 ## Hoofdstuk 3, Datalink laag
 
-**De antwoorden: nakijken.** Zelfde afspraak en zelfde voorbehoud als bij
-hoofdstuk 1 en 2. In de Word is niets aangeduid, dus alles hieronder is afgeleid
-uit de theorie van het hoofdstuk en geen overname. Het hoofdstuk draagt 32 vragen
+**De antwoorden: nakijken.** Zelfde afspraak als bij hoofdstuk 1 en 2, maar
+dit hoofdstuk heeft de doorloop nog niet gehad. In de Word is niets aangeduid,
+dus alles hieronder is afgeleid uit de theorie van het hoofdstuk en geen overname. Het hoofdstuk draagt 32 vragen
 over drie pagina's, en dat is meer dan de twee vorige samen.
 
 **Vraag 1 en 3 van Test jezelf zijn herschreven, en dat is een ingreep.** Ze

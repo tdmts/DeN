@@ -13,11 +13,15 @@
     <div class="container">
         <h1>Netwerktopologie</h1>
 
-        <p>In een netwerk worden alle hosts met elkaar verbonden maar er zijn natuurlijke meerdere manieren waarop je dat kan doen. Die verschillende manieren worden ook wel netwerk typologieën genoemd. We bespreken er een aantal die worden gebruikt in zowel computernetwerken als industriële netwerken.</p>
+        <p>In een netwerk worden alle hosts met elkaar verbonden maar er zijn natuurlijk meerdere manieren waarop je dat kan doen. Die verschillende manieren worden ook wel netwerk topologieën genoemd. We bespreken er een aantal die worden gebruikt in zowel computernetwerken als industriële netwerken.</p>
 
         <h2>Line</h2>
 
         <p>We bespreken eerst de line topologie. Zoals je kan zien worden alle nodes met elkaar doorverbonden.</p>
+
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 110.9mm">
+            <img src="../../../../img/syllabus-02-fysieke-laag-21.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        </figure>
 
         <p>Men noemt dat ook wel <em>daisy chaining</em>. De voor- en nadelen bij deze topologie zijn vrij vanzelfsprekend.</p>
 
@@ -35,13 +39,9 @@
             <li>De hosts kunnen elkaars communicatie zien</li>
         </ul>
 
-        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 110.9mm">
-            <img src="../../../../img/syllabus-02-fysieke-laag-21.png" class="img-fluid" alt="Afbeelding uit de syllabus">
-        </figure>
-
         <h2>Bus</h2>
 
-        <p>In een bus netwerk worden alle computers serieel aangesloten op eenzelfde kabel. In de praktijk is dat meestal een coax-kabel. Iedere kabel heeft een begin- en eindpunt en het deze punten moet altijd worden afgesloten via een terminator.</p>
+        <p>In een bus netwerk worden alle computers serieel aangesloten op eenzelfde kabel. In de praktijk is dat meestal een coax-kabel. Iedere kabel heeft een begin- en eindpunt en deze punten moeten altijd worden afgesloten via een terminator.</p>
 
         <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
             <img src="../../../../img/syllabus-02-fysieke-laag-22.png" class="img-fluid" alt="Afbeelding uit de syllabus">
@@ -61,11 +61,13 @@
 
         <p>Als hosts zenden dan wordt het frame langs beide kanten van de kabel verstuurd. Een <em>frame</em> is een verzameling van bits die een boodschap van zender naar ontvanger voorstelt. Het spreekt voor zich dat het niet lang duurt vooraleer er collisions optreden, zelfs met een klein aantal apparaten op het netwerk.</p>
 
-        <p>Om collisions te vermijden of te detecteren op het gedeeld transmissiemedium kan er een vorm van van <em>channel access control</em>  worden geïmplementeerd. Hierover leer je later nog iets meer. Channel access control zal ervoor zorgen dat er geen twee zenders op hetzelfde moment een frame zullen versturen.</p>
+        <p>Om collisions te vermijden of te detecteren op het gedeeld transmissiemedium kan er een vorm van <em>channel access control</em>  worden geïmplementeerd. Hierover leer je later nog iets meer. Channel access control zal ervoor zorgen dat er geen twee zenders op hetzelfde moment een frame zullen versturen.</p>
 
         <p>Verder is het ook zo dat wanneer een frame verstuurd wordt, dit ontvangen wordt door ieder apparaat dat verbonden is. Data kan bijgevolg gelezen worden door personen waarvoor het pakket niet bedoeld is.</p>
 
         <p>Ieder apparaat ontvangt het frame, opent het en bekijkt het <em>destination MAC adres</em>. Voorlopig mag je onthouden dat het destination MAC adres het adres is van het apparaat naar waar het frame verstuurd wordt. Als dit overeenkomt met het eigen MAC adres dan wordt het frame behouden en anders wordt het vrijwillig gewist (= frame drop).</p>
+
+        <p>Zo'n MAC adres is zes bytes lang en je schrijft het als zes hexadecimale paren met een streepje ertussen, bijvoorbeeld 00-1A-2B-3C-4D-5E. Je komt ook de schrijfwijze met dubbele punten tegen, 00:1A:2B:3C:4D:5E.</p>
 
         <p>Het wissen van frames op vrijwillige basis maakt dat een bus netwerk onveilig is. Het lezen van frames die niet voor een ontvanger bestemd zijn noemt men ook <em>eavesdropping</em> of luistervinken.</p>
 
@@ -103,13 +105,13 @@
             <img src="../../../../img/syllabus-02-fysieke-laag-27.png" class="img-fluid" alt="Afbeelding uit de syllabus">
         </figure>
 
-        <p>Als het centrale punt een hub of een draadloos access point is dan fungeert het als een broadcast apparaat waarbij frames ontvangen worden en dan doorgestuurd worden naar alle hosts. Hoewel de topologie ster is, gedraag het systeem zich dan als een bus netwerk.</p>
+        <p>Als het centrale punt een hub of een draadloos access point is dan fungeert het als een broadcast apparaat waarbij frames ontvangen worden en dan doorgestuurd worden naar alle hosts. Hoewel de topologie ster is, gedraagt het systeem zich dan als een bus netwerk.</p>
 
         <p>Bij een draadloos access point is er een vorm van <em>channel access control</em> nodig om ervoor te zorgen dat hetzelfde fysieke transmissiemedium (= de ether) gedeeld kan worden. Als dat niet gebeurt treden er botsingen op waardoor de frames onleesbaar worden.</p>
 
         <p>Als het centrale punt een bedrade switch of router is dan fungeert het als een <em>unicast</em> apparaat waarbij frames enkel tussen geadresseerde hosts worden uitgewisseld.</p>
 
-        <p>Uiteraard is het versturen van frames via unicast veel efficiënter. Misschien denk je dat er op deze manier geen media access control meer nodig is... Dit is echter niet zo want wat als meerdere hosts een frame wilen sturen naar één en dezelfde ontvanger. Dan zou dat frame tegelijkertijd aankomen en een botsing veroorzaken. Dit kan uiteraard niet.</p>
+        <p>Uiteraard is het versturen van frames via unicast veel efficiënter. Misschien denk je dat er op deze manier geen media access control meer nodig is... Dit is echter niet zo want wat als meerdere hosts een frame willen sturen naar één en dezelfde ontvanger. Dan zou dat frame tegelijkertijd aankomen en een botsing veroorzaken. Dit kan uiteraard niet.</p>
 
         <p>Een typisch ster netwerk zie je terug in heel wat SOHO (Small Office Home Office) netwerken met  minder dan 10 computers. Deze topologie is dan ook aanwezig in de meeste huiskamers of kleine bedrijven en dat is niet toevallig.</p>
 
@@ -136,13 +138,13 @@
             <li>Een nadeel is dat er veel kabels moeten worden gelegd om alle verbindingen tot stand te brengen.</li>
         </ul>
 
-        <p>Een gedeeltelijk vermaasd netwerk is een vermaasd netwerk waarbij niet alle verbinden worden gelegd maar waarbij er toch (in de meeste gevallen) een alternatieve route bestaat.</p>
+        <p>Een gedeeltelijk vermaasd netwerk is een vermaasd netwerk waarbij niet alle verbindingen worden gelegd maar waarbij er toch (in de meeste gevallen) een alternatieve route bestaat.</p>
 
         <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 96.9mm">
             <img src="../../../../img/syllabus-02-fysieke-laag-28.png" class="img-fluid" alt="Afbeelding uit de syllabus">
         </figure>
 
-        <p>De meeste particuliere Wifi netwerken draaien rond 1 centrale router en hoe verder een client zich van dit apparaat verwijderd, hoe zwakker het signaal. Om dit tegen te gaan gebruikt men vaak een powerline adapter of een repeater.</p>
+        <p>De meeste particuliere Wifi netwerken draaien rond 1 centrale router en hoe verder een client zich van dit apparaat verwijdert, hoe zwakker het signaal. Om dit tegen te gaan gebruikt men vaak een powerline adapter of een repeater.</p>
 
         <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 134.2mm">
             <img src="../../../../img/syllabus-02-fysieke-laag-29.png" class="img-fluid" alt="Afbeelding uit de syllabus">
@@ -168,7 +170,7 @@
             <img src="../../../../img/syllabus-02-fysieke-laag-31.png" class="img-fluid" alt="Afbeelding uit de syllabus">
         </figure>
 
-        <p>De toestellen in een mesh-configuratie kunnen onderling met elkaar communiceren. Dit zorgt ervoor dat je een gelijkwaardige verdeling van het wifi-signaal hebt in je huis. Elk node kan immers zowel wifi ontvangen als uitzenden.</p>
+        <p>De toestellen in een mesh-configuratie kunnen onderling met elkaar communiceren. Dit zorgt ervoor dat je een gelijkwaardige verdeling van het wifi-signaal hebt in je huis. Elke node kan immers zowel wifi ontvangen als uitzenden.</p>
 
         <p>Door het grotere aantal nodes bestrijk je automatisch meer oppervlakte dan bij één centrale router, maar dé grote troef van mesh is het feit dat je automatisch en nagenoeg naadloos kan wisselen tussen de signalen van de nodes.</p>
 
