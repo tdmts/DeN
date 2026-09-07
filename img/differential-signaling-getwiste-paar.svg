@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 272" width="720" height="272"
+    font-family="Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-labelledby="titel">
+    <title id="titel">Een zender drijft twee geleiders aan die om elkaar gedraaid zijn. De ontvanger meet alleen het verschil tussen die twee. Er loopt geen massalijn tussen de twee kanten; elke kant heeft zijn eigen massa.</title>
+    <rect x="0.5" y="0.5" width="719" height="271" fill="#f5f7f7" stroke="#d5dedc" />
+
+    <defs>
+        <g id="driver">
+            <path d="M 0 -24 L 46 0 L 0 24 Z" fill="#ffffff" stroke="#55635f" stroke-width="2" stroke-linejoin="round" />
+        </g>
+        <g id="massa">
+            <path d="M 0 0 L 0 8" stroke="#55635f" stroke-width="2" />
+            <path d="M -14 8 L 14 8" stroke="#55635f" stroke-width="2.4" />
+            <path d="M -9 13 L 9 13" stroke="#55635f" stroke-width="2.4" />
+            <path d="M -4 18 L 4 18" stroke="#55635f" stroke-width="2.4" />
+        </g>
+        <g id="bron">
+            <path d="M 0 0 L 0 4" stroke="#55635f" stroke-width="2" />
+            <circle cx="0" cy="20" r="16" fill="#ffffff" stroke="#55635f" stroke-width="2" />
+            <path d="M -8 25 L -8 16 L -2 16 L -2 25 L 4 25 L 4 16 L 9 16" fill="none" stroke="#004d40" stroke-width="1.8" />
+            <path d="M 0 36 L 0 40" stroke="#55635f" stroke-width="2" />
+        </g>
+    </defs>
+
+    <g stroke="#55635f" stroke-width="2" fill="none">
+        <path d="M 130 115 L 175 115" />
+        <path d="M 130 115 L 130 135" />
+        <path d="M 130 175 L 130 205" />
+        <path d="M 221 115 L 233 115" />
+        <path d="M 233 90 L 233 140" />
+        <path d="M 233 90 L 255 90" />
+        <path d="M 233 140 L 255 140" />
+        <path d="M 455 90 L 482 90 L 482 102 L 490 102" />
+        <path d="M 455 140 L 482 140 L 482 128 L 490 128" />
+        <path d="M 546 115 L 620 115" />
+        <path d="M 620 115 L 620 130" />
+        <path d="M 620 184 L 620 205" />
+    </g>
+
+    <path d="M 255.0 90.0 L 257.0 90.4 L 259.0 91.6 L 261.0 93.5 L 263.0 96.2 L 265.0 99.4 L 267.0 103.2 L 269.0 107.3 L 271.0 111.6 L 273.0 116.1 L 275.0 120.6 L 277.0 124.8 L 279.0 128.8 L 281.0 132.3 L 283.0 135.2 L 285.0 137.5 L 287.0 139.1 L 289.0 139.9 L 291.0 139.9 L 293.0 139.1 L 295.0 137.5 L 297.0 135.2 L 299.0 132.3 L 301.0 128.8 L 303.0 124.8 L 305.0 120.6 L 307.0 116.1 L 309.0 111.6 L 311.0 107.3 L 313.0 103.2 L 315.0 99.4 L 317.0 96.2 L 319.0 93.5 L 321.0 91.6 L 323.0 90.4 L 325.0 90.0 L 327.0 90.4 L 329.0 91.6 L 331.0 93.5 L 333.0 96.2 L 335.0 99.4 L 337.0 103.2 L 339.0 107.3 L 341.0 111.6 L 343.0 116.1 L 345.0 120.6 L 347.0 124.8 L 349.0 128.8 L 351.0 132.3 L 353.0 135.2 L 355.0 137.5 L 357.0 139.1 L 359.0 139.9 L 361.0 139.9 L 363.0 139.1 L 365.0 137.5 L 367.0 135.2 L 369.0 132.3 L 371.0 128.8 L 373.0 124.8 L 375.0 120.6 L 377.0 116.1 L 379.0 111.6 L 381.0 107.3 L 383.0 103.2 L 385.0 99.4 L 387.0 96.2 L 389.0 93.5 L 391.0 91.6 L 393.0 90.4 L 395.0 90.0 L 397.0 90.4 L 399.0 91.6 L 401.0 93.5 L 403.0 96.2 L 405.0 99.4 L 407.0 103.2 L 409.0 107.3 L 411.0 111.6 L 413.0 116.1 L 415.0 120.6 L 417.0 124.8 L 419.0 128.8 L 421.0 132.3 L 423.0 135.2 L 425.0 137.5 L 427.0 139.1 L 429.0 139.9 L 431.0 139.9 L 433.0 139.1 L 435.0 137.5 L 437.0 135.2 L 439.0 132.3 L 441.0 128.8 L 443.0 124.8 L 445.0 120.6 L 447.0 116.1 L 449.0 111.6 L 451.0 107.3 L 453.0 103.2 L 455.0 99.4" stroke="#004d40" stroke-width="2.5" fill="none" />
+    <path d="M 255.0 140.0 L 257.0 139.6 L 259.0 138.4 L 261.0 136.5 L 263.0 133.8 L 265.0 130.6 L 267.0 126.8 L 269.0 122.7 L 271.0 118.4 L 273.0 113.9 L 275.0 109.4 L 277.0 105.2 L 279.0 101.2 L 281.0 97.7 L 283.0 94.8 L 285.0 92.5 L 287.0 90.9 L 289.0 90.1 L 291.0 90.1 L 293.0 90.9 L 295.0 92.5 L 297.0 94.8 L 299.0 97.7 L 301.0 101.2 L 303.0 105.2 L 305.0 109.4 L 307.0 113.9 L 309.0 118.4 L 311.0 122.7 L 313.0 126.8 L 315.0 130.6 L 317.0 133.8 L 319.0 136.5 L 321.0 138.4 L 323.0 139.6 L 325.0 140.0 L 327.0 139.6 L 329.0 138.4 L 331.0 136.5 L 333.0 133.8 L 335.0 130.6 L 337.0 126.8 L 339.0 122.7 L 341.0 118.4 L 343.0 113.9 L 345.0 109.4 L 347.0 105.2 L 349.0 101.2 L 351.0 97.7 L 353.0 94.8 L 355.0 92.5 L 357.0 90.9 L 359.0 90.1 L 361.0 90.1 L 363.0 90.9 L 365.0 92.5 L 367.0 94.8 L 369.0 97.7 L 371.0 101.2 L 373.0 105.2 L 375.0 109.4 L 377.0 113.9 L 379.0 118.4 L 381.0 122.7 L 383.0 126.8 L 385.0 130.6 L 387.0 133.8 L 389.0 136.5 L 391.0 138.4 L 393.0 139.6 L 395.0 140.0 L 397.0 139.6 L 399.0 138.4 L 401.0 136.5 L 403.0 133.8 L 405.0 130.6 L 407.0 126.8 L 409.0 122.7 L 411.0 118.4 L 413.0 113.9 L 415.0 109.4 L 417.0 105.2 L 419.0 101.2 L 421.0 97.7 L 423.0 94.8 L 425.0 92.5 L 427.0 90.9 L 429.0 90.1 L 431.0 90.1 L 433.0 90.9 L 435.0 92.5 L 437.0 94.8 L 439.0 97.7 L 441.0 101.2 L 443.0 105.2 L 445.0 109.4 L 447.0 113.9 L 449.0 118.4 L 451.0 122.7 L 453.0 126.8 L 455.0 130.6" stroke="#004d40" stroke-width="2.5" fill="none" />
+
+    <path d="M 470 90 L 470 96" stroke="#55635f" stroke-width="2" />
+    <rect x="461" y="96" width="18" height="38" fill="#ffffff" stroke="#55635f" stroke-width="2" />
+    <path d="M 470 134 L 470 140" stroke="#55635f" stroke-width="2" />
+
+    <path d="M 490 85 L 490 145 L 546 115 Z" fill="#ffffff" stroke="#55635f" stroke-width="2" stroke-linejoin="round" />
+    <g font-size="14" fill="#222">
+        <text x="500" y="107">&#8722;</text>
+        <text x="500" y="134">+</text>
+    </g>
+
+    <path d="M 620 130 L 620 140" stroke="#55635f" stroke-width="2" />
+    <rect x="611" y="140" width="18" height="34" fill="#ffffff" stroke="#55635f" stroke-width="2" />
+    <path d="M 620 174 L 620 184" stroke="#55635f" stroke-width="2" />
+
+    <g transform="translate(130 135)"><use href="#bron" /></g>
+    <g transform="translate(175 115)"><use href="#driver" /></g>
+    <g transform="translate(130 205)"><use href="#massa" /></g>
+    <g transform="translate(620 205)"><use href="#massa" /></g>
+
+    <g font-size="14" fill="#222">
+        <text x="105" y="160" text-anchor="end">signaalbron</text>
+        <text x="198" y="66" text-anchor="middle">zender</text>
+        <text x="518" y="66" text-anchor="middle">ontvanger</text>
+        <text x="645" y="162">belasting</text>
+    </g>
+    <g font-size="14" fill="#004d40">
+        <text x="355" y="52" text-anchor="middle">getwist aderpaar</text>
+        <text x="244" y="82" text-anchor="middle">A</text>
+        <text x="244" y="160" text-anchor="middle">B</text>
+    </g>
+    <path d="M 470 142 L 470 166" stroke="#55635f" stroke-width="1.2" />
+    <text x="470" y="182" font-size="13" fill="#222" text-anchor="middle">afsluitweerstand</text>
+    <text x="360" y="252" font-size="13" fill="#004d40" text-anchor="middle">geen gemeenschappelijke massalijn: alleen het verschil tussen A en B telt</text>
+</svg>

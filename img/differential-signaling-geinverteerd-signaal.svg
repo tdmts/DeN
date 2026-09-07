@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" width="720" height="420"
+    font-family="Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-labelledby="titel">
+    <title id="titel">Het signaal van de zender vertrekt langs twee wegen: over lijn B geinverteerd en over lijn A niet-geinverteerd. De ontvanger trekt de twee van elkaar af, en de uitslag die hij overhoudt is dubbel zo groot als die van de zender.</title>
+    <rect x="0.5" y="0.5" width="719" height="419" fill="#f5f7f7" stroke="#d5dedc" />
+
+    <defs>
+        <marker id="as" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#55635f" />
+        </marker>
+    </defs>
+
+    <rect x="32" y="176" width="118" height="76" fill="#e8eeec" />
+    <g transform="translate(46 232)">
+        <path d="M 0 8 L 0 -46" stroke="#55635f" stroke-width="1.5" fill="none" marker-end="url(#as)" />
+        <path d="M 0 0 L 104 0" stroke="#55635f" stroke-width="1.5" fill="none" marker-end="url(#as)" />
+        <text x="94" y="16" font-size="12" fill="#55635f" font-style="italic">t</text>
+        <path d="M 2 0 C 14 0 16 -30 30 -30 L 62 -30 C 76 -30 78 0 90 0" fill="none" stroke="#004d40" stroke-width="2.5" />
+    </g>
+    <text x="91" y="274" font-size="15" fill="#222" text-anchor="middle">zender</text>
+
+    <rect x="576" y="146" width="118" height="106" fill="#e8eeec" />
+    <g transform="translate(590 232)">
+        <path d="M 0 8 L 0 -76" stroke="#55635f" stroke-width="1.5" fill="none" marker-end="url(#as)" />
+        <path d="M 0 0 L 104 0" stroke="#55635f" stroke-width="1.5" fill="none" marker-end="url(#as)" />
+        <text x="94" y="16" font-size="12" fill="#55635f" font-style="italic">t</text>
+        <path d="M 2 0 C 14 0 16 -60 30 -60 L 62 -60 C 76 -60 78 0 90 0" fill="none" stroke="#004d40" stroke-width="2.5" />
+    </g>
+    <text x="635" y="274" font-size="15" fill="#222" text-anchor="middle">ontvanger</text>
+
+    <g stroke="#55635f" stroke-width="2" fill="none">
+        <path d="M 150 200 L 180 200" />
+        <path d="M 180 130 L 180 270" />
+        <path d="M 180 130 L 200 130" />
+        <path d="M 180 270 L 200 270" />
+        <path d="M 258 130 L 470 130" />
+        <path d="M 246 270 L 470 270" />
+        <path d="M 546 200 L 576 200" />
+    </g>
+    <circle cx="180" cy="200" r="4" fill="#55635f" />
+
+    <path d="M 200 106 L 246 130 L 200 154 Z" fill="#ffffff" stroke="#55635f" stroke-width="2" stroke-linejoin="round" />
+    <circle cx="252" cy="130" r="6" fill="#ffffff" stroke="#55635f" stroke-width="2" />
+    <path d="M 200 246 L 246 270 L 200 294 Z" fill="#ffffff" stroke="#55635f" stroke-width="2" stroke-linejoin="round" />
+
+    <path d="M 470 110 L 470 290 L 546 200 Z" fill="#ffffff" stroke="#55635f" stroke-width="2" stroke-linejoin="round" />
+    <g font-size="17" fill="#222" text-anchor="middle">
+        <text x="492" y="154">&#8722;</text>
+        <text x="492" y="256">+</text>
+    </g>
+
+    <g transform="translate(288 66)">
+        <path d="M 0 40 L 0 -30" stroke="#55635f" stroke-width="1.5" fill="none" marker-end="url(#as)" />
+        <path d="M 0 0 L 104 0" stroke="#55635f" stroke-width="1.5" fill="none" marker-end="url(#as)" />
+        <text x="94" y="-8" font-size="12" fill="#55635f" font-style="italic">t</text>
+        <path d="M 2 0 C 14 0 16 30 30 30 L 62 30 C 76 30 78 0 90 0" fill="none" stroke="#004d40" stroke-width="2.5" />
+    </g>
+    <text x="340" y="26" font-size="15" fill="#004d40" text-anchor="middle">lijn B: het ge&#239;nverteerde signaal</text>
+
+    <g transform="translate(288 356)">
+        <path d="M 0 8 L 0 -46" stroke="#55635f" stroke-width="1.5" fill="none" marker-end="url(#as)" />
+        <path d="M 0 0 L 104 0" stroke="#55635f" stroke-width="1.5" fill="none" marker-end="url(#as)" />
+        <text x="94" y="16" font-size="12" fill="#55635f" font-style="italic">t</text>
+        <path d="M 2 0 C 14 0 16 -30 30 -30 L 62 -30 C 76 -30 78 0 90 0" fill="none" stroke="#004d40" stroke-width="2.5" />
+    </g>
+    <text x="340" y="400" font-size="15" fill="#004d40" text-anchor="middle">lijn A: het niet-ge&#239;nverteerde signaal</text>
+
+    <g font-size="13" fill="#55635f" text-anchor="middle">
+        <text x="360" y="194">de ontvanger trekt B van A af,</text>
+        <text x="360" y="212">dus de uitslag wordt dubbel zo groot</text>
+    </g>
+</svg>

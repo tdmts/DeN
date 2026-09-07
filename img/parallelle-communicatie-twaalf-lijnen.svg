@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330" width="720" height="330"
+    font-family="Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-labelledby="titel">
+    <title id="titel">Tussen de zender en de ontvanger lopen twaalf datalijnen naast elkaar. De twaalf bits staan er op hetzelfde moment op, elk op een eigen lijn. Daaronder loopt een enkele gemeenschappelijke massa.</title>
+    <rect x="0.5" y="0.5" width="719" height="329" fill="#f5f7f7" stroke="#d5dedc" />
+
+    <g fill="#ffffff" stroke="#55635f" stroke-width="2">
+        <rect x="50" y="70" width="90" height="230" rx="6" />
+        <rect x="530" y="70" width="90" height="230" rx="6" />
+    </g>
+    <g font-size="15" fill="#222" text-anchor="middle">
+        <text x="95" y="190">zender</text>
+        <text x="575" y="190">ontvanger</text>
+    </g>
+
+    <g stroke="#004d40" stroke-width="2">
+        <path d="M 140 78 L 530 78" />
+        <path d="M 140 96 L 530 96" />
+        <path d="M 140 114 L 530 114" />
+        <path d="M 140 132 L 530 132" />
+        <path d="M 140 150 L 530 150" />
+        <path d="M 140 168 L 530 168" />
+        <path d="M 140 186 L 530 186" />
+        <path d="M 140 204 L 530 204" />
+        <path d="M 140 222 L 530 222" />
+        <path d="M 140 240 L 530 240" />
+        <path d="M 140 258 L 530 258" />
+        <path d="M 140 276 L 530 276" />
+    </g>
+    <g font-size="12" fill="#004d40" text-anchor="middle" paint-order="stroke" stroke="#f5f7f7" stroke-width="5">
+        <text x="335" y="82">1</text>
+        <text x="335" y="100">0</text>
+        <text x="335" y="118">1</text>
+        <text x="335" y="136">1</text>
+        <text x="335" y="154">0</text>
+        <text x="335" y="172">0</text>
+        <text x="335" y="190">1</text>
+        <text x="335" y="208">0</text>
+        <text x="335" y="226">1</text>
+        <text x="335" y="244">1</text>
+        <text x="335" y="262">0</text>
+        <text x="335" y="280">1</text>
+    </g>
+    <text x="335" y="56" font-size="14" fill="#222" text-anchor="middle">12 datalijnen: de twaalf bits vertrekken tegelijk</text>
+    <path d="M 140 290 L 530 290" stroke="#004d40" stroke-width="3" />
+    <text x="335" y="316" font-size="14" fill="#004d40" text-anchor="middle">1 gemeenschappelijke massa</text>
+</svg>
