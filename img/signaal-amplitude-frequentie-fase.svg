@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" width="900" height="300"
+    font-family="Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-labelledby="titel">
+    <title id="titel">Drie eigenschappen van een signaal, elk in een eigen paneel: een sinus met een dubbele amplitude, een sinus met een dubbele frequentie en een sinus die 90 graden verschoven is, telkens met dezelfde referentiesinus in stippellijn erachter</title>
+    <rect width="900" height="300" fill="#ffffff" />
+
+    <defs>
+        <marker id="as" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#55635f" />
+        </marker>
+        <marker id="maat" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#004d40" />
+        </marker>
+        <marker id="maat-start" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 10 0 L 0 5 L 10 10 z" fill="#004d40" />
+        </marker>
+    </defs>
+
+    <!-- amplitude -->
+    <g transform="translate(15 10)">
+        <rect width="270" height="280" fill="#f5f7f7" stroke="#d5dedc" />
+        <text x="135" y="27" font-size="17" fill="#004d40" text-anchor="middle">Amplitude</text>
+        <text x="135" y="48" font-size="12" fill="#55635f" text-anchor="middle">hoe groot de uitslag is</text>
+
+        <path d="M 44.0 218 L 44.0 70" stroke="#55635f" stroke-width="1.2" fill="none" marker-end="url(#as)" />
+        <path d="M 44.0 152.0 L 264 152.0" stroke="#55635f" stroke-width="1.2" fill="none" marker-end="url(#as)" />
+        <text x="50" y="78" font-size="11" fill="#555">U (V)</text>
+        <text x="264" y="172" font-size="11" fill="#555" text-anchor="end">t (ms)</text>
+        <path d="M 40.0 100.0 L 44.0 100.0" stroke="#55635f" stroke-width="1.2" />
+        <text x="36.0" y="104.0" font-size="11" fill="#555" text-anchor="end">10</text>
+        <path d="M 40.0 126.0 L 44.0 126.0" stroke="#55635f" stroke-width="1.2" />
+        <text x="36.0" y="130.0" font-size="11" fill="#555" text-anchor="end">5</text>
+        <path d="M 40.0 178.0 L 44.0 178.0" stroke="#55635f" stroke-width="1.2" />
+        <text x="36.0" y="182.0" font-size="11" fill="#555" text-anchor="end">-5</text>
+        <path d="M 40.0 204.0 L 44.0 204.0" stroke="#55635f" stroke-width="1.2" />
+        <text x="36.0" y="208.0" font-size="11" fill="#555" text-anchor="end">-10</text>
+        <path d="M 44.0 152.0 L 44.0 156.0" stroke="#55635f" stroke-width="1.2" />
+        <text x="44.0" y="169" font-size="11" fill="#555" text-anchor="middle" paint-order="stroke" stroke="#f5f7f7" stroke-width="3">0</text>
+        <path d="M 115.3 152.0 L 115.3 156.0" stroke="#55635f" stroke-width="1.2" />
+        <text x="115.3" y="169" font-size="11" fill="#555" text-anchor="middle" paint-order="stroke" stroke="#f5f7f7" stroke-width="3">50</text>
+        <path d="M 186.7 152.0 L 186.7 156.0" stroke="#55635f" stroke-width="1.2" />
+        <text x="186.7" y="169" font-size="11" fill="#555" text-anchor="middle" paint-order="stroke" stroke="#f5f7f7" stroke-width="3">100</text>
+        <path d="M 258.0 152.0 L 258.0 156.0" stroke="#55635f" stroke-width="1.2" />
+
+        <path d="M 44.0 152.0 L 46.1 149.6 L 48.3 147.1 L 50.4 144.7 L 52.6 142.4 L 54.7 140.2 L 56.8 138.1 L 59.0 136.1 L 61.1 134.2 L 63.3 132.5 L 65.4 131.0 L 67.5 129.6 L 69.7 128.5 L 71.8 127.5 L 74.0 126.8 L 76.1 126.3 L 78.2 126.1 L 80.4 126.0 L 82.5 126.2 L 84.7 126.6 L 86.8 127.3 L 88.9 128.1 L 91.1 129.2 L 93.2 130.5 L 95.4 132.0 L 97.5 133.6 L 99.6 135.4 L 101.8 137.4 L 103.9 139.5 L 106.1 141.7 L 108.2 144.0 L 110.3 146.3 L 112.5 148.7 L 114.6 151.2 L 116.8 153.6 L 118.9 156.1 L 121.0 158.5 L 123.2 160.8 L 125.3 163.1 L 127.5 165.2 L 129.6 167.3 L 131.7 169.2 L 133.9 171.0 L 136.0 172.5 L 138.2 174.0 L 140.3 175.2 L 142.4 176.2 L 144.6 177.0 L 146.7 177.5 L 148.9 177.9 L 151.0 178.0 L 153.1 177.9 L 155.3 177.5 L 157.4 177.0 L 159.6 176.2 L 161.7 175.2 L 163.8 174.0 L 166.0 172.5 L 168.1 171.0 L 170.3 169.2 L 172.4 167.3 L 174.5 165.2 L 176.7 163.1 L 178.8 160.8 L 181.0 158.5 L 183.1 156.1 L 185.2 153.6 L 187.4 151.2 L 189.5 148.7 L 191.7 146.3 L 193.8 144.0 L 195.9 141.7 L 198.1 139.5 L 200.2 137.4 L 202.4 135.4 L 204.5 133.6 L 206.6 132.0 L 208.8 130.5 L 210.9 129.2 L 213.1 128.1 L 215.2 127.3 L 217.3 126.6 L 219.5 126.2 L 221.6 126.0 L 223.8 126.1 L 225.9 126.3 L 228.0 126.8 L 230.2 127.5 L 232.3 128.5 L 234.5 129.6 L 236.6 131.0 L 238.7 132.5 L 240.9 134.2 L 243.0 136.1 L 245.2 138.1 L 247.3 140.2 L 249.4 142.4 L 251.6 144.7 L 253.7 147.1 L 255.9 149.6 L 258.0 152.0" stroke="#9bb0ac" stroke-width="2" stroke-dasharray="5 4" fill="none" />
+        <path d="M 44.0 152.0 L 46.1 147.1 L 48.3 142.3 L 50.4 137.5 L 52.6 132.9 L 54.7 128.4 L 56.8 124.1 L 59.0 120.1 L 61.1 116.4 L 63.3 113.0 L 65.4 109.9 L 67.5 107.2 L 69.7 104.9 L 71.8 103.1 L 74.0 101.6 L 76.1 100.6 L 78.2 100.1 L 80.4 100.0 L 82.5 100.4 L 84.7 101.3 L 86.8 102.5 L 88.9 104.3 L 91.1 106.4 L 93.2 109.0 L 95.4 111.9 L 97.5 115.2 L 99.6 118.9 L 101.8 122.8 L 103.9 126.9 L 106.1 131.3 L 108.2 135.9 L 110.3 140.7 L 112.5 145.5 L 114.6 150.4 L 116.8 155.3 L 118.9 160.1 L 121.0 164.9 L 123.2 169.6 L 125.3 174.1 L 127.5 178.5 L 129.6 182.6 L 131.7 186.4 L 133.9 189.9 L 136.0 193.1 L 138.2 195.9 L 140.3 198.3 L 142.4 200.3 L 144.6 201.9 L 146.7 203.1 L 148.9 203.8 L 151.0 204.0 L 153.1 203.8 L 155.3 203.1 L 157.4 201.9 L 159.6 200.3 L 161.7 198.3 L 163.8 195.9 L 166.0 193.1 L 168.1 189.9 L 170.3 186.4 L 172.4 182.6 L 174.5 178.5 L 176.7 174.1 L 178.8 169.6 L 181.0 164.9 L 183.1 160.1 L 185.2 155.3 L 187.4 150.4 L 189.5 145.5 L 191.7 140.7 L 193.8 135.9 L 195.9 131.3 L 198.1 126.9 L 200.2 122.8 L 202.4 118.9 L 204.5 115.2 L 206.6 111.9 L 208.8 109.0 L 210.9 106.4 L 213.1 104.3 L 215.2 102.5 L 217.3 101.3 L 219.5 100.4 L 221.6 100.0 L 223.8 100.1 L 225.9 100.6 L 228.0 101.6 L 230.2 103.1 L 232.3 104.9 L 234.5 107.2 L 236.6 109.9 L 238.7 113.0 L 240.9 116.4 L 243.0 120.1 L 245.2 124.1 L 247.3 128.4 L 249.4 132.9 L 251.6 137.5 L 253.7 142.3 L 255.9 147.1 L 258.0 152.0" stroke="#004d40" stroke-width="2.5" fill="none" />
+
+        <path d="M 44 240 L 74 240" stroke="#004d40" stroke-width="2.5" />
+        <text x="82" y="244" font-size="13" fill="#222">10 V</text>
+        <path d="M 44 260 L 74 260" stroke="#9bb0ac" stroke-width="2" stroke-dasharray="5 4" />
+        <text x="82" y="264" font-size="13" fill="#555">referentie: 5 V</text>
+    </g>
+
+    <!-- frequentie -->
+    <g transform="translate(315 10)">
+        <rect width="270" height="280" fill="#f5f7f7" stroke="#d5dedc" />
+        <text x="135" y="27" font-size="17" fill="#004d40" text-anchor="middle">Frequentie</text>
+        <text x="135" y="48" font-size="12" fill="#55635f" text-anchor="middle">hoeveel golven per seconde</text>
+
+        <path d="M 44.0 218 L 44.0 70" stroke="#55635f" stroke-width="1.2" fill="none" marker-end="url(#as)" />
+        <path d="M 44.0 152.0 L 264 152.0" stroke="#55635f" stroke-width="1.2" fill="none" marker-end="url(#as)" />
+        <text x="50" y="78" font-size="11" fill="#555">U (V)</text>
+        <text x="264" y="172" font-size="11" fill="#555" text-anchor="end">t (ms)</text>
+        <path d="M 40.0 100.0 L 44.0 100.0" stroke="#55635f" stroke-width="1.2" />
+        <text x="36.0" y="104.0" font-size="11" fill="#555" text-anchor="end">10</text>
+        <path d="M 40.0 126.0 L 44.0 126.0" stroke="#55635f" stroke-width="1.2" />
+        <text x="36.0" y="130.0" font-size="11" fill="#555" text-anchor="end">5</text>
+        <path d="M 40.0 178.0 L 44.0 178.0" stroke="#55635f" stroke-width="1.2" />
+        <text x="36.0" y="182.0" font-size="11" fill="#555" text-anchor="end">-5</text>
+        <path d="M 40.0 204.0 L 44.0 204.0" stroke="#55635f" stroke-width="1.2" />
+        <text x="36.0" y="208.0" font-size="11" fill="#555" text-anchor="end">-10</text>
+        <path d="M 44.0 152.0 L 44.0 156.0" stroke="#55635f" stroke-width="1.2" />
+        <text x="44.0" y="169" font-size="11" fill="#555" text-anchor="middle" paint-order="stroke" stroke="#f5f7f7" stroke-width="3">0</text>
+        <path d="M 115.3 152.0 L 115.3 156.0" stroke="#55635f" stroke-width="1.2" />
+        <text x="115.3" y="169" font-size="11" fill="#555" text-anchor="middle" paint-order="stroke" stroke="#f5f7f7" stroke-width="3">50</text>
+        <path d="M 186.7 152.0 L 186.7 156.0" stroke="#55635f" stroke-width="1.2" />
+        <text x="186.7" y="169" font-size="11" fill="#555" text-anchor="middle" paint-order="stroke" stroke="#f5f7f7" stroke-width="3">100</text>
+        <path d="M 258.0 152.0 L 258.0 156.0" stroke="#55635f" stroke-width="1.2" />
+
+        <path d="M 44.0 152.0 L 46.1 149.6 L 48.3 147.1 L 50.4 144.7 L 52.6 142.4 L 54.7 140.2 L 56.8 138.1 L 59.0 136.1 L 61.1 134.2 L 63.3 132.5 L 65.4 131.0 L 67.5 129.6 L 69.7 128.5 L 71.8 127.5 L 74.0 126.8 L 76.1 126.3 L 78.2 126.1 L 80.4 126.0 L 82.5 126.2 L 84.7 126.6 L 86.8 127.3 L 88.9 128.1 L 91.1 129.2 L 93.2 130.5 L 95.4 132.0 L 97.5 133.6 L 99.6 135.4 L 101.8 137.4 L 103.9 139.5 L 106.1 141.7 L 108.2 144.0 L 110.3 146.3 L 112.5 148.7 L 114.6 151.2 L 116.8 153.6 L 118.9 156.1 L 121.0 158.5 L 123.2 160.8 L 125.3 163.1 L 127.5 165.2 L 129.6 167.3 L 131.7 169.2 L 133.9 171.0 L 136.0 172.5 L 138.2 174.0 L 140.3 175.2 L 142.4 176.2 L 144.6 177.0 L 146.7 177.5 L 148.9 177.9 L 151.0 178.0 L 153.1 177.9 L 155.3 177.5 L 157.4 177.0 L 159.6 176.2 L 161.7 175.2 L 163.8 174.0 L 166.0 172.5 L 168.1 171.0 L 170.3 169.2 L 172.4 167.3 L 174.5 165.2 L 176.7 163.1 L 178.8 160.8 L 181.0 158.5 L 183.1 156.1 L 185.2 153.6 L 187.4 151.2 L 189.5 148.7 L 191.7 146.3 L 193.8 144.0 L 195.9 141.7 L 198.1 139.5 L 200.2 137.4 L 202.4 135.4 L 204.5 133.6 L 206.6 132.0 L 208.8 130.5 L 210.9 129.2 L 213.1 128.1 L 215.2 127.3 L 217.3 126.6 L 219.5 126.2 L 221.6 126.0 L 223.8 126.1 L 225.9 126.3 L 228.0 126.8 L 230.2 127.5 L 232.3 128.5 L 234.5 129.6 L 236.6 131.0 L 238.7 132.5 L 240.9 134.2 L 243.0 136.1 L 245.2 138.1 L 247.3 140.2 L 249.4 142.4 L 251.6 144.7 L 253.7 147.1 L 255.9 149.6 L 258.0 152.0" stroke="#9bb0ac" stroke-width="2" stroke-dasharray="5 4" fill="none" />
+        <path d="M 44.0 152.0 L 46.1 147.1 L 48.3 142.4 L 50.4 138.1 L 52.6 134.2 L 54.7 131.0 L 56.8 128.5 L 59.0 126.8 L 61.1 126.1 L 63.3 126.2 L 65.4 127.3 L 67.5 129.2 L 69.7 132.0 L 71.8 135.4 L 74.0 139.5 L 76.1 144.0 L 78.2 148.7 L 80.4 153.6 L 82.5 158.5 L 84.7 163.1 L 86.8 167.3 L 88.9 171.0 L 91.1 174.0 L 93.2 176.2 L 95.4 177.5 L 97.5 178.0 L 99.6 177.5 L 101.8 176.2 L 103.9 174.0 L 106.1 171.0 L 108.2 167.3 L 110.3 163.1 L 112.5 158.5 L 114.6 153.6 L 116.8 148.7 L 118.9 144.0 L 121.0 139.5 L 123.2 135.4 L 125.3 132.0 L 127.5 129.2 L 129.6 127.3 L 131.7 126.2 L 133.9 126.1 L 136.0 126.8 L 138.2 128.5 L 140.3 131.0 L 142.4 134.2 L 144.6 138.1 L 146.7 142.4 L 148.9 147.1 L 151.0 152.0 L 153.1 156.9 L 155.3 161.6 L 157.4 165.9 L 159.6 169.8 L 161.7 173.0 L 163.8 175.5 L 166.0 177.2 L 168.1 177.9 L 170.3 177.8 L 172.4 176.7 L 174.5 174.8 L 176.7 172.0 L 178.8 168.6 L 181.0 164.5 L 183.1 160.0 L 185.2 155.3 L 187.4 150.4 L 189.5 145.5 L 191.7 140.9 L 193.8 136.7 L 195.9 133.0 L 198.1 130.0 L 200.2 127.8 L 202.4 126.5 L 204.5 126.0 L 206.6 126.5 L 208.8 127.8 L 210.9 130.0 L 213.1 133.0 L 215.2 136.7 L 217.3 140.9 L 219.5 145.5 L 221.6 150.4 L 223.8 155.3 L 225.9 160.0 L 228.0 164.5 L 230.2 168.6 L 232.3 172.0 L 234.5 174.8 L 236.6 176.7 L 238.7 177.8 L 240.9 177.9 L 243.0 177.2 L 245.2 175.5 L 247.3 173.0 L 249.4 169.8 L 251.6 165.9 L 253.7 161.6 L 255.9 156.9 L 258.0 152.0" stroke="#004d40" stroke-width="2.5" fill="none" />
+
+        <path d="M 44 240 L 74 240" stroke="#004d40" stroke-width="2.5" />
+        <text x="82" y="244" font-size="13" fill="#222">20 Hz</text>
+        <path d="M 44 260 L 74 260" stroke="#9bb0ac" stroke-width="2" stroke-dasharray="5 4" />
+        <text x="82" y="264" font-size="13" fill="#555">referentie: 10 Hz</text>
+    </g>
+
+    <!-- fase -->
+    <g transform="translate(615 10)">
+        <rect width="270" height="280" fill="#f5f7f7" stroke="#d5dedc" />
+        <text x="135" y="27" font-size="17" fill="#004d40" text-anchor="middle">Fase</text>
+        <text x="135" y="48" font-size="12" fill="#55635f" text-anchor="middle">waar in de golf je begint</text>
+
+        <path d="M 44.0 218 L 44.0 70" stroke="#55635f" stroke-width="1.2" fill="none" marker-end="url(#as)" />
+        <path d="M 44.0 152.0 L 264 152.0" stroke="#55635f" stroke-width="1.2" fill="none" marker-end="url(#as)" />
+        <text x="50" y="78" font-size="11" fill="#555">U (V)</text>
+        <text x="264" y="172" font-size="11" fill="#555" text-anchor="end">t (ms)</text>
+        <path d="M 40.0 100.0 L 44.0 100.0" stroke="#55635f" stroke-width="1.2" />
+        <text x="36.0" y="104.0" font-size="11" fill="#555" text-anchor="end">10</text>
+        <path d="M 40.0 126.0 L 44.0 126.0" stroke="#55635f" stroke-width="1.2" />
+        <text x="36.0" y="130.0" font-size="11" fill="#555" text-anchor="end">5</text>
+        <path d="M 40.0 178.0 L 44.0 178.0" stroke="#55635f" stroke-width="1.2" />
+        <text x="36.0" y="182.0" font-size="11" fill="#555" text-anchor="end">-5</text>
+        <path d="M 40.0 204.0 L 44.0 204.0" stroke="#55635f" stroke-width="1.2" />
+        <text x="36.0" y="208.0" font-size="11" fill="#555" text-anchor="end">-10</text>
+        <path d="M 44.0 152.0 L 44.0 156.0" stroke="#55635f" stroke-width="1.2" />
+        <text x="44.0" y="169" font-size="11" fill="#555" text-anchor="middle" paint-order="stroke" stroke="#f5f7f7" stroke-width="3">0</text>
+        <path d="M 115.3 152.0 L 115.3 156.0" stroke="#55635f" stroke-width="1.2" />
+        <text x="115.3" y="169" font-size="11" fill="#555" text-anchor="middle" paint-order="stroke" stroke="#f5f7f7" stroke-width="3">50</text>
+        <path d="M 186.7 152.0 L 186.7 156.0" stroke="#55635f" stroke-width="1.2" />
+        <text x="186.7" y="169" font-size="11" fill="#555" text-anchor="middle" paint-order="stroke" stroke="#f5f7f7" stroke-width="3">100</text>
+        <path d="M 258.0 152.0 L 258.0 156.0" stroke="#55635f" stroke-width="1.2" />
+
+        <path d="M 44.0 152.0 L 46.1 149.6 L 48.3 147.1 L 50.4 144.7 L 52.6 142.4 L 54.7 140.2 L 56.8 138.1 L 59.0 136.1 L 61.1 134.2 L 63.3 132.5 L 65.4 131.0 L 67.5 129.6 L 69.7 128.5 L 71.8 127.5 L 74.0 126.8 L 76.1 126.3 L 78.2 126.1 L 80.4 126.0 L 82.5 126.2 L 84.7 126.6 L 86.8 127.3 L 88.9 128.1 L 91.1 129.2 L 93.2 130.5 L 95.4 132.0 L 97.5 133.6 L 99.6 135.4 L 101.8 137.4 L 103.9 139.5 L 106.1 141.7 L 108.2 144.0 L 110.3 146.3 L 112.5 148.7 L 114.6 151.2 L 116.8 153.6 L 118.9 156.1 L 121.0 158.5 L 123.2 160.8 L 125.3 163.1 L 127.5 165.2 L 129.6 167.3 L 131.7 169.2 L 133.9 171.0 L 136.0 172.5 L 138.2 174.0 L 140.3 175.2 L 142.4 176.2 L 144.6 177.0 L 146.7 177.5 L 148.9 177.9 L 151.0 178.0 L 153.1 177.9 L 155.3 177.5 L 157.4 177.0 L 159.6 176.2 L 161.7 175.2 L 163.8 174.0 L 166.0 172.5 L 168.1 171.0 L 170.3 169.2 L 172.4 167.3 L 174.5 165.2 L 176.7 163.1 L 178.8 160.8 L 181.0 158.5 L 183.1 156.1 L 185.2 153.6 L 187.4 151.2 L 189.5 148.7 L 191.7 146.3 L 193.8 144.0 L 195.9 141.7 L 198.1 139.5 L 200.2 137.4 L 202.4 135.4 L 204.5 133.6 L 206.6 132.0 L 208.8 130.5 L 210.9 129.2 L 213.1 128.1 L 215.2 127.3 L 217.3 126.6 L 219.5 126.2 L 221.6 126.0 L 223.8 126.1 L 225.9 126.3 L 228.0 126.8 L 230.2 127.5 L 232.3 128.5 L 234.5 129.6 L 236.6 131.0 L 238.7 132.5 L 240.9 134.2 L 243.0 136.1 L 245.2 138.1 L 247.3 140.2 L 249.4 142.4 L 251.6 144.7 L 253.7 147.1 L 255.9 149.6 L 258.0 152.0" stroke="#9bb0ac" stroke-width="2" stroke-dasharray="5 4" fill="none" />
+        <path d="M 44.0 178.0 L 46.1 177.9 L 48.3 177.5 L 50.4 177.0 L 52.6 176.2 L 54.7 175.2 L 56.8 174.0 L 59.0 172.5 L 61.1 171.0 L 63.3 169.2 L 65.4 167.3 L 67.5 165.2 L 69.7 163.1 L 71.8 160.8 L 74.0 158.5 L 76.1 156.1 L 78.2 153.6 L 80.4 151.2 L 82.5 148.7 L 84.7 146.3 L 86.8 144.0 L 88.9 141.7 L 91.1 139.5 L 93.2 137.4 L 95.4 135.4 L 97.5 133.6 L 99.6 132.0 L 101.8 130.5 L 103.9 129.2 L 106.1 128.1 L 108.2 127.3 L 110.3 126.6 L 112.5 126.2 L 114.6 126.0 L 116.8 126.1 L 118.9 126.3 L 121.0 126.8 L 123.2 127.5 L 125.3 128.5 L 127.5 129.6 L 129.6 131.0 L 131.7 132.5 L 133.9 134.2 L 136.0 136.1 L 138.2 138.1 L 140.3 140.2 L 142.4 142.4 L 144.6 144.7 L 146.7 147.1 L 148.9 149.6 L 151.0 152.0 L 153.1 154.4 L 155.3 156.9 L 157.4 159.3 L 159.6 161.6 L 161.7 163.8 L 163.8 165.9 L 166.0 167.9 L 168.1 169.8 L 170.3 171.5 L 172.4 173.0 L 174.5 174.4 L 176.7 175.5 L 178.8 176.5 L 181.0 177.2 L 183.1 177.7 L 185.2 177.9 L 187.4 178.0 L 189.5 177.8 L 191.7 177.4 L 193.8 176.7 L 195.9 175.9 L 198.1 174.8 L 200.2 173.5 L 202.4 172.0 L 204.5 170.4 L 206.6 168.6 L 208.8 166.6 L 210.9 164.5 L 213.1 162.3 L 215.2 160.0 L 217.3 157.7 L 219.5 155.3 L 221.6 152.8 L 223.8 150.4 L 225.9 147.9 L 228.0 145.5 L 230.2 143.2 L 232.3 140.9 L 234.5 138.8 L 236.6 136.7 L 238.7 134.8 L 240.9 133.0 L 243.0 131.5 L 245.2 130.0 L 247.3 128.8 L 249.4 127.8 L 251.6 127.0 L 253.7 126.5 L 255.9 126.1 L 258.0 126.0" stroke="#004d40" stroke-width="2.5" fill="none" />
+
+        <path d="M 79.7 126.0 L 79.7 112" stroke="#9bb0ac" stroke-width="1" />
+        <path d="M 115.3 126.0 L 115.3 112" stroke="#9bb0ac" stroke-width="1" />
+        <path d="M 79.7 112 L 115.3 112" stroke="#004d40" stroke-width="1.5" fill="none" marker-start="url(#maat-start)" marker-end="url(#maat)" />
+        <text x="97.5" y="104" font-size="12" fill="#004d40" text-anchor="middle">90&#176;</text>
+
+        <path d="M 44 240 L 74 240" stroke="#004d40" stroke-width="2.5" />
+        <text x="82" y="244" font-size="13" fill="#222">90&#176; verschoven</text>
+        <path d="M 44 260 L 74 260" stroke="#9bb0ac" stroke-width="2" stroke-dasharray="5 4" />
+        <text x="82" y="264" font-size="13" fill="#555">referentie: 0&#176;</text>
+    </g>
+</svg>
