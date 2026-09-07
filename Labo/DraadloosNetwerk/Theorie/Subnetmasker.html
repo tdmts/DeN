@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subnetmasker en default gateway</title>
+    <link rel="stylesheet" href="https://tdmts.github.io/OrionCSS/style.css">
+    <script type="text/javascript" src="https://tdmts.github.io/OrionCSS/main.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Subnetmasker en default gateway</h1>
+
+        <p>Een adres alleen volstaat niet. Je toestel moet bij elk pakket dat het verstuurt eerst beslissen of de
+            bestemming op het eigen netwerk ligt of erbuiten, want in die twee gevallen stuurt het het pakket ergens
+            anders naartoe. Het subnetmasker is waarmee het die beslissing neemt.</p>
+
+        <h2>Het subnetmasker</h2>
+
+        <p>Het <strong>subnetmasker</strong> verdeelt je IP-adres in twee stukken: het deel dat het netwerk aanduidt
+            en het deel dat het toestel aanduidt. Het is opgebouwd zoals een IP-adres, vier getallen met punten
+            ertussen, bijvoorbeeld <code>255.255.255.0</code>.</p>
+
+        <p>Waarom net die getallen, zie je pas als je ze binair schrijft. Elk getal staat voor acht bits, en een
+            masker bestaat altijd uit een rij enen gevolgd door een rij nullen:</p>
+
+        <pre class="code-wrapper language-plaintext">
+255.255.255.0    11111111.11111111.11111111.00000000
+                 &lt;------- netwerk ------->&lt;-toestel->
+        </pre>
+
+        <p>Waar het masker een 1 heeft, hoort die bit van het IP-adres bij het <strong>netwerk</strong>. Waar het een
+            0 heeft, hoort de bit bij het <strong>toestel</strong>. Met dit masker liggen de eerste drie getallen dus
+            vast voor iedereen op het netwerk, en onderscheidt alleen het laatste getal de toestellen van elkaar.</p>
+
+        <h2>Binnen of buiten het netwerk</h2>
+
+        <p>Om te weten in welk netwerk een adres ligt, voert je toestel een binaire <strong>AND</strong> uit tussen
+            dat adres en het subnetmasker. Bij een AND is de uitkomst alleen 1 als allebei de bits 1 zijn, dus de
+            bits waar het masker een 0 heeft vallen weg. Wat overblijft, is het <strong>netwerkadres</strong>.</p>
+
+        <p>Neem een computer met IP-adres <code>192.168.0.12</code> en subnetmasker <code>255.255.255.0</code>. Het
+            netwerkadres van die computer zelf is:</p>
+
+        <pre class="code-wrapper language-plaintext">
+       192.168.0.12    11000000.10101000.00000000.00001100
+AND    255.255.255.0   11111111.11111111.11111111.00000000
+                       -----------------------------------
+       192.168.0.0     11000000.10101000.00000000.00000000
+        </pre>
+
+        <p>De computer zit dus in het netwerk <code>192.168.0.0</code>. Nu voert hij dezelfde bewerking uit op de
+            bestemming van elk pakket dat hij verstuurt, en vergelijkt hij de twee uitkomsten. Zijn ze gelijk, dan
+            ligt de bestemming op hetzelfde netwerk en gaat het pakket er rechtstreeks naartoe. Zijn ze verschillend,
+            dan geraakt de computer er zelf niet en moet hij het pakket doorgeven aan iemand die verder kijkt dan dit
+            netwerk.</p>
+
+        <h3>Voorbeeld: een pakket naar de laptop naast je</h3>
+
+        <p>Je stuurt een bestand naar de laptop naast je, met IP-adres <code>192.168.0.240</code>:</p>
+
+        <pre class="code-wrapper language-plaintext">
+       192.168.0.240   11000000.10101000.00000000.11110000
+AND    255.255.255.0   11111111.11111111.11111111.00000000
+                       -----------------------------------
+       192.168.0.0     11000000.10101000.00000000.00000000
+        </pre>
+
+        <p><code>192.168.0.0</code> is precies het netwerkadres van je eigen computer. De bestemming ligt dus
+            <strong>binnen</strong> het netwerk, en het pakket gaat rechtstreeks naar die laptop. De default gateway
+            komt er niet aan te pas.</p>
+
+        <h2>De default gateway</h2>
+
+        <p>Ligt de bestemming buiten je netwerk, dan stuurt je toestel het pakket naar de <strong>default
+                gateway</strong>. In een thuisnetwerk is dat de router. Die gateway ligt zelf op je netwerk, anders
+            zou je ze niet kunnen bereiken, en ze heeft een tweede aansluiting naar buiten. Op de computer hierboven
+            is dat bijvoorbeeld <code>192.168.0.1</code>.</p>
+
+        <p>Staat er geen default gateway ingesteld, dan werkt je netwerk nog altijd: toestellen bereiken elkaar
+            onderling. Alleen alles wat verder ligt, het internet incluis, is dan onbereikbaar.</p>
+
+        <h2>Oefening: een pakket naar een server op het internet</h2>
+
+        <p>Je surft naar een website en je computer moet een pakket versturen naar <code>8.8.8.8</code>. Reken zelf
+            uit of die bestemming binnen of buiten je netwerk ligt, en zeg waar het pakket dan naartoe gaat. Je
+            computer heeft nog altijd IP-adres <code>192.168.0.12</code>, subnetmasker <code>255.255.255.0</code> en
+            default gateway <code>192.168.0.1</code>.</p>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p>Schrijf <code>8.8.8.8</code> binair uit, voer de AND uit met het masker en vergelijk de uitkomst
+                    met <code>192.168.0.0</code>.</p>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <pre class="code-wrapper language-plaintext">
+       8.8.8.8         00001000.00001000.00001000.00001000
+AND    255.255.255.0   11111111.11111111.11111111.00000000
+                       -----------------------------------
+       8.8.8.0         00001000.00001000.00001000.00000000
+                </pre>
+                <p>Het netwerkadres van de bestemming is <code>8.8.8.0</code>, dat van je eigen computer
+                    <code>192.168.0.0</code>. Die twee zijn verschillend, dus de bestemming ligt
+                    <strong>buiten</strong> je netwerk. Je computer stuurt het pakket naar de default gateway
+                    <code>192.168.0.1</code>, en die zorgt dat het verder geraakt.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../reference.js"></script>
+    <script src="../../../back-link.js"></script>
+</body>
+
+</html>

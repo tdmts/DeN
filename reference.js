@@ -707,6 +707,18 @@ window.LAB_REFERENCE = {
                         href: 'IPAdresEnDHCP.html'
                     },
                     {
+                        id: 'subnetmasker',
+                        name: 'Subnetmasker en default gateway',
+                        blurb: 'Welk deel van je adres het netwerk aanduidt, en hoe je met een AND uitrekent of een bestemming binnen of buiten je netwerk ligt.',
+                        href: 'Subnetmasker.html'
+                    },
+                    {
+                        id: 'mac-adres',
+                        name: 'MAC-adres',
+                        blurb: 'Het adres dat in de hardware vastligt, en waarom je het in inSSIDer bij elk accesspoint ziet staan.',
+                        href: 'MacAdres.html'
+                    },
+                    {
                         id: 'ssid',
                         name: 'SSID',
                         blurb: 'De naam van een draadloos netwerk, waarom je router er twee uitzendt, en waarom die naam niets bewijst.',

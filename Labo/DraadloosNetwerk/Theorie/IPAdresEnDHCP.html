@@ -13,31 +13,32 @@
     <div class="container">
         <h1>IP-adres en DHCP</h1>
 
-        <p>Voor twee toestellen elkaar kunnen bereiken, moeten ze allebei een adres hebben en moeten ze weten waar ze
-            met verkeer naartoe moeten dat niet voor het eigen netwerk bestemd is. Daar horen drie instellingen bij
-            die je bij elke netwerkkaart terugvindt.</p>
+        <p>Voor twee toestellen elkaar kunnen bereiken, moet elk van de twee een adres hebben. Op een netwerk is dat
+            het IP-adres, en er zijn twee manieren waarop je toestel eraan komt.</p>
 
-        <h2>IP-adres, subnetmasker en default gateway</h2>
+        <h2>Het IP-adres</h2>
 
-        <ul>
-            <li>Het <strong>IP-adres</strong> is het adres van je toestel binnen het netwerk, bijvoorbeeld
-                <code>192.168.0.12</code>.</li>
-            <li>Het <strong>subnetmasker</strong> zegt welk deel van dat adres het netwerk aanduidt en welk deel het
-                toestel. Met <code>255.255.255.0</code> horen alle adressen van <code>192.168.0.1</code> tot
-                <code>192.168.0.254</code> bij hetzelfde netwerk.</li>
-            <li>De <strong>default gateway</strong> is het adres waar je toestel alles naartoe stuurt wat buiten dat
-                netwerk ligt. In een thuisnetwerk is dat de router.</li>
-        </ul>
+        <p>Het <strong>IP-adres</strong> is het adres van je toestel binnen het netwerk. Het bestaat uit vier getallen
+            van 0 tot 255, gescheiden door punten, bijvoorbeeld <code>192.168.0.12</code>. Alles wat je toestel
+            verstuurt, draagt dat adres als afzender, en alles wat voor je toestel bestemd is, draagt het als
+            bestemming.</p>
+
+        <p>Twee toestellen op hetzelfde netwerk mogen nooit hetzelfde IP-adres hebben. Krijgen ze het toch, dan weet
+            het netwerk niet meer wie van de twee de bestemming is en valt de verbinding van allebei weg.</p>
 
         <h2>Statisch of dynamisch</h2>
 
         <p>Een <strong>statisch</strong> IP-adres typ je zelf in en het blijft staan. Dat wil je voor een toestel dat
-            altijd op hetzelfde adres bereikbaar moet zijn, zoals een server of een printer.</p>
+            altijd op hetzelfde adres bereikbaar moet zijn, zoals een server of een printer. Je moet dan zelf
+            bijhouden welk adres al in gebruik is.</p>
 
         <p>Een <strong>dynamisch</strong> adres krijgt je toestel toegewezen zodra het verbinding maakt. Dat gebeurt
             met <strong>DHCP</strong>, Dynamic Host Configuration Protocol: je toestel vraagt het netwerk om een
-            adres, en de DHCP-server, in een thuisnetwerk de router, deelt er een uit voor een bepaalde tijd. Meteen
-            daarbij krijgt het toestel ook het subnetmasker en de default gateway mee, zodat je verder niets moet
+            adres, en de DHCP-server, in een thuisnetwerk de router, deelt er een uit voor een bepaalde tijd. Die
+            server houdt zelf bij welk adres al vergeven is, dus een dubbel adres kan niet voorkomen.</p>
+
+        <p>Je krijgt van DHCP meer dan een adres alleen. Het toestel krijgt in dezelfde beweging ook een
+            <strong>subnetmasker</strong> en een <strong>default gateway</strong> mee, zodat je verder niets moet
             instellen.</p>
 
         <div class="info-box remark">
@@ -46,14 +47,6 @@
                 daarvoor. Zet je je netwerkkaart op automatisch, dan hoef je dat niet te weten en klopt je
                 configuratie altijd met die van de router.</p>
         </div>
-
-        <h2>MAC-adres</h2>
-
-        <p>Naast het IP-adres heeft elke netwerkkaart een <strong>MAC-adres</strong>, een adres dat in de hardware
-            vastligt en er niet van verandert als je van netwerk wisselt, bijvoorbeeld
-            <code>78:98:E8:3C:F8:B6</code>. Het IP-adres zegt waar je op dit moment zit, het MAC-adres zegt welk
-            toestel je bent. In inSSIDer zie je van elk draadloos netwerk het MAC-adres van het accesspoint staan, en
-            dat is wat twee netwerken met dezelfde naam uit elkaar houdt.</p>
     </div>
 
     <script src="../../../reference.js"></script>

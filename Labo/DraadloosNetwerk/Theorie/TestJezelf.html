@@ -34,7 +34,8 @@
             <div class="hidden">
                 <p><strong>Antwoord b.</strong> Met dit masker horen alle adressen van <code>192.168.0.1</code> tot
                     <code>192.168.0.254</code> bij hetzelfde netwerk. Hoeveel toestellen er effectief op staan en hoe
-                    ze hun adres krijgen, zegt het masker niet. Zie <a href="IPAdresEnDHCP.html">IP-adres en DHCP</a>.
+                    ze hun adres krijgen, zegt het masker niet. Zie <a href="Subnetmasker.html">Subnetmasker en default
+                    gateway</a>.
                 </p>
             </div>
         </div>
@@ -53,14 +54,38 @@
             <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
             <div class="hidden">
                 <p><strong>Antwoord c.</strong> Je krijgt de drie instellingen samen, dus je moet verder niets zelf
-                    intypen. Antwoord d beschrijft het MAC-adres, dat je van de fabrikant krijgt en niet van de
-                    DHCP-server. Zie <a href="IPAdresEnDHCP.html">IP-adres en DHCP</a>.</p>
+                    intypen. Antwoord d beschrijft het <a href="MacAdres.html">MAC-adres</a>, dat je van de fabrikant
+                    krijgt en niet van de DHCP-server. Zie <a href="IPAdresEnDHCP.html">IP-adres en
+                        DHCP</a>.</p>
             </div>
         </div>
 
         <div class="spoiler-container">
             <div class="basic">
-                <p><strong>3. Op de campus zenden verschillende accesspoints allemaal het SSID <code>eduroam</code>
+                <p><strong>3. Je computer heeft IP-adres <code>192.168.0.12</code>, subnetmasker
+                        <code>255.255.255.0</code> en default gateway <code>192.168.0.1</code>. Je verstuurt een
+                        pakket naar <code>192.168.5.7</code>. Waar gaat dat pakket naartoe?</strong></p>
+                <ol type="a">
+                    <li>Rechtstreeks naar dat toestel, want het adres begint ook met <code>192.168</code></li>
+                    <li>Naar de default gateway <code>192.168.0.1</code></li>
+                    <li>Naar de DHCP-server, die opzoekt waar dat adres zit</li>
+                    <li>Nergens: een adres dat je niet zelf hebt ingesteld, kan je niet bereiken</li>
+                </ol>
+            </div>
+            <div class="button" data-shown="Verberg antwoord">Toon antwoord</div>
+            <div class="hidden">
+                <p><strong>Antwoord b.</strong> De AND van <code>192.168.5.7</code> met het masker geeft
+                    <code>192.168.5.0</code>, en die van je eigen adres geeft <code>192.168.0.0</code>. De twee
+                    netwerkadressen verschillen, dus de bestemming ligt buiten je netwerk en het pakket gaat naar de
+                    gateway. Dat allebei de adressen met <code>192.168</code> beginnen, zegt niets: met dit masker
+                    telt ook het derde getal mee voor het netwerk. Zie <a href="Subnetmasker.html">Subnetmasker en
+                        default gateway</a>.</p>
+            </div>
+        </div>
+
+        <div class="spoiler-container">
+            <div class="basic">
+                <p><strong>4. Op de campus zenden verschillende accesspoints allemaal het SSID <code>eduroam</code>
                         uit. Waaraan houd je die accesspoints uit elkaar?</strong></p>
                 <ol type="a">
                     <li>Aan het kanaal waarop ze zenden</li>
@@ -80,7 +105,7 @@
 
         <div class="spoiler-container">
             <div class="basic">
-                <p><strong>4. Waarom is het een risico dat iedereen zelf zijn SSID mag kiezen?</strong></p>
+                <p><strong>5. Waarom is het een risico dat iedereen zelf zijn SSID mag kiezen?</strong></p>
                 <ol type="a">
                     <li>Iemand kan een eigen accesspoint uitzenden onder de naam van een netwerk dat jij vertrouwt
                     </li>
@@ -99,7 +124,7 @@
 
         <div class="spoiler-container">
             <div class="basic">
-                <p><strong>5. Welke generaties van 802.11 draagt de 2,4 GHz-band?</strong></p>
+                <p><strong>6. Welke generaties van 802.11 draagt de 2,4 GHz-band?</strong></p>
                 <ol type="a">
                     <li>a, n en ac</li>
                     <li>b, g en ac</li>
@@ -117,7 +142,7 @@
 
         <div class="spoiler-container">
             <div class="basic">
-                <p><strong>6. Je router staat op de 2,4 GHz-band in mixed b, g en n. Wat is daarvan het
+                <p><strong>7. Je router staat op de 2,4 GHz-band in mixed b, g en n. Wat is daarvan het
                         gevolg?</strong></p>
                 <ol type="a">
                     <li>Alleen toestellen die n ondersteunen krijgen verbinding</li>
@@ -136,7 +161,7 @@
 
         <div class="spoiler-container">
             <div class="basic">
-                <p><strong>7. Waarvoor zijn de 2,4 GHz-band en de 5 GHz-band opgedeeld in kanalen?</strong></p>
+                <p><strong>8. Waarvoor zijn de 2,4 GHz-band en de 5 GHz-band opgedeeld in kanalen?</strong></p>
                 <ol type="a">
                     <li>Om per kanaal een andere beveiliging te kunnen instellen</li>
                     <li>Om de snelheid van elk netwerk te begrenzen</li>
@@ -154,7 +179,7 @@
 
         <div class="spoiler-container">
             <div class="basic">
-                <p><strong>8. In inSSIDer overlapt je netwerk met verschillende andere. Waarnaar kijk je om een beter
+                <p><strong>9. In inSSIDer overlapt je netwerk met verschillende andere. Waarnaar kijk je om een beter
                         kanaal te kiezen?</strong></p>
                 <ol type="a">
                     <li>Naar het aantal netwerken per kanaal, en je neemt het kanaal met de minste</li>
@@ -174,7 +199,7 @@
 
         <div class="spoiler-container">
             <div class="basic">
-                <p><strong>9. In welke modes kan een router aan channel bonding doen, en wat gebeurt er met de
+                <p><strong>10. In welke modes kan een router aan channel bonding doen, en wat gebeurt er met de
                         bandbreedte?</strong></p>
                 <ol type="a">
                     <li>In b en g; de bandbreedte zakt naar 10 MHz</li>
@@ -194,7 +219,7 @@
 
         <div class="spoiler-container">
             <div class="basic">
-                <p><strong>10. Wanneer zet je channel bonding beter uit?</strong></p>
+                <p><strong>11. Wanneer zet je channel bonding beter uit?</strong></p>
                 <ol type="a">
                     <li>Op de 2,4 GHz-band, waar weinig ruimte is en een breed kanaal met meer netwerken tegelijk
                         overlapt</li>
@@ -213,7 +238,7 @@
 
         <div class="spoiler-container">
             <div class="basic">
-                <p><strong>11. Je stelt bij de encryptie <em>TKIP + AES</em> in. Wat is het gevolg voor de snelheid
+                <p><strong>12. Je stelt bij de encryptie <em>TKIP + AES</em> in. Wat is het gevolg voor de snelheid
                         van je netwerk?</strong></p>
                 <ol type="a">
                     <li>Niets: allebei de algoritmes halen dezelfde snelheid</li>
@@ -233,7 +258,7 @@
 
         <div class="spoiler-container">
             <div class="basic">
-                <p><strong>12. Waarvoor staat PSK, en wat volgt daaruit?</strong></p>
+                <p><strong>13. Waarvoor staat PSK, en wat volgt daaruit?</strong></p>
                 <ol type="a">
                     <li>Private Security Key: elk toestel krijgt van de router een eigen sleutel</li>
                     <li>Protected Session Key: de sleutel wordt bij elke verbinding vernieuwd</li>
