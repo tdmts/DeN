@@ -171,7 +171,7 @@ window.LAB_REFERENCE = {
                 ]
             },
             {
-                name: 'Datalink laag',
+                name: 'Datalinklaag',
                 reeks: 'theorie',
                 topics: [
                     {
@@ -236,13 +236,13 @@ window.LAB_REFERENCE = {
                     },
                     {
                         id: 'datalink-wifi',
-                        name: '802.11 Wifi',
-                        blurb: 'De ISM banden, de standaarden van 802.11b tot Wifi 7, en waar SSID, channel bonding en MIMO vandaan komen.',
+                        name: '802.11 wifi',
+                        blurb: 'De ISM banden, de standaarden van 802.11b tot wifi 7, en waar SSID, channel bonding en MIMO vandaan komen.',
                         href: 'DatalinkLaag/80211Wifi.html'
                     },
                     {
                         id: 'datalink-oefening-wifi-security',
-                        name: 'Oefening Wifi security mode',
+                        name: 'Oefening wifi security mode',
                         blurb: 'Zes vragen over WEP, WPA, WPA2 en WPA3: welke je vandaag nog instelt en welke je beter laat staan.',
                         href: 'DatalinkLaag/OefeningWifiSecurityMode.html'
                     },
@@ -255,7 +255,7 @@ window.LAB_REFERENCE = {
                 ]
             },
             {
-                name: 'Netwerk laag',
+                name: 'Netwerklaag',
                 reeks: 'theorie',
                 topics: [
                     {
@@ -375,7 +375,7 @@ window.LAB_REFERENCE = {
                 ]
             },
             {
-                name: 'Transport laag',
+                name: 'Transportlaag',
                 reeks: 'theorie',
                 topics: [
                     {
@@ -423,7 +423,7 @@ window.LAB_REFERENCE = {
                 ]
             },
             {
-                name: 'Applicatie laag',
+                name: 'Applicatielaag',
                 reeks: 'theorie',
                 topics: [
                     {

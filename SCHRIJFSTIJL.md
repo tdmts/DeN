@@ -478,6 +478,39 @@ Dat is dezelfde scheiding als bij `led` tegenover `pinLED`: proza volgt de taal,
 wat een pad en een sleutel kunnen dragen. Zonder die afspraak staan beide vormen door elkaar op één
 pagina, wat vandaag al bijna gebeurde.
 
+### `wifi`, en een laagnaam aan elkaar
+
+Dezelfde regel als bij `led`: in de lopende tekst schrijf je `wifi`, met een hoofdletter alleen waar
+een zin of een titel begint. Ook de generaties: `wifi 6`, `wifi 7`. De syllabus schreef Wifi, Wi-Fi
+en WiFi door elkaar, drie vormen in één sectie.
+
+Een laagnaam is een samenstelling en staat aan elkaar: `datalinklaag`, `netwerklaag`,
+`transportlaag`, `applicatielaag`. **`fysieke laag` blijft los**, want dat is een bijvoeglijk
+naamwoord bij een zelfstandig naamwoord en geen samenstelling. Datzelfde onderscheid maakt
+`presentatie- en sessielaag` en `network-accesslaag`.
+
+### Een frequentie draagt een punt, ook al vraagt het Nederlands een komma
+
+`2.4 GHz`, niet `2,4 GHz`. Dit is een **bewuste afwijking** van de Nederlandse norm en dus geen
+slordigheid die je in een volgende ronde rechtzet. De reden is dat een netwerkcursus vol getallen
+staat waarin de punt een scheidingsteken is en geen decimaalteken: `192.168.0.1`, `802.11`, `cat5e`
+tegenover `100BASE-TX`. Eén notatie voor al die getallen leest rustiger dan twee. Het geldt alleen
+voor de getallen van het vak; in gewone lopende tekst blijft de komma het decimaalteken.
+
+De duizendtallen volgen wél de Nederlandse norm, met een punt:
+`340.282.366.920.938.000.000.000.000.000.000.000.000`.
+
+### Een standaard schrijft zichzelf, en de norm wint van de gewoonte
+
+`PROFIBUS` en `PROFINET` in kapitalen, zoals PI, de organisatie die beide beheert, ze schrijft.
+`EtherCAT` en `Modbus` zoals Beckhoff en Modbus Organization ze schrijven.
+
+Voor een term uit een standaard geldt hetzelfde: de sublaag heet **medium** access control, met
+medium, want dat is de term van IEEE 802. Dat de meeste fabrikanten (en Windows) *media* access
+control schrijven, is een gewoonte en geen bron. `Theorie/Syllabus/Theorie/DatalinkLaag/MacAdres.html`
+zegt dat verschil één keer met zoveel woorden, zodat de student niet denkt dat hij iets anders leest
+dan wat op zijn scherm staat.
+
 ### Toestelinvoer en toestelantwoord blijven letterlijk
 
 Cisco-configuratie, terminaloutput en wat een toestel terugstuurt, neem je over zoals het is. Geen

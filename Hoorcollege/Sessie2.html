@@ -23,7 +23,7 @@
     </section>
 
     <section class="slide sectie" data-slide="4">
-        <h2>TCP/IP model<br>Laag 2: datalink laag</h2>
+        <h2>TCP/IP model<br>Laag 2: datalinklaag</h2>
     </section>
 
     <section class="slide" data-slide="5">
@@ -38,7 +38,7 @@
         <ul><li>Bits van de physical layer worden omgezet naar een frame</li></ul>
         <figure style="--figuur-breedte: 177mm"><img src="../img/hoorcollege-sessie-2-04.png" alt=""></figure>
         <p class="los">Welke informatie kan je afleiden uit een frame?</p>
-        <aside class="notities"><p>Preamble: 10101010….</p><p>SFD: 10101011</p><p>Adressering via MAC (Media Access Control)</p><p>Length = maximum 1500 (0x5DC)</p><p>	Data die groter is opsplitsen in verschillende frames</p><p>	Een value groter dan 1500 betekent dat het een speciaal frame is (later)</p><p>Foutcontrole met frame check sequence</p></aside>
+        <aside class="notities"><p>Preamble: 10101010….</p><p>SFD: 10101011</p><p>Adressering via MAC (Medium Access Control)</p><p>Length = maximum 1500 (0x5DC)</p><p>	Data die groter is opsplitsen in verschillende frames</p><p>	Een value groter dan 1500 betekent dat het een speciaal frame is (later)</p><p>Foutcontrole met frame check sequence</p></aside>
     </section>
 
     <section class="slide" data-slide="7">
@@ -90,7 +90,7 @@
     <section class="slide" data-slide="15">
         <h2>Switch</h2>
         <figure style="--figuur-breedte: 218mm"><img src="../img/hoorcollege-sessie-2-12.jpeg" alt=""></figure>
-        <aside class="notities"><p>Datalink laag</p><p>MAC adressen -&gt; lokaal netwerk</p><p>Frames</p><p>Een switch leert -&gt; MAC address table -&gt; opvullen obv source MAC address</p></aside>
+        <aside class="notities"><p>Datalinklaag</p><p>MAC adressen -&gt; lokaal netwerk</p><p>Frames</p><p>Een switch leert -&gt; MAC address table -&gt; opvullen obv source MAC address</p></aside>
     </section>
 
     <section class="slide" data-slide="16">
@@ -102,7 +102,7 @@
     <section class="slide" data-slide="17">
         <h2>Router</h2>
         <figure style="--figuur-breedte: 224mm"><img src="../img/hoorcollege-sessie-2-14.jpeg" alt=""></figure>
-        <aside class="notities"><p>Netwerk laag</p><p>IP adressen -&gt; koppeling tussen twee netwerken</p><p>Een IP adres wordt genoteerd in dotted decimal notation bv 192.168.0.1</p><p>In een IP adres zit er een structuur -&gt; hierarchical addressing -&gt; het adres verklapt waar je je bevindt in het netwerk</p></aside>
+        <aside class="notities"><p>Netwerklaag</p><p>IP adressen -&gt; koppeling tussen twee netwerken</p><p>Een IP adres wordt genoteerd in dotted decimal notation bv 192.168.0.1</p><p>In een IP adres zit er een structuur -&gt; hierarchical addressing -&gt; het adres verklapt waar je je bevindt in het netwerk</p></aside>
     </section>
 
     <section class="slide" data-slide="18">
@@ -171,7 +171,7 @@
 
     <section class="slide" data-slide="27">
         <h2>Even herhalen…</h2>
-        <ul><li>Datalink laag -&gt; MAC adressering</li><li>Netwerk laag -&gt; IP adressering</li><li>Binnen een LAN gebruikt de _____ (apparaat) enkel _____ adressen om hosts te adresseren</li><li>Ga je buiten het LAN dan heb je een _____ (apparaat) en _____ adressen nodig</li><li>MAAR!!! Applicaties gebruiken enkel IP adressen…</li></ul>
+        <ul><li>Datalinklaag -&gt; MAC adressering</li><li>Netwerklaag -&gt; IP adressering</li><li>Binnen een LAN gebruikt de _____ (apparaat) enkel _____ adressen om hosts te adresseren</li><li>Ga je buiten het LAN dan heb je een _____ (apparaat) en _____ adressen nodig</li><li>MAAR!!! Applicaties gebruiken enkel IP adressen…</li></ul>
         <aside class="notities"><p>Switch, MAC</p><p>Router, IP</p></aside>
     </section>
 
@@ -203,7 +203,7 @@
             <p class="links">Encryptie?<br>WEP/WPA/WPA2/WPA3</p>
             <p class="rechts">Bereik?<br>Binnen / buiten</p>
         </div>
-        <aside class="notities"><p>Wat is Wifi nu eigenlijk?</p><p>Oorsprong in kassasystemen (bv. scanners in Colruyt)</p><p>Draadloos internet op de ISM band</p><p>Beschrijft afspraken op de fysieke en datalink laag</p><p>Fysieke laag</p><p>Frequenties, versie: b, g, n, ac</p><p>Datalink laag</p><p>Carrier Sense Multiple Access / Collision Avoidance</p><p>MAC adressering</p><p>Bereik: ~ 40m binnen / ~ 90m buiten</p></aside>
+        <aside class="notities"><p>Wat is Wifi nu eigenlijk?</p><p>Oorsprong in kassasystemen (bv. scanners in Colruyt)</p><p>Draadloos internet op de ISM band</p><p>Beschrijft afspraken op de fysieke en datalinklaag</p><p>Fysieke laag</p><p>Frequenties, versie: b, g, n, ac</p><p>Datalinklaag</p><p>Carrier Sense Multiple Access / Collision Avoidance</p><p>MAC adressering</p><p>Bereik: ~ 40m binnen / ~ 90m buiten</p></aside>
     </section>
 
     <section class="slide" data-slide="32">
