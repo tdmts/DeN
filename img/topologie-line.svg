@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 176" width="720" height="176"
+    font-family="Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-labelledby="titel">
+    <title id="titel">Vier nodes op een rij. Elke node is met een kabel doorverbonden naar de volgende, zonder centraal apparaat.</title>
+    <rect x="0.5" y="0.5" width="719" height="175" fill="#f5f7f7" stroke="#d5dedc" />
+
+    <defs>
+        <g id="host">
+            <rect x="0" y="0" width="64" height="46" rx="3" fill="#ffffff" stroke="#55635f" stroke-width="1.8" />
+            <rect x="5" y="5" width="54" height="32" fill="#dbe7e4" />
+            <path d="M 26 46 L 24 54 L 40 54 L 38 46 Z" fill="#e8eeec" stroke="#55635f" stroke-width="1.8" />
+            <rect x="16" y="53" width="32" height="5" rx="2.5" fill="#55635f" />
+        </g>
+    </defs>
+
+    <g stroke="#004d40" stroke-width="3" stroke-linecap="round">
+        <path d="M 132 78 L 241 78" />
+        <path d="M 305 78 L 415 78" />
+        <path d="M 479 78 L 588 78" />
+    </g>
+
+    <use href="#host" x="68" y="55" />
+    <use href="#host" x="241" y="55" />
+    <use href="#host" x="415" y="55" />
+    <use href="#host" x="588" y="55" />
+
+    <g font-size="14" fill="#222" text-anchor="middle">
+        <text x="100" y="134">node 1</text>
+        <text x="273" y="134">node 2</text>
+        <text x="447" y="134">node 3</text>
+        <text x="620" y="134">node 4</text>
+    </g>
+
+    <text x="360" y="160" font-size="13" fill="#55635f" text-anchor="middle">elke node geeft door aan de volgende: daisy chaining</text>
+</svg>

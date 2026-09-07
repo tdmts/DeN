@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" width="720" height="340"
+    font-family="Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-labelledby="titel">
+    <title id="titel">Eén mesh-node hangt met een kabel aan het internet. De andere nodes zijn onderling draadloos verbonden en geven het signaal aan elkaar door. Clients hangen aan de dichtstbijzijnde node.</title>
+    <rect x="0.5" y="0.5" width="719" height="339" fill="#f5f7f7" stroke="#d5dedc" />
+
+    <defs>
+        <g id="meshnode">
+            <path d="M -13 -20 L -13 -4" stroke="#55635f" stroke-width="3" stroke-linecap="round" />
+            <path d="M 13 -20 L 13 -4" stroke="#55635f" stroke-width="3" stroke-linecap="round" />
+            <rect x="-23" y="-6" width="46" height="20" rx="5" fill="#ffffff" stroke="#55635f" stroke-width="2" />
+            <g fill="#9bb0ac">
+                <circle cx="-14" cy="4" r="2.2" />
+                <circle cx="-7" cy="4" r="2.2" />
+                <circle cx="0" cy="4" r="2.2" />
+            </g>
+        </g>
+        <g id="laptop">
+            <rect x="6" y="0" width="36" height="24" rx="2" fill="#ffffff" stroke="#55635f" stroke-width="1.5" />
+            <rect x="9" y="3" width="30" height="18" fill="#dbe7e4" />
+            <path d="M 2 24 L 46 24 L 50 32 L -2 32 Z" fill="#e8eeec" stroke="#55635f" stroke-width="1.5" stroke-linejoin="round" />
+        </g>
+        <g id="gsm">
+            <rect x="0" y="0" width="20" height="34" rx="4" fill="#ffffff" stroke="#55635f" stroke-width="1.5" />
+            <rect x="3" y="4" width="14" height="24" fill="#dbe7e4" />
+        </g>
+    </defs>
+
+    <path d="M 46 96 C 26 96 24 70 44 66 C 44 42 76 36 88 54 C 104 36 138 46 136 66 C 156 68 156 96 136 96 Z"
+        fill="#ffffff" stroke="#55635f" stroke-width="2" />
+    <text x="90" y="82" font-size="16" fill="#004d40" text-anchor="middle">internet</text>
+
+    <path d="M 118 96 L 168 128" stroke="#004d40" stroke-width="3" />
+    <text x="112" y="122" font-size="12" fill="#55635f" text-anchor="end">kabel</text>
+
+    <g stroke="#004d40" stroke-width="2" stroke-dasharray="6 5" fill="none">
+        <path d="M 190 138 L 330 92" />
+        <path d="M 190 148 L 296 216" />
+        <path d="M 330 102 L 300 206" />
+        <path d="M 352 92 L 452 138" />
+        <path d="M 318 210 L 452 150" />
+        <path d="M 306 226 L 442 260" />
+        <path d="M 468 158 L 462 250" />
+        <path d="M 490 140 L 592 190" />
+        <path d="M 478 264 L 596 204" />
+    </g>
+
+    <use href="#meshnode" x="180" y="140" />
+    <use href="#meshnode" x="336" y="92" />
+    <use href="#meshnode" x="300" y="216" />
+    <use href="#meshnode" x="462" y="146" />
+    <use href="#meshnode" x="452" y="262" />
+    <use href="#meshnode" x="602" y="196" />
+
+    <g stroke="#9bb0ac" stroke-width="1.6" stroke-dasharray="4 4" fill="none">
+        <path d="M 348 78 L 396 46" />
+        <path d="M 288 230 L 216 268" />
+        <path d="M 616 182 L 646 130" />
+        <path d="M 466 276 L 500 306" />
+    </g>
+
+    <use href="#laptop" x="396" y="26" />
+    <use href="#laptop" x="164" y="266" />
+    <use href="#gsm" x="640" y="96" />
+    <use href="#gsm" x="500" y="292" />
+
+    <g font-size="14" fill="#222" text-anchor="middle" paint-order="stroke" stroke="#f5f7f7" stroke-width="5">
+        <text x="180" y="182">mesh-gateway</text>
+        <text x="462" y="188">mesh-node</text>
+        <text x="188" y="320">client</text>
+    </g>
+</svg>

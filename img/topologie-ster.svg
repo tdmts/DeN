@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 278" width="720" height="278"
+    font-family="Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-labelledby="titel">
+    <title id="titel">Vier hosts hangen elk met een eigen kabel aan één centrale switch. Er loopt geen kabel rechtstreeks van host naar host.</title>
+    <rect x="0.5" y="0.5" width="719" height="277" fill="#f5f7f7" stroke="#d5dedc" />
+
+    <defs>
+        <g id="host">
+            <rect x="0" y="0" width="64" height="46" rx="3" fill="#ffffff" stroke="#55635f" stroke-width="1.8" />
+            <rect x="5" y="5" width="54" height="32" fill="#dbe7e4" />
+            <path d="M 26 46 L 24 54 L 40 54 L 38 46 Z" fill="#e8eeec" stroke="#55635f" stroke-width="1.8" />
+            <rect x="16" y="53" width="32" height="5" rx="2.5" fill="#55635f" />
+        </g>
+        <g id="switch">
+            <rect x="0" y="0" width="96" height="30" rx="4" fill="#004d40" />
+            <g fill="#bcd0cb">
+                <rect x="9" y="19" width="8" height="7" rx="1" />
+                <rect x="20" y="19" width="8" height="7" rx="1" />
+                <rect x="31" y="19" width="8" height="7" rx="1" />
+                <rect x="42" y="19" width="8" height="7" rx="1" />
+                <rect x="53" y="19" width="8" height="7" rx="1" />
+                <rect x="64" y="19" width="8" height="7" rx="1" />
+                <rect x="75" y="19" width="8" height="7" rx="1" />
+                <rect x="86" y="19" width="4" height="7" rx="1" />
+            </g>
+            <g fill="#7fa39b">
+                <circle cx="12" cy="9" r="2.4" />
+                <circle cx="21" cy="9" r="2.4" />
+                <circle cx="30" cy="9" r="2.4" />
+            </g>
+        </g>
+    </defs>
+
+    <text x="360" y="28" font-size="14" fill="#222" text-anchor="middle">centrale node: switch, router of access point</text>
+
+    <g stroke="#004d40" stroke-width="2.5">
+        <path d="M 340 72 L 110 160" />
+        <path d="M 350 72 L 273 160" />
+        <path d="M 370 72 L 447 160" />
+        <path d="M 380 72 L 610 160" />
+    </g>
+
+    <use href="#switch" x="312" y="42" />
+
+    <use href="#host" x="78" y="160" />
+    <use href="#host" x="241" y="160" />
+    <use href="#host" x="415" y="160" />
+    <use href="#host" x="578" y="160" />
+
+    <g font-size="14" fill="#222" text-anchor="middle">
+        <text x="110" y="238">host 1</text>
+        <text x="273" y="238">host 2</text>
+        <text x="447" y="238">host 3</text>
+        <text x="610" y="238">host 4</text>
+    </g>
+
+    <text x="360" y="264" font-size="13" fill="#55635f" text-anchor="middle">al het verkeer loopt langs dat ene centrale punt</text>
+</svg>

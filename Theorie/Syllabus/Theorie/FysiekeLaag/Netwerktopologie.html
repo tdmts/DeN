@@ -19,8 +19,9 @@
 
         <p>We bespreken eerst de line topologie. Zoals je kan zien worden alle nodes met elkaar doorverbonden.</p>
 
-        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 110.9mm">
-            <img src="../../../../img/syllabus-02-fysieke-laag-21.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/topologie-line.svg" class="img-fluid"
+                alt="Vier nodes op een rij, elk met een kabel doorverbonden naar de volgende, zonder centraal apparaat.">
         </figure>
 
         <p>Men noemt dat ook wel <em>daisy chaining</em>. De voor- en nadelen bij deze topologie zijn vrij vanzelfsprekend.</p>
@@ -47,8 +48,9 @@
             <img src="../../../../img/syllabus-02-fysieke-laag-22.png" class="img-fluid" alt="Afbeelding uit de syllabus">
         </figure>
 
-        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 123.6mm">
-            <img src="../../../../img/syllabus-02-fysieke-laag-23.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/topologie-bus.svg" class="img-fluid"
+                alt="Een doorlopende kabel met aan beide uiteinden een terminator. Vier hosts takken met een tap af van die ene kabel, en de data gaat vanaf elke tap beide kanten uit.">
         </figure>
 
         <p>Hosts takken af van de kabel met behulp van een tap. Dit is een connector met vampierenklemmen die door de isolatie heen prikken en zo verbinding maken met de geleiders.</p>
@@ -79,8 +81,9 @@
 
         <p>Een ring netwerk bestaat uit een aantal <em>repeaters</em> die point-to-point met elkaar verbonden zijn in een gesloten lus. Een repeater is in deze context een apparaat dat langs de ene kant data binnenkrijgt, kopieert en dan langs de andere kant terug verstuurt. Point to point wil zeggen dat ze rechtstreeks met elkaar verbonden zijn.</p>
 
-        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 123.0mm">
-            <img src="../../../../img/syllabus-02-fysieke-laag-25.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/topologie-ring.svg" class="img-fluid"
+                alt="Vier repeaters liggen op een gesloten lus en zijn point-to-point met elkaar verbonden. Aan elke repeater hangt een host, en een pijl toont dat de data maar in een richting rondgaat.">
         </figure>
 
         <p>De verbinding is unidirectioneel. Dit betekent dat de data in één richting verstuurd wordt, bijvoorbeeld in wijzerzin of tegenwijzerzin. Dit heeft als voordeel dat er minder collisions kunnen optreden ten opzichte van een bus netwerk dat bidirectioneel werkt. Sommige netwerken hebben meerdere ringen, dit wordt vooral gedaan om redundantie in te bouwen en de snelheid te verhogen. Eén ring mag bijvoorbeeld onderbroken worden, de andere ring neemt over.</p>
@@ -94,15 +97,17 @@
         <p>Omdat meerdere hosts dezelfde transmissielink gebruiken is er medium access control nodig om te bepalen welke host frames op het netwerk mag invoegen, anders krijgen we collisions.</p>
 
         <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
-            <img src="../../../../img/syllabus-02-fysieke-laag-26.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+            <img src="../../../../img/topologie-ring-frame.svg" class="img-fluid"
+                alt="Vier stappen op een ring met de hosts A, B en C. C zet een frame met bestemming A op de ring, B negeert het, A kopieert het terwijl het passeert, en C haalt het er weer af als het terugkomt.">
         </figure>
 
         <h2>Ster</h2>
 
         <p>In een ster netwerk is iedere host direct verbonden met een gemeenschappelijke centrale node. In de meeste gevallen is die centrale node een router of een switch en gebeurt de verbinding aan de hand van een ethernetkabel of draadloos via wifi.</p>
 
-        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 115.6mm">
-            <img src="../../../../img/syllabus-02-fysieke-laag-27.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/topologie-ster.svg" class="img-fluid"
+                alt="Vier hosts hangen elk met een eigen kabel aan een centrale switch. Er loopt geen kabel rechtstreeks van host naar host.">
         </figure>
 
         <p>Als het centrale punt een hub of een draadloos access point is dan fungeert het als een broadcast apparaat waarbij frames ontvangen worden en dan doorgestuurd worden naar alle hosts. Hoewel de topologie ster is, gedraagt het systeem zich dan als een bus netwerk.</p>
@@ -140,20 +145,23 @@
 
         <p>Een gedeeltelijk vermaasd netwerk is een vermaasd netwerk waarbij niet alle verbindingen worden gelegd maar waarbij er toch (in de meeste gevallen) een alternatieve route bestaat.</p>
 
-        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 96.9mm">
-            <img src="../../../../img/syllabus-02-fysieke-laag-28.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/topologie-mesh.svg" class="img-fluid"
+                alt="Acht nodes met onderling veel verbindingen, maar niet met alle. Naast de route van A naar D over B en C ligt er een omweg over H.">
         </figure>
 
         <p>De meeste particuliere wifi netwerken draaien rond 1 centrale router en hoe verder een client zich van dit apparaat verwijdert, hoe zwakker het signaal. Om dit tegen te gaan gebruikt men vaak een powerline adapter of een repeater.</p>
 
-        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 134.2mm">
-            <img src="../../../../img/syllabus-02-fysieke-laag-29.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+        <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
+            <img src="../../../../img/draadloos-powerline.svg" class="img-fluid"
+                alt="In kamer 1 hangt de router met een kabel aan een powerline-adapter in het stopcontact. Via het elektriciteitsnet loopt de verbinding naar een tweede adapter in kamer 2, die daar draadloos uitzendt.">
         </figure>
 
         <p><strong>OF</strong></p>
 
         <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
-            <img src="../../../../img/syllabus-02-fysieke-laag-30.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+            <img src="../../../../img/draadloos-repeater.svg" class="img-fluid"
+                alt="Een modem met een kabel naar de router. Daarachter hangen twee repeaters die het signaal draadloos doorgeven.">
         </figure>
 
         <p>Beide oplossingen breiden het draadloos bereik uit maar zijn telkens nadelig voor de snelheid van clients. Een draadloze repeater halveert de snelheid omdat de ether een gedeeld transmissiemedium is waarover op een tijdstip x enkel verzonden of ontvangen kan worden.</p>
@@ -167,7 +175,8 @@
         <p>Er is altijd één mesh-toestel dat je via een kabel met het internet aansluit. Deze deelt die verbinding dan draadloos met de dichtstbijzijnde nodes in het netwerk, die op hun beurt weer het signaal kunnen doorsturen naar verdere nodes.</p>
 
         <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
-            <img src="../../../../img/syllabus-02-fysieke-laag-31.png" class="img-fluid" alt="Afbeelding uit de syllabus">
+            <img src="../../../../img/draadloos-mesh.svg" class="img-fluid"
+                alt="Een mesh-node hangt met een kabel aan het internet. De andere nodes zijn onderling draadloos verbonden en geven het signaal aan elkaar door; clients hangen aan de dichtstbijzijnde node.">
         </figure>
 
         <p>De toestellen in een mesh-configuratie kunnen onderling met elkaar communiceren. Dit zorgt ervoor dat je een gelijkwaardige verdeling van het wifi-signaal hebt in je huis. Elke node kan immers zowel wifi ontvangen als uitzenden.</p>

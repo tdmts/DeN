@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280" width="720" height="280"
+    font-family="Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-labelledby="titel">
+    <title id="titel">In kamer 1 hangt de router met een kabel aan een powerline-adapter in het stopcontact. Via het elektriciteitsnet loopt de verbinding naar een tweede adapter in kamer 2, die daar draadloos uitzendt.</title>
+    <rect x="0.5" y="0.5" width="719" height="279" fill="#f5f7f7" stroke="#d5dedc" />
+
+    <defs>
+        <g id="ap">
+            <path d="M 16 0 L 16 20" stroke="#55635f" stroke-width="3.5" stroke-linecap="round" />
+            <path d="M 62 0 L 62 20" stroke="#55635f" stroke-width="3.5" stroke-linecap="round" />
+            <rect x="0" y="18" width="78" height="26" rx="7" fill="#ffffff" stroke="#55635f" stroke-width="2" />
+            <g fill="#9bb0ac">
+                <circle cx="14" cy="31" r="2.6" />
+                <circle cx="24" cy="31" r="2.6" />
+                <circle cx="34" cy="31" r="2.6" />
+            </g>
+        </g>
+        <g id="adapter">
+            <rect x="-28" y="-14" width="56" height="18" rx="3" fill="#e8eeec" stroke="#d5dedc" />
+            <rect x="-10" y="-10" width="5" height="20" fill="#55635f" />
+            <rect x="5" y="-10" width="5" height="20" fill="#55635f" />
+            <rect x="-22" y="8" width="44" height="50" rx="5" fill="#ffffff" stroke="#55635f" stroke-width="2" />
+            <rect x="-8" y="42" width="16" height="9" rx="1.5" fill="#dbe7e4" stroke="#55635f" stroke-width="1.2" />
+            <circle cx="-12" cy="20" r="2.6" fill="#9bb0ac" />
+        </g>
+        <g id="wifi">
+            <path d="M 5.8 -6.9 A 9 9 0 0 1 5.8 6.9" fill="none" stroke="#004d40" stroke-width="2" />
+            <path d="M 9.6 -11.5 A 15 15 0 0 1 9.6 11.5" fill="none" stroke="#004d40" stroke-width="2" />
+            <path d="M 13.5 -16.1 A 21 21 0 0 1 13.5 16.1" fill="none" stroke="#004d40" stroke-width="2" />
+        </g>
+        <g id="laptop">
+            <rect x="6" y="0" width="36" height="24" rx="2" fill="#ffffff" stroke="#55635f" stroke-width="1.5" />
+            <rect x="9" y="3" width="30" height="18" fill="#dbe7e4" />
+            <path d="M 2 24 L 46 24 L 50 32 L -2 32 Z" fill="#e8eeec" stroke="#55635f" stroke-width="1.5" stroke-linejoin="round" />
+        </g>
+    </defs>
+
+    <path d="M 360 44 L 360 258" stroke="#9bb0ac" stroke-width="2" stroke-dasharray="8 6" />
+    <g font-size="15" fill="#004d40" text-anchor="middle">
+        <text x="180" y="34">kamer 1</text>
+        <text x="540" y="34">kamer 2</text>
+    </g>
+
+    <use href="#ap" x="52" y="100" />
+    <text x="91" y="180" font-size="14" fill="#222" text-anchor="middle">router</text>
+
+    <path d="M 130 131 L 240 131" stroke="#004d40" stroke-width="3" />
+    <text x="185" y="120" font-size="12" fill="#55635f" text-anchor="middle">kabel</text>
+
+    <g transform="translate(262 96)">
+        <use href="#adapter" x="0" y="0" />
+    </g>
+    <text x="262" y="74" font-size="14" fill="#222" text-anchor="middle">powerline-adapter</text>
+
+    <g transform="translate(452 96)">
+        <use href="#adapter" x="0" y="0" />
+    </g>
+    <text x="452" y="74" font-size="14" fill="#222" text-anchor="middle">powerline-adapter</text>
+
+    <path d="M 262 154 L 262 216 L 452 216 L 452 154" stroke="#004d40" stroke-width="3" fill="none" />
+    <text x="357" y="246" font-size="13" fill="#004d40" text-anchor="middle">het elektriciteitsnet draagt het signaal van de ene kamer naar de andere</text>
+
+    <use href="#wifi" x="486" y="128" />
+    <use href="#laptop" x="560" y="86" />
+    <use href="#laptop" x="560" y="158" />
+    <g stroke="#9bb0ac" stroke-width="1.6" stroke-dasharray="4 4" fill="none">
+        <path d="M 512 122 L 556 106" />
+        <path d="M 512 136 L 556 170" />
+    </g>
+</svg>

@@ -219,6 +219,13 @@ complains.
   and nothing failed. The rule catches a figure cut from a page with the file left behind just as
   well, so it outlives the importer. `syllabus-cover-logo.png` is referenced from
   `export-syllabus.py` rather than a page, which is why the rule reads the scripts too.
+
+  **Een figuur zonder `syllabus-` in de naam is met de hand getekend en niet uit de Word
+  geïmporteerd.** Zo'n bestand is een `.svg` en draagt zijn eigen reden en maatvoering in zich; het
+  palet staat in [`img/signaal-amplitude-frequentie-fase.svg`](img/signaal-amplitude-frequentie-fase.svg),
+  de eerste van de reeks. Ze zijn vervangingen van importfiguren, dus een tweede
+  `import-syllabus.py --hoofdstuk 2` gooit ze eruit en zet de PNG's terug, net zoals een tweede
+  `import-slides.py` een deck overschrijft. De Word is na de import archief, niet bron.
 - `datasheets/` — self-hosted PDFs a page links to. Same reason: a vendor URL dies mid-semester.
 - `downloads/` — what the student downloads. Four kinds live here, and the difference matters when
   you edit one. The **verslag templates** are derived: regenerate them in the same commit as a

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" width="720" height="320"
+    font-family="Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-labelledby="titel">
+    <title id="titel">Vier repeaters liggen op een gesloten lus en zijn point-to-point met elkaar verbonden. Aan elke repeater hangt een host. Een pijl in het midden toont dat de data maar in één richting rondgaat.</title>
+    <rect x="0.5" y="0.5" width="719" height="319" fill="#f5f7f7" stroke="#d5dedc" />
+
+    <defs>
+        <g id="host">
+            <rect x="0" y="0" width="64" height="46" rx="3" fill="#ffffff" stroke="#55635f" stroke-width="1.8" />
+            <rect x="5" y="5" width="54" height="32" fill="#dbe7e4" />
+            <path d="M 26 46 L 24 54 L 40 54 L 38 46 Z" fill="#e8eeec" stroke="#55635f" stroke-width="1.8" />
+            <rect x="16" y="53" width="32" height="5" rx="2.5" fill="#55635f" />
+        </g>
+        <marker id="pijl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#004d40" />
+        </marker>
+    </defs>
+
+    <circle cx="360" cy="160" r="110" fill="none" stroke="#004d40" stroke-width="3" />
+
+    <g stroke="#004d40" stroke-width="2">
+        <path d="M 172 82 L 274 82" />
+        <path d="M 446 82 L 548 82" />
+        <path d="M 172 238 L 274 238" />
+        <path d="M 446 238 L 548 238" />
+    </g>
+
+    <g fill="#004d40">
+        <rect x="274" y="74" width="16" height="16" rx="2" />
+        <rect x="430" y="74" width="16" height="16" rx="2" />
+        <rect x="274" y="230" width="16" height="16" rx="2" />
+        <rect x="430" y="230" width="16" height="16" rx="2" />
+    </g>
+    <path d="M 266 62 L 278 74" stroke="#004d40" stroke-width="1.2" fill="none" />
+    <text x="262" y="60" font-size="13" fill="#004d40" text-anchor="end">repeater</text>
+
+    <path d="M 352.7 201.4 A 42 42 0 1 1 381.0 196.4" stroke="#004d40" stroke-width="2.5" fill="none"
+        marker-end="url(#pijl)" />
+
+    <use href="#host" x="108" y="53" />
+    <use href="#host" x="548" y="53" />
+    <use href="#host" x="108" y="209" />
+    <use href="#host" x="548" y="209" />
+
+    <g font-size="14" fill="#222" text-anchor="middle">
+        <text x="140" y="130">host A</text>
+        <text x="580" y="130">host B</text>
+        <text x="140" y="286">host C</text>
+        <text x="580" y="286">host D</text>
+    </g>
+
+    <text x="360" y="308" font-size="13" fill="#55635f" text-anchor="middle">de verbinding is unidirectioneel: elk frame legt de hele ring af</text>
+</svg>

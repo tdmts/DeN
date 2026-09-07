@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 260" width="720" height="260"
+    font-family="Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-labelledby="titel">
+    <title id="titel">Een modem met een kabel naar de router. Daarachter hangen twee repeaters die het signaal draadloos doorgeven. Bij elke draadloze sprong halveert de snelheid.</title>
+    <rect x="0.5" y="0.5" width="719" height="259" fill="#f5f7f7" stroke="#d5dedc" />
+
+    <defs>
+        <g id="ap">
+            <path d="M 16 0 L 16 20" stroke="#55635f" stroke-width="3.5" stroke-linecap="round" />
+            <path d="M 62 0 L 62 20" stroke="#55635f" stroke-width="3.5" stroke-linecap="round" />
+            <rect x="0" y="18" width="78" height="26" rx="7" fill="#ffffff" stroke="#55635f" stroke-width="2" />
+            <g fill="#9bb0ac">
+                <circle cx="14" cy="31" r="2.6" />
+                <circle cx="24" cy="31" r="2.6" />
+                <circle cx="34" cy="31" r="2.6" />
+            </g>
+        </g>
+        <g id="wifi">
+            <path d="M 5.8 -6.9 A 9 9 0 0 1 5.8 6.9" fill="none" stroke="#004d40" stroke-width="2" />
+            <path d="M 9.6 -11.5 A 15 15 0 0 1 9.6 11.5" fill="none" stroke="#004d40" stroke-width="2" />
+            <path d="M 13.5 -16.1 A 21 21 0 0 1 13.5 16.1" fill="none" stroke="#004d40" stroke-width="2" />
+        </g>
+        <g id="laptop">
+            <rect x="6" y="0" width="36" height="24" rx="2" fill="#ffffff" stroke="#55635f" stroke-width="1.5" />
+            <rect x="9" y="3" width="30" height="18" fill="#dbe7e4" />
+            <path d="M 2 24 L 46 24 L 50 32 L -2 32 Z" fill="#e8eeec" stroke="#55635f" stroke-width="1.5" stroke-linejoin="round" />
+        </g>
+    </defs>
+
+    <rect x="36" y="112" width="86" height="30" rx="4" fill="#ffffff" stroke="#55635f" stroke-width="2" />
+    <g fill="#9bb0ac">
+        <circle cx="48" cy="127" r="2.6" />
+        <circle cx="58" cy="127" r="2.6" />
+        <circle cx="68" cy="127" r="2.6" />
+    </g>
+    <text x="79" y="166" font-size="14" fill="#222" text-anchor="middle">modem</text>
+
+    <path d="M 122 127 L 196 127" stroke="#004d40" stroke-width="3" />
+    <text x="159" y="114" font-size="12" fill="#55635f" text-anchor="middle">kabel</text>
+
+    <use href="#ap" x="196" y="105" />
+    <text x="235" y="166" font-size="14" fill="#222" text-anchor="middle">router</text>
+
+    <use href="#ap" x="396" y="105" />
+    <text x="435" y="166" font-size="14" fill="#222" text-anchor="middle">repeater 1</text>
+
+    <use href="#ap" x="596" y="105" />
+    <text x="635" y="166" font-size="14" fill="#222" text-anchor="middle">repeater 2</text>
+
+    <g>
+        <use href="#wifi" x="282" y="131" />
+        <use href="#wifi" x="482" y="131" />
+        <g transform="translate(390 131) scale(-1 1)">
+            <use href="#wifi" x="0" y="0" />
+        </g>
+        <g transform="translate(590 131) scale(-1 1)">
+            <use href="#wifi" x="0" y="0" />
+        </g>
+    </g>
+    <g stroke="#004d40" stroke-width="2" stroke-dasharray="6 5" fill="none">
+        <path d="M 314 131 L 358 131" />
+        <path d="M 514 131 L 558 131" />
+    </g>
+
+    <use href="#laptop" x="212" y="196" />
+    <use href="#laptop" x="412" y="196" />
+    <use href="#laptop" x="612" y="196" />
+    <g stroke="#9bb0ac" stroke-width="1.6" stroke-dasharray="4 4" fill="none">
+        <path d="M 235 152 L 235 194" />
+        <path d="M 435 152 L 435 194" />
+        <path d="M 635 152 L 635 194" />
+    </g>
+
+    <text x="360" y="34" font-size="13" fill="#55635f" text-anchor="middle">elke draadloze sprong halveert de snelheid: de ether is een gedeeld transmissiemedium</text>
+</svg>
