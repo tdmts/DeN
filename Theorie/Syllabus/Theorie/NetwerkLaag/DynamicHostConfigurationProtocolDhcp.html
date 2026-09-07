@@ -36,7 +36,7 @@
 
         <p>Client en server werken samen wat betreft het ontvangen en dynamisch uitdelen van IP adressen in het netwerk. De DHCP Client is de host die het IP adres opvraagt en ontvangt van de DHCP server.</p>
 
-        <p>Dit alles gebeurt aan de hand van een DHCP handshake. De DHCP Client heeft bij het verbinding maken met het netwerk nog geen IP adres en stuurt meteen een DHCP discover pakket naar alle hosts in het netwerk. Dit gebeurt aan de hand van het broadcast adres: 255.255.255.255. Iedere host in het netwerk ontvangt bijgevolg een DHCP discover maar het is / zijn enkel de DHCP server(s) die er op zullen reageren met een DHCP offer.</p>
+        <p>Dit alles gebeurt aan de hand van een DHCP handshake. De DHCP Client heeft bij het verbinding maken met het netwerk nog geen IP adres en stuurt meteen een DHCP discover pakket naar alle hosts in het netwerk. Dit gebeurt aan de hand van het broadcast adres: 255.255.255.255. Iedere host in het netwerk ontvangt bijgevolg een DHCP discover maar het is / zijn enkel de DHCP server(s) die erop zullen reageren met een DHCP offer.</p>
 
         <p>Het DHCP offer pakket is een voorstel van DHCP Server naar de Client toe met een beschikbaar IP adres. Als de DHCP Client hierop ingaat stuurt hij een DHCP request naar de DHCP Server.</p>
 
@@ -48,12 +48,12 @@
             <li>De lease time (hoe lang je het IP adres mag gebruiken)</li>
         </ul>
 
-        <p>Als de lease time afloopt en de DHCP client zich nog steeds op het netwerk bevindt dan gebeurt de DHCP handshake opnieuw.</p>
+        <p>Een client die op het netwerk blijft wacht niet tot de lease time afloopt. Halverwege vraagt hij verlenging met een DHCP request rechtstreeks aan zijn eigen server, dus zonder discover en offer. Antwoordt die server niet, dan begint de volledige handshake opnieuw.</p>
 
         <div class="table-responsive table-spacer">
             <table class="table table-bordered">
                 <thead class="table-header-custom">
-                    <tr><th>DHCP client</th><th>DCHP server</th></tr>
+                    <tr><th>DHCP client</th><th>DHCP server</th></tr>
                 </thead>
                 <tbody>
                     <tr><td>Discover</td><td></td></tr>

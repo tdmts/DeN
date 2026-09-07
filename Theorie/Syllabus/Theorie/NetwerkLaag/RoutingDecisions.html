@@ -39,13 +39,13 @@
             <img src="../../../../img/syllabus-04-netwerk-laag-06.png" class="img-fluid" alt="Afbeelding uit de syllabus">
         </figure>
 
-        <p>Stel nu dat we een pakket moeten afleveren op 192.168.1.4 . De routing table wordt bekeken en zoals je kan zien zit dit adres er niet exact in. Jouw computer weet dus momenteel nog niet op welke netwerkkaart hij best het pakket verder stuurt.</p>
+        <p>Stel nu dat we een pakket moeten afleveren op 192.168.1.4. De routing table wordt bekeken en zoals je kan zien zit dit adres er niet exact in. Jouw computer weet dus momenteel nog niet op welke netwerkkaart hij best het pakket verder stuurt.</p>
 
         <p>De aandachtige student heeft natuurlijk al door dat er maar 1 netwerkkaart is die een IP adres heeft en het dus sowieso deze netwerkkaart  zal worden. Maar dit vergeten we even.</p>
 
         <p>Om dit toch te weten te komen wordt de mask bewerking uitgevoerd. Dit houdt in dat we het IP adres van de bestemming, de network destination en de netmask binair zullen voorstellen. Daarna doen we een binaire AND op de IP bestemming en netmask en dit is het resultaat van de mask bewerking (Mask &amp;).</p>
 
-        <p>Laat ons dit eens uitvoeren op de tweede rij van tabel.</p>
+        <p>Laat ons dit eens uitvoeren op de tweede rij van de tabel.</p>
 
         <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
             <img src="../../../../img/syllabus-04-netwerk-laag-07.png" class="img-fluid" alt="Afbeelding uit de syllabus">
@@ -53,13 +53,13 @@
 
         <p>Zoals je kan zien is het resultaat van de Mask bewerking (Mask &amp;) en de network destination exact hetzelfde. Dit betekent dat er een match is én het betekent dat interface 192.168.1.7 geschikt is om het pakket met bestemming 192.168.1.4 verder die kant op te sturen.</p>
 
-        <p>In de kolom Gateway zie je ook on-link staan. Dit betekent dat 192.168.1.4 bereikbaar is op het lokaal netwerk. En in principe zou nu de lokale ARP tabel geraadpleegd worden om het overeenkomstig MAC adres te vinden en dan is het routing probleem opgelost.</p>
+        <p>In de kolom Gateway zie je ook on-link staan. Dit betekent dat 192.168.1.4 bereikbaar is op het lokaal netwerk. En in principe zou nu de lokale ARP tabel geraadpleegd worden om het overeenkomstige MAC adres te vinden en dan is het routing probleem opgelost.</p>
 
         <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
             <img src="../../../../img/syllabus-04-netwerk-laag-08.png" class="img-fluid" alt="Afbeelding uit de syllabus">
         </figure>
 
-        <p>Het is een ander verhaal als we bijvoorbeeld willen een pakket verzenden naar google.be. Als we de hostnaam omzetten naar een IP via DNS bekomen we bijvoorbeeld: 216.58.208.99. Je kan dit thuis makkelijk achterhalen met een ping of nslookup commando. Waarschijnlijk is het IP adres anders als jij dit probeert.</p>
+        <p>Het is een ander verhaal als we bijvoorbeeld een pakket willen verzenden naar google.be. Als we de hostnaam omzetten naar een IP via DNS bekomen we bijvoorbeeld: 216.58.208.99. Je kan dit thuis makkelijk achterhalen met een ping of nslookup commando. Waarschijnlijk is het IP adres anders als jij dit probeert.</p>
 
         <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
             <img src="../../../../img/syllabus-04-netwerk-laag-09.png" class="img-fluid" alt="Afbeelding uit de syllabus">
@@ -85,7 +85,7 @@
             <img src="../../../../img/syllabus-04-netwerk-laag-12.png" class="img-fluid" alt="Afbeelding uit de syllabus">
         </figure>
 
-        <p>Zoals je kan zien is het resultaat van de Mask bewerking (Mask &amp;) en de network destination exact dezelfde. Dit betekent dat er een match is én het betekent dat interface 192.168.1.7 geschikt is om het pakket met bestemming 216.58.208.99 verder die kant op te sturen.</p>
+        <p>Zoals je kan zien is het resultaat van de Mask bewerking (Mask &amp;) en de network destination exact hetzelfde. Dit betekent dat er een match is én het betekent dat interface 192.168.1.7 geschikt is om het pakket met bestemming 216.58.208.99 verder die kant op te sturen.</p>
 
         <p>Dus op rij 2 was de interface 192.168.1.7 niet geschikt en op rij 1 was de interface 192.168.1.7 wel geschikt. Dit betekent dat sowieso 192.168.1.7 kan overwogen worden als kandidaat om het pakket verder naartoe te sturen.</p>
 

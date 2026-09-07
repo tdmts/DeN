@@ -15,9 +15,9 @@
 
         <h2>TCP header</h2>
 
-        <p>De transport laag bevindt zich tussen de netwerk laag en de applicatie laag. Op de netwerk laag vinden we het IP adres terug. Dit adres is bedoeld om iedere netwerkkaart uniek te identificeren binnen het netwerk én om het mogelijk te maken dat we pakketten kunnen versturen over verschillende netwerken heen.</p>
+        <p>De transportlaag bevindt zich tussen de netwerklaag en de applicatielaag. Op de netwerklaag vinden we het IP adres terug. Dit adres is bedoeld om iedere netwerkkaart uniek te identificeren binnen het netwerk én om het mogelijk te maken dat we pakketten kunnen versturen over verschillende netwerken heen.</p>
 
-        <p>Hier zit er echter nog een probleem. Op dit moment kunnen we met de netwerk laag pakketten versturen van computer naar computer maar nog niet van applicatie naar applicatie.</p>
+        <p>Hier zit er echter nog een probleem. Op dit moment kunnen we met de netwerklaag pakketten versturen van computer naar computer maar nog niet van applicatie naar applicatie.</p>
 
         <p>De Transmission Control Protocol header lost dit probleem op aan de hand van een source port en een destination port. Deze poorten worden namelijk gekoppeld aan applicaties die op de machine draaien.</p>
 
@@ -47,7 +47,7 @@
             </table>
         </div>
 
-        <p>De source port is het poortnummer van de applicatie die wil zenden. Het besturingssysteem kan hiervoor in theorie een willekeurig poortnummer tussen 0 en 65535 kiezen. In de praktijk wordt meestal een poort tussen 49152 to 65535 gekozen. Het source poortnummer kan telkens veranderen. Meestal wordt een poort geopend voor slechts een korte periode gezien bij pakketgeschakelde netwerken de datatransmissie vaak in <em>bursts</em> verloopt.</p>
+        <p>De source port is het poortnummer van de applicatie die wil zenden. Het besturingssysteem kan hiervoor in theorie een willekeurig poortnummer tussen 0 en 65535 kiezen. In de praktijk wordt meestal een poort tussen 49152 tot 65535 gekozen. Het source poortnummer kan telkens veranderen. Meestal wordt een poort geopend voor slechts een korte periode gezien bij pakketgeschakelde netwerken de datatransmissie vaak in <em>bursts</em> verloopt.</p>
 
         <p>De destination port is het poortnummer van de applicatie die de data moet ontvangen. Een zender moet dus twee zaken weten over de ontvanger: het IP adres van de computer en de poort van de applicatie.</p>
 
@@ -85,17 +85,17 @@
 
         <h2>UDP header</h2>
 
-        <p>Naast TCP is UDP een veelgebruikte keuze wat betreft het protocol op de transport laag.</p>
+        <p>Naast TCP is UDP een veelgebruikte keuze wat betreft het protocol op de transportlaag.</p>
 
-        <p>We moeten echter even opmerken dat het bepalen van het protocol al gebeurd is in de netwerk laag op de IP header. Daar vind je bij IPv4 het Protocol veld terug en bij IPv6 het Next Header veld. De waarde in deze twee velden bepaalt als er TCP of UDP of nog een ander protocol gebruikt wordt voor het pakket.</p>
+        <p>We moeten echter even opmerken dat het bepalen van het protocol al gebeurd is in de netwerklaag op de IP header. Daar vind je bij IPv4 het Protocol veld terug en bij IPv6 het Next Header veld. De waarde in deze twee velden bepaalt of er TCP of UDP of nog een ander protocol gebruikt wordt voor het pakket.</p>
 
         <p>Terwijl TCP zijn uiterste best doet om pakketten gegarandeerd af te leveren bij de ontvanger door middel van hertransmissie bij verlies en het zelfs tot fouten leidt wanneer een datastroom niet volledig ontvangen is, is dit bij UDP niet het geval.</p>
 
         <p>Bij UDP is er bij verlies van een pakket geen hertransmissie en dus ook geen gegarandeerde aflevering.</p>
 
-        <p>Je vraagt je misschien af wanneer UDP gebruikt wordt? Toch zijn er enkele toepassingen zoals VOIP (Voice Over IP = bellen via het netwerk), videoconferencing en games. Het heeft namelijk geen zin om bijvoorbeeld bij een telefoongesprek verloren stukjes spraakdata na een tijdje toch opnieuw te sturen. Het moment is dan reeds voorbij en het zou enkel verwarrend zijn voor de ontvanger.</p>
+        <p>Je vraagt je misschien af wanneer UDP gebruikt wordt. Toch zijn er enkele toepassingen zoals VOIP (Voice Over IP = bellen via het netwerk), videoconferencing en games. Het heeft namelijk geen zin om bijvoorbeeld bij een telefoongesprek verloren stukjes spraakdata na een tijdje toch opnieuw te sturen. Het moment is dan reeds voorbij en het zou enkel verwarrend zijn voor de ontvanger.</p>
 
-        <p>Als we kijken naar de UDP header dan zien we dat deze véél minder complex is dan de TCP header. Er zijn slechts vier velden en twee ervan beschrijven de data. Dit wijst dat UDP een protocol is die gemaakt is voor snelheid.</p>
+        <p>Als we kijken naar de UDP header dan zien we dat deze véél minder complex is dan de TCP header. Er zijn slechts vier velden en twee ervan beschrijven de data. Dit wijst erop dat UDP een protocol is dat gemaakt is voor snelheid.</p>
 
         <div class="table-responsive table-spacer">
             <table class="table table-bordered">

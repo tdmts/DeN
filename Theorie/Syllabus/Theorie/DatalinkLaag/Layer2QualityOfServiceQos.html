@@ -13,9 +13,9 @@
     <div class="container">
         <h1>Layer 2 Quality Of Service (QOS)</h1>
 
-        <p>Het ene frame is het andere niet. Sommige frames hebben een hogere prioriteit nodig op het netwerk dan andere. Denk bijvoorbeeld aan spraak (Voice Over IP / VOIP), video of een  machine gestuurd productieproces.</p>
+        <p>Het ene frame is het andere niet. Sommige frames hebben een hogere prioriteit nodig op het netwerk dan andere. Denk bijvoorbeeld aan spraak (Voice Over IP / VOIP), video of een machinegestuurd productieproces.</p>
 
-        <p>Bij al deze types verkeer treedt er best zo weinig mogelijk vertraging op gezien deze de indruk zouden geven dat ze &#x27;haperen&#x27;. Dit is natuurlijk nefast voor een tijd kritisch proces dat aangestuurd wordt over het netwerk.</p>
+        <p>Bij al deze types verkeer treedt er best zo weinig mogelijk vertraging op gezien deze de indruk zouden geven dat ze &#x27;haperen&#x27;. Dit is natuurlijk nefast voor een tijdkritisch proces dat aangestuurd wordt over het netwerk.</p>
 
         <p>Bij het verzenden van een frame kan de zender (bijvoorbeeld een computer of een switch) ervoor kiezen om het Priority Code Point veld een bepaalde waarde te geven.</p>
 
@@ -38,10 +38,10 @@
                     <tr><td>000 (0)</td><td>Default</td><td>Best effort (normaal)</td></tr>
                     <tr><td>001 (1)</td><td>Lowest</td><td>Background</td></tr>
                     <tr><td>010 (2)</td><td rowspan="5"></td><td>Excellent effort</td></tr>
-                    <tr><td>011 (3)</td><td>Excellent effort</td></tr>
-                    <tr><td>100 (4)</td><td>Excellent effort</td></tr>
-                    <tr><td>101 (5)</td><td>Video</td></tr>
-                    <tr><td>110 (6)</td><td>Voice</td></tr>
+                    <tr><td>011 (3)</td><td>Critical applications</td></tr>
+                    <tr><td>100 (4)</td><td>Video</td></tr>
+                    <tr><td>101 (5)</td><td>Voice</td></tr>
+                    <tr><td>110 (6)</td><td>Internetwork control</td></tr>
                     <tr><td>111 (7)</td><td>Highest</td><td>Network control</td></tr>
                 </tbody>
             </table>
@@ -49,15 +49,15 @@
 
         <p>In het hoofdstuk Virtual LAN heb je gelezen dat je, door het aanmaken van afzonderlijke VLAN&#x27;s, ervoor kan zorgen dat netwerkverkeer op bepaalde VLAN&#x27;s een hogere prioriteit krijgt.</p>
 
-        <p>Stel nu dat de zender het Priority Code Point veld ingesteld had op 000 (de normale prioriteit). Het frame komt aan op poort 1 die in VLAN 100 zit. Op dat VLAN had jij een priority ingesteld van 110 (Voice). De switch overschrijft nu die waarde vooraleer het frame wordt doorgestuurd naar een andere poort.</p>
+        <p>Stel nu dat de zender het Priority Code Point veld ingesteld had op 000 (de normale prioriteit). Het frame komt aan op poort 1 die in VLAN 100 zit. Op dat VLAN had jij een priority ingesteld van 101 (Voice). De switch overschrijft nu die waarde vooraleer het frame wordt doorgestuurd naar een andere poort.</p>
 
         <p>Een goed idee zou dus zijn om alle kritieke verkeer in één of meerdere afzonderlijke VLAN&#x27;s te stoppen met een hoge prioriteit.</p>
 
-        <p>De 8 niveaus moet je uiteraard niet uit het hoofd moet kennen. Weet gewoon dat QOS bestaat op laag 2 van het TCP/IP model en dat je dit kan instellen per VLAN.</p>
+        <p>De 8 niveaus moet je uiteraard niet uit het hoofd kennen. Weet gewoon dat QOS bestaat op laag 2 van het TCP/IP model en dat je dit kan instellen per VLAN.</p>
 
-        <p>Voor een industrieel netwerk zoals Profinet, EtherCAT of Modbus kan je bijvoorbeeld de waarde van het PCP veld instellen op Voice (value 6) om de vertraging minimaal te houden.</p>
+        <p>Voor een industrieel netwerk zoals PROFINET, EtherCAT of Modbus kan je bijvoorbeeld de waarde van het PCP veld instellen op Voice (value 5) om de vertraging minimaal te houden.</p>
 
-        <p>Aanvullend is er ook nog het Drop Eligible Indicator veld. Dit is een bit die bepaalt als het frame in aanmerking komt om gewist te worden bij teveel congestie op het netwerk. Dit zou bijvoorbeeld typisch het geval kunnen zijn voor streaming video en voice.</p>
+        <p>Aanvullend is er ook nog het Drop Eligible Indicator veld. Dit is een bit die bepaalt of het frame in aanmerking komt om gewist te worden bij te veel congestie op het netwerk. Dit zou bijvoorbeeld typisch het geval kunnen zijn voor streaming video en voice.</p>
 
         <p>De aandachtige lezer zal meteen opmerken dat er hier een conflict optreedt als de DEI bit op 1 staat terwijl we QOS voice ingesteld hebben voor ons industrieel netwerk. Er mogen daar helemaal geen frames gewist worden. Opletten dus!</p>
 
@@ -65,7 +65,7 @@
 
         <p>In de praktijk volstaan VLAN&#x27;s en QOS uiteraard vaak wel om spraak, video en productieverkeer vloeiend over het netwerk te versturen. Weet echter wel dat vooral de afstand, het type transmissiemedium en het type netwerkkaart een grote rol spelen in de snelheid van het netwerk.</p>
 
-        <p>Praktisch ga je als volgt te werk: kies eerst een degelijke kabel. Bij voorkeur cat7 SFTP. Je configureert op een switch een VLAN en je koppelt daaraan een hogere prioriteit (voice). Op de switch zelf stel je de poorten in die bij dat bepaald VLAN horen. Vanaf het moment dat een apparaat verbonden is op die poort bevindt het zich in dat VLAN en is er automatisch ook die hogere prioriteit aan gekoppeld.</p>
+        <p>Praktisch ga je als volgt te werk: kies eerst een degelijke kabel. Bij voorkeur cat7 SFTP. Je configureert op een switch een VLAN en je koppelt daaraan een hogere prioriteit (voice). Op de switch zelf stel je de poorten in die bij dat bepaalde VLAN horen. Vanaf het moment dat een apparaat verbonden is op die poort bevindt het zich in dat VLAN en is er automatisch ook die hogere prioriteit aan gekoppeld.</p>
     </div>
 
     <script src="../../../../reference.js"></script>

@@ -72,13 +72,15 @@ Rechtgezet:
   laagnamen in twee vormen ("fysiek" tegenover "de applicatie laag"); dat is mee
   gelijkgetrokken naar "de fysieke laag".
 
-Blijft open, voor een aparte ronde over de zes hoofdstukken:
+Rechtgezet in de ronde over de zes hoofdstukken, verderop:
 
-- 1.1 schrijft "ezelsbrug**get**je", 1.2 schrijft "ezelsbrug**j**e". Twee
-  opeenvolgende secties, twee vormen. `SCHRIJFSTIJL.md` noemt `ezelsbruggetje`
-  bij naam, dus dat is de vorm die wint.
-- Vraag 1 van Test jezelf eindigt zonder leesteken, terwijl vraag 2 tot 6 op een
-  vraagteken eindigen en dezelfde zin bij Studievragen een punt draagt.
+- 1.2 schreef "ezelsbrug**j**e" waar 1.1 "ezelsbrug**get**je" schrijft.
+  `SCHRIJFSTIJL.md` noemt `ezelsbruggetje` bij naam, dus dat is de vorm die won.
+- Vraag 1 van Test jezelf eindigde zonder leesteken, terwijl vraag 2 tot 6 op een
+  vraagteken eindigen en dezelfde zin bij Studievragen een punt draagt. Ze draagt
+  nu een punt.
+- 1.2: "een vier lagen model en andere als een vijf lagen model" (vierlagenmodel,
+  vijflagenmodel) en "de datalink laag benaming" (de benaming datalink laag).
 
 ## Hoofdstuk 2, Fysieke laag
 
@@ -304,11 +306,20 @@ Rechtgezet, elf stuks, alle in de HTML omdat die vanaf nu de bron is:
 - 2.5 Glasvezelkabel: "onderverdeeld in OM- en OS-types, De OM-types" (punt in
   plaats van komma)
 
-Blijft open, voor een aparte ronde over de zes hoofdstukken. Dit zijn geen fouten
-maar afspraken, en een afspraak die je in een hoofdstuk maakt en in vijf andere
-niet, levert alleen een nieuwe inconsistentie op:
+Nog rechtgezet in de ronde over de zes hoofdstukken, verderop:
 
-- 2.4 RJ-45 vs M12, vraag 1: een spatie voor het vraagteken.
+- 2.3 RJ-45 vs M12, vraag 1: een spatie voor het vraagteken.
+- 2.1: "de signalen die er op geplaatst worden" (erop) en "verdiepen we ons hoe"
+  (ons in hoe).
+- 2.2: "Alle type kabels" (types).
+- 2.4 Glasvezelkabel: "het type connector die gebruikt wordt" (dat).
+- 2.7: "netwerk topologieën" (netwerktopologieën), "Waar we echter wel moeten op
+  letten" (wel op moeten letten), "een ethernet kabel" (ethernetkabel) en
+  tweemaal "dat ene centraal punt" (centrale).
+- 2 Kernpunten, laatste studievraag: een vraagteken achter een opdracht.
+
+Blijft open, want dit zijn geen fouten maar afspraken:
+
 - 2.7 Ster schrijft eenmaal "media access control" waar dezelfde sectie het drie
   keer "channel access control" noemt. Welke van de twee de syllabus aanhoudt, is
   een keuze die ook hoofdstuk 3 raakt.
@@ -449,16 +460,50 @@ vraag trekt, kijkt naar een lege tabel of een lege kolom. Op papier staat ze
 onder de vraag waar ze hoort, dus het is niet erg; het splitst de vragenlijst
 alleen in twee `<ol>`'s, en de nummering loopt over die breuk door.
 
-**Typfouten die uit de Word meekomen.** Letterlijk overgenomen, dus ze staan er
-nog:
+**Typfouten die uit de Word meekwamen**, zoals "Securtiy mode" en "Sinlge User",
+zijn rechtgezet in de taalronde hieronder. In de HTML, want die is vanaf nu de
+bron en de Word wordt gearchiveerd.
 
-- 3.10: "Securtiy mode" als kop (Security)
-- 3.10: "Sinlge User Multiple Input Multiple Output" (Single)
-- 3.10: "Ment noemt dit ook wel channel bonding" (Men)
-- 3.6 Switch: "Een switch opent iedere frame die aankomt" (ieder frame)
+### Taalfouten
 
-Verbeter je ze, doe het dan in de HTML: die is vanaf nu de bron, en de Word wordt
-gearchiveerd.
+Rechtgezet:
+
+- 3 Kernpunten: tweemaal "gecontroleerd worden **als** de boodschap ..." (of);
+  studievraag "waar de computer zich fysiek binnen het LAN **zich** bevindt";
+  "er voor kunnen zorgen" (ervoor); een vraagteken achter een opdracht.
+- 3.1: "gecontroleerd worden **als** de data ... correct is" (of);
+  "foutcontrole mechanisme" (foutcontrolemechanisme).
+- 3.2: "een soort van controle getal" (controlegetal); "om te kijken **als** het
+  frame geen fouten bevat" (of); "Bij het ontvangen van **de** frame" (het).
+- 3.3: "netwerkaart" (netwerkkaart); "het MAC adres vast ingesteld en **deze**
+  zal ... nooit meer veranderen" (dit); "zit er **in** dit type adres wel een
+  bepaalde structuur **in** die **er voor** kan zorgen" (in één keer, ervoor).
+- 3.5: "de oude telefonie of coaxkabel" (telefonie- of coaxkabel).
+- 3.6: "deel te uit te laten maken"; "een vrije poort op hub, switch of router"
+  (op een hub); "opent **iedere** frame **die** aankomt" (ieder frame dat); een
+  vraagteken achter een indirecte vraag; "een source MAC address (**die** nu
+  eigenlijk ...)" (dat); "productie proces"; "parameterizeren" (parametriseren);
+  "Source MAC Adddres"; "in vorig hoofdstuk" (in het vorige); "De naam alleen al
+  **geven** je" (De namen); "we beginnen met **het uitleggen wat**" (met uit te
+  leggen wat).
+- 3.7: "Als een frame **verstuurd** aankomt op poort 1"; "machine gestuurde tijds
+  kritische processen" (machinegestuurde tijdkritische); twee spaties voor een
+  punt; "geen **rechtstreeks** toegang" (rechtstreekse); "hangt er vanaf hoe het
+  netwerk **er uitziet**" (hangt ervan af, eruitziet).
+- 3.8: "machine gestuurd productieproces" en "tijd kritisch proces" (aaneen);
+  "moet je uiteraard niet uit het hoofd **moet** kennen"; "een bit die bepaalt
+  **als** het frame in aanmerking komt" (of); "teveel congestie" (te veel);
+  "dat **bepaald** VLAN" (bepaalde).
+- 3.9: "adresseringsystemen" (adresseringssystemen); "Het is dan **maar** ook
+  logisch"; "zowel computers binnen **en** buiten het LAN" (als); "bij dit **bij**
+  IP adres"; "nagaan **als**" en "controleert **als**" (of); "werkt zijn ARP
+  tabel" (werkt bij) en "dat **dat** 00:11:22:33:44:55"; "Maar...." (drie puntjes).
+- 3.10: "beamfomring" (beamforming); "verschilende" (verschillende); "Sinlge
+  User" (Single); "Ment noemt" (Men); "verassingen" (verrassingen); "Securtiy
+  mode" (Security); "weet je dus **als** een draadloos netwerk aanwezig is" (of);
+  de OFDMA-zin "waardoor je er meer verbindingen ... kunnen verbonden worden",
+  die nu loopt.
+- 3.11, vraag 4: een vraagteken achter "Geef een voorbeeld van een PSK".
 
 ## Hoofdstuk 4, Netwerk laag
 
@@ -583,6 +628,45 @@ Identifier. Dat is geen schrijffout maar een andere naam voor hetzelfde veld, en
 ze staat in een tekening die de student moet aanvullen. Verander je ze, verander
 ze dan op allebei de plaatsen tegelijk.
 
+### Taalfouten
+
+Rechtgezet:
+
+- 4 Kernpunten: "Je kan nagaan **als** twee hosts ..." en "moet je kunnen bepalen
+  **als** twee computers ..." (of); "veiligheid en performantie doeleinden"
+  (veiligheids- en performantiedoeleinden); tweemaal een spatie voor de punt.
+- 4.1: "werd in vorig hoofdstuk beschreven" (in het vorige); een ontbrekende komma
+  in "dat, moesten we enkel MAC adressering gebruiken ..., dit heel inefficiënt
+  zou zijn"; "een heel complexe taak...." (drie puntjes).
+- 4.2: "aan te duiden **als** een pakket bestemd is" (of); "Een pakket kon **er**
+  dus ongeveer 4 minuten **erover** doen"; "in het vorig hoofdstuk" (vorige);
+  "tellen **beiden** 32 bits" (beide, want het zijn geen personen); "Hierop komen
+  we later nog **op** terug"; "bijna hetzelfde als een IPv4 adres" (als bij een);
+  "Op het eerste zicht" (gezicht); een spatie voor de punt.
+- 4.3: "die **er op** zullen reageren" (erop).
+- 4.4 en 4.5: een spatie voor de punt, drie keer in totaal.
+- 4.5: "Een IPv6 adres genoteerd wordt ... en er als volgt uitziet", waarvan de
+  woordvolgorde nu klopt; "twee **peilers**" (pijlers); "nagegaan **als** dit
+  adres nog niet bestaat" (of).
+- 4.9: "de koppeling tussen twee netwerken. Het LAN en het WAN." (dubbele punt in
+  plaats van een losse zin); "één publiek IP adres **wat** verkregen wordt" (dat);
+  "Je kan zien **als**", "Om zeker te weten **als**" en tweemaal "Als we willen
+  weten **als**" (of); driemaal "van **beiden**" en "Bij **beiden**" (beide);
+  tweemaal een spatie voor de punt.
+- 4.12: "**het** meest eenvoudige private IP adres range" (de); "We maken **een**
+  bijvoorbeeld een subnet".
+- 4.13: "Omwille van performantie redenen" (performantieredenen); "**per subnet**
+  al maximum 256 hosts **per subnet**"; "luchtkwaliteit, ... **houdt** de productie
+  in de gaten" (houden); "het **grootst** aantal hosts" (grootste); "je afvragen
+  **als** het de moeite waard is" (of); een spatie voor de punt.
+- 4.14: "**Beiden** moeten op het netwerk" en "voor **beiden** een IP adres"
+  (beide); "hebben **allen** een IP adres" (allemaal); "Er is gekozen **geweest**".
+- 4.15: "de tweede rij van tabel" (van de tabel); "het **overeenkomstig** MAC
+  adres" (overeenkomstige); "als we bijvoorbeeld **willen een pakket verzenden**";
+  "de network destination exact **dezelfde**" (hetzelfde); een spatie voor de punt.
+- 4.16: "Zowel network destination **en** netmask" (als); "een kandidaat wordt om
+  het pakket **naar** te forwarden" (naartoe).
+
 ## Hoofdstuk 5, Transport laag
 
 **De antwoorden: nakijken.** Zelfde afspraak en zelfde voorbehoud als bij de vier
@@ -647,6 +731,27 @@ allebei goed, want de Word kiest zelf niet.
 | 7 private en publieke adressen | computers 4 en 0, router 1 en 1 | 5.3 en de tekening: vier PC's achter de switch, de router met een LAN kant en een WAN kant |
 | 8 server bereiken vanaf WAN | c, port forwarding | 5.4, de hele sectie |
 
+### Taalfouten
+
+Rechtgezet:
+
+- 5 Kernpunten: "De belangrijkste taken van de transport laag **is** het toevoegen"
+  (zijn); "bepalen **als** een pakket gegarandeerd ... moet afgeleverd worden" (of).
+- 5.1: "en **allen** openen ze een verbinding" (allemaal, want het zijn
+  applicaties).
+- 5.2: "tussen 49152 **to** 65535" (tot); "bepaalt **als** er TCP of UDP gebruikt
+  wordt" (of); een vraagteken achter de indirecte vraag "Je vraagt je misschien af
+  wanneer UDP gebruikt wordt"; "Dit **wijst** dat UDP een protocol is **die**
+  gemaakt is voor snelheid" (wijst erop, dat).
+- 5.3: "iets meer dan **een** 4 miljard adressen"; "voor **militaire-** en
+  testdoeleinden" (geen streepje na een bijvoeglijk naamwoord); "de mobiele
+  telefonie markt" (de markt van de mobiele telefonie); "deze zijn **allen**
+  verbonden" (allemaal); tweemaal een spatie voor de punt.
+- 5.4: "op het eerste **zicht**" (gezicht); "de router zodanig instellen dat
+  verkeer ... **gaan doorsturen** naar", dat nu loopt; "Het enige waar wij
+  **moeten voor zorgen**" (voor moeten zorgen); "of **beiden** door te sturen"
+  (beide).
+
 ## Hoofdstuk 6, Applicatie laag
 
 Het laatste hoofdstuk. Hiermee is de hele Word overgezet en is de HTML vanaf nu
@@ -708,6 +813,25 @@ bij de eerste afbeelding komen te staan.
 | 2 encapsulatie aanvullen | applicatie, transport, netwerk, datalink, fysiek | 6.6, dat de vijf lagen in die volgorde doorloopt |
 | 3 welk veld hoort er niet bij | a, het MAC adres | 6.6: het destination MAC adres is niet gekend en verandert bij elke hop |
 
+### Taalfouten
+
+Rechtgezet:
+
+- 6.1: "zoals je je nog kan herinneren van vorige hoofdstukken" (van de vorige).
+- 6.2: "een set van **aspraken**" (afspraken); "een voorstel indienen en **die
+  gerevisioneerd** kan worden door anderen" (dat door anderen herzien kan worden);
+  "De zaken waarmee zowel client als server rekening moeten **mee** houden **zijn**
+  het poortnummer", nu "Waar zowel client als server rekening mee moeten houden,
+  is het poortnummer"; "een Server Side Script taal" (een server side scripttaal).
+- 6.3: "de **mailsverver**" (mailserver); "voor **SPAM doeleinden**"
+  (spamdoeleinden).
+- 6.4: "een IP adres ingeven **van** de hostname waarop je wil aanmelden" (of de
+  hostname); "voor je **kan commando's ingeven** met sudo rechten".
+- 6.5: "dienen **allen** om informatie uit te wisselen" (allemaal).
+- 6.6: "het MAC adres **mijn** thuisrouter" (van mijn); "**Eénmaal** daar
+  aangekomen" (Eenmaal); een spatie voor de punt.
+- 6.7, vraag 1: "de standaard poort en **als** TCP of UDP wordt gebruikt" (of).
+
 ## De kopregel van een tabel: de regel was te ruim
 
 Hoofdstuk 5 bracht een fout in de importer aan het licht die de vier vorige
@@ -729,6 +853,212 @@ Twee andere waren per toeval juist en zijn blijven staan, nu als gewone
 kopregel: de kolomtitels van de Beckhoff tabel in 3.5 en de rij Klasse A / B / C
 in 4.18. De importer meldt ze voortaan als "nakijken", en dat is eerlijker: een
 vlag die niets tekent is geen bewijs.
+
+## De taalronde over de zes hoofdstukken
+
+`SCHRIJFSTIJL.md` vraagt taalfouten te verzamelen en apart voor te leggen, zodat
+de diff van zo'n ronde één soort wijziging bevat. Dit is die ronde: ze loopt over
+alle zes de hoofdstukken en het Voorwoord, en ze raakt alleen spelling, grammatica
+en leestekens. Wat er per hoofdstuk rechtgezet is, staat hierboven onder
+Taalfouten. Geen enkele zin is herschreven om beter te lezen; waar een zin toch
+anders loopt, was hij grammaticaal stuk.
+
+Eén soort komt in vier van de zes hoofdstukken terug en is daarom het vermelden
+waard: **"als" waar "of" hoort te staan**, in zinnen als "nagaan als het adres
+bestaat" of "bepalen als een pakket gegarandeerd afgeleverd moet worden". Dat is
+spreektaal en geen keuze, dus alle twintig staan er nu met "of". "Als" in de
+betekenis van "wanneer" is uiteraard blijven staan.
+
+### Zes fouten die geen taalfout zijn
+
+Ze kwamen tijdens dezelfde doorloop boven en zijn mee rechtgezet, omdat het bij
+elk van de zes om een verschrijving gaat waarvan de bladzijde zelf zegt wat er had
+moeten staan. Kijk ze na: dit zijn de enige wijzigingen van deze ronde die iets
+aan de inhoud veranderen.
+
+- **3.2 Frame:** "Toen het frame gemaakt werd door de **ontvanger** is er ... een
+  checksum berekend" is zender geworden. De zin erna zegt zelf dat de ontvanger
+  bij ontvangst opnieuw rekent.
+- **3.10:** "een uitbreiding op **801**.11 ac" is 802.11 geworden, de enige plaats
+  in het hoofdstuk waar het nummer verkeerd staat.
+- **4.3:** in de tekening van de DHCP handshake stond "**DCHP** server" boven de
+  rechterkolom.
+- **4.9:** in de AND tabel begon de binaire vorm van 192.168.1.1 met **00001010**,
+  de eerste byte van 10 en niet van 192. De AND rij eronder klopte wel, dus de
+  student rekende de fout na en kwam bij een ander resultaat uit dan de tabel.
+- **4.13:** "6 bits -> subnetmasker **255.255.255.64** ofwel /26" is 255.255.255.192
+  geworden. Het subnet dat eronder staat (10.0.6.128 tot 10.0.6.191) is dat van
+  een /26 en klopt.
+- **5.3:** in de twee NAT tabellen staat het publiek adres van de derde host als
+  **271**.83.3.17 terwijl de tekst eromheen driemaal 217.83.3.17 schrijft.
+
+### De afspraken die erbij beslist zijn
+
+Dit zijn geen taalfouten maar keuzes, en ze zijn in dezelfde ronde gemaakt omdat elk ervan over de
+hele syllabus tegelijk gaat. De regel zelf staat voortaan in `SCHRIJFSTIJL.md`, niet hier, zodat een
+volgende ronde ze niet terugdraait.
+
+- **`wifi` in kleine letters**, met een hoofdletter alleen aan het begin van een zin of een titel.
+  Er stonden drie vormen in één sectie: 27x Wifi, 7x Wi-Fi en 1x WiFi. Ook de generaties gaan mee:
+  `wifi 6`, `wifi 7`. Dezelfde redenering als `led` niet `LED`.
+- **Een frequentie houdt de punt**: `2.4 GHz`, niet `2,4 GHz`. Dat is een bewuste afwijking van de
+  Nederlandse norm, en daarom staat de reden in `SCHRIJFSTIJL.md`: in dit vak is de punt overal een
+  scheidingsteken (192.168.0.1, 802.11), en één notatie leest rustiger dan twee. `6GHz` kreeg zijn
+  spatie. De duizendtallen in 4.2 gingen wel naar de Nederlandse punt.
+- **PROFIBUS en PROFINET in kapitalen**, zoals PI ze schrijft. Vijf plaatsen, in 2.3, 2.8 en 3.8.
+- **Een laagnaam staat aan elkaar**: datalinklaag, netwerklaag, transportlaag, applicatielaag.
+  97 plaatsen, ook in de titels van `reference.js` en in de decks onder `Hoorcollege/`, want anders
+  verplaatst de inconsistentie zich alleen maar. **`fysieke laag` blijft los**: dat is een bijvoeglijk
+  naamwoord en geen samenstelling.
+- **Medium access control, met medium.** 2.7 noemde het mechanisme drie keer "channel access
+  control" en één keer "media access control", en geen van beide is de term van IEEE 802. Alle vier
+  staan nu op medium, en de kernpunt van hoofdstuk 3 schrijft MAC voortaan voluit als Medium Access
+  Control. 3.3 zegt in één zin dat je bij fabrikanten en in Windows *media* ziet staan, zodat de
+  student het verschil niet zelf hoeft uit te zoeken.
+- **"hoofdstuk" blijft "hoofdstuk"**, ook waar het strikt genomen een sectie is. De student kent dat
+  woord; sectie is de indeling van `reference.js` en niet de zijne. Wel zijn de twee verwijzingen
+  rechtgezet die naar een naam wezen die de syllabus niet draagt: "het hoofdstuk Subnets" is
+  Subnetten geworden (4.2 naar 4.11) en "het hoofdstuk TCP" is Headers geworden (5.1 naar 5.2).
+- **Drie kleine dingen**: de Engelse duizendtallen in 4.2, "de verschillen zitten **hem** in" in 2.2
+  en 4.2, en "**moest** je het subnetmasker binair uitschrijven" in 4.7 (mocht).
+
+### Wat hierna nog openstaat
+
+- **2.7 Bus belooft iets wat nergens komt.** "Om collisions te vermijden ... kan er een vorm van
+  medium access control worden geïmplementeerd. Hierover leer je later nog iets meer." Dat later
+  bestaat niet: CSMA/CD, CSMA/CA en token passing komen in geen enkel hoofdstuk voor, terwijl 2.7
+  het mechanisme drie keer nodig heeft en 3.10 het bij wifi opnieuw aanraakt. Ofwel gaat de belofte
+  weg, ofwel komt er een sectie die de drie methodes noemt. Dat is inhoud en geen taal, dus het is
+  hier blijven staan.
+- **Afkorting plus zelfstandig naamwoord.** De norm die de laagnamen aan elkaar zet, vraagt ook een
+  streepje in `MAC-adres`, `IP-adres`, `TCP-header` en `DHCP-server`. De syllabus schrijft die
+  allemaal los, en het gaat om honderden plaatsen, in de zes hoofdstukken, de labopagina's, de decks
+  en `reference.js`. Zelfde soort beslissing als de laagnamen, en bewust niet meegenomen in deze
+  ronde: hij is te groot om onderaan een taalronde te hangen.
+
+## De feitencontrole over de zes hoofdstukken
+
+Een doorloop van alle 62 pagina's onder `Theorie/Syllabus/Theorie/`, deze keer niet op taal of
+opmaak maar op de inhoud: klopt wat er staat. De brontekst is hier voor het eerst wel aangeraakt.
+Een fout woordelijk overzetten is geen omzetting meer, en een student die het examen aflegt op wat
+hier gedrukt staat, heeft er niets aan dat het in de Word ook zo stond.
+
+**Het rekenwerk is apart nagekeken en klopte overal.** Elke AND bewerking, elke subnetgrens, de vijf
+subnetten van de KMO-opgave in 4.13, de drie oefeningen van 4.14 en de twee van 4.17. Ook een reeks
+losse feiten is getoetst en bleef staan: EtherType 2048 voor IPv4, de TCI van VLAN 100, het APIPA
+bereik 169.254.1.0 tot 169.254.254.255, cat8 op 40 Gbps over 30 meter, de maxima van wifi 5 en 6,
+IPv4 uit 1981, een TTL van 255 seconden als bijna vier minuten, en `80-32-53` als OUI van Intel. Dat
+laatste staat in 3.3 en het is ook het juiste antwoord van vraag 2 van 3.12; de IEEE registratie
+geeft Intel Corporate, dus de vraag blijft zoals ze is.
+
+### Twaalf fouten, rechtgezet
+
+**De PCP tabel van 3.9 gaf de verkeerde namen.** Ze zette 2, 3 en 4 alle drie op Excellent effort,
+5 op Video en 6 op Voice. IEEE 802.1Q geeft 2 Excellent effort, 3 Critical applications, 4 Video,
+5 Voice en 6 Internetwork control. Video en voice stonden dus een plaats te hoog. Twee zinnen hingen
+eraan vast: het voorbeeld met VLAN 100 zette de priority op 110 (Voice) en dat is nu 101, en de
+aanbeveling voor een industrieel netwerk vroeg Voice op value 6 en vraagt die nu op 5. Dat laatste
+is het getal dat je op een echte switch intikt, dus daar zat de kost van de fout.
+
+Het antwoord op de QOS vraag van 3.12 is wel blijven staan. De mogelijkheden zijn "QOS 0 of 1" en
+"QOS 5 of 6", en met de juiste tabel is 5 nog altijd Voice. Van de twee blijft dezelfde de juiste.
+
+**6.6 zei dat het source MAC adres onderweg niet verandert.** De alinea legt correct uit dat het
+destination MAC bij elke router opnieuw ingevuld wordt en sloot af met "Het source MAC adres blijft
+ongewijzigd". Een router herschrijft allebei. Er staat nu bij dat het source MAC telkens dat van de
+uitgaande interface wordt, en dat een MAC adres dus maar voor een stap geldt. Dat is precies het
+punt dat de vraag over MAC adressen in 6.7 al maakt, en de twee spraken elkaar tegen.
+
+**2.7 Bus noemde het medium full duplex.** In dezelfde alinea staat waarom dat niet kan: het medium
+is gedeeld en daarom treden er collisions op. Het woord is half duplex, en dat staat er nu.
+
+**2.7 Ster liet frames botsen op een switch.** De alinea vroeg zich af of medium access control nog
+nodig is bij unicast, en antwoordde van wel, want twee frames naar dezelfde ontvanger zouden
+tegelijk aankomen en botsen. Een switch buffert. Het antwoord op de vraag is dus ja, medium access
+control mag hier weg, en wat er wel gebeurt is een wachtrij en bij een volle wachtrij congestie. De
+alinea zegt dat nu, met de vraag erin die ze al stelde.
+
+**3.10 deed aan channel bonding op kanaal 1 en 6.** Twee regels hoger staat de voorwaarde: niet
+overlappend en naast elkaar. 1 en 6 liggen niet naast elkaar. De figuur eronder blijkt trouwens
+helemaal geen bonding te tekenen maar de klassieke drie niet-overlappende kanalen 1, 6 en 11. De
+zin doet nu allebei: ze benoemt wat de figuur toont, en zegt dat bonding kanaal 1 met 5 of 6 met 10
+vraagt en in deze band nauwelijks past, want 40 MHz van de 83.5 MHz die er zijn.
+
+**3.10 noemde 4096-QAM een vorm van versleuteling.** QAM is modulatie.
+
+**3.10 dateerde OFDM op wifi 4.** OFDM zit al in 802.11a en 802.11g, en dat laatste bespreekt
+hetzelfde hoofdstuk drie secties eerder.
+
+**4.3 zette het grootste IPv4 adres op 2^32.** Als het kleinste 0 is, is het grootste 2^32 - 1. Het
+getal 4294967296 is het aantal adressen en niet het laatste adres; beide staan er nu, uit elkaar
+gehouden.
+
+**2.4 gaf multimode een LED.** Dat geldt voor OM1 en OM2. De OM3 en OM4 die dezelfde pagina op 10 en
+40 Gbit/s zet, draaien op een VCSEL, want een LED schakelt niet snel genoeg. De alinea erna, dat je
+ook bij een LED niet in een vezel kijkt, blijft kloppen.
+
+**3.6 sprak van monitor mode.** Dat is de wifi term. Voor een bedrade kaart is het promiscuous mode.
+
+**6.3 schreef SFTP voluit als Secure FTP.** SFTP is het SSH File Transfer Protocol, een ander
+protocol dan FTP. Wat wel FTP met een beveiligingslaag is, heet FTPS. Alle drie staan er nu, want
+de verwarring zit in de naam en niet in de techniek: de volgende zin, dat SFTP over SSH loopt,
+klopte al.
+
+**2.2 telde drie categorieen kabel** waar de lijst erboven er vier noemt en de tabel vijf. Blijven
+staan toen cat8 erbij kwam. De zin telt nu niet meer.
+
+### Acht plaatsen die te kort door de bocht gingen
+
+Geen van deze is ronduit fout, maar alle acht wringen met iets anders in dezelfde syllabus.
+
+**Flooden heette twee keer broadcast in 3.6.** Bij een hub en bij een onbekend destination MAC gaat
+het om unknown unicast flooding: de zender heeft het frame wel degelijk aan een enkele ontvanger
+geadresseerd. Test jezelf van hetzelfde hoofdstuk toetst juist dat onderscheid, en het antwoord daar
+gebruikte het woord flooden al correct.
+
+**3.8 vulde het VLAN ID in op een plaats die er nog niet is.** Een untagged frame heeft geen Tag
+Control Information veld; de switch schuift er vier bytes bij. Het uitgebreide frame in 3.6 tekent
+die vier bytes al, dus de pagina wist het en zei het niet.
+
+**3.6 zei dat een MAC adres nooit verandert,** terwijl 3.3 voorzichtiger "onder normale
+omstandigheden" schrijft. De voorzichtige vorm heeft gewonnen, want MAC spoofing is een regel in een
+netwerkinstelling.
+
+**2.2 hield crossover bij twee computers.** Vroeger ook twee switches of twee hubs. De alinea over
+AUTO MDI-X die erop volgt, gaat over precies die gevallen.
+
+**4.5 liet de volledige DHCP handshake opnieuw gebeuren als de lease afloopt.** Een client die op het
+netwerk blijft, verlengt halverwege met een request rechtstreeks aan zijn eigen server, zonder
+discover en offer. De vier pakketten van de eerste handshake, die 4.18 opsomt, blijven daarmee
+gewoon staan.
+
+**3.10 zette in de titel van wifi 7 een praktijksnelheid van 23 Gbps.** Dat is een marketinggetal.
+De titel geeft nu het theoretische maximum, zoals de titels van wifi 5 en wifi 6 dat ook doen, en
+de alinea zegt erbij dat 46 Gbps alle banden, de breedste kanalen en meerdere antennes tegelijk
+vraagt. De vergelijking "ruim twee keer zo snel als wifi 6" is bijna vijf keer geworden: 46 tegen
+9.6.
+
+**Twee keer 256 waar 254 hoort.** In 4.4 "minder dan 254 computers" en in 4.13 "maximum 256 hosts
+per subnet". Het netwerk ID en het broadcast adres gaan er altijd af, en de rest van hoofdstuk 4
+rekent dat overal wel zo.
+
+**De zin over IP geolocation in 4.7 is geschrapt.** Ze verklaarde geolocation uit de structuur van
+het adres, en dat is niet waar het op steunt: een dienst zoekt op aan welke provider het blok
+toegewezen is en waar die werkt. De zin ervoor, dat een IP adres iets zegt over je plaats in het
+netwerk, klopt en blijft staan. Het hoofdstuk gaat over het subnetmasker en geolocation kwam verder
+nergens terug, dus uitleggen hoe het wel werkt zou een zijsprong zijn geweest.
+
+### Wat de doorloop niet heeft aangeraakt
+
+**De klassieke indeling A, B en C.** Hoofdstuk 4 leest de private ranges als klasse A, B en C met
+een standaard subnetmasker, en 172.16.0.0/12 als een netwerkdeel van 12 bits met /16 subnets. Dat is
+klassevolle adressering, en die is sinds CIDR geen praktijk meer. Het is niet fout, en de hele
+opbouw van 4.4 tot 4.14 hangt eraan, dus dat is een herschrijving van een half hoofdstuk en geen
+correctie.
+
+**De TCP header van 5.2** telt 6 reserved bits en 6 code bits. Dat is de indeling van voor ECN; nu
+zijn het 4 reserved en 8 flags, en met NS erbij 3 en 9. De tekening klopt met wat de meeste
+handboeken tonen en de cursus gebruikt geen enkele flag bij naam, dus ze is blijven staan.
 
 ## Voor de hele syllabus, gezien tijdens het lezen
 

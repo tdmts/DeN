@@ -22,7 +22,7 @@
 
         <p>De hub werkt op de fysieke laag van het TCP/IP model. Dit betekent dat een hub geen weet heeft van MAC adressen. Het enige wat een hub doet is een binnenkomend frame verspreiden naar alle andere poorten.</p>
 
-        <p>Iedere ethernetpoort is intern met elkaar verbonden waardoor we een gedeeld transmissiemedium krijgen. Een frame dat aankomt op poort 1 komt tegelijkertijd aan op poort 2, 3 en 4. Een frame dat verstuurd wordt naar alle mogelijke ontvangers noemen we een broadcast.</p>
+        <p>Iedere ethernetpoort is intern met elkaar verbonden waardoor we een gedeeld transmissiemedium krijgen. Een frame dat aankomt op poort 1 komt tegelijkertijd aan op poort 2, 3 en 4. Een frame dat een zender bewust naar alle ontvangers stuurt, noemen we een broadcast. Wat een hub doet is iets anders: hij herhaalt elk frame op al zijn poorten, ook een frame dat maar voor een enkele ontvanger bedoeld is.</p>
 
         <p>Alle apparaten ontvangen het frame, zelfs al is het niet voor hen bestemd. Dit zorgt voor veel onnodig verkeer op het netwerk. Daarnaast zorgt het ook voor botsingen of collisions omdat twee apparaten tegelijkertijd frames kunnen versturen.</p>
 
@@ -30,7 +30,7 @@
 
         <p>De frames beschikken over een source en destination MAC adres. Als het destination MAC adres overeenkomt met het MAC adres van een netwerkapparaat wordt het frame door de netwerkkaart weerhouden en anders wordt het genegeerd. Het is dus de netwerkkaart die beslist om het pakket te aanvaarden of niet.</p>
 
-        <p>Als we een netwerkkaart in monitor mode plaatsen dan worden alle pakketten weerhouden, zelfs al zijn deze niet voor de netwerkkaart bestemd. Op die manier kunnen we alle gegevens onderscheppen.</p>
+        <p>Als we een netwerkkaart in promiscuous mode plaatsen dan worden alle pakketten weerhouden, zelfs al zijn deze niet voor de netwerkkaart bestemd. Op die manier kunnen we alle gegevens onderscheppen.</p>
 
         <p>Dit probleem stelt zich echter niet bij een switch of router gezien niet alle ethernetpoorten met elkaar intern doorverbonden zijn.</p>
 
@@ -42,11 +42,11 @@
             <img src="../../../../img/syllabus-03-datalink-laag-06.png" class="img-fluid" alt="Afbeelding uit de syllabus">
         </figure>
 
-        <p>Dit onderdeel is uiteraard nodig om die computer deel te uit te laten maken van een computernetwerk.</p>
+        <p>Dit onderdeel is uiteraard nodig om die computer deel uit te laten maken van een computernetwerk.</p>
 
         <p>Soms is de netwerkkaart een aparte PCI-Express kaart maar tegenwoordig is deze al vaak standaard aanwezig op het moederbord.</p>
 
-        <p>De meeste netwerkkaarten zijn full duplex. Dit betekent dat ze gelijktijdig kunnen verzenden en ontvangen. De technologie die wordt gebruikt beslaat de eerste twee lagen van het TCP/IP model namelijk de fysieke laag en de datalink laag.</p>
+        <p>De meeste netwerkkaarten zijn full duplex. Dit betekent dat ze gelijktijdig kunnen verzenden en ontvangen. De technologie die wordt gebruikt beslaat de eerste twee lagen van het TCP/IP model namelijk de fysieke laag en de datalinklaag.</p>
 
         <p>De fysieke laag omdat het type transmissiemedium (coax, RJ-45, glasvezel, ...) bepalend is voor de connector.  Voor de meeste toepassingen wordt vooral de netwerkkaart met RJ-45 (UTP / STP / FTP) connector gebruikt. Indien een computer geen RJ-45 aansluiting heeft bestaan er USB-adapters op de markt.</p>
 
@@ -54,7 +54,7 @@
 
         <p>De snelheid van de netwerkkaart wordt vaak uitgedrukt als 10/100 Ethernet wat slaat op 10 Mbps of 100 Mbps ofwel 10/100/1000 Ethernet waarbij dit laatste slaat op 1 Gbps.</p>
 
-        <p>Iedere netwerkkaart heeft, zoals je al weet, zijn eigen MAC adres. Dit adres is statisch (het verandert nooit) en wordt toegekend tijdens het fabricageproces.</p>
+        <p>Iedere netwerkkaart heeft, zoals je al weet, zijn eigen MAC adres. Dit adres wordt toegekend tijdens het fabricageproces en verandert onder normale omstandigheden niet meer.</p>
 
         <h2>Powerline adapter</h2>
 
@@ -66,11 +66,11 @@
             <img src="../../../../img/syllabus-03-datalink-laag-07.png" class="img-fluid" alt="Afbeelding uit de syllabus">
         </figure>
 
-        <p>De ene powerline adapter verbind je bijvoorbeeld via een ethernetkabel met een vrije poort op hub, switch of router en de andere powerline adapter, enkele kamers verder, verbind je via een ethernetkabel met een computer. Je hebt dus altijd minstens twee powerline adapters nodig.</p>
+        <p>De ene powerline adapter verbind je bijvoorbeeld via een ethernetkabel met een vrije poort op een hub, switch of router en de andere powerline adapter, enkele kamers verder, verbind je via een ethernetkabel met een computer. Je hebt dus altijd minstens twee powerline adapters nodig.</p>
 
         <p>De theoretische snelheid van een powerline netwerk varieert van 500 Mbps tot 2 Gbps maar weet dat de afstand en de kwaliteit van de bedrading een grote invloed hebben. Ook het aangesloten aantal apparaten kan een rol spelen gezien het elektriciteitsnetwerk geen punt tot punt verbinding is tussen de verschillende adapters.</p>
 
-        <p>Sommige powerline adapters zenden ook Wi-Fi uit. Op die manier kan je makkelijk jouw draadloos netwerk uitbreiden over langere afstanden.</p>
+        <p>Sommige powerline adapters zenden ook wifi uit. Op die manier kan je makkelijk jouw draadloos netwerk uitbreiden over langere afstanden.</p>
 
         <h2>Switch</h2>
 
@@ -80,19 +80,19 @@
             <img src="../../../../img/syllabus-03-datalink-laag-08.jpeg" class="img-fluid" alt="Afbeelding uit de syllabus">
         </figure>
 
-        <p>Een ‘gewone’ switch werkt op de datalink laag (de tweede laag) van het TCP/IP model. Dit betekent dat de switch overweg kan met MAC adressering om frames efficiënt op hun bestemming te brengen binnen hetzelfde netwerk.</p>
+        <p>Een ‘gewone’ switch werkt op de datalinklaag (de tweede laag) van het TCP/IP model. Dit betekent dat de switch overweg kan met MAC adressering om frames efficiënt op hun bestemming te brengen binnen hetzelfde netwerk.</p>
 
-        <p>Met de netwerk laag (de derde laag) van het TCP/IP model kan een gewone switch echter niet overweg. Dit betekent dat dit type switch geen IP adressen kan interpreteren om pakketten op hun bestemming te brengen buiten het lokale netwerk. Deze taak zal opgenomen moeten worden door een router.</p>
+        <p>Met de netwerklaag (de derde laag) van het TCP/IP model kan een gewone switch echter niet overweg. Dit betekent dat dit type switch geen IP adressen kan interpreteren om pakketten op hun bestemming te brengen buiten het lokale netwerk. Deze taak zal opgenomen moeten worden door een router.</p>
 
         <p>Er bestaat ook zoiets als een ‘layer 3 switch’ die wel overweg kan met IP adressen. Deze is vooral handig in grote netwerken waarbij deze dan eenvoudige taken kan overnemen van een router. Dit apparaat bespreken we echter niet want het valt buiten het bereik van deze cursus.</p>
 
         <p>Intern in de switch wordt een <em>MAC address table</em> bijgehouden. In deze tabel staat er welk MAC address bij welke poort op de switch hoort.</p>
 
-        <p>Een switch opent iedere frame  die aankomt op een van zijn poorten (in bovenstaande figuur tel je er 26) en kijkt naar het destination MAC address (en het source MAC address).</p>
+        <p>Een switch opent ieder frame dat aankomt op een van zijn poorten (in bovenstaande figuur tel je er 26) en kijkt naar het destination MAC address (en het source MAC address).</p>
 
         <p>In de tabel wordt opgezocht welke poort bij het destination MAC address hoort en het frame wordt op deze enkele poort gezet. Een groot contrast met de hub waarbij het frame doorgestuurd werd naar alle poorten. We kunnen bijgevolg stellen dat een switch veel efficiënter en veiliger werkt dan een hub.</p>
 
-        <p>Je vraagt je misschien af hoe een switch weet welk MAC adres bij welke poort hoort? Met andere woorden: hoe wordt de MAC address table opgevuld? De switch is een lerend apparaat dat uit het netwerkverkeer informatie kan afleiden.</p>
+        <p>Je vraagt je misschien af hoe een switch weet welk MAC adres bij welke poort hoort. Met andere woorden: hoe wordt de MAC address table opgevuld? De switch is een lerend apparaat dat uit het netwerkverkeer informatie kan afleiden.</p>
 
         <p>Onderstel even dat we een switch hebben met 4 poorten en dat de switch net aangezet werd. De MAC address table is dan leeg en een frame moet verstuurd worden van apparaat A naar apparaat B. Beide apparaten zijn op dezelfde switch aangesloten.</p>
 
@@ -107,11 +107,11 @@
             </table>
         </div>
 
-        <p>Het frame moet evenwel gestuurd worden naar de ontvanger en voor het destination MAC address is er geen informatie in de MAC address table. De switch gedraagt zich dan even als een hub en stuurt het frame naar alle poorten. Dit wordt ook wel een broadcast of flood (= vloed) genoemd.</p>
+        <p>Het frame moet evenwel gestuurd worden naar de ontvanger en voor het destination MAC address is er geen informatie in de MAC address table. De switch gedraagt zich dan even als een hub en stuurt het frame naar alle poorten. Dat noemen we flooden (= overspoelen). Het is geen broadcast: de zender heeft dit frame wel degelijk aan een enkele ontvanger geadresseerd, alleen weet de switch nog niet achter welke poort die zit.</p>
 
         <p>Alle verbonden apparaten ontvangen het frame maar zij bekijken het destination MAC address en besluiten (vrijwillig) dat het frame niet voor hen bestemd is en laten het vallen (= frame drop). Enkel de ontvanger weerhoudt het frame en indien er informatie aangevraagd werd door de zender dan stuurt de ontvanger een frame terug.</p>
 
-        <p>De switch ziet nu opnieuw een binnenkomend frame met een source MAC address (die nu eigenlijk het MAC address is van apparaat B) op de bijhorende poort en vult de MAC address table opnieuw aan.</p>
+        <p>De switch ziet nu opnieuw een binnenkomend frame met een source MAC address (dat nu eigenlijk het MAC address is van apparaat B) op de bijhorende poort en vult de MAC address table opnieuw aan.</p>
 
         <div class="table-responsive table-spacer">
             <table class="table table-bordered">
@@ -122,7 +122,7 @@
             </table>
         </div>
 
-        <p>Wanneer apparaat A nu opnieuw een frame verstuurt naar apparaat B dan zijn beide MAC addresses gekend in de MAC address table. Het frame wordt dan slechts naar 1 poort verstuurd. Dit is dan uiteraard geen broadcast maar wel een unicast.</p>
+        <p>Wanneer apparaat A nu opnieuw een frame verstuurt naar apparaat B dan zijn beide MAC addresses gekend in de MAC address table. Het frame wordt dan slechts naar 1 poort verstuurd. Er wordt dus niet meer gefloodt.</p>
 
         <h2>Industriële switch</h2>
 
@@ -284,9 +284,9 @@
 
         <p>Dat werkt goed zolang de vereisten enkel zijn dat frames moeten verplaatst worden tussen plaats A en B op het netwerk.</p>
 
-        <p>In een bedrijf of een grotere organisatie is het echter iets complexer dan dat. Er zijn verschillende types netwerkverkeer zoals spraak, video, data,  frames die in (bijna) realtime moeten afgeleverd worden voor een geautomatiseerd productie proces, ... Er zijn ook verschillende types gebruikers zoals machine-operatoren, management, ... en niet iedereen heeft dezelfde rechten op het netwerk.</p>
+        <p>In een bedrijf of een grotere organisatie is het echter iets complexer dan dat. Er zijn verschillende types netwerkverkeer zoals spraak, video, data,  frames die in (bijna) realtime moeten afgeleverd worden voor een geautomatiseerd productieproces, ... Er zijn ook verschillende types gebruikers zoals machine-operatoren, management, ... en niet iedereen heeft dezelfde rechten op het netwerk.</p>
 
-        <p>Op een managed switch kan je je aanmelden en daarna het verkeer parameterizeren. De parameters die je kan instellen hebben voornamelijk te maken met de informatie die je kan terugvinden in een frame. In het labo ga je hierop een oefening moeten maken.</p>
+        <p>Op een managed switch kan je je aanmelden en daarna het verkeer parametriseren. De parameters die je kan instellen hebben voornamelijk te maken met de informatie die je kan terugvinden in een frame. In het labo ga je hierop een oefening moeten maken.</p>
 
         <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
             <img src="../../../../img/syllabus-03-datalink-laag-12.png" class="img-fluid" alt="Afbeelding uit de syllabus">
@@ -296,7 +296,7 @@
 
         <p>Maar hoe weet je nu bijvoorbeeld dat de data in een frame tijdsgevoelig is? Of hoe stel je rechten in? Die informatie staat niet vermeld in de velden van een standaard ethernet frame…</p>
 
-        <p>Herinner je je nog dat we in vorig hoofdstuk zeiden dat in het length field van een frame de waarde niet groter mocht zijn dan 1500? Als dat toch het geval is, dan weet de switch dat we te maken hebben met een complexer ethernet frame en zullen de velden anders geïnterpreteerd worden.</p>
+        <p>Herinner je je nog dat we in het vorige hoofdstuk zeiden dat in het length field van een frame de waarde niet groter mocht zijn dan 1500? Als dat toch het geval is, dan weet de switch dat we te maken hebben met een complexer ethernet frame en zullen de velden anders geïnterpreteerd worden.</p>
 
         <div class="table-responsive table-spacer">
             <table class="table table-bordered">
@@ -304,7 +304,7 @@
                     <tr><td><p>Preamble</p>
         <p>(7 bytes)</p></td><td><p>Start Frame Delimiter</p>
         <p>(1 byte)</p></td><td><p>Destination MAC Address</p>
-        <p>(6 bytes)</p></td><td><p>Source MAC Adddres</p>
+        <p>(6 bytes)</p></td><td><p>Source MAC Address</p>
         <p>(6 bytes)</p></td><td><p><strong>Tag Protocol Identifier</strong></p>
         <p>(2 bytes)</p></td><td><p><strong>Tag Control Information</strong></p>
         <p>(2 bytes)</p></td><td><p>Length</p>
@@ -317,7 +317,7 @@
 
         <p>Waar vroeger het Length veld stond staat nu het Tag Protocol Identifier veld. Als de waarde hiervan hexadecimaal 0x8100 (33024 decimaal) is, dan weet de switch dat we te maken hebben met een frame waarbij er eerst nog een Tag Control Information veld volgt vooraleer de length en de data worden doorgestuurd.</p>
 
-        <p>Als we het Tag Control Information veld even in detail bekijken dan zien we dat er drie bits voorzien worden voor de Priority Code Point en één bit voor Drop Eligible Indicator. De naam alleen al geven je misschien een idee waarvoor deze velden zullen dienen. Een ander veld is VLAN ID. Beide bespreken we in volgende hoofdstukken en we beginnen met het uitleggen wat een VLAN precies is.</p>
+        <p>Als we het Tag Control Information veld even in detail bekijken dan zien we dat er drie bits voorzien worden voor de Priority Code Point en één bit voor Drop Eligible Indicator. De namen alleen al geven je misschien een idee waarvoor deze velden zullen dienen. Een ander veld is VLAN ID. Beide bespreken we in volgende hoofdstukken en we beginnen met uit te leggen wat een VLAN precies is.</p>
 
         <div class="table-responsive table-spacer">
             <table class="table table-bordered">

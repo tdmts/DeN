@@ -17,9 +17,9 @@
 
         <p>Het lijkt allemaal moeilijker dan het is.</p>
 
-        <p>Je kan kiezen om te subnetten in klasse A, B of C maar bij klasse C heb je per subnet al maximum 256 hosts per subnet. Het heeft niet veel zin om daar nog kleiner te gaan. Klasse B subnetten is logischer want daar zijn er maximum 65534 hosts per subnet. Maar wij kiezen in deze oefening voor klasse A omdat we daar volledige controle hebben over een subnetmasker van 24 bits.</p>
+        <p>Je kan kiezen om te subnetten in klasse A, B of C maar bij klasse C heb je al maximum 254 hosts per subnet. Het heeft niet veel zin om daar nog kleiner te gaan. Klasse B subnetten is logischer want daar zijn er maximum 65534 hosts per subnet. Maar wij kiezen in deze oefening voor klasse A omdat we daar volledige controle hebben over een subnetmasker van 24 bits.</p>
 
-        <p>In een klasse A private IP range is het netwerkdeel 10. en het subnetmasker 255.0.0.0 . Het hostdeel is dan 24 bits en er zijn geen standaard subnets zoals in klasse B of C. Omwille van performantie redenen gaan we de adresruimte wel onderverdelen in subnetten.</p>
+        <p>In een klasse A private IP range is het netwerkdeel 10. en het subnetmasker 255.0.0.0. Het hostdeel is dan 24 bits en er zijn geen standaard subnets zoals in klasse B of C. Omwille van performantieredenen gaan we de adresruimte wel onderverdelen in subnetten.</p>
 
         <h2>Opgave</h2>
 
@@ -44,7 +44,7 @@
             <li>Servers (30 hosts)</li>
             <li>IoT sensoren (150 hosts)
                 <ul>
-                    <li>Temperatuur, vocht, luchtkwaliteit, ... houdt de productie in de gaten</li>
+                    <li>Temperatuur, vocht, luchtkwaliteit, ... houden de productie in de gaten</li>
                 </ul>
             </li>
             <li>Administratie / boekhouding (70 hosts)
@@ -58,7 +58,7 @@
 
         <h2>De makkelijke manier</h2>
 
-        <p>We kijken in het lijstje naar het grootst aantal hosts (700) en we bepalen het aantal bits dat we nodig hebben om dit getal voor te stellen: 10 (2^10 = 1024)</p>
+        <p>We kijken in het lijstje naar het grootste aantal hosts (700) en we bepalen het aantal bits dat we nodig hebben om dit getal voor te stellen: 10 (2^10 = 1024)</p>
 
         <p>Het subnetmasker is dan /22 (32 - 10) ofwel 255.255.252.0</p>
 
@@ -104,13 +104,13 @@
 
         <p><strong>Servers</strong></p>
 
-        <p>30 hosts -&gt; 5 bits -&gt; maar dat is te krap -&gt; 6 bits -&gt; subnetmasker 255.255.255.64 ofwel /26</p>
+        <p>30 hosts -&gt; 5 bits -&gt; maar dat is te krap -&gt; 6 bits -&gt; subnetmasker 255.255.255.192 ofwel /26</p>
 
         <p>Het vijfde subnet is dan 10.0.6.128 tot en met 10.0.6.191 en is VLAN 50</p>
 
         <h2>Conclusie</h2>
 
-        <p>Je moet je natuurlijk afvragen als het allemaal de moeite wel waard is om een paar adressen te besparen... In de praktijk worden heel vaak subnetmasker /22 (een veelvoud van 1000) en /24 (een veelvoud van 256) gebruikt. Veel groter of kleiner dan dat gaat men niet.</p>
+        <p>Je moet je natuurlijk afvragen of het allemaal de moeite wel waard is om een paar adressen te besparen... In de praktijk worden heel vaak subnetmasker /22 (een veelvoud van 1000) en /24 (een veelvoud van 256) gebruikt. Veel groter of kleiner dan dat gaat men niet.</p>
     </div>
 
     <script src="../../../../reference.js"></script>

@@ -13,7 +13,7 @@
     <div class="container">
         <h1>IP header</h1>
 
-        <p>De netwerk laag uitleggen aan de hand van het TCP/IP model gebeurt het makkelijkst aan de hand van de IP header. De IP header is de informatie die toegevoegd wordt die noodzakelijk is voor het correct functioneren van de netwerk laag.</p>
+        <p>De netwerklaag uitleggen aan de hand van het TCP/IP model gebeurt het makkelijkst aan de hand van de IP header. De IP header is de informatie die toegevoegd wordt die noodzakelijk is voor het correct functioneren van de netwerklaag.</p>
 
         <p>We onderscheiden twee IP headers die momenteel beiden in gebruik zijn: IPv4 en IPv6. De laatste is uiteraard de meest recente maar iets complexer. Om deze reden gaan we in de cursus eerst IPv4 in detail behandelen en daarna schakelen we over naar IPv6 en bespreken we kort de verschillen.</p>
 
@@ -60,9 +60,9 @@
 
         <h3>Differentiated Services Code Point (DSCP)</h3>
 
-        <p>Herinner je je nog dat we in de datalink laag kunnen instellen dat een frame een hogere prioriteit krijgt? Dit is handig voor een switch om te weten welke prioriteit een frame moet krijgen binnen het LAN. Ook op WAN niveau moet de router kunnen weten welke prioriteit een pakket heeft. Dit gebeurt met behulp van het DSCP veld.</p>
+        <p>Herinner je je nog dat we in de datalinklaag kunnen instellen dat een frame een hogere prioriteit krijgt? Dit is handig voor een switch om te weten welke prioriteit een frame moet krijgen binnen het LAN. Ook op WAN niveau moet de router kunnen weten welke prioriteit een pakket heeft. Dit gebeurt met behulp van het DSCP veld.</p>
 
-        <p>Gezien er 6 bits gebruikt worden zijn er in totaal 64 combinaties mogelijk. Ze allemaal bespreken zou ons echter te ver leiden. Weet gewoon dat er ook hier de mogelijkheid is om aan te duiden als een pakket bijvoorbeeld bestemd is voor video of voice.</p>
+        <p>Gezien er 6 bits gebruikt worden zijn er in totaal 64 combinaties mogelijk. Ze allemaal bespreken zou ons echter te ver leiden. Weet gewoon dat er ook hier de mogelijkheid is om aan te duiden of een pakket bijvoorbeeld bestemd is voor video of voice.</p>
 
         <h3>Time To Live (TTL)</h3>
 
@@ -72,34 +72,34 @@
 
         <p>Er moet dus vermeden worden dat het pakket aanwezig blijft op het netwerk als het niet bezorgd kan worden.</p>
 
-        <p>De Time To Live is een veld dat 8 bits telt waardoor de maximum waarde 255 is. In het verleden werd dit uitgedrukt in seconden. Een pakket kon er dus ongeveer 4 minuten erover doen vooraleer het definitief werd afgeschreven als onbezorgbaar. Vandaag de dag is de betekenis veranderd naar <em>hops</em>.</p>
+        <p>De Time To Live is een veld dat 8 bits telt waardoor de maximum waarde 255 is. In het verleden werd dit uitgedrukt in seconden. Een pakket kon er dus ongeveer 4 minuten over doen vooraleer het definitief werd afgeschreven als onbezorgbaar. Vandaag de dag is de betekenis veranderd naar <em>hops</em>.</p>
 
         <p>Een hop is een sprong van het ene netwerk naar het andere. Iedere keer als een router een pakket behandelt dan wordt de TTL verlaagd met 1. Als we een TTL instellen van 16 dan wil dit zeggen dat, na 16 hops, het veld 0 als waarde heeft en de router het pakket niet meer verder zal doorsturen naar een volgende router.</p>
 
         <h3>Protocol</h3>
 
-        <p>Dit veld bepaalt welk protocol gebruikt zal worden op de volgende laag in het TCP/IP model. De volgende laag is de transport laag. Deze staat onder andere in voor het afleveren van pakketten bij de ontvanger.</p>
+        <p>Dit veld bepaalt welk protocol gebruikt zal worden op de volgende laag in het TCP/IP model. De volgende laag is de transportlaag. Deze staat onder andere in voor het afleveren van pakketten bij de ontvanger.</p>
 
-        <p>Twee veelgebruikte opties zijn TCP of Transmission Control Protocol wat pakketten gegarandeerd probeert af te leveren en UDP of User Datagram Protocol wat pakketten <em>best effort</em> probeert af te leveren.  Meer hierover wanneer we het hebben over de transport laag.</p>
+        <p>Twee veelgebruikte opties zijn TCP of Transmission Control Protocol wat pakketten gegarandeerd probeert af te leveren en UDP of User Datagram Protocol wat pakketten <em>best effort</em> probeert af te leveren.  Meer hierover wanneer we het hebben over de transportlaag.</p>
 
         <h3>Source- en destination IP adres</h3>
 
-        <p>De meest relevante velden zijn het source IP address en het destination IP address. Zoals je ondertussen al gelezen hebt in het vorig hoofdstuk zijn er binnen TCP/IP twee adresseringssystemen:</p>
+        <p>De meest relevante velden zijn het source IP address en het destination IP address. Zoals je ondertussen al gelezen hebt in het vorige hoofdstuk zijn er binnen TCP/IP twee adresseringssystemen:</p>
 
         <ol>
-            <li>Het eerste adresseringssysteem bevindt zich op de datalink laag. Hier wordt MAC adressering gebruikt om machines te adresseren binnen het LAN.</li>
-            <li>Het tweede adresseringssysteem bevindt zich op de netwerk laag en hier wordt IP adressering gebruikt om machines te adresseren buiten het LAN.</li>
+            <li>Het eerste adresseringssysteem bevindt zich op de datalinklaag. Hier wordt MAC adressering gebruikt om machines te adresseren binnen het LAN.</li>
+            <li>Het tweede adresseringssysteem bevindt zich op de netwerklaag en hier wordt IP adressering gebruikt om machines te adresseren buiten het LAN.</li>
         </ol>
 
-        <p>Het source IP address en het destination IP address tellen beiden 32 bits. Dit betekent dat het kleinste adres 0 is en het grootste adres 2^32 ofwel 4294967296.</p>
+        <p>Het source IP address en het destination IP address tellen beide 32 bits. Dit betekent dat het kleinste adres 0 is en het grootste adres 2^32 - 1 ofwel 4294967295. Samen zijn dat 2^32 ofwel 4294967296 adressen.</p>
 
         <p>Hoewel 4 miljard mogelijke adressen (in theorie) misschien veel lijkt is dit niet meer voldoende om alle apparaten aan te sluiten op het internet. Dit probleem werd vroeger tijdelijk opgelost door gebruik te maken van Network Address Translation (NAT) maar wordt nu structureel opgelost met de komst van IPv6. Zowel IPv4, NAT als IPv6 worden echter nog steeds door elkaar heen gebruikt. Hoe NAT werkt bespreken we in een later hoofdstuk.</p>
 
-        <p>Een IPv4 adres wordt niet zomaar decimaal genoteerd maar wel uitgeschreven in dotted decimal notation. Een voorbeeld hiervan is 192.168.0.1 of 84.12.65.2 .</p>
+        <p>Een IPv4 adres wordt niet zomaar decimaal genoteerd maar wel uitgeschreven in dotted decimal notation. Een voorbeeld hiervan is 192.168.0.1 of 84.12.65.2.</p>
 
-        <p>Het kleinste IP adres is 0.0.0.0 en het grootste IP adres is 255.255.255.255. Deze adressen mogen echter niet gebruikt worden om een computer mee te adresseren gezien ze een speciale functie hebben. Hierop komen we later nog op terug.</p>
+        <p>Het kleinste IP adres is 0.0.0.0 en het grootste IP adres is 255.255.255.255. Deze adressen mogen echter niet gebruikt worden om een computer mee te adresseren gezien ze een speciale functie hebben. Hierop komen we later nog terug.</p>
 
-        <p>Een IP adres lees je van links naar rechts. Hiermee wordt bedoeld dat het meest rechtse deel slaat op het adres van de machine zelf en het meest linkse deel slaat op het adres van het netwerk. In het hoofdstuk Subnets leer je daarover meer. We halen het echter al even aan omdat we het reeds gehad hebben over het feit dat er een structuur in een IP adres zit waardoor we over verschillende netwerken heen kunnen adresseren.</p>
+        <p>Een IP adres lees je van links naar rechts. Hiermee wordt bedoeld dat het meest rechtse deel slaat op het adres van de machine zelf en het meest linkse deel slaat op het adres van het netwerk. In het hoofdstuk Subnetten leer je daarover meer. We halen het echter al even aan omdat we het reeds gehad hebben over het feit dat er een structuur in een IP adres zit waardoor we over verschillende netwerken heen kunnen adresseren.</p>
 
         <h3>Speciale IPv4 adressen</h3>
 
@@ -121,9 +121,9 @@
 
         <p>Net zoals IPv4 is IPv6 een uniek adres dat toegekend wordt aan een computer die aangesloten is op een netwerk.</p>
 
-        <p>De principes van IPv6 adressen (dynamisch, afhankelijk van de locatie) zijn bijna hetzelfde als een IPv4 adres. De voornaamste verschillen zitten hem in het feit dat er nu maar liefst 128 bits worden gebruikt en de notatie van het adres is anders.</p>
+        <p>De principes van IPv6 adressen (dynamisch, afhankelijk van de locatie) zijn bijna hetzelfde als bij een IPv4 adres. De voornaamste verschillen zitten in het feit dat er nu maar liefst 128 bits worden gebruikt en de notatie van het adres is anders.</p>
 
-        <p>Doordat er meer bits worden gebruikt voor het adres kunnen er nu maximaal 2^128 ofwel 340,282,366,920,938,000,000,000,000,000,000,000,000 apparaten worden aangesloten. Dat zijn 50 quadriljard IPv6 adressen voor elke aardbewoner en zelfs meer dan er sterren zijn in het universum. De voorraad IPv6 adressen is dus vrijwel onuitputtelijk.</p>
+        <p>Doordat er meer bits worden gebruikt voor het adres kunnen er nu maximaal 2^128 ofwel 340.282.366.920.938.000.000.000.000.000.000.000.000 apparaten worden aangesloten. Dat zijn 50 quadriljard IPv6 adressen voor elke aardbewoner en zelfs meer dan er sterren zijn in het universum. De voorraad IPv6 adressen is dus vrijwel onuitputtelijk.</p>
 
         <p>De notatie is iets complexer, men gebruikt hexadecimale colon-notatie waarbij men  8 groepen van 4 hexadecimale cijfers gaat splitsen met behulp van een dubbele punt.</p>
 
@@ -166,9 +166,9 @@
 
         <h3>Next header</h3>
 
-        <p>Op het eerste zicht is dit een verwarrende naam. Het komt overeen met het Protocol veld uit IPv4. Dit veld bepaalt welk protocol gebruikt zal worden op de volgende laag in het TCP/IP model. De volgende laag is de transport laag. Deze staat onder andere in voor het afleveren van pakketten bij de ontvanger.</p>
+        <p>Op het eerste gezicht is dit een verwarrende naam. Het komt overeen met het Protocol veld uit IPv4. Dit veld bepaalt welk protocol gebruikt zal worden op de volgende laag in het TCP/IP model. De volgende laag is de transportlaag. Deze staat onder andere in voor het afleveren van pakketten bij de ontvanger.</p>
 
-        <p>Twee veelgebruikte opties zijn TCP of Transmission Control Protocol wat pakketten gegarandeerd probeert af te leveren en UDP of User Datagram Protocol wat pakketten best effort probeert af te leveren.  Meer hierover wanneer we het hebben over de transport laag.</p>
+        <p>Twee veelgebruikte opties zijn TCP of Transmission Control Protocol wat pakketten gegarandeerd probeert af te leveren en UDP of User Datagram Protocol wat pakketten best effort probeert af te leveren.  Meer hierover wanneer we het hebben over de transportlaag.</p>
     </div>
 
     <script src="../../../../reference.js"></script>

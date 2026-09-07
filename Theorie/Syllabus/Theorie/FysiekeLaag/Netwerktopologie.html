@@ -13,7 +13,7 @@
     <div class="container">
         <h1>Netwerktopologie</h1>
 
-        <p>In een netwerk worden alle hosts met elkaar verbonden maar er zijn natuurlijk meerdere manieren waarop je dat kan doen. Die verschillende manieren worden ook wel netwerk topologieën genoemd. We bespreken er een aantal die worden gebruikt in zowel computernetwerken als industriële netwerken.</p>
+        <p>In een netwerk worden alle hosts met elkaar verbonden maar er zijn natuurlijk meerdere manieren waarop je dat kan doen. Die verschillende manieren worden ook wel netwerktopologieën genoemd. We bespreken er een aantal die worden gebruikt in zowel computernetwerken als industriële netwerken.</p>
 
         <h2>Line</h2>
 
@@ -57,11 +57,11 @@
             <img src="../../../../img/syllabus-02-fysieke-laag-24.png" class="img-fluid" alt="Afbeelding uit de syllabus">
         </figure>
 
-        <p>Er is full duplex transmissie mogelijk wat betekent dat er tegelijkertijd kan verzonden en ontvangen worden door een host. Waar we echter wel moeten op letten is dat het transmissiemedium gedeeld is. Dit betekent dat er collisions (= botsingen) kunnen optreden wanneer hosts op hetzelfde moment gaan zenden. Bij een collision gaat de data verloren.</p>
+        <p>Het transmissiemedium is gedeeld en er kan dus maar een host tegelijk zenden. We noemen dat half duplex: zenden en ontvangen kan allebei, maar niet op hetzelfde moment. Gaan twee hosts toch tegelijk zenden, dan treden er collisions (= botsingen) op en gaat de data verloren.</p>
 
         <p>Als hosts zenden dan wordt het frame langs beide kanten van de kabel verstuurd. Een <em>frame</em> is een verzameling van bits die een boodschap van zender naar ontvanger voorstelt. Het spreekt voor zich dat het niet lang duurt vooraleer er collisions optreden, zelfs met een klein aantal apparaten op het netwerk.</p>
 
-        <p>Om collisions te vermijden of te detecteren op het gedeeld transmissiemedium kan er een vorm van <em>channel access control</em>  worden geïmplementeerd. Hierover leer je later nog iets meer. Channel access control zal ervoor zorgen dat er geen twee zenders op hetzelfde moment een frame zullen versturen.</p>
+        <p>Om collisions te vermijden of te detecteren op het gedeeld transmissiemedium kan er een vorm van <em>medium access control</em>  worden geïmplementeerd. Hierover leer je later nog iets meer. Channel access control zal ervoor zorgen dat er geen twee zenders op hetzelfde moment een frame zullen versturen.</p>
 
         <p>Verder is het ook zo dat wanneer een frame verstuurd wordt, dit ontvangen wordt door ieder apparaat dat verbonden is. Data kan bijgevolg gelezen worden door personen waarvoor het pakket niet bedoeld is.</p>
 
@@ -91,7 +91,7 @@
 
         <p>De hosts waarvoor het frame niet bestemd is negeren het en sturen het verder het netwerk op tot het terug aankomt bij de verzender. De verzender verwijdert het frame van het netwerk. Ieder frame legt dus een volledige ring af.</p>
 
-        <p>Omdat meerdere hosts dezelfde transmissielink gebruiken is er channel access control nodig om te bepalen welke host frames op het netwerk mag invoegen, anders krijgen we collisions.</p>
+        <p>Omdat meerdere hosts dezelfde transmissielink gebruiken is er medium access control nodig om te bepalen welke host frames op het netwerk mag invoegen, anders krijgen we collisions.</p>
 
         <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 160.0mm">
             <img src="../../../../img/syllabus-02-fysieke-laag-26.png" class="img-fluid" alt="Afbeelding uit de syllabus">
@@ -99,7 +99,7 @@
 
         <h2>Ster</h2>
 
-        <p>In een ster netwerk is iedere host direct verbonden met een gemeenschappelijke centrale node. In de meeste gevallen is die centrale node een router of een switch en gebeurt de verbinding aan de hand van een ethernet kabel of draadloos via Wi-Fi.</p>
+        <p>In een ster netwerk is iedere host direct verbonden met een gemeenschappelijke centrale node. In de meeste gevallen is die centrale node een router of een switch en gebeurt de verbinding aan de hand van een ethernetkabel of draadloos via wifi.</p>
 
         <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 115.6mm">
             <img src="../../../../img/syllabus-02-fysieke-laag-27.png" class="img-fluid" alt="Afbeelding uit de syllabus">
@@ -107,11 +107,11 @@
 
         <p>Als het centrale punt een hub of een draadloos access point is dan fungeert het als een broadcast apparaat waarbij frames ontvangen worden en dan doorgestuurd worden naar alle hosts. Hoewel de topologie ster is, gedraagt het systeem zich dan als een bus netwerk.</p>
 
-        <p>Bij een draadloos access point is er een vorm van <em>channel access control</em> nodig om ervoor te zorgen dat hetzelfde fysieke transmissiemedium (= de ether) gedeeld kan worden. Als dat niet gebeurt treden er botsingen op waardoor de frames onleesbaar worden.</p>
+        <p>Bij een draadloos access point is er een vorm van <em>medium access control</em> nodig om ervoor te zorgen dat hetzelfde fysieke transmissiemedium (= de ether) gedeeld kan worden. Als dat niet gebeurt treden er botsingen op waardoor de frames onleesbaar worden.</p>
 
         <p>Als het centrale punt een bedrade switch of router is dan fungeert het als een <em>unicast</em> apparaat waarbij frames enkel tussen geadresseerde hosts worden uitgewisseld.</p>
 
-        <p>Uiteraard is het versturen van frames via unicast veel efficiënter. Misschien denk je dat er op deze manier geen media access control meer nodig is... Dit is echter niet zo want wat als meerdere hosts een frame willen sturen naar één en dezelfde ontvanger. Dan zou dat frame tegelijkertijd aankomen en een botsing veroorzaken. Dit kan uiteraard niet.</p>
+        <p>Uiteraard is het versturen van frames via unicast veel efficiënter. Misschien denk je dat er op deze manier geen medium access control meer nodig is, en op een bedrade switch klopt dat: elke poort is een eigen collision domain en werkt full duplex. Sturen meerdere hosts tegelijk een frame naar één en dezelfde ontvanger, dan botsen die niet. De switch zet ze in een wachtrij en plaatst ze na elkaar op die poort. Raakt die wachtrij vol, dan gaan er frames verloren, en dat noemen we congestie.</p>
 
         <p>Een typisch ster netwerk zie je terug in heel wat SOHO (Small Office Home Office) netwerken met  minder dan 10 computers. Deze topologie is dan ook aanwezig in de meeste huiskamers of kleine bedrijven en dat is niet toevallig.</p>
 
@@ -125,7 +125,7 @@
         <p>Nadeel:</p>
 
         <ul>
-            <li>Zo gaat alle verkeer van iedere host langs dat ene centraal punt. Als dat centraal punt wegvalt is er geen communicatie tussen de verschillende hosts meer mogelijk.</li>
+            <li>Zo gaat alle verkeer van iedere host langs dat ene centrale punt. Als dat centrale punt wegvalt is er geen communicatie tussen de verschillende hosts meer mogelijk.</li>
         </ul>
 
         <h2>Volledig / gedeeltelijk vermaasd (mesh)</h2>
@@ -144,7 +144,7 @@
             <img src="../../../../img/syllabus-02-fysieke-laag-28.png" class="img-fluid" alt="Afbeelding uit de syllabus">
         </figure>
 
-        <p>De meeste particuliere Wifi netwerken draaien rond 1 centrale router en hoe verder een client zich van dit apparaat verwijdert, hoe zwakker het signaal. Om dit tegen te gaan gebruikt men vaak een powerline adapter of een repeater.</p>
+        <p>De meeste particuliere wifi netwerken draaien rond 1 centrale router en hoe verder een client zich van dit apparaat verwijdert, hoe zwakker het signaal. Om dit tegen te gaan gebruikt men vaak een powerline adapter of een repeater.</p>
 
         <figure class="figure w-100 text-center figure-zoom" style="--figuur-breedte: 134.2mm">
             <img src="../../../../img/syllabus-02-fysieke-laag-29.png" class="img-fluid" alt="Afbeelding uit de syllabus">
@@ -160,7 +160,7 @@
 
         <p>Met een powerline adapter is dit niet het geval maar ook daar moet de snelheid over alle aangesloten clients gedeeld worden over 1 link die terug naar het centrale punt leidt.</p>
 
-        <p>Een mesh netwerk houdt de snelheid van het netwerk hoog terwijl het bereik uitgebreid wordt. In de winkel zal je het misschien ook terugvinden als multi-room Wifi.</p>
+        <p>Een mesh netwerk houdt de snelheid van het netwerk hoog terwijl het bereik uitgebreid wordt. In de winkel zal je het misschien ook terugvinden als multi-room wifi.</p>
 
         <p>Bij een mesh-configuratie werk je met een gedecentraliseerd systeem dat uit verschillende zendpunten bestaat die gelijkwaardig zijn. Er is dus geen hiërarchie.</p>
 

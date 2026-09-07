@@ -13,9 +13,9 @@
     <div class="container">
         <h1>Network Address Translation (NAT)</h1>
 
-        <p>Zoals je al weet heeft iedere host in een TCP/IP computernetwerk een uniek IP-adres. De IPv4 standaard specificeert dat er theoretisch iets meer dan een 4 miljard adressen zijn.</p>
+        <p>Zoals je al weet heeft iedere host in een TCP/IP computernetwerk een uniek IP-adres. De IPv4 standaard specificeert dat er theoretisch iets meer dan 4 miljard adressen zijn.</p>
 
-        <p>In de praktijk zijn er slechts ongeveer 3 miljard adressen effectief beschikbaar. Dit komt omdat in het verleden er zeer veel IP-adressen werden gereserveerd voor militaire- en testdoeleinden. Door de spectaculaire groei in Azië en de groei in de mobiele telefonie markt werden midden 2011 de laatste IPv4-adressen uitgedeeld aan de telecomoperatoren.</p>
+        <p>In de praktijk zijn er slechts ongeveer 3 miljard adressen effectief beschikbaar. Dit komt omdat in het verleden er zeer veel IP-adressen werden gereserveerd voor militaire en testdoeleinden. Door de spectaculaire groei in Azië en de groei in de markt van de mobiele telefonie werden midden 2011 de laatste IPv4-adressen uitgedeeld aan de telecomoperatoren.</p>
 
         <p>Bijgevolg zijn alle beschikbare IPv4 adressen gereserveerd en ondertussen zijn er veel meer dan 3 miljard hosts verbonden met het Internet.</p>
 
@@ -44,7 +44,7 @@
 
         <p>Gezien pakketten verstuurd moeten worden tussen verschillende hosts en het source IP adres een privaat IP adres is dat enkel bestaat op het LAN, moet de router de omzetting maken tussen het lokale private IP en het externe publieke IP adres.</p>
 
-        <p>Stel dat er drie hosts aanwezig zijn op het LAN en deze zijn allen verbonden met de router. Er zijn dan drie private IP adressen en één publiek IP adres. In de NAT tabel staat dan:</p>
+        <p>Stel dat er drie hosts aanwezig zijn op het LAN en deze zijn allemaal verbonden met de router. Er zijn dan drie private IP adressen en één publiek IP adres. In de NAT tabel staat dan:</p>
 
         <div class="table-responsive table-spacer">
             <table class="table table-bordered">
@@ -54,16 +54,16 @@
                 <tbody>
                     <tr><td>192.168.67.46</td><td>217.83.3.17</td></tr>
                     <tr><td>192.168.67.154</td><td>217.83.3.17</td></tr>
-                    <tr><td>192.168.67.73</td><td>271.83.3.17</td></tr>
+                    <tr><td>192.168.67.73</td><td>217.83.3.17</td></tr>
                 </tbody>
             </table>
         </div>
 
-        <p>Pakketten die verstuurd worden vanaf het LAN krijgen dus als source IP adres 217.83.3.17 en niet 192.168.67.46 of 192.168.67.154 of 192.168.67.73. Hun destination IP adres is bijvoorbeeld 66.35.250.150 .</p>
+        <p>Pakketten die verstuurd worden vanaf het LAN krijgen dus als source IP adres 217.83.3.17 en niet 192.168.67.46 of 192.168.67.154 of 192.168.67.73. Hun destination IP adres is bijvoorbeeld 66.35.250.150.</p>
 
-        <p>Een probleem vormt zich wanneer de pakketten terugkeren. Het source IP adres is dan 66.35.250.150 maar het destination IP adres is 217.83.3.17 . Eenmaal aangekomen op de router is er geen manier om na te gaan naar welke private host (192.168.67.46 / 192.168.67.154 / 192.168.67.73) ze doorgestuurd moeten worden.</p>
+        <p>Een probleem vormt zich wanneer de pakketten terugkeren. Het source IP adres is dan 66.35.250.150 maar het destination IP adres is 217.83.3.17. Eenmaal aangekomen op de router is er geen manier om na te gaan naar welke private host (192.168.67.46 / 192.168.67.154 / 192.168.67.73) ze doorgestuurd moeten worden.</p>
 
-        <p>De oplossing is om naast het source IP adres ook de poort te wijzigen bij het versturen van het pakket. De poortinformatie is iets wat toegevoegd wordt in de transport laag. Voorlopig mag je onthouden dat het MAC adres het adres is van de machine op het LAN, het IP adres is het adres op het WAN en de poort is het adres van de applicatie op de machine.</p>
+        <p>De oplossing is om naast het source IP adres ook de poort te wijzigen bij het versturen van het pakket. De poortinformatie is iets wat toegevoegd wordt in de transportlaag. Voorlopig mag je onthouden dat het MAC adres het adres is van de machine op het LAN, het IP adres is het adres op het WAN en de poort is het adres van de applicatie op de machine.</p>
 
         <p>Iedere private host heeft dan een andere poort. De tabel ziet er dan als volgt uit:</p>
 
@@ -75,7 +75,7 @@
                 <tbody>
                     <tr><td>192.168.67.46 : 32523</td><td>217.83.3.17</td></tr>
                     <tr><td>192.168.67.154 : 16408</td><td>217.83.3.17</td></tr>
-                    <tr><td>192.168.67.73 : 43978</td><td>271.83.3.17</td></tr>
+                    <tr><td>192.168.67.73 : 43978</td><td>217.83.3.17</td></tr>
                 </tbody>
             </table>
         </div>

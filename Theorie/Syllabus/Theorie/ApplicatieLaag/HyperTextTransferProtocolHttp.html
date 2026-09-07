@@ -21,13 +21,13 @@
 
         <p>We hebben er notie van, we weten ongeveer wat de principes zijn maar de details zijn ons niet vertrouwd. In dit hoofdstuk proberen we dit voor HTTP iets duidelijker te maken.</p>
 
-        <p>Zoals je weet is een <strong>protocol </strong>een set van <strong>afspraken </strong>die gemaakt worden. HTTP is dus ook gewoon een set van aspraken. De partijen die de afspraken maken zijn in dit geval een <strong>client </strong>en een <strong>server</strong>. Client en server zijn in deze context geen machines maar wel <strong>programma&#x27;s</strong>.</p>
+        <p>Zoals je weet is een <strong>protocol </strong>een set van <strong>afspraken </strong>die gemaakt worden. HTTP is dus ook gewoon een set van afspraken. De partijen die de afspraken maken zijn in dit geval een <strong>client </strong>en een <strong>server</strong>. Client en server zijn in deze context geen machines maar wel <strong>programma&#x27;s</strong>.</p>
 
         <p>Het is natuurlijk zo dat het server programma meestal wel op een zwaardere computer zal draaien omdat er nu eenmaal veel clients mee kunnen verbinden maar in principe kan het server programma op eender welke machine actief zijn.</p>
 
         <p>De set van afspraken slaat concreet op de <strong>boodschappen</strong> die uitgewisseld worden tussen client en server. Een client stuurt een <strong>request</strong> naar de server en deze stuurt een <strong>response </strong>terug naar de client.</p>
 
-        <p>Die request en response boodschappen zijn omschreven in een Request For Comments. Dit is een soort van discussieplatform waar verschillende &#x27;experten&#x27; een voorstel indienen en die gerevisioneerd kan worden door anderen. Die experten zijn soms individuen maar natuurlijk ook medewerkers van verschillende technologiebedrijven zoals Google, Microsoft en dergelijke meer.</p>
+        <p>Die request en response boodschappen zijn omschreven in een Request For Comments. Dit is een soort van discussieplatform waar verschillende &#x27;experten&#x27; een voorstel indienen dat door anderen herzien kan worden. Die experten zijn soms individuen maar natuurlijk ook medewerkers van verschillende technologiebedrijven zoals Google, Microsoft en dergelijke meer.</p>
 
         <p>Een <strong>HTTP request</strong> ziet er bijvoorbeeld zo uit:</p>
 
@@ -83,11 +83,11 @@
 
         <p>Nu je de basisprincipes kent van HTTP proberen we dit opnieuw te koppelen aan ons <strong>TCP/IP model</strong>.</p>
 
-        <p><strong>HTTP </strong>is een protocol dat draait op de <strong>applicatie laag </strong>en dat betekent dat de direct aangrenzende laag de <strong>transport laag</strong> is. Wie een client of server wil programmeren zal dus  niet enkel rekening moeten houden met de <strong>request</strong> en <strong>response boodschappen</strong> maar ook met de gegevens die nodig zijn in de <strong>header</strong> velden van die laag.</p>
+        <p><strong>HTTP </strong>is een protocol dat draait op de <strong>applicatielaag </strong>en dat betekent dat de direct aangrenzende laag de <strong>transportlaag</strong> is. Wie een client of server wil programmeren zal dus  niet enkel rekening moeten houden met de <strong>request</strong> en <strong>response boodschappen</strong> maar ook met de gegevens die nodig zijn in de <strong>header</strong> velden van die laag.</p>
 
         <p>De keuze van <strong>transport protocol</strong> dat gebruikt wordt voor <strong>HTTP </strong>is eenvoudig te maken en is <strong>TCP </strong>omdat deze een <strong>volledige overdracht</strong> garandeert. Als je surft naar een website wil je de volledige pagina laden en niet, omwille van transmissieproblemen, gegevens verliezen.</p>
 
-        <p>Als we kiezen voor TCP dan is er natuurlijk de <strong>TCP header. </strong>De zaken waarmee zowel client als server rekening moeten mee houden zijn het <strong>poortnummer</strong>.</p>
+        <p>Als we kiezen voor TCP dan is er natuurlijk de <strong>TCP header. </strong>Waar zowel client als server rekening mee moeten houden, is het <strong>poortnummer</strong>.</p>
 
         <p>Voor HTTP is de afspraak gemaakt dat <strong>poortnummer 80</strong> gebruikt wordt voor de server kant. Voor HTTPS is dat poort 443.</p>
 
@@ -119,7 +119,7 @@
 
         <p>De coördinaten zijn hier dynamisch en dit betekent dat <strong>gewone HTML</strong> code, die statisch is, <strong>niet voldoende</strong> zou zijn.</p>
 
-        <p>De oplossing hiervoor zou het gebruiken van een <strong><em>Server Side Script</em></strong> taal zoals <strong>PHP </strong>of <strong>ASP.Net</strong> kunnen zijn. Deze zou dan in staat moeten zijn om data op te vragen van het productieproces en dit dan te renderen in het HTTP response.</p>
+        <p>De oplossing hiervoor zou het gebruiken van een <strong><em>server side scripttaal</em></strong> zoals <strong>PHP </strong>of <strong>ASP.Net</strong> kunnen zijn. Deze zou dan in staat moeten zijn om data op te vragen van het productieproces en dit dan te renderen in het HTTP response.</p>
 
         <p>Wie niet zelf wil programmeren kan ook aan de slag met tools zoals <strong>NodeRed</strong>. Wie geduld heeft kan wachten tot dit aan bod komt in 3 automatisering en wie geen geduld heeft kan  al eens zelf aan de slag. NodeRed is gratis.</p>
 

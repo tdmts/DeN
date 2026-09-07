@@ -29,7 +29,7 @@
             <img src="../../../../img/syllabus-03-datalink-laag-13.png" class="img-fluid" alt="Afbeelding uit de syllabus">
         </figure>
 
-        <p>Als een frame verstuurd aankomt op bijvoorbeeld poort 1, die deel uitmaakt van VLAN 100, dan zal de switch het frame openen en op de plaats van het VLAN ID de waarde 0000 0110 0100 zetten.</p>
+        <p>Als een frame aankomt op bijvoorbeeld poort 1, die deel uitmaakt van VLAN 100, dan schuift de switch er vier bytes bij in: het Tag Protocol Identifier veld en het Tag Control Information veld. In dat laatste komt op de plaats van het VLAN ID de waarde 0000 0110 0100 te staan.</p>
 
         <div class="table-responsive table-spacer">
             <table class="table table-bordered">
@@ -43,13 +43,13 @@
 
         <p>Het frame kan enkel doorgestuurd worden naar andere poorten die in hetzelfde VLAN zitten.</p>
 
-        <p>Een bijkomende reden om VLAN&#x27;s  te configureren is dat je prioriteit kan instellen op het netwerkverkeer. Je kan bijvoorbeeld een VLAN aanmaken voor alle apparaten die een hoge prioriteit nodig hebben. Dit zijn bijvoorbeeld Voice Over IP telefoons, Smart TV&#x27;s, toestellen die video moeten streamen en natuurlijk ook machine gestuurde tijds kritische processen (zoals lassen, lijmen, verven, ...) .</p>
+        <p>Een bijkomende reden om VLAN&#x27;s  te configureren is dat je prioriteit kan instellen op het netwerkverkeer. Je kan bijvoorbeeld een VLAN aanmaken voor alle apparaten die een hoge prioriteit nodig hebben. Dit zijn bijvoorbeeld Voice Over IP telefoons, Smart TV&#x27;s, toestellen die video moeten streamen en natuurlijk ook machinegestuurde tijdkritische processen (zoals lassen, lijmen, verven, ...).</p>
 
-        <p>Afhankelijk van de netwerkpoort bevindt de gebruiker of het apparaat zich dus in een ander VLAN met andere toegangsrechten en prioriteit op het netwerk. De switch overschrijft dan de waarde in PCP met de waarde die jij hebt gekozen .</p>
+        <p>Afhankelijk van de netwerkpoort bevindt de gebruiker of het apparaat zich dus in een ander VLAN met andere toegangsrechten en prioriteit op het netwerk. De switch overschrijft dan de waarde in PCP met de waarde die jij hebt gekozen.</p>
 
-        <p>Merk op dat de gebruiker uiteraard geen rechtstreeks toegang mag krijgen tot de switch anders volstaat het om een kabel in een andere poort te stoppen om andere toegangsrechten en prioriteit te krijgen.</p>
+        <p>Merk op dat de gebruiker uiteraard geen rechtstreekse toegang mag krijgen tot de switch anders volstaat het om een kabel in een andere poort te stoppen om andere toegangsrechten en prioriteit te krijgen.</p>
 
-        <p>Hoeveel en welke VLAN&#x27;s moet je dan uiteindelijk maken? Dat is grotendeels vrij te kiezen en hangt er vanaf hoe het netwerk er uitziet.</p>
+        <p>Hoeveel en welke VLAN&#x27;s moet je dan uiteindelijk maken? Dat is grotendeels vrij te kiezen en hangt ervan af hoe het netwerk eruitziet.</p>
 
         <p>Vaak is een VLAN voor:</p>
 

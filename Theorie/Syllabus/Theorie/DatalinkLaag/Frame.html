@@ -46,7 +46,7 @@
 
         <p>In het voorlaatste veld vinden we de data terug die over het netwerk verzonden zal worden. De minimale lengte van het data-veld is 46 bytes en de maximale lengte is 1500 bytes. Als de verzonden gegevens korter zijn dan 46 bytes, wordt het frame automatisch aangevuld met opvuldata (padding) om de minimale lengte te bereiken. Als je meer dan 1500 bytes wil versturen dan zal die informatie opgesplitst moeten worden in meerdere frames of wordt er gebruik gemaakt van jumbo frames.</p>
 
-        <p>Als laatste is er de Frame Check Sequence. Toen het frame gemaakt werd door de ontvanger is er op de velden source, destination, length en data een <em>checksum</em> berekend. Een checksum is een soort van controle getal dat de ontvanger kan gebruiken om te kijken als het frame geen fouten bevat. Bij het ontvangen van de frame wordt opnieuw de checksum berekend en als deze verschilt dan weet de ontvanger dat er een fout is opgetreden.</p>
+        <p>Als laatste is er de Frame Check Sequence. Toen het frame gemaakt werd door de zender is er op de velden source, destination, length en data een <em>checksum</em> berekend. Een checksum is een soort van controlegetal dat de ontvanger kan gebruiken om te kijken of het frame geen fouten bevat. Bij het ontvangen van het frame wordt opnieuw de checksum berekend en als deze verschilt dan weet de ontvanger dat er een fout is opgetreden.</p>
     </div>
 
     <script src="../../../../reference.js"></script>
